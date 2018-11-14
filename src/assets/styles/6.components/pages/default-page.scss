@@ -1,0 +1,94 @@
+.default-page {
+  padding: 25px 25px 50px;
+  margin: 0 0 20px;
+  background-color: $color-aqua-haze;
+
+  &__inner {
+    background-color: $color-white;
+    padding: 100px 0 200px;
+  }
+
+  &__title {
+    @include apercu(700);
+    @include Text(40px, 48px, $color-blumine);
+    text-align: center;
+    margin: 0 0 120px;
+
+    &--shipping {
+      margin: 0 0 40px;
+    }
+  }
+
+  &__sup-title {
+    @include apercu;
+    @include Text(13.5px, 20px, $color-black);
+    text-align: center;
+    margin: 0 0 40px;
+  }
+
+  &__introduction {
+    @include apercu;
+    @include Text(20px, 30px, $color-black);
+    text-align: center;
+    margin: 0 0 100px;
+  }
+
+  &__table {
+    border-spacing: 0;
+  }
+
+  &__cell {
+    @include myriad;
+    @include Text(13.5px, 20px, $color-black);
+    border-bottom: 1px solid $color-white;
+    background-color: $color-aqua-haze;
+    text-align: center;
+    padding: 20px;
+
+    &--left {
+      text-align: left;
+    }
+
+    &--head {
+      @include apercu;
+      @include Text(12px, 17px, $color-black);
+      opacity: 0.5;
+      padding: 10px 20px;
+      background-color: transparent;
+    }
+  }
+
+  &__content {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: $color-blumine;
+    }
+
+    h3 {
+      margin: 70px 0 40px;
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 22px;
+    }
+
+    ul {
+      list-style: none;
+      padding-inline-start: 50px;
+    }
+
+    ul li {
+      text-indent: -28.5px;
+    }
+
+    ul li::before {
+      content: "—";
+      padding: 0 15px 0 0;
+    }
+  }
+}

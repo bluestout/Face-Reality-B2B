@@ -1,0 +1,19 @@
+.studies-banner {
+  text-align: center;
+  margin: 0 0 80px;
+
+  .breadcrumbs {
+    padding: 40px 0;
+  }
+
+  &__title {
+    @include apercu(700);
+    @include Text(40px, 48px, $color-blumine);
+    margin: 0 0 15px;
+  }
+
+  &__subtitle {
+    @include apercu;
+    @include Text(20px, 28px, $color-black);
+  }
+}

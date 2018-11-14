@@ -1,0 +1,202 @@
+.information-article {
+  margin: 45px 0 105px;
+
+  &__wrap {
+    padding: 25px 25px 100px;
+    background-color: $color-aqua-haze;
+  }
+
+  &__section-title {
+    @include apercu(700);
+    @include Text(25px, 30px, $color-blumine);
+    text-align: center;
+    margin: 0 0 16px;
+  }
+
+  &__navigation {
+    position: relative;
+    text-align: center;
+    margin: 0 auto 24px;
+    max-width: $grid-max;
+  }
+
+  .breadcrumbs {
+    padding: 1px 0;
+  }
+
+  &__backlink {
+    position: absolute;
+    left: 0;
+    @include apercu;
+    @include Text(12px, 18px, $color-blumine);
+    text-decoration: none;
+  }
+
+  &__backlink-icon {
+    margin: 0 12px 0 0;
+    font-size: 16px;
+    opacity: 0.55;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &__backlink-text {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &__inner {
+    background-color: $color-white;
+    margin: 0 auto 60px;
+    max-width: $grid-max;
+  }
+
+  &__utilities {
+    position: relative;
+    padding: 35px 0;
+    text-align: right;
+    margin: 0 45px;
+  }
+
+  &__social {
+    display: inline-block;
+    text-decoration: none;
+
+    &:not(:last-of-type) {
+      margin: 0 40px 0 0;
+    }
+
+    &-text {
+      @include apercu;
+      @include Text(15px, 22px, $color-blumine);
+      vertical-align: middle;
+    }
+
+    &-icon {
+      @include Text(20px, 22px, $color-blumine);
+      margin: 0 10px 0 0;
+      vertical-align: middle;
+    }
+  }
+
+  .social-sharing {
+    z-index: 1;
+    position: absolute;
+    display: none;
+    margin: 0;
+    right: 0;
+    top: 100%;
+    padding: 10px;
+    background-color: rgba($color-blumine, 0.04);
+
+    &__link {
+      @extend %no-font-size;
+      margin: 0 15px;
+      display: inline-block;
+      &:hover,
+      &:active {
+        .social-sharing__icon {
+          color: $color-accent;
+        }
+      }
+    }
+
+    &__icon {
+      font-size: 24px;
+      line-height: 1;
+      color: $color-blumine;
+      @include transition(color);
+    }
+  }
+
+  &__title {
+    @include apercu(700);
+    @include Text(40px, 48px, $color-blumine);
+    text-align: center;
+    margin: 0 0 40px;
+  }
+
+  &__introduction {
+    @include apercu;
+    @include Text(20px, 29px, $color-black);
+    text-align: center;
+    margin: 0 0 70px;
+  }
+
+  &__content {
+    margin: 0 0 100px;
+    &::first-letter,
+    .initial::first-letter {
+      @include aller(700);
+      @include Text(49px, 60px, $color-blumine);
+    }
+
+    p {
+      @include Text(15px, 22px, $color-black);
+    }
+
+    ul {
+      list-style: none;
+      padding: 0 0 0 60px;
+    }
+
+    ul li {
+      text-indent: -40px;
+    }
+
+    ul li::before {
+      content: '—';
+      padding: 0 26.5px 0 0;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: $color-blumine;
+    }
+
+    h1 {
+      margin: 0 0 40px;
+    }
+
+    h2 {
+      margin: 0 0 35px;
+    }
+
+    h3 {
+      margin: 0 0 30px;
+    }
+
+    h4 {
+      margin: 0 0 24px;
+    }
+
+    h5 {
+      margin: 0 0 24px;
+    }
+
+    h6 {
+      margin: 0 0 24px;
+    }
+
+    blockquote {
+      font-style: italic;
+      display: block;
+      text-align: center;
+      border-bottom: 1px solid $color-aqua-haze;
+      margin: 0 auto 40px;
+      max-width: 90%;
+
+      * {
+        font-size: 18px;
+        line-height: 30px;
+        color: $color-calypso;
+      }
+    }
+  }
+
+  @import 'related';
+}

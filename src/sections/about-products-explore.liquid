@@ -1,0 +1,167 @@
+<section class="collection-by-type">
+
+  <h2 class="collection-by-type__title">{{ section.settings.title }}</h2>
+
+  <h3 class="collection-by-type__collection-title">{{ section.settings.collection_1_title }}</h3>
+
+  <div class="collection-by-type__type">
+    <div class="row no-gutters">
+      {% assign index = 1 %}
+      {% comment %} looped the same array twice, because we can't know in what order the user will add blocks {% endcomment %}
+      {% for block in section.blocks %}
+        {% if block.type == 'tab-1' %}
+          <div class="col">
+            {% assign collection_block = collections[block.settings.collection] %}
+            <div class="collection-by-type__visible-col index-{{ index }}">
+              <div class="collection-by-type__visible-col-inner">
+                <h3 class="collection-by-type__col-title">
+                  {{ collection_block.title }}
+                  <span class="collection-by-type__visible-col-arrow icon-angle-right"></span>
+                </h3>
+              </div>
+            </div>
+            <a href="{{ collection_block.url }}" class="collection-by-type__hover-col">
+              <span class="collection-by-type__hover-col-header">
+                <h3 class="collection-by-type__col-title">{{ collection_block.title }}</h3>
+              </span>
+              {% include 'responsive-image' with
+                image: collection_block.image,
+                wrapper_class: 'collection-by-type__hover-col-image-wrap',
+                image_class: 'collection-by-type__hover-col-image',
+                alt: collection_block.title
+                max_width: 360,
+                max_height: 285,
+                span: true
+              %}
+              <span class="collection-by-type__hover-col-content">
+                <span class="collection-by-type__hover-col-text">{{ collection_block.description | strip_html | truncatewords: 15 }}</span>
+                <span class="collection-by-type__hover-col-link">See products</span>
+              </span>
+            </a>
+          </div>
+          {% assign index = index | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  {% if section.settings.button_1_text != '' %}
+    <a class="collection-by-type__link collection-by-type__link--margin" href="{{ section.settings.button_1_url }}">{{ section.settings.button_1_text }}</a>
+  {% endif %}
+
+  <h3 class="collection-by-type__collection-title">{{ section.settings.collection_2_title }}</h3>
+
+  <div class="collection-by-type__type">
+    <div class="row no-gutters">
+      {% assign index = 1 %}
+      {% for block in section.blocks %}
+        {% if block.type == 'tab-2' %}
+          <div class="col">
+            {% assign collection_block = collections[block.settings.collection] %}
+            <div class="collection-by-type__visible-col index-{{ index }}">
+              <div class="collection-by-type__visible-col-inner">
+                <h3 class="collection-by-type__col-title">
+                  {{ collection_block.title }}
+                  <span class="collection-by-type__visible-col-arrow icon-angle-right"></span>
+                </h3>
+              </div>
+            </div>
+            <a href="{{ collection_block.url }}" class="collection-by-type__hover-col">
+              <span class="collection-by-type__hover-col-header">
+                <h3 class="collection-by-type__col-title">{{ collection_block.title }}</h3>
+              </span>
+              {% include 'responsive-image' with
+                image: collection_block.image,
+                wrapper_class: 'collection-by-type__hover-col-image-wrap',
+                image_class: 'collection-by-type__hover-col-image',
+                alt: collection_block.title
+                max_width: 360,
+                max_height: 285,
+                span: true
+              %}
+              <span class="collection-by-type__hover-col-content">
+                <span class="collection-by-type__hover-col-text">{{ collection_block.description | strip_html | truncatewords: 15 }}</span>
+                <span class="collection-by-type__hover-col-link">See products</span>
+              </span>
+            </a>
+          </div>
+          {% assign index = index | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  {% if section.settings.button_2_text != '' %}
+    <a class="collection-by-type__link" href="{{ section.settings.button_2_url }}">{{ section.settings.button_2_text }}</a>
+  {% endif %}
+
+</section>
+
+{% schema %}
+  {
+    "name": "Explore products",
+    "blocks": [
+      {
+        "type": "tab-1",
+        "name": "Collection 1",
+        "settings": [
+          {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection"
+          }
+        ]
+      },
+      {
+        "type": "tab-2",
+        "name": "Collection 2",
+        "settings": [
+          {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection"
+          }
+        ]
+      }
+    ],
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title"
+      },
+      {
+        "type": "text",
+        "id": "collection_1_title",
+        "label": "Collection 1 Title"
+      },
+      {
+        "type": "url",
+        "id": "button_1_url",
+        "label": "Coll. 1 Button URL"
+      },
+      {
+        "type": "text",
+        "id": "button_1_text",
+        "label": "Coll. 1 Button Text"
+      },
+      {
+        "type": "text",
+        "id": "collection_2_title",
+        "label": "Collection 2 Title"
+      },
+      {
+        "type": "url",
+        "id": "button_2_url",
+        "label": "Coll. 2 Button URL"
+      },
+      {
+        "type": "text",
+        "id": "button_2_text",
+        "label": "Coll. 2 Button Text"
+      }
+    ]
+  }
+{% endschema %}
+
+

@@ -1,0 +1,107 @@
+.button {
+  display: inline-block;
+  vertical-align: middle;
+  width: auto;
+  border: 0;
+  text-align: center;
+  white-space: normal;
+  text-decoration: none;
+  user-select: none;
+  appearance: none;
+
+  /* this is so the input default is overridden */
+  &.button--wire {
+    @extend %paragraph-blue;
+    @include transition(background-color, color);
+    text-align: center;
+    text-decoration: none;
+    font-weight: 400;
+    padding: 14.5px 53px;
+    background-color: transparent;
+    border: 1px solid $color-blumine;
+    border-radius: 0;
+    height: auto;
+    display: inline-block;
+
+    &:not(:disabled) {
+      &:hover,
+      &:active,
+      &:focus {
+        background-color: $color-blumine;
+        color: $color-white;
+      }
+    }
+
+    &.button--big {
+      font-size: 14px;
+      padding-top: 19px;
+      padding-bottom: 19px;
+    }
+
+    &.button--small {
+      padding-top: 9px;
+      padding-bottom: 9px;
+      font-size: 12px;
+    }
+
+    &.button--tiny {
+      padding: 5px 20px;
+      font-size: 12px;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      background-color: transparent;
+      color: $color-blumine;
+    }
+  }
+
+  /* this is so the input default is overridden */
+  &.button--main {
+    @include myriad(400);
+    @extend %paragraph-white;
+    @include transition(background-color);
+    text-align: center;
+    text-decoration: none;
+    font-weight: 400;
+    padding: 12px 24px;
+    background-color: $color-blumine;
+    border-radius: 0;
+    height: auto;
+    display: inline-block;
+
+    &:not(:disabled) {
+      &:hover,
+      &:active {
+        color: $color-white;
+        background-color: $color-accent;
+      }
+
+      &:focus {
+        color: $color-white;
+      }
+    }
+
+    &.button--big {
+      font-size: 14px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+
+    &.button--small {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      font-size: 12px;
+    }
+
+    &.button--tiny {
+      padding: 6px 20px;
+      font-size: 12px;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      background-color: $color-blumine;
+    }
+  }
+}

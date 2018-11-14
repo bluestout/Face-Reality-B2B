@@ -1,0 +1,19 @@
+<div class="contact-page">
+  <div class="contact-header">
+    <h1 class="contact-header__suptitle">{{ page.title }}</h1>
+    <h2 class="contact-header__title">{{ page.content | strip | strip_html }}</h2>
+  </div>
+
+  <div class="contact-content">
+    <div class="contact-content__inner">
+      <div class="row">
+        <div class="col-lg-6">
+          {% section 'contact-information' %}
+        </div>
+        <div class="col-lg-6">
+          {% section 'contact-form' %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

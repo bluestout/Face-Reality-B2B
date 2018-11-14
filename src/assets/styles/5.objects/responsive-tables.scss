@@ -1,0 +1,13 @@
+@include media-query($small) {
+  .responsive-table {
+    width: 100%;
+
+    // IE9 table layout fixes
+    tr,
+    td {
+      float: left;
+      clear: both;
+      width: 100%;
+    }
+  }
+}
