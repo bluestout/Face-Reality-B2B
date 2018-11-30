@@ -4,36 +4,49 @@
       <div class="col-lg-8 col-sm-10">
         <h3 class="home-testimonials__suptitle">{{ section.settings.suptitle }}</h3>
         <h2 class="home-testimonials__title">{{ section.settings.title }}</h2>
-        <p class="home-testimonials__text">{{ section.settings.text }}</p>
       </div>
     </div>
   </div>
+
+  <div class="home-testimonials__container">
+    <div class="js-video-testimonials-slider">
+      {% for block in section.blocks %}
+        {% if block.type == "video" %}
+          <div class="home-testimonials__video-wrap">
+            <div class="home-testimonials__video"></div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
   <div class="home-testimonials__container">
     <div class="js-testimonials-slider">
       {% for block in section.blocks %}
-        <div class="home-testimonials__testimonial">
-          <p class="home-testimonials__testimonial-text">{{ block.settings.testimonial }}</p>
-          <div class="flex-shaper"></div>
-          {% include 'zig-line-separator' %}
-          {% if block.settings.image %}
-            {% include 'responsive-image'
-              with image: block.settings.image,
-              max_width: 350,
-              max_height: 350,
-              wrapper_class: 'home-testimonials__testimonial-image-wrap',
-              image_class: 'home-testimonials__testimonial-image'
-            %}
-          {% else %}
-          {% comment %} TODO remove the placeholder when done with development {% endcomment %}
-            <div class="home-testimonials__testimonial-image-wrap">
-              <img src="http://via.placeholder.com/340x340" alt="" class="home-testimonials__testimonial-image">
+        {% if block.type == "testimonial" %}
+          <div class="home-testimonials__testimonial">
+            {% if block.settings.image %}
+              {% include 'responsive-image'
+                with image: block.settings.image,
+                max_width: 350,
+                max_height: 350,
+                wrapper_class: 'home-testimonials__testimonial-image-wrap',
+                image_class: 'home-testimonials__testimonial-image'
+              %}
+            {% else %}
+            {% comment %} TODO remove the placeholder when done with development {% endcomment %}
+              <div class="home-testimonials__testimonial-image-wrap">
+                <img src="http://via.placeholder.com/340x340" alt="" class="home-testimonials__testimonial-image">
+              </div>
+            {% endif %}
+            <div class="home-testimonials__testimonial-info">
+              <span class="home-testimonials__testimonial-name">{{ block.settings.title }}</span>
+              <span class="home-testimonials__testimonial-date">{{ block.settings.date }}</span>
             </div>
-          {% endif %}
-          <div class="home-testimonials__testimonial-info">
-            <span class="home-testimonials__testimonial-name">{{ block.settings.title }}</span>
-            <span class="home-testimonials__testimonial-date">{{ block.settings.date }}</span>
+            {% include 'zig-line-separator' %}
+            <p class="home-testimonials__testimonial-text">{{ block.settings.testimonial }}</p>
           </div>
-        </div>
+        {% endif %}
       {% endfor %}
     </div>
     {% if section.settings.button_text != '' %}
@@ -98,6 +111,17 @@
             "type": "text",
             "id": "date",
             "label": "Date"
+          }
+        ]
+      },
+      {
+        "type": "video",
+        "name": "Video Testimonial",
+        "settings": [
+          {
+            "type": "text",
+            "id": "video",
+            "label": "Video ?"
           }
         ]
       }

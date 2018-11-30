@@ -1,0 +1,82 @@
+<section class="certified-features">
+  <div class="max-wrap">
+    {% for block in section.blocks %}
+      {% assign pos = forloop.index | | modulo: 2 %}
+      <div class="certified-features__feature">
+        <div class="row no-gutters">
+          <div class="col-md-6 order-{{ pos }}">
+            <div class="certified-features__content">
+              <h3 class="certified-features__title">{{ block.settings.title }}</h3>
+              <div class="certified-features__description">{{ block.settings.text }}</h3>
+            </div>
+          </div>
+          <div class="col-md-6 order-{{ pos }}">
+            {% include 'responsive-image' with
+              image: block.settings.image,
+              max_width: 960,
+              max_height: 450,
+              wrapper_class: 'certified-features__image-wrap',
+              img_class: 'certified-features__image'
+            %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="container">
+    <div class="certified-features__bottom-text">{{ section.settings.bottom_text }}</div>
+    <div class="certified-features__link-wrap">
+      <a href="{{ section.settings.button_link }}" class="certified-features__link">{{ section.settings.button_text }}</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Certification Presentation",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "text",
+        "label": "Bottom text"
+      },
+      {
+        "type": "text",
+        "id": "button_text",
+        "label": "Bottom link text"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Bottom link URL"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "feature",
+        "name": "Feature",
+        "settings": [
+          {
+            "type": "textarea",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "textarea",
+            "id": "text",
+            "label": "Description"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          }
+        ]
+      }
+    ],
+    "presets": [{
+        "name": "Certification Presentation",
+        "category": "Front Page"
+    }]
+  }
+{% endschema %}

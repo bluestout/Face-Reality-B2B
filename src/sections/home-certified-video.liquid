@@ -1,0 +1,49 @@
+<section class="certified-video">
+  <div class="container">
+    <h2 class="certified-video__title">{{ section.settings.title }}</h2>
+    <div class="certified-video__video">{{ section.settings.video }}</div>
+    <div class="certified-video__text">{{ section.settings.text }}</div>
+    {% if section.settings.button_text && section.settings.button_link %}
+      <div class="certified-video__link-wrap">
+        <a href="{{ section.settings.button_link }}" class="certified-video__link">{{ section.settings.button_text }}</a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Certification Video",
+    "settings": [
+      {
+        "type": "title",
+        "id": "title",
+        "label": "title"
+      },
+      {
+        "type": "textarea",
+        "id": "text",
+        "label": "Text"
+      },
+      {
+        "type": "textarea",
+        "id": "video",
+        "label": "Video ?"
+      },
+      {
+        "type": "text",
+        "id": "button_text",
+        "label": "Link Text"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Link URL"
+      }
+    ],
+    "presets": [{
+        "name": "Certification Video",
+        "category": "Front Page"
+    }]
+  }
+{% endschema %}
