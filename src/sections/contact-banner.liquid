@@ -1,0 +1,43 @@
+{% if section.settings.color == "white" %}
+  {% assign light_font = true %}
+{% else %}
+  {% assign light_font = false %}
+{% endif %}
+
+{% include 'page-banner' with
+  background: section.settings.bg,
+  background_mobile: section.settings.bg,
+  banner_suptitle: page.title,
+  banner_title: page.content | strip | strip_html
+  light_font: light_font
+  height: "medium"
+  margin: "none"
+  limit_width: "large"
+%}
+
+{% schema %}
+  {
+    "name": "Banner",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "bg",
+        "label": "Background"
+      },
+      {
+        "type": "image_picker",
+        "id": "bg_mobile",
+        "label": "Background mobile"
+      },
+      {
+        "type": "radio",
+        "id": "color",
+        "label": "Font Color",
+        "options": [
+          { "value": "black", "label": "Black" },
+          { "value": "white", "label": "White" }
+        ]
+      }
+    ]
+  }
+{% endschema %}

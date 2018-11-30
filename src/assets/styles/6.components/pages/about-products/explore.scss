@@ -2,11 +2,28 @@
   background-color: $color-aqua-haze;
   text-align: center;
   padding: 120px 0 100px;
-  margin: 0 0 125px;
+  margin: 0 0 25px;
 
   &__link {
     &--margin {
       margin: 0 0 50px;
     }
+  }
+
+  @include media-query("medium-down") {
+    padding: 60px 0;
+    margin: 0;
+
+    &__link {
+      border: 1px solid rgba($color-blumine, 0.3);
+
+      &--margin {
+        margin: 0;
+      }
+    }
+  }
+
+  @include media-query("v-small") {
+    padding: 40px 0;
   }
 }

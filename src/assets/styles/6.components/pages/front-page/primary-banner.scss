@@ -1,6 +1,6 @@
 .primary-banner {
   position: relative;
-  padding: 120px 0 140px;
+  padding: 240px 0 140px;
   text-align: center;
 
   &--bg {
@@ -10,12 +10,12 @@
   &__title {
     @include Text(45px, 47px, $color-black);
     @include apercu(700);
-    margin: 0 0 35px;
+    margin: 0 auto 35px;
+    max-width: 500px;
   }
 
   &__link-button {
-    @extend .button;
-    @extend .button--main;
+    @include button(main);
     padding: 16px 75px;
     margin: 0 0 15px;
   }
@@ -43,7 +43,7 @@
   }
 
   @include media-query("large-down") {
-    padding: 100px 0 60px;
+    padding: 200px 0 60px;
     &__title {
       font-size: 38px;
       line-height: 42px;
@@ -55,11 +55,11 @@
   }
 
   @include media-query("medium-down") {
-    padding: 100px 0 40px;
+    padding: 200px 0 40px;
     &__title {
       font-size: 30px;
       line-height: 36px;
-      margin: 0 0 20px;
+      margin: 0 auto 20px;
     }
 
     &__link-button {
@@ -68,14 +68,13 @@
     }
   }
 
-  @include media-query("small-down") {
-    padding: 200px 0 20px;
+  @include media-query("v-small") {
+    padding: 300px 0 20px;
 
     &__title {
-      font-size: 20px;
-      line-height: 24px;
-      max-width: 350px;
-      margin: 0 auto 20px;
+      font-size: 21px;
+      line-height: 23px;
+      max-width: 340px;
     }
   }
 }

@@ -1,15 +1,3 @@
-{%- comment -%}
-  This is a required section for the Shopify Theme Store.
-  It is available in the "Header" section in the theme editor.
-
-  Theme Store required settings
-  - Show announcement
-  - Text: message to announce
-  - Link: link of the announcement bar
-
-  Theme Store optional settings
-  - Home page only: only shows on the home page
-{%- endcomment -%}
 <header data-section-id="{{ section.id }}" data-section-type="header" role="banner" class="site-header">
   {%- if section.settings.announcement_bar_enabled -%}
     <div class="site-header__announcement-bar">
@@ -20,92 +8,124 @@
   {%- endif -%}
   <div class="container">
     <div class="site-header__secondary-nav">
-      <a href="tel:(510) 351-1842" class="site-header__secondary-nav-link"><span class="icon-phone site-header__secondary-nav-icon site-header__secondary-nav-icon--left"></span> (510) 351-1842</a>
-      <a href="#" class="site-header__secondary-nav-link">Acne Information Center</a>
-      <a href="#" class="site-header__secondary-nav-link">Blog</a>
-      <a href="#" class="site-header__secondary-nav-button">For professionals <span class="icon-arrow-right site-header__secondary-nav-icon site-header__secondary-nav-icon--right"></span></a>
-    </div>
 
-    <div class="row">
-      <div class="col-md-auto flex-col-wrap justify-content-center">
-        {% if template.name == 'index' %}
-          <h1 class="site-header__logo-wrap">
+      <a href="/" class="site-header__secondary-nav-logo-link">
+        {% if section.settings.logo != blank %}
+          <img
+            class="site-header__secondary-nav-logo"
+            src="{{ section.settings.logo | img_url: '120x' }}"
+            srcset="{{ section.settings.logo | img_url: '120x' }} 1x, {{ section.settings.logo | img_url: '120x', scale: 2 }} 2x"
+            alt="{{ section.settings.logo.alt | default: shop.name }}"
+          />
         {% else %}
-          <div class="site-header__logo-wrap">
+          {{ shop.name }}
         {% endif %}
-            <a href="/" class="site-header__logo-link">
-              {% if section.settings.logo != blank %}
-                {% capture image_size %}{{ section.settings.logo_max_width }}x{% endcapture %}
-                <img
-                  class="site-header__logo"
-                  src="{{ section.settings.logo | img_url: image_size }}"
-                  srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
-                  alt="{{ section.settings.logo.alt | default: shop.name }}"
-                />
-              {% else %}
-                {{ shop.name }}
-              {% endif %}
-            </a>
-        {% if template.name == 'index' %}
-          </h1>
-        {% else %}
-          </div>
-        {% endif %}
-      </div>
+      </a>
 
-      <div class="col-md flex-col-wrap justify-content-center">
-        {% include 'header-primary-nav' %}
-      </div>
-
-      <div class="col-md-auto flex-col-wrap justify-content-center">
-        {% include 'header-utility-nav' %}
-      </div>
-    </div>
-  </div>
-
-  {% comment %}
-  {% if shop.customer_accounts_enabled %}
-    <ul>
-      {% if customer %}
-        <li>
-          {% if customer.first_name != blank %}
-            {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
-            {{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}
-          {% else %}
-            <a href="/account">{{ 'layout.customer.account' | t }}</a>
-          {% endif %}
-        </li>
-        <li>
-          {{ 'layout.customer.log_out' | t | customer_logout_link }}
-        </li>
-      {% else %}
-        <li>
-          {{ 'layout.customer.log_in' | t | customer_login_link }}
-        </li>
-        <li>
-          {{ 'layout.customer.create_account' | t | customer_register_link }}
-        </li>
+      {% if section.settings.phone != "" %}
+        <a
+          href="tel:{{ section.settings.phone }}"
+          class="site-header__secondary-nav-link">
+          <span class="icon-phone site-header__secondary-nav-icon site-header__secondary-nav-icon--left"></span>
+          {{ section.settings.phone }}
+        </a>
       {% endif %}
-    </ul>
-  {% endif %}
-  {% endcomment %}
+      {% assign nav = section.settings.top_inline_nav %}
+      {% if linklists[nav].links.size > 0 %}
+        {% for link in linklists[nav].links %}
+          {% if link.handle contains "blog" %}
+            <a href="{{ link.url }}" target="_blank" class="site-header__secondary-nav-link">{{ link.title }}</a>
+          {% else %}
+            <a href="{{ link.url }}" class="site-header__secondary-nav-link">{{ link.title }}</a>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+
+      {% if section.settings.professionals_text != "" %}
+        <a
+          href="{{ section.settings.professionals_url }}"
+          class="site-header__secondary-nav-button"
+          >
+          {{ section.settings.professionals_text }}
+          <span class="icon-arrow-right site-header__secondary-nav-icon site-header__secondary-nav-icon--right"></span>
+        </a>
+      {% endif %}
+    </div>
+
+    <div class="site-header__primary-nav-wrap">
+      <div class="row no-gutters">
+        <div class="col-lg-auto col order-lg-1 order-2 flex-col-wrap justify-content-center">
+          {% if template.name == 'index' %}
+            <h1 class="site-header__logo-wrap">
+          {% else %}
+            <div class="site-header__logo-wrap">
+          {% endif %}
+              <a href="/" class="site-header__logo-link">
+                {% if section.settings.logo != blank %}
+                  <img
+                    class="site-header__logo"
+                    src="{{ section.settings.logo | img_url: '180x' }}"
+                    srcset="{{ section.settings.logo | img_url: '180x' }} 1x, {{ section.settings.logo | img_url: '180x', scale: 2 }} 2x"
+                    alt="{{ section.settings.logo.alt | default: shop.name }}"
+                  />
+                {% else %}
+                  {{ shop.name }}
+                {% endif %}
+              </a>
+          {% if template.name == 'index' %}
+            </h1>
+          {% else %}
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="col-lg col order-lg-2 order-1 flex-col-wrap justify-content-center">
+          {% include 'header-primary-nav' %}
+        </div>
+
+        <div class="col-lg-auto col order-3 flex-col-wrap justify-content-center utility-col">
+          {% include 'header-utility-nav' %}
+        </div>
+      </div>
+    </div>
+
+  </div>
 </header>
 
-<div data-header-offset></div>
+{% unless template == 'index' %}
+  <div data-header-offset></div>
+{% endunless %}
 
-{% if section.settings.logo != blank %}
-  <style>
-    .site-header__logo {
-      display: block;
-      max-width: {{ section.settings.logo_max_width }}px;
-    }
-  </style>
-{% endif %}
+{% include 'responsive-sidemenu' %}
 
 {% schema %}
   {
     "name": "Header",
     "settings": [
+      {
+        "type": "header",
+        "content": "Top Navigation"
+      },
+      {
+        "type": "text",
+        "id": "phone",
+        "label": "Phone"
+      },
+      {
+        "type": "link_list",
+        "id": "top_inline_nav",
+        "label": "Top Navigation List"
+      },
+      {
+        "type": "text",
+        "id": "professionals_text",
+        "label": "Professionals Link Text"
+      },
+      {
+        "type": "url",
+        "id": "professionals_url",
+        "label": "Professionals URL"
+      },
       {
         "type": "header",
         "content": "Announcement bar"

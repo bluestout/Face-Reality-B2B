@@ -13,6 +13,7 @@
           %}
         {% else %}
           <div class="register__image-wrap">
+            {% comment %} TODO remove the placeholder when done with development {% endcomment %}
             <img src="http://via.placeholder.com/1024x1024" alt="" class="register__image">
           </div>
         {% endif %}
@@ -99,7 +100,7 @@
               </div>
 
               <div>
-                <input class="register__submit" type="submit" value="Create account" class="button" data-register-submit />
+                <input class="register__submit" type="submit" value="Create account" data-register-submit />
               </div>
             {% endform %}
             <div class="error-message" data-register-error-message style="display:none"></div>
@@ -107,6 +108,7 @@
           <span class="register__have-account">Already have an account?</span>
           <a href="/account/login" class="register__have-account-link">Log in</a>
           <div class="register__link-separator"></div>
+          {% comment %} TODO link to b2b? {% endcomment %}
           <a href="#" class="register__professionals">Professionals click here</a>
         </div>
       </div>

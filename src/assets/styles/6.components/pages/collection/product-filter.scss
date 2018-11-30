@@ -1,0 +1,183 @@
+.product-filter {
+  margin: 0 0 40px;
+  padding: 0 50px;
+
+  &__main-title {
+    @include Text(20px, 30px, $color-blumine);
+    @include apercu(700);
+    margin: 0 0 35px;
+  }
+
+  &__filter-wrap {
+    margin: 0 0 30px;
+    cursor: pointer;
+  }
+
+  &__title {
+    padding: 0 0 20px;
+
+    &.open {
+      .product-filter__icon::before {
+        content: "\e90f";
+      }
+    }
+  }
+
+  &__icon {
+    margin: 0 30px 0 0;
+    display: inline-block;
+    @include Text(14px, 1, $color-blumine);
+  }
+
+  &__title-text {
+    @include apercu(700);
+    @include Text(15px, 22px, $color-blumine);
+  }
+
+  &__list {
+    list-style: none;
+
+    // icon 14px + margin 30px
+    padding: 0 0 0 44px;
+    margin: 0;
+  }
+
+  &__item {
+    font-size: 0;
+    line-height: 0;
+    padding: 5px 0 15px;
+    margin: 0;
+    @include clearfix;
+  }
+
+  &__radio {
+    display: block;
+    float: left;
+    width: 17px;
+    margin: 0 13px 0 0;
+  }
+
+  &__label {
+    @include Text(13.5px, 21px, $color-black);
+    display: block;
+    float: left;
+    width: calc(100% - 30px);
+  }
+
+  @include media-query("xl-down") {
+    padding: 0 30px;
+  }
+
+  @include media-query("large-down") {
+    padding: 0 15px;
+
+    &__list {
+      padding: 0 0 0 25px;
+    }
+  }
+
+  @include media-query("medium-down") {
+    &__main-title {
+      font-size: 18px;
+      line-height: 24px;
+      margin: 0 0 20px;
+    }
+
+    &__icon {
+      margin: 0 20px 0 0;
+    }
+
+    &__title-text {
+      font-size: 14px;
+      line-height: 16px;
+    }
+
+    &__list {
+      padding: 0 0 0 15px;
+    }
+
+    &__item {
+      padding: 3px 0 12px;
+    }
+
+    &__radio {
+      margin: 0 10px 0 0;
+    }
+
+    &__label {
+      font-size: 12px;
+      line-height: 16px;
+    }
+  }
+
+  @include media-query("small-down") {
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 100%;
+
+    &__container {
+      position: fixed;
+      z-index: 3;
+      top: 0;
+      left: -360px;
+      width: 360px;
+      height: 100%;
+      padding: 25px 35px;
+      background-color: $color-white;
+      @include transition(left 300ms, box-shadow 300ms);
+
+      &.active {
+        left: 0;
+        box-shadow: -4px 0 40px 10px rgba($color-black, 0.25);
+      }
+    }
+
+    &__responsive-toggle {
+      font-size: 18px;
+      line-height: 1;
+      padding: 2px;
+      border: none;
+      background: transparent;
+      opacity: 0.3;
+      appearance: none;
+      float: right;
+      @include transition(opacity);
+
+      &:hover,
+      &:active {
+        opacity: 1;
+      }
+    }
+
+    &__responsive-reset {
+      @include apercu();
+      @include Text(12px, 16px, $color-fountain-blue);
+      padding: 2px;
+      margin: 0 0 30px 1px;
+      border: none;
+      background: transparent;
+      appearance: none;
+      @include transition(color);
+
+      &:hover,
+      &:active {
+        color: $color-calypso;
+      }
+    }
+
+    &__responsive-content {
+      padding: 0 0 25px;
+      border-bottom: 1px solid $color-mercury;
+      margin: 0 0 25px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    &__container {
+      left: -100%;
+      width: 100%;
+      padding: 20px 30px;
+    }
+  }
+}

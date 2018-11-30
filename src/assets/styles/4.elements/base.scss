@@ -1,37 +1,7 @@
-h1 {
-  @include Text(46px, 62px, $color-black);
-  word-break: break-word;
-}
-
-h2 {
-  @include Text(32px, 37px, $color-black);
-  word-break: break-word;
-}
-
-h3 {
-  @include Text(22px, 26px, $color-black);
-  word-break: break-word;
-}
-
-h4 {
-  @include Text(20px, 24px, $color-black);
-  word-break: break-word;
-}
-
-h5 {
-  @include Text(18px, 24px, $color-black);
-  word-break: break-word;
-}
-
-h6 {
-  @include Text(16px, 24px, $color-black);
-  word-break: break-word;
-}
-
 p {
   @include Text(13.5px, 21px, $color-black);
   font-weight: 400;
-  margin: 0 0 24px;
+  margin: 0 0 21px;
   word-break: break-word;
 }
 
@@ -58,6 +28,59 @@ a:hover,
 a:active,
 a:focus {
   outline: 0;
+}
+
+h1 {
+  @include Text(46px, 62px, $color-black);
+  word-break: break-word;
+}
+
+h2 {
+  @include Text(32px, 37px, $color-black);
+  word-break: break-word;
+  a,
+  span,
+  p {
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+  }
+}
+
+h3 {
+  @include Text(22px, 26px, $color-black);
+  word-break: break-word;
+}
+
+h4 {
+  @include Text(20px, 24px, $color-black);
+  word-break: break-word;
+}
+
+h5 {
+  @include Text(18px, 24px, $color-black);
+  word-break: break-word;
+}
+
+h6 {
+  @include Text(16px, 24px, $color-black);
+  word-break: break-word;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  a,
+  span,
+  p {
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+    text-decoration: inherit;
+  }
 }
 
 ul,
@@ -94,15 +117,16 @@ input[type="submit"] {
   @include Text(16px, 16px, $color-white);
   font-weight: 700;
   color: $color-white;
-  background-color: $color-red;
+  background-color: $color-blumine;
   padding: 10px 20px;
   height: 36px;
   display: inline-block;
   vertical-align: middle;
   @include transition(background-color);
+
   &:hover,
   &:active {
-    background-color: $color-red;
+    background-color: $color-accent;
   }
 }
 
@@ -157,6 +181,45 @@ input[type="checkbox"] {
   }
 }
 
+input[type="radio"] {
+  position: relative;
+  appearance: none;
+  border: none;
+  width: 17px;
+  height: 17px;
+  display: inline-block;
+  outline: none;
+
+  &:checked {
+    &::before {
+      background-color: $color-blumine;
+    }
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    border: 1px solid $color-blumine;
+    width: 17px;
+    height: 17px;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    display: block;
+    width: 11px;
+    height: 11px;
+    @include transition(background-color 80ms);
+    background-color: transparent;
+  }
+}
+
 @include media-query("medium-down") {
   h1 {
     font-size: 32px;
@@ -168,8 +231,22 @@ input[type="checkbox"] {
     line-height: 34px;
   }
 
-  ul,
-  ol {
-    padding: 0 0 0 20px;
+  h3 {
+    font-size: 20px;
+    line-height: 24px;
+  }
+  h4 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  h5 {
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  h6 {
+    font-size: 15px;
+    line-height: 22px;
   }
 }

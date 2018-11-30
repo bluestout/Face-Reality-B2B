@@ -8,11 +8,11 @@ import "lazysizes/plugins/respimg/ls.respimg";
 import "../../styles/theme.scss";
 import "../../styles/theme.scss.liquid";
 
-import "../custom/home-testimonials";
-import "../custom/featured-collection";
+import "../custom/home-testimonials-slick";
+import "../custom/featured-collection-slick";
 import "../custom/tabs";
-import "../custom/product-related";
-import "../custom/different-mentions";
+import "../custom/product-related-slick";
+import "../custom/different-mentions-slick";
 import "../custom/testimonials";
 import "../custom/faq";
 import "../custom/information-center";
@@ -22,18 +22,18 @@ import "../custom/home-stories";
 import "../custom/register";
 import "../custom/account";
 import "../custom/qty-changer";
+import "../custom/accordion";
+import "../custom/collection-page";
+import "../custom/product-item";
+import "../custom/ajax-add-to-cart";
+import "../custom/case-study-slick";
+import "../custom/responsive-sidemenu";
+import "../custom/footer";
+import "../custom/case-studies";
+import "../custom/search";
 
 import { focusHash, bindInPageLinks } from "@shopify/theme-a11y";
-import { cookiesEnabled } from "@shopify/theme-cart";
 
 // Common a11y fixes
 focusHash();
 bindInPageLinks();
-
-// Apply a specific class to the html element for browser support of cookies.
-if (cookiesEnabled()) {
-  document.documentElement.className = document.documentElement.className.replace(
-    "supports-no-cookies",
-    "supports-cookies",
-  );
-}

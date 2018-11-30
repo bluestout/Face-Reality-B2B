@@ -1,4 +1,3 @@
-{% comment %} TODO - convert to ajax {% endcomment %}
 <div class="cart max-wrap">
   {% include 'cart-header' %}
 
@@ -7,22 +6,16 @@
     {% if cart.item_count > 0 %}
       <form action="/cart" method="post" novalidate>
         <div class="row no-gutters">
-          <div class="col-lg-8">
+          <div class="col-xl-8 order-xl-1 order-2">
             {% include 'cart-table' %}
           </div>
-          <div class="col-lg-4">
+          <div class="col-xl-4 order-xl-2 order-1">
             {% include 'cart-summary' %}
           </div>
         </div>
       </form>
     {% else %}
-      <div class="supports-cookies">
-        <p>{{ 'cart.general.empty' | t }}</p>
-      </div>
-
-      <div class="supports-no-cookies">
-        <p>{{ 'cart.general.cookies_required' | t }}</p>
-      </div>
+      <p class="cart-content__cart-empty">{{ 'cart.general.empty' | t }}</p>
     {% endif %}
   </div>
 

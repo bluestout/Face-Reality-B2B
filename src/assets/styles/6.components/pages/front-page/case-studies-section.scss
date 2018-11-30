@@ -1,0 +1,241 @@
+.case-studies-section {
+  position: relative;
+  padding: 100px 0;
+
+  &__suptitle {
+    @include title-small;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 25px;
+  }
+
+  &__title {
+    @include title-section;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 65px;
+  }
+
+  &__study {
+    padding: 0 5px;
+    &--margin {
+      margin: 0 0 60px;
+    }
+  }
+
+  &__study-content {
+    max-width: 300px;
+  }
+
+  &__study-title {
+    @include apercu(700);
+    @include Text(31px, 35px, $color-blumine);
+    margin: 0 0 50px;
+  }
+
+  &__study-text {
+    p,
+    li,
+    a {
+      @include Text(15px, 22px, $color-black);
+    }
+  }
+
+  &__study-comparison {
+    position: relative;
+    overflow: hidden;
+
+    &-image {
+      position: relative;
+      display: block;
+    }
+
+    &-before,
+    &-after {
+      position: absolute;
+      bottom: 5px;
+      display: block;
+      padding: 2px 5px;
+      width: 60px;
+      font-size: 12.5px;
+      line-height: 16px;
+      text-align: center;
+      color: $color-white;
+      background-color: rgba($color-blumine, 0.75);
+    }
+
+    &-before {
+      left: 5px;
+    }
+
+    &-after {
+      right: 5px;
+    }
+  }
+
+  // slick-specific styling starts here
+  .slick-track {
+    display: flex;
+  }
+
+  .slick-slide {
+    height: auto;
+    > div {
+      height: 100%;
+    }
+  }
+
+  .slick-slider {
+    position: relative;
+  }
+
+  .slick-arrow {
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    color: rgba($color-blumine, 0.3);
+    outline: none;
+    @include transition(color);
+
+    &:hover,
+    &:active {
+      color: $color-blumine;
+    }
+
+    &.slick-prev {
+      left: 0;
+    }
+    &.slick-next {
+      right: 0;
+    }
+  }
+
+  .slick-dots {
+    list-style: none;
+    margin: 0;
+    padding: 0 40px;
+    text-align: center;
+
+    li {
+      display: inline-block;
+      margin: 0 10px 10px;
+    }
+
+    button {
+      position: relative;
+      font-size: 0;
+      appearance: none;
+      outline: none;
+      border: none;
+      background-color: transparent;
+      padding: 10px 5px;
+
+      &::after {
+        content: "";
+        display: block;
+        background-color: $color-blumine;
+        width: 15px;
+        height: 3px;
+        opacity: 0.25;
+        @include transition(opacity, background-color);
+      }
+
+      &:hover,
+      &:active {
+        &::after {
+          background-color: $color-accent;
+          opacity: 1;
+        }
+      }
+    }
+
+    .slick-active {
+      button {
+        &::after {
+          opacity: 1;
+        }
+      }
+    }
+  }
+  // slick-specific styling ends here
+
+  @include media-query("large-up") {
+    .slick-slider {
+      position: static;
+    }
+
+    .slick-arrow {
+      bottom: calc(50% - 75px);
+    }
+
+    .slick-arrow.slick-prev {
+      left: 30px;
+      &::before {
+        content: "\e906";
+      }
+    }
+
+    .slick-arrow.slick-next {
+      right: 30px;
+      &::before {
+        content: "\e901";
+      }
+    }
+  }
+
+  @include media-query("xl") {
+    .slick-arrow.slick-prev {
+      left: 20px;
+      &::before {
+        content: "\e906";
+      }
+    }
+
+    .slick-arrow.slick-next {
+      right: 20px;
+      &::before {
+        content: "\e901";
+      }
+    }
+  }
+
+  @include media-query("medium-down") {
+    position: relative;
+    padding: 45px 0 90px;
+
+    &__suptitle {
+      margin: 0 auto 20px;
+    }
+
+    &__title {
+      margin: 0 auto 30px;
+      text-align: center;
+    }
+
+    &__study {
+      &--margin {
+        margin: 0 0 40px;
+      }
+    }
+
+    &__study-content {
+      max-width: 100%;
+    }
+
+    &__study-title {
+      font-size: 21px;
+      line-height: 24px;
+      margin: 0 0 25px;
+    }
+  }
+
+  @include media-query("small-down") {
+    &__image-compare {
+      margin: 0 0 40px;
+    }
+  }
+}

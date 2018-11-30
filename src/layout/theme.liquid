@@ -35,9 +35,13 @@
   {% include 'style-tags', layout: 'theme' %}
   {% include 'css-variables' %}
 
-  <link rel="stylesheet" href="https://s3.amazonaws.com/icomoon.io/58486/Face-Reality/style.css?alb8f4">
+  <link rel="stylesheet" href="https://s3.amazonaws.com/icomoon.io/58486/Face-Reality/style.css?p9d7an">
 
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+
+  {% comment %} jquery & shopify api {% endcomment %}
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  {{ "api.jquery.js" | shopify_asset_url | script_tag }}
 
   {% comment %} shopify customers scripts {% endcomment %}
   {% if template contains 'customers' %}
@@ -72,11 +76,24 @@
 
   <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
 
+  {% include 'item-added-message' %}
+
   {% section 'header' %}
 
-  <main role="main" id="MainContent">
+  {% comment %} {% include 'quick-cart' %} {% endcomment %}
+
+  <main role="main" id="MainContent" class="main-content">
     {% comment %} TODO when do we show breadcrumbs and when not? {% endcomment %}
-    {% unless template == 'index' or template == 'cart' or template == 'list-collections' or hide == true or template contains 'information' or template contains 'case-' or template == null or template contains 'account' %}
+    {% unless template == 'index'
+      or template == 'cart'
+      or template == 'list-collections'
+      or template contains 'information'
+      or template contains 'case-'
+      or template contains 'account'
+      or template contains '404'
+      or hide == true
+      or template == null
+    %}
       <div class="container">
         {% include 'breadcrumbs' %}
       </div>

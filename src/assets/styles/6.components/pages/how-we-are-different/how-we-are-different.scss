@@ -7,11 +7,32 @@
   }
 
   &__subtitle {
-    @include apercu(700);
-    @include Text(40px, 42px, $color-blumine);
+    @include title-main;
     text-align: center;
     margin: 0 0 85px;
   }
 
-  @import './full-w-rows';
+  &__shop-wrap {
+    display: block;
+    margin: 0 0 20px;
+    text-align: center;
+  }
+
+  &__shop-link {
+    @include button(main);
+    width: 180px;
+    max-width: 100%;
+  }
+
+  @import "./full-w-rows";
+
+  @include media-query("medium-down") {
+    &__title {
+      margin: 0 0 15px;
+    }
+
+    &__subtitle {
+      margin: 0 0 40px;
+    }
+  }
 }
