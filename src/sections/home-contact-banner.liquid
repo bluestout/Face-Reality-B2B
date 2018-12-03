@@ -1,0 +1,116 @@
+<section class="contact-banner">
+  <div class="container">
+    <div class="contact-banner__inner">
+      <h4 class="contact-banner__suptitle">{{ section.settings.suptitle }}</h4>
+      <h2 class="contact-banner__title">{{ section.settings.title }}</h2>
+      <div class="contact-banner__form-wrap">
+        {% form 'contact' %}
+
+          {% if form.posted_successfully? %}
+            <p class="form-success contact-banner__note">
+              {{ 'contact.form.post_success' | t }}
+            </p>
+          {% endif %}
+
+          {{ form.errors | default_errors }}
+
+          <div class="contact-banner__input-wrap">
+            <label class="label-hidden" for="ContactFormName">{{ 'contact.form.name' | t }}</label>
+            <input
+              type="text"
+              class="contact-banner__input"
+              name="contact[name]"
+              id="ContactFormName"
+              placeholder="Enter your name"
+              value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}"/>
+          </div>
+
+          <div class="contact-banner__input-wrap">
+            <label class="label-hidden" for="ContactFormEmail">{{ 'contact.form.email' | t }}</label>
+            <input
+              type="email"
+              class="contact-banner__input"
+              name="contact[email]"
+              id="ContactFormEmail"
+              placeholder="Enter your email address"
+              value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+              spellcheck="false"
+              autocomplete="off"
+              autocapitalize="off"/>
+          </div>
+
+          <div class="contact-banner__input-wrap">
+            <label class="label-hidden" for="ContactFormMessage">{{ 'contact.form.message' | t }}</label>
+            <textarea
+              rows="6"
+              class="contact-banner__input"
+              name="contact[body]"
+              id="ContactFormMessage"
+              placeholder="Start typing your message...">
+              {%- if form.body -%}
+                {{- form.body -}}
+              {%- endif -%}
+            </textarea>
+          </div>
+
+          <div class="contact-banner__input-wrap contact-banner__input-wrap--submit">
+            <input type="submit" class="contact-banner__submit" value="{{ 'contact.form.send' | t }}">
+          </div>
+
+        {% endform %}
+      </div>
+      <div class="contact-banner__information-wrap">
+        <div class="contact-banner__location">{{ section.settings.location }}</div>
+        <div class="contact-banner__links-wrap">
+          <a href="tel:{{ section.settings.phone }}" class="contact-banner__contact-link">
+            <span class="icon-phone contact-banner__contact-icon"></span>
+            {{ section.settings.phone }}
+          </a>
+          <a href="mailto:{{ section.settings.email }}" class="contact-banner__contact-link">
+            <span class="icon-envelope contact-banner__contact-icon"></span>
+            {{ section.settings.email }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% schema %}
+  {
+    "name": "Contact",
+    "settings": [
+      {
+        "type": "text",
+        "id": "suptitle",
+        "label": "Suptitle"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "title"
+      },
+      {
+        "type": "textarea",
+        "id": "location",
+        "label": "Location text"
+      },
+      {
+        "type": "text",
+        "id": "phone",
+        "label": "Phone"
+      },
+      {
+        "type": "text",
+        "id": "email",
+        "label": "Email"
+      }
+    ],
+    "presets": [{
+        "name": "Contact",
+        "category": "Front Page"
+    }]
+  }
+{% endschema %}
+

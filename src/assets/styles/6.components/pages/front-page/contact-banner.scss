@@ -1,0 +1,212 @@
+.contact-banner {
+  background-color: $color-blumine-2;
+  padding: 60px 0 100px;
+
+  &__inner {
+    margin: 0 auto;
+    max-width: 600px;
+  }
+
+  .errors {
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul li {
+      @include apercu;
+      @include Text(14px, 22px, $color-white);
+      margin: 0 0 10px;
+    }
+  }
+
+  &__suptitle {
+    text-align: center;
+    @include title-small;
+    margin: 0 0 20px;
+  }
+
+  &__title {
+    @include apercu(700);
+    @include Text(32px, 38px, $color-white);
+    text-align: center;
+    margin: 0 0 40px;
+  }
+
+  &__form-wrap {
+    margin: 0 auto 80px;
+    max-width: 360px;
+  }
+
+  &__note {
+    @include apercu;
+    @include Text(14px, 22px, $color-white);
+    margin: 0 0 20px;
+  }
+
+  &__input-wrap {
+    width: 100%;
+    margin: 0 0 10px;
+  }
+
+  &__input {
+    color: $color-white;
+    padding: 10px;
+    border-bottom: 1px solid rgba($color-white, 0.2);
+    background-color: transparent;
+    width: 100%;
+
+    @include transition(box-shadow);
+
+    &:focus {
+      box-shadow: 0 0 3px 1px rgba($color-white, 0.2);
+      outline: none;
+    }
+
+    &::placeholder {
+      color: rgba($color-white, 0.3);
+    }
+  }
+
+  &__input-wrap--submit {
+    margin: 20px 0 10px;
+    border: none;
+  }
+
+  &__submit {
+    display: block;
+    width: 100%;
+    max-width: 180px;
+    margin: 0 auto;
+    background-color: $color-white;
+    font-size: 12.5px;
+    line-height: 14px;
+    padding: 11px;
+    font-weight: 400;
+    color: $color-blumine-2;
+    &:hover,
+    &:active {
+      background-color: rgba($color-white, 0.8);
+    }
+  }
+
+  &__information-wrap {
+    position: relative;
+    padding: 0 50px 30px;
+    border: 1px solid rgba($color-white, 0.2);
+  }
+
+  &__location {
+    @include apercu;
+    @include Text(13.5px, 21px, rgba($color-white, 0.8));
+    position: relative;
+    top: -30px;
+    text-align: center;
+    max-width: 360px;
+    margin: 0 auto;
+    padding: 0 20px;
+    background-color: $color-blumine-2;
+  }
+
+  &__links-wrap {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__contact-link {
+    @include apercu;
+    @include Text(16px, 20px, $color-white, 0.5px);
+    text-decoration: none;
+    display: inline-block;
+    vertical-align: middle;
+    &:hover,
+    &:active {
+      .contact-banner__contact-icon {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__contact-icon {
+    opacity: 0.5;
+    margin: 0 5px 0 0;
+    @include transition(opacity);
+  }
+
+  @include media-query("medium-down") {
+    padding: 40px 0 60px;
+
+    &__suptitle {
+      margin: 0 0 10px;
+    }
+
+    &__title {
+      font-size: 24px;
+      line-height: 28px;
+      margin: 0 0 30px;
+    }
+
+    &__form-wrap {
+      margin: 0 auto 60px;
+    }
+
+    &__note {
+      margin: 0 0 10px;
+    }
+
+    &__input-wrap {
+      margin: 0 0 5px;
+    }
+
+    &__input-wrap--submit {
+      margin: 10px 0 5px;
+    }
+
+    &__submit {
+      padding: 10px;
+    }
+
+    &__information-wrap {
+      padding: 0 30px 20px;
+    }
+
+    &__contact-link {
+      display: block;
+    }
+
+    &__contact-icon {
+      margin: 0 5px 0 0;
+    }
+  }
+
+  @include media-query("small-down") {
+    &__contact-link {
+      display: inline-block;
+      min-width: 51%;
+      margin: 0 0 10px;
+    }
+
+    &__links-wrap {
+      text-align: center;
+      display: block;
+    }
+  }
+
+  @include media-query("v-small") {
+    &__title {
+      font-size: 18px;
+      line-height: 26px;
+    }
+
+    &__contact-link {
+      display: inline-block;
+      min-width: 51%;
+      margin: 0 0 10px;
+      font-size: 14px;
+    }
+
+    &__information-wrap {
+      padding: 0 20px 10px;
+    }
+  }
+}
