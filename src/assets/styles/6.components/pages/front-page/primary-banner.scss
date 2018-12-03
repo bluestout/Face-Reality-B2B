@@ -1,4 +1,7 @@
 [data-home-banner-slick] {
+  > .primary-banner:not(:first-of-type) {
+    display: none;
+  }
   position: relative;
 
   // slick-specific styling starts here
@@ -75,8 +78,8 @@
 
 .primary-banner {
   position: relative;
-  padding: 160px 0 100px;
   text-align: center;
+  padding: 160px 0 100px;
 
   &--bg {
     @include backgroundImage;
@@ -197,8 +200,10 @@
     }
 
     &__link-button {
-      padding: 10px 60px;
-      margin: 0 0 10px;
+      padding: 10px;
+      margin: 0 auto 10px;
+      max-width: 180px;
+      display: block;
     }
 
     &__badge-wrap-rsp {

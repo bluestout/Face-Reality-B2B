@@ -18,7 +18,7 @@ import "../custom/faq";
 import "../custom/information-center";
 import "../custom/header";
 import "../custom/image-compare";
-import "../custom/home-banner";
+import "../custom/home-banner-slick";
 import "../custom/register";
 import "../custom/account";
 import "../custom/qty-changer";
