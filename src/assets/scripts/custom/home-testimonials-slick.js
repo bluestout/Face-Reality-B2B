@@ -1,10 +1,10 @@
 import $ from "jquery";
 import "slick-carousel";
 
-function testimonials() {
-  const $testimonials = $(".js-testimonials-slider");
-  if ($testimonials.length > 0) {
-    $testimonials.slick({
+function testimonialSliders() {
+  const $textTestimonials = $("[data-testimonials-slider]");
+  if ($textTestimonials.length > 0) {
+    $textTestimonials.slick({
       swipeToSlide: true,
       arrows: true,
       dots: true,
@@ -33,6 +33,20 @@ function testimonials() {
       ],
     });
   }
+
+  const $videoTestimonials = $("[data-video-testimonials-slider]");
+  if ($videoTestimonials.length > 0) {
+    $videoTestimonials.slick({
+      swipeToSlide: true,
+      arrows: true,
+      dots: true,
+      slidesToShow: 1,
+      nextArrow:
+        "<button type='button' class='slick-next slick-arrow icon-arrow-right'></button>",
+      prevArrow:
+        "<button type='button' class='slick-prev slick-arrow icon-arrow-left'></button>",
+    });
+  }
 }
 
-$(document).ready(testimonials);
+$(document).ready(testimonialSliders);

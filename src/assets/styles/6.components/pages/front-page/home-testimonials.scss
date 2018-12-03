@@ -5,14 +5,15 @@
 
   &__suptitle {
     @include title-small;
-    margin: 0 0 30px;
+    margin: 0 0 10px;
     text-align: center;
   }
 
   &__title {
-    @include title-section;
+    @include apercu(700);
+    @include Text(32px, 38px, $color-black);
     text-align: center;
-    margin: 0 0 25px;
+    margin: 0 0 40px;
   }
 
   &__text {
@@ -21,6 +22,10 @@
     text-align: center;
     margin: 0 auto 90px;
     max-width: 700px;
+  }
+
+  &__video-wrap {
+    text-align: center;
   }
 
   &__container {
@@ -202,6 +207,18 @@
 
   // slick-specific styling ends here
 
+  [data-video-testimonials-slider] {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto 60px;
+
+    > .home-testimonials__video-wrap {
+      &:not(:first-of-type) {
+        display: none;
+      }
+    }
+  }
+
   // .home-testimonials__container specific widths
   @media (min-width: $grid-small) {
     &__container {
@@ -239,13 +256,14 @@
     padding: 60px 0 40px;
 
     &__suptitle {
-      margin: 0 0 20px;
+      margin: 0 0 5px;
     }
 
-    &__text {
-      font-size: 19px;
-      line-height: 24px;
-      margin: 0 auto 40px;
+    &__title {
+      font-size: 24px;
+      line-height: 30px;
+      margin: 0 auto 30px;
+      max-width: 400px;
     }
 
     &__testimonial {
@@ -286,6 +304,24 @@
     }
   }
 
+  @include media-query("small-down") {
+    [data-video-testimonials-slider] {
+      .slick-next {
+        bottom: 0;
+        right: 0;
+      }
+
+      .slick-prev {
+        bottom: 0;
+        left: 0;
+      }
+
+      .slick-dots {
+        padding: 0 35px;
+      }
+    }
+  }
+
   @include media-query("v-small") {
     &__testimonial {
       padding: 0;
@@ -293,10 +329,22 @@
 
     .slick-dots {
       margin: 0 0 25px;
+      padding: 0 35px;
+      li {
+        margin: 0 8px 10px;
+      }
     }
 
     .slick-arrow {
-      bottom: 112px;
+      bottom: 106px;
+    }
+
+    .slick-prev {
+      left: 0;
+    }
+
+    .slick-next {
+      right: 0;
     }
   }
 }

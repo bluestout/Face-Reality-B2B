@@ -1,19 +1,15 @@
 <section class="home-testimonials">
   <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-8 col-sm-10">
-        <h3 class="home-testimonials__suptitle">{{ section.settings.suptitle }}</h3>
-        <h2 class="home-testimonials__title">{{ section.settings.title }}</h2>
-      </div>
-    </div>
+    <h3 class="home-testimonials__suptitle">{{ section.settings.suptitle }}</h3>
+    <h2 class="home-testimonials__title">{{ section.settings.title }}</h2>
   </div>
 
   <div class="home-testimonials__container">
-    <div class="js-video-testimonials-slider">
+    <div data-video-testimonials-slider>
       {% for block in section.blocks %}
         {% if block.type == "video" %}
           <div class="home-testimonials__video-wrap">
-            <div class="home-testimonials__video"></div>
+            {{ block.settings.video }}
           </div>
         {% endif %}
       {% endfor %}
@@ -21,7 +17,7 @@
   </div>
 
   <div class="home-testimonials__container">
-    <div class="js-testimonials-slider">
+    <div data-testimonials-slider>
       {% for block in section.blocks %}
         {% if block.type == "testimonial" %}
           <div class="home-testimonials__testimonial">
@@ -33,11 +29,6 @@
                 wrapper_class: 'home-testimonials__testimonial-image-wrap',
                 image_class: 'home-testimonials__testimonial-image'
               %}
-            {% else %}
-            {% comment %} TODO remove the placeholder when done with development {% endcomment %}
-              <div class="home-testimonials__testimonial-image-wrap">
-                <img src="http://via.placeholder.com/340x340" alt="" class="home-testimonials__testimonial-image">
-              </div>
             {% endif %}
             <div class="home-testimonials__testimonial-info">
               <span class="home-testimonials__testimonial-name">{{ block.settings.title }}</span>
@@ -51,7 +42,9 @@
     </div>
     {% if section.settings.button_text != '' %}
       <div class="home-testimonials__button-wrap">
-        <a href="{{ section.settings.button_url }}" class="home-testimonials__button">{{ section.settings.button_text }}</a>
+        <a href="{{ section.settings.button_url }}" class="home-testimonials__button">
+          {{ section.settings.button_text }}
+        </a>
       </div>
     {% endif %}
   </div>
@@ -119,9 +112,9 @@
         "name": "Video Testimonial",
         "settings": [
           {
-            "type": "text",
+            "type": "textarea",
             "id": "video",
-            "label": "Video ?"
+            "label": "Video"
           }
         ]
       }
