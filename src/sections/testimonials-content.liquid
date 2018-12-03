@@ -1,61 +1,69 @@
-<section class="testimonials-content">
+<div class="testimonials-content">
+
   <div class="container">
     {% comment %} assign an initial index that we will increment, to manage pagination {% endcomment %}
     {% assign index = 1 %}
+    {% assign split_modulo = 3 %}
     {% for block in section.blocks %}
-      {% comment %} assign a variable that will determine pagination size {% endcomment %}
-      {% assign paginate_by = 3 %}
-      {% comment %} check if the current loop element should add a new pagination row {% endcomment %}
-      {% assign split_modulo = paginate_by %}
-      {% assign split = forloop.index | modulo: split_modulo  %}
 
-      {% if split == 1 %}
-        <div class="testimonials-content__row" {% if index != 1 %}style="display:none"{% endif %} data-testimonials-page-row="{{ index }}">
-          <div class="row justify-content-center">
-      {% endif %}
+        {% comment %} assign a variable that will determine pagination size {% endcomment %}
+        {% comment %} check if the current loop element should add a new pagination row {% endcomment %}
+        {% assign split = forloop.index | modulo: split_modulo  %}
 
-        <div class="col-lg-4 col-md-6 flex">
-          <div class="testimonials-content__testimonial flex-col-wrap">
-            <p class="testimonials-content__testimonial-text">{{ block.settings.testimonial }}</p>
-            <div class="flex-shaper"></div>
-            {% include 'zig-line-separator' %}
-            {% if block.settings.image %}
-              {% include 'responsive-image'
-                with image: block.settings.image,
-                max_width: 350,
-                max_height: 350,
-                wrapper_class: 'testimonials-content__testimonial-image-wrap',
-                image_class: 'testimonials-content__testimonial-image lazyload'
-              %}
-            {% else %}
-              {% comment %} TODO remove placegolder images {% endcomment %}
-              <div class="testimonials-content__testimonial-image-wrap">
-                <img src="http://via.placeholder.com/400x400" alt="" class="testimonials-content__testimonial-image lazyload">
+        {% if split == 1 %}
+          <div
+            class="testimonials-content__row"
+            {% unless index == 1 %}style="display:none"{% endunless %}
+            data-testimonials-page-row="{{ index }}">
+            <div class="row justify-content-center">
+        {% endif %}
+
+          <div class="col-lg-4 col-md-6 flex">
+            <div class="testimonials-content__testimonial flex-col-wrap">
+              {% if block.settings.testimonial %}
+                <p class="testimonials-content__testimonial-text">{{ block.settings.testimonial }}</p>
+                <div class="flex-shaper"></div>
+                {% include 'zig-line-separator' %}
+              {% endif %}
+              {% if block.settings.image %}
+                {% include 'responsive-image'
+                  with image: block.settings.image,
+                  max_width: 350,
+                  max_height: 350,
+                  wrapper_class: 'testimonials-content__testimonial-image-wrap',
+                  image_class: 'testimonials-content__testimonial-image lazyload'
+                %}
+              {% else %}
+                {% comment %} TODO remove placegolder images {% endcomment %}
+                <div class="testimonials-content__testimonial-image-wrap">
+                  <img src="http://via.placeholder.com/400x400" alt="" class="testimonials-content__testimonial-image lazyload">
+                </div>
+              {% endif %}
+              <div>
+                <span class="testimonials-content__testimonial-name">{{ block.settings.title }}</span>
+                <span class="testimonials-content__testimonial-date">{{ block.settings.date }}</span>
               </div>
-            {% endif %}
-            <div>
-              <span class="testimonials-content__testimonial-name">{{ block.settings.title }}</span>
-              <span class="testimonials-content__testimonial-date">{{ block.settings.date }}</span>
             </div>
           </div>
-        </div>
 
-      {% if split == 0 %}
-        {% assign index = index | plus: 1 %}
-      {% endif %}
+        {% if split == 0 %}
+          {% assign index = index | plus: 1 %}
+        {% endif %}
 
-      {% if split == 0 or forloop.last %}
+        {% if split == 0 or forloop.last %}
+            </div>
           </div>
-        </div>
-      {% endif %}
+        {% endif %}
 
     {% endfor %}
+
   </div>
 
-  <div class="testimonials-content__load-wrap">
-    <button type="button" class="testimonials-content__load-more" data-testimonials-loader="2">Load more</button>
-  </div>
-</section>
+    <div class="testimonials-content__load-wrap">
+      <button type="button" class="testimonials-content__load-more" data-testimonials-loader="2">Load more</button>
+    </div>
+
+</div>
 
 {% schema %}
   {
@@ -84,6 +92,17 @@
             "type": "text",
             "id": "date",
             "label": "Date"
+          }
+        ]
+      },
+      {
+        "type": "video",
+        "name": "Video testimonial",
+        "settings": [
+          {
+            "type": "textarea",
+            "id": "video",
+            "label": "Video"
           }
         ]
       }

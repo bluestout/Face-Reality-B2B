@@ -3,6 +3,22 @@
   padding: 80px 0 60px;
   background-color: $color-aqua-haze;
 
+  .zig-line-separator {
+    border-top: 1px solid #ddd;
+
+    &-wrapper {
+      margin: 0 0 20px;
+    }
+
+    &::before {
+      border-left: 16px solid #ddd;
+    }
+
+    &::after {
+      border-left: 16px solid $color-aqua-haze;
+    }
+  }
+
   &__suptitle {
     @include title-small;
     margin: 0 0 10px;
@@ -46,22 +62,6 @@
 
     &-info {
       margin: 0 0 20px;
-    }
-
-    .zig-line-separator-wrapper {
-      margin: 0 0 20px;
-    }
-
-    .zig-line-separator {
-      border-color: $color-iron;
-
-      &::before {
-        border-left: 16px solid $color-iron;
-      }
-
-      &::after {
-        border-left: 16px solid $color-aqua-haze;
-      }
     }
 
     &-text {

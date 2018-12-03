@@ -1,5 +1,24 @@
 .testimonials-content {
-  margin: 0 0 85px;
+  .testimonials-content__wrap {
+    margin: 0 0 85px;
+  }
+
+  .zig-line-separator {
+    border-top: 1px solid #ddd;
+
+    &-wrapper {
+      margin: 0 0 20px;
+    }
+
+    &::before {
+      border-left: 16px solid #ddd;
+    }
+
+    &::after {
+      border-left: 16px solid $color-aqua-haze;
+    }
+  }
+
   &__container {
     // need to create a custom container to fit the design
     width: 100%;
@@ -13,8 +32,12 @@
     margin: 0 0 40px;
   }
 
+  &__video-wrap {
+    text-align: center;
+  }
+
   &__testimonial {
-    background-color: $color-white;
+    background-color: transparent;
     flex-flow: column wrap;
     padding: 30px;
 
@@ -76,8 +99,108 @@
     margin: 0 auto;
   }
 
-  .zig-line-separator-wrapper {
-    margin: 0 0 20px;
+  // slick-specific styling starts here
+  .slick-track {
+    display: flex;
+  }
+
+  .slick-slide {
+    height: auto;
+    > div {
+      height: 100%;
+    }
+  }
+
+  .slick-slider {
+    position: static;
+  }
+
+  .slick-arrow {
+    position: absolute;
+    z-index: 1;
+    bottom: 50%;
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    color: rgba($color-blumine, 0.3);
+    outline: none;
+    @include transition(color);
+
+    &:hover,
+    &:active {
+      color: $color-blumine;
+    }
+
+    &.slick-prev {
+      left: 20px;
+    }
+    &.slick-next {
+      right: 20px;
+    }
+  }
+
+  .slick-dots {
+    display: block;
+    list-style: none;
+    margin: 0 0 40px;
+    padding: 0;
+    text-align: center;
+
+    li {
+      display: inline-block;
+      margin: 0 10px 10px;
+    }
+
+    button {
+      position: relative;
+      font-size: 0;
+      appearance: none;
+      outline: none;
+      border: none;
+      background-color: transparent;
+      padding: 10px 5px;
+
+      &::after {
+        content: "";
+        display: block;
+        background-color: $color-blumine;
+        width: 15px;
+        height: 3px;
+        opacity: 0.25;
+        @include transition(opacity, background-color);
+      }
+
+      &:hover,
+      &:active {
+        &::after {
+          background-color: $color-accent;
+          opacity: 1;
+        }
+      }
+    }
+
+    .slick-active {
+      button {
+        &::after {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  // slick-specific styling ends here
+
+  [data-video-testimonials-slider] {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto 60px;
+
+    > .home-testimonials__video-wrap {
+      &:not(:first-of-type) {
+        display: none;
+      }
+    }
   }
 
   @media (min-width: $grid-widescreen) {
@@ -103,7 +226,10 @@
   }
 
   @include media-query("medium-down") {
-    margin: 0 0 60px;
+    &__wrap {
+      margin: 0 0 60px;
+    }
+
     &__row {
       margin: 0 0 30px;
     }
@@ -129,8 +255,29 @@
     }
   }
 
+  @include media-query("small-down") {
+    [data-video-testimonials-slider] {
+      .slick-next {
+        bottom: 0;
+        right: 0;
+      }
+
+      .slick-prev {
+        bottom: 0;
+        left: 0;
+      }
+
+      .slick-dots {
+        padding: 0 35px;
+      }
+    }
+  }
+
   @include media-query("v-small") {
-    margin: 0 0 60px;
+    &__wrap {
+      margin: 0 0 40px;
+    }
+
     &__row {
       margin: 0 0 5px;
     }
