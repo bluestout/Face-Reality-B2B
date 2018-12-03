@@ -1,7 +1,7 @@
 <section class="certified-features">
   <div class="max-wrap">
     {% for block in section.blocks %}
-      {% assign pos = forloop.index | | modulo: 2 %}
+      {% assign pos = forloop.index | modulo: 2 %}
       <div class="certified-features__feature">
         <div class="row no-gutters">
           <div class="col-md-6 order-{{ pos }}">
@@ -22,6 +22,7 @@
         </div>
       </div>
     {% endfor %}
+
   </div>
   <div class="container">
     <div class="certified-features__bottom-text">{{ section.settings.bottom_text }}</div>
@@ -33,7 +34,7 @@
 
 {% schema %}
   {
-    "name": "Certification Presentation",
+    "name": "Certification Features",
     "settings": [
       {
         "type": "textarea",
@@ -75,7 +76,7 @@
       }
     ],
     "presets": [{
-        "name": "Certification Presentation",
+        "name": "Certification Features",
         "category": "Front Page"
     }]
   }

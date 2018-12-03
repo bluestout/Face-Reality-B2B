@@ -1,47 +1,110 @@
-{% comment %} TODO remove the placeholder when done with development {% endcomment %}
-{% if section.settings.background %}
-  <section class="primary-banner primary-banner--bg lazyload" data-bgset="{% include 'responsive-bg-image', image: section.settings.background %}">
-{% else %}
-  <section class="primary-banner primary-banner--bg" style="background-image:url('http://via.placeholder.com/1920x600')">
-{% endif %}
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-6">
-        <h2 class="primary-banner__title">{{ section.settings.title }}</h2>
-        {% if section.settings.button_text != '' %}
-          <a href="{{ section.settings.button_url }}" class="primary-banner__link-button">{{ section.settings.button_text }}</a>
-        {% endif %}
-        {% if section.settings.link_text != '' %}
-          <div>
-            {% if section.settings.button_text != '' %}
-              <span class="primary-banner__or">or</span>
+<section data-home-banner-slick>
+  {% for block in section.blocks %}
+    {% if block.settings.background %}
+      <div class="primary-banner primary-banner--bg lazyload" data-bgset="{% include 'responsive-bg-image', image: block.settings.background %}">
+    {% else %}
+      <div class="primary-banner">
+    {% endif %}
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            {% if block.settings.badge %}
+              {% include 'responsive-image' with
+                image: block.settings.badge,
+                max_width: 60,
+                max_height: 60,
+                wrapper_class: 'primary-banner__badge-wrap-rsp',
+                img_class: 'primary-banner__badge'
+              %}
             {% endif %}
-            <a href="{{ section.settings.link_url }}" class="primary-banner__link-inline">{{ section.settings.link_text }}</a>
+            <h2 class="primary-banner__title">{{ block.settings.title }}</h2>
+            <div class="primary-banner__text">{{ block.settings.description }}</div>
+            {% if block.settings.button_text != '' and block.settings.button_url %}
+              <a href="{{ block.settings.button_url }}" class="primary-banner__link-button">{{ block.settings.button_text }}</a>
+            {% endif %}
+            {% if block.settings.link_text != '' and block.settings.link_url %}
+              <br>
+              <a href="{{ block.settings.link_url }}" class="primary-banner__link-inline">{{ block.settings.link_text }}</a>
+            {% endif %}
           </div>
-        {% endif %}
+        </div>
       </div>
+      {% if block.settings.badge %}
+        {% include 'responsive-image' with
+          image: block.settings.badge,
+          max_width: 170,
+          max_height: 170,
+          wrapper_class: 'primary-banner__badge-wrap',
+          img_class: 'primary-banner__badge'
+        %}
+      {% endif %}
     </div>
-  </div>
-  {% comment %} TODO remove the placeholder when done with development {% endcomment %}
-  {% if section.settings.badge %}
-    <div class="primary-banner__badge">
-      {% include 'responsive-image' with image: block.settings.badge, max_width: 170, max_height: 170 %}
-    </div>
-  {% else %}
-      <div class="primary-banner__badge">
-        <img src="http://via.placeholder.com/170x170" alt="">
-    </div>
-  {% endif %}
+  {% endfor %}
 </section>
 
 {% schema %}
   {
     "name": "Primary Banner",
+    "blocks": [
+      {
+        "type": "block",
+        "name": "Banner",
+        "settings": [
+          {
+            "type": "textarea",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "textarea",
+            "id": "description",
+            "label": "Description"
+          },
+          {
+            "type": "url",
+            "id": "button_url",
+            "label": "Button URL"
+          },
+          {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button Text"
+          },
+          {
+            "type": "url",
+            "id": "link_url",
+            "label": "Link URL"
+          },
+          {
+            "type": "text",
+            "id": "link_text",
+            "label": "Link Text"
+          },
+          {
+            "type": "image_picker",
+            "id": "background",
+            "label": "Background",
+            "info": "1920x650"
+          },
+          {
+            "type": "image_picker",
+            "id": "badge",
+            "label": "Badge",
+            "info": "170x170"
+          }
+        ]
+      }
+    ],
     "settings": [
       {
         "type": "textarea",
         "id": "title",
         "label": "Title"
+      },
+      {
+        "type": "textarea",
+        "id": "description",
+        "label": "Description"
       },
       {
         "type": "url",

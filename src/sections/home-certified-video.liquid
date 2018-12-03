@@ -3,7 +3,7 @@
     <h2 class="certified-video__title">{{ section.settings.title }}</h2>
     <div class="certified-video__video">{{ section.settings.video }}</div>
     <div class="certified-video__text">{{ section.settings.text }}</div>
-    {% if section.settings.button_text && section.settings.button_link %}
+    {% if section.settings.button_text and section.settings.button_link %}
       <div class="certified-video__link-wrap">
         <a href="{{ section.settings.button_link }}" class="certified-video__link">{{ section.settings.button_text }}</a>
       </div>
@@ -11,12 +11,13 @@
   </div>
 </section>
 
+
 {% schema %}
   {
     "name": "Certification Video",
     "settings": [
       {
-        "type": "title",
+        "type": "text",
         "id": "title",
         "label": "title"
       },

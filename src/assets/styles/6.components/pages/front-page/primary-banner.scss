@@ -1,6 +1,81 @@
+[data-home-banner-slick] {
+  position: relative;
+
+  // slick-specific styling starts here
+  .slick-track {
+    display: flex;
+  }
+
+  .slick-slide {
+    height: auto;
+    > div {
+      height: 100%;
+    }
+  }
+
+  .slick-slider {
+    position: static;
+  }
+
+  .slick-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translate(-50%);
+    display: block;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+
+    li {
+      display: inline-block;
+      margin: 0 10px 10px;
+    }
+
+    button {
+      position: relative;
+      font-size: 0;
+      appearance: none;
+      outline: none;
+      border: none;
+      background-color: transparent;
+      padding: 10px 5px;
+
+      &::after {
+        content: "";
+        display: block;
+        background-color: $color-blumine;
+        width: 15px;
+        height: 3px;
+        opacity: 0.25;
+        @include transition(opacity, background-color);
+      }
+
+      &:hover,
+      &:active {
+        &::after {
+          background-color: $color-accent;
+          opacity: 1;
+        }
+      }
+    }
+
+    .slick-active {
+      button {
+        &::after {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  // slick-specific styling ends here
+}
+
 .primary-banner {
   position: relative;
-  padding: 240px 0 140px;
+  padding: 160px 0 100px;
   text-align: center;
 
   &--bg {
@@ -8,73 +83,146 @@
   }
 
   &__title {
-    @include Text(45px, 47px, $color-black);
+    @include Text(34px, 38x, $color-black);
     @include apercu(700);
-    margin: 0 auto 35px;
+    margin: 0 auto 15px;
     max-width: 500px;
+  }
+
+  &__text {
+    @include Text(15px, 22px, $color-black);
+    @include apercu;
+    margin: 0 auto 20px;
+    max-width: 400px;
   }
 
   &__link-button {
     @include button(main);
     padding: 16px 75px;
-    margin: 0 0 15px;
-  }
-
-  &__or {
-    @include Text(12.5px, 14px, $color-dusty-gray);
+    margin: 0 0 10px;
   }
 
   &__link-inline {
-    @include Text(12.5px, 14px, $color-dove-gray);
+    @include Text(12.5px, 14px, $color-blumine);
     text-decoration: none;
+    @include transition(color);
+
+    &:hover,
+    &:active {
+      color: $color-accent;
+    }
+  }
+
+  &__badge-wrap-rsp {
+    display: none;
+    margin: 0 0 0 auto;
+  }
+
+  &__badge-wrap {
+    position: absolute;
+    z-index: 1;
+    right: 20px;
+    bottom: 20px;
   }
 
   &__badge {
-    position: absolute;
-    right: 11px;
-    bottom: 11px;
+    object-fit: scale-down;
   }
+}
 
-  @include media-query("xl-down") {
+@include media-query("large-down") {
+  .primary-banner {
+    padding: 120px 0 80px;
     &__title {
-      font-size: 38px;
-      line-height: 42px;
+      font-size: 26px;
+      line-height: 30px;
     }
   }
+}
 
-  @include media-query("large-down") {
-    padding: 200px 0 60px;
+@include media-query("medium-down") {
+  .primary-banner {
+    padding: 100px 0 40px;
+
     &__title {
-      font-size: 38px;
-      line-height: 42px;
+      font-size: 22px;
+      line-height: 26px;
+      max-width: 340px;
     }
 
-    &__badge {
-      display: none;
-    }
-  }
-
-  @include media-query("medium-down") {
-    padding: 200px 0 40px;
-    &__title {
-      font-size: 30px;
-      line-height: 36px;
-      margin: 0 auto 20px;
+    &__text {
+      font-size: 13.5px;
+      line-height: 18px;
+      margin: 0 auto 10px;
+      max-width: 340px;
     }
 
     &__link-button {
       padding: 10px 60px;
       margin: 0 0 10px;
     }
+
+    &__badge-wrap-rsp {
+      display: block;
+      margin: 0 20vw 0 auto;
+    }
+
+    &__badge-wrap {
+      display: none;
+    }
   }
 
-  @include media-query("v-small") {
-    padding: 300px 0 20px;
+  [data-home-banner-slick] {
+    .slick-dots {
+      bottom: 0;
+    }
+  }
+}
+
+@include media-query("small-down") {
+  .primary-banner {
+    padding: 100px 0 40px;
 
     &__title {
-      font-size: 21px;
-      line-height: 23px;
+      font-size: 22px;
+      line-height: 26px;
       max-width: 340px;
+    }
+
+    &__text {
+      font-size: 13.5px;
+      line-height: 18px;
+      margin: 0 auto 10px;
+      max-width: 340px;
+    }
+
+    &__link-button {
+      padding: 10px 60px;
+      margin: 0 0 10px;
+    }
+
+    &__badge-wrap-rsp {
+      display: block;
+      margin: 0 10vw 0 auto;
+    }
+  }
+}
+
+@include media-query("v-small") {
+  .primary-banner {
+    padding: 200px 0 40px;
+
+    &__title {
+      font-size: 18px;
+    }
+
+    &__text {
+      font-size: 12px;
+    }
+
+    &__badge-wrap-rsp {
+      display: block;
+      margin: 0 8% 0 auto;
     }
   }
 }
