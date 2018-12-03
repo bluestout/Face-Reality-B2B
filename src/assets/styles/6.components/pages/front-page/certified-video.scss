@@ -30,7 +30,8 @@
   &__link {
     @include button(main);
     width: 100%;
-    max-width: 280px;
+    max-width: 250px;
+    padding: 15px;
     margin: 0 auto;
     display: block;
   }

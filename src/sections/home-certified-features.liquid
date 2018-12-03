@@ -1,16 +1,16 @@
 <section class="certified-features">
   <div class="max-wrap">
     {% for block in section.blocks %}
-      {% assign pos = forloop.index | modulo: 2 %}
+      {% assign pos = forloop.index | modulo: 2 | plus: 1 %}
       <div class="certified-features__feature">
         <div class="row no-gutters">
-          <div class="col-md-6 order-{{ pos }}">
+          <div class="col-md-6 order-md-{{ 2 }} order-2">
             <div class="certified-features__content">
               <h3 class="certified-features__title">{{ block.settings.title }}</h3>
-              <div class="certified-features__description">{{ block.settings.text }}</h3>
+              <div class="certified-features__description">{{ block.settings.text }}</div>
             </div>
           </div>
-          <div class="col-md-6 order-{{ pos }}">
+          <div class="col-md-6 order-md-{{ pos }} order-1">
             {% include 'responsive-image' with
               image: block.settings.image,
               max_width: 960,
@@ -38,7 +38,7 @@
     "settings": [
       {
         "type": "textarea",
-        "id": "text",
+        "id": "bottom_text",
         "label": "Bottom text"
       },
       {
