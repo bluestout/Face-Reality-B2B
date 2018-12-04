@@ -92,7 +92,9 @@
   </div>
 </header>
 
-{% unless template == 'index' %}
+{% unless template == "index"
+  or template == "page.training"
+ %}
   <div data-header-offset></div>
 {% endunless %}
 

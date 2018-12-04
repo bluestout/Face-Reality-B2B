@@ -1,0 +1,100 @@
+<section class="training-steps">
+  <div class="container">
+    <h2 class="training-steps__title">{{ section.settings.title }}</h2>
+    <div class="training-steps__introduction">{{ section.settings.introduction }}</div>
+    <h4 class="training-steps__section-title">{{ section.settings.section_title }}</h4>
+    {% for block in section.blocks %}
+      <div class="row no-gutters">
+        {% assign pos = forloop.index | modulo: 2 | plus: 1 %}
+        <div class="col-md-6 order-md-{{ 2 }} order-1">
+          <div class="training-steps__content">
+            <h4 class="training-steps__content-title">{{ block.settings.title }}</h4>
+            <div class="training-steps__content-text">{{ block.settings.text }}</div>
+          </div>
+        </div>
+        <div class="col-md-6 order-md-{{ pos }} order-0">
+          {% if block.settings.image %}
+            {% include 'responsive-image' with
+              image: block.settings.image,
+              max_width: 600,
+              max_height: 400,
+              wrapper_class: 'training-steps__image-wrap',
+              img_class: 'training-steps__image'
+            %}
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+    <h4 class="training-steps__bottom-title">{{ section.settings.bottom_title }}</h4>
+    <div class="training-steps__bottom-text">{{ section.settings.bottom_text }}</div>
+    <div class="training-steps__bottom-link-wrap">
+      <a href="{{ section.settings.link }}" class="training-steps__bottom-link">{{ section.settings.link_text }}</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Steps",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "textarea",
+        "id": "introduction",
+        "label": "Introduction text"
+      },
+      {
+        "type": "textarea",
+        "id": "section_title",
+        "label": "Section title"
+      },
+      {
+        "type": "textarea",
+        "id": "bottom_title",
+        "label": "Bottom title"
+      },
+      {
+        "type": "textarea",
+        "id": "bottom_text",
+        "label": "Bottom text"
+      },
+      {
+        "type": "url",
+        "id": "link",
+        "label": "Bottom link URL"
+      },
+      {
+        "type": "text",
+        "id": "link_text",
+        "label": "Bottom link text"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "block",
+        "name": "Step",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "title"
+          },
+          {
+            "type": "textarea",
+            "id": "text",
+            "label": "Content"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

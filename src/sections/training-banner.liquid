@@ -1,0 +1,55 @@
+<div class="training-banner">
+  {% if section.settings.bg %}
+    <div class="training-banner__bg">
+      <img src="{{ section.settings.bg | img_url: '1920x' }}" alt="{{ page.title }}" class="training-banner__bg-image">
+    </div>
+  {% endif %}
+  <div class="training-banner__content {{ classes }}">
+    <h1 class="training-banner__title">{{ page.title }}</h1>
+    <h2 class="training-banner__subtitle">{{ page.content | strip | strip_html  }}</h2>
+  </div>
+  <a href="#" class="training-banner__scroll-down">
+    <span class="training-banner__scroll-text">Learn more</span>
+    <span class="training-banner__scroll-dot"></span>
+    <span class="training-banner__scroll-dot"></span>
+    <span class="training-banner__scroll-dot"></span>
+    <span class="training-banner__scroll-triangle icon-triangle"></span>
+  </a>
+  {% comment %} TODO smooth scrol down {% endcomment %}
+  <div class="training-banner__badge-wrap">
+    <img src="{{ section.settings.badge |img_url: '170x170' }}" alt="High success rate" class="training-banner__badge"/>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "banner",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "bg",
+        "label": "Banner background"
+      },
+      {
+        "type": "image_picker",
+        "id": "bg_mobile",
+        "label": "Banner mobile"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Banner title"
+      },
+      {
+        "type": "text",
+        "id": "subtitle",
+        "label": "Banner suptitle"
+      },
+      {
+        "type": "image_picker",
+        "id": "badge",
+        "label": "Badge"
+      }
+    ]
+  }
+{% endschema %}

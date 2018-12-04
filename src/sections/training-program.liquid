@@ -1,0 +1,155 @@
+<section class="training-program">
+  <div class="container">
+    <h3 class="training-program__suptitle">{{ section.settings.suptitle }}</h3>
+    <h2 class="training-program__title">{{ section.settings.title }}</h2>
+    <div class="training-program__introduction">{{ section.settings.introduction }}</div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="training-program__block">
+          {% if section.settings.image_l %}
+            {% include 'responsive-image' with
+              image: .settings.image_l,
+              max_width: 100,
+              max_height: 100,
+              wrapper_class: 'training-program__block-image-wrap',
+              img_class: 'training-program__block-image'
+            %}
+          {% endif %}
+          <h3 class="training-program__block-title">{{ section.settings.title_l }}</h3>
+          <div class="training-program__block-content">{{ section.settings.content_l }}</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="training-program__block">
+          {% if section.settings.image_r %}
+            {% include 'responsive-image' with
+              image: .settings.image_r,
+              max_width: 100,
+              max_height: 100,
+              wrapper_class: 'training-program__block-image-wrap',
+              img_class: 'training-program__block-image'
+            %}
+          {% endif %}
+          <h3 class="training-program__block-title">{{ section.settings.title_r }}</h3>
+          <div class="training-program__block-content">{{ section.settings.content_r }}</div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="training-program__bottom">
+          <h3 class="training-program__bottom-title">{{ section.settings.title_b }}</h3>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="training-program__bottom-content">{{ section.settings.content_b_l }}</div>
+            </div>
+            <div class="col-sm-6">
+              <div class="training-program__bottom-content">{{ section.settings.content_b_r }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="training-program__bottom-text">{{ section.settings.bottom_text }}</div>
+    {% if section.settings.link and section.settings.link_text %}
+      <div class="training-program__link-wrap">
+        <a href="{{ section.settings.link }}" class="training-program__link">{{ section.settings.link_text }}</a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Program",
+    "settings": [
+      {
+        "type": "text",
+        "id": "suptitle",
+        "label": "Suptitle"
+      },
+      {
+        "type": "textarea",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "textarea",
+        "id": "introduction",
+        "label": "Introduction text"
+      },
+      {
+        "type": "textarea",
+        "id": "bottom_text",
+        "label": "Bottom text"
+      },
+      {
+        "type": "url",
+        "id": "link",
+        "label": "Bottom link URL"
+      },
+      {
+        "type": "text",
+        "id": "link_text",
+        "label": "Bottom link text"
+      },
+      {
+        "type": "header",
+        "content": "Left block"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_l",
+        "label": "Image"
+      },
+      {
+        "type": "textarea",
+        "id": "title_l",
+        "label": "Title"
+      },
+      {
+        "type": "textarea",
+        "id": "content_l",
+        "label": "Content"
+      },
+      {
+        "type": "header",
+        "content": "Right block"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_r",
+        "label": "Image"
+      },
+      {
+        "type": "textarea",
+        "id": "title_r",
+        "label": "Title"
+      },
+      {
+        "type": "textarea",
+        "id": "content_r",
+        "label": "Content"
+      },
+      {
+        "type": "header",
+        "content": "Bottom block"
+      },
+      {
+        "type": "textarea",
+        "id": "title_b",
+        "label": "Title"
+      },
+      {
+        "type": "textarea",
+        "id": "content_b_l",
+        "label": "Content left"
+      },
+      {
+        "type": "textarea",
+        "id": "content_b_r",
+        "label": "Content right"
+      }
+    ]
+  }
+{% endschema %}
