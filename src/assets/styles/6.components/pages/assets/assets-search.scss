@@ -1,0 +1,36 @@
+.assets-search {
+  position: relative;
+  margin: 0 auto 40px;
+  max-width: 500px;
+  width: 100%;
+
+  &::before {
+    @include icoMoon;
+    content: "\e904";
+    position: absolute;
+    left: 5px;
+    top: 16px;
+    color: $color-dusty-gray;
+  }
+
+  &__input {
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid $color-dusty-gray;
+    background-color: transparent;
+    padding: 15px 50px;
+
+    &::placeholder {
+      text-align: center;
+      color: $color-dusty-gray;
+    }
+  }
+
+  @include media-query("medium-down") {
+    margin: 0 auto 30px;
+
+    &__input {
+      padding: 10px 30px;
+    }
+  }
+}

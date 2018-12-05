@@ -1,1 +1,111 @@
 {% comment %} !TODO B2B {% endcomment %}
+<section class="assets">
+  <div class="b2b-header">
+    <h1 class="b2b-header__title">Downloads</h1>
+  </div>
+
+  <div class="max-wrap">
+    <div class="container">
+      <div class="assets-search">
+        <input placeholder="Quick filter assets" class="assets-search__input" type="text" data-assets-quick-search/>
+      </div>
+    </div>
+  </div>
+
+  <div class="row no-gutters">
+    <div class="col-lg-3">
+      <div class="product-filter__wrap">
+
+        <div class="product-filter" data-accordion-parent=false>
+          <h2 class="product-filter__main-title">
+            Filter assets
+            <button type="button" class="product-filter__responsive-toggle d-md-none" data-responsive-filter-toggle>
+              <span class="icon-close"></span>
+            </button>
+          </h2>
+
+          <div class="product-filter__responsive-content d-md-none" data-asset-filter-responsive-content>
+            <button type="button" class="product-filter__responsive-reset" data-responsive-filter-reset>Clear filters</button>
+          </div>
+
+          <div class="product-filter__filter-wrap" data-asset-filter-set>
+            <div class="product-filter__title" data-accordion-button=true>
+              <span class="product-filter__icon icon-add"></span>
+              <span class="product-filter__title-text">By  type</span>
+            </div>
+            <div class="product-filter__content skin-all" data-accordion-content>
+              <ul class="product-filter__list">
+                <li class="product-filter__item">
+                  <input
+                    id="asset-type-all"
+                    class="product-filter__radio"
+                    type="radio"
+                    name="asset-type"
+                    value="type-all"
+                    checked="checked"
+                  />
+                  <label for="asset-type-all" class="product-filter__label">All types</label>
+                </li>
+                {% for tag in tags %}
+                  <li class="product-filter__item">
+                    <input
+                      id="asset-type-{{ tag }}"
+                      class="product-filter__radio"
+                      type="radio"
+                      name="asset-type"
+                      value="{{ skin_tag | handleize }}"
+                    />
+                    <label for="asset-type-{{ tag | handleize }}" class="product-filter__label">{{ tag | remove: 'skin-' }}</label>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+    <div class="col-lg-9">
+      {% assign downloads = blogs.downloads %}
+        <div class="row">
+          {% paginate downloads.articles by 20 %}
+            {% for i in (1..8) %}
+              <div class="col-lg-3 col-sm-4 col-6">
+                <a class="assets-item">
+                  <span class="assets-item__image-wrap">
+                    <img src="http://via.placeholder.com/200x200" alt="#" class="assets-item__image"/>
+                    <span class="assets-item__type">jpg</span>
+                    <span class="assets-item__download icon-cloud-download"></span>
+                  </span>
+                  <h4 class="assets-item__title">anitoxidant_scrub.jpg</h4>
+                  <span class="assets-item__tags">
+                    <span class="assets-item__tag">1300x1300px</span>
+                    <span class="assets-item__tag">1,2Mb</span>
+                  </span>
+                </a>
+              </div>
+            {% endfor %}
+          {% endpaginate %}
+        </div>
+    </div>
+  </div>
+</section>
+
+{% comment %}
+<div>
+  {{ article.content | truncatewords: 50 }}
+  <p><a href="{{ article.url }}">{{ 'blogs.article.read_more' | t }} &rarr;</a></p>
+</div>
+
+{% if downloads.comments_enabled? %}
+  <p><a href="{{ article.url }}#comments">{{ article.comments_count }} comments</a></p>
+{% endif %}
+
+<div>
+  <a href="https://cdn.shopify.com/s/files/1/0078/6074/8377/files/fernando-after.png" download>
+    <img src="https://cdn.shopify.com/s/files/1/0078/6074/8377/files/fernando-after.png" alt="test"/>
+  </a>
+
+</div>
+ {% endcomment %}
