@@ -1,0 +1,378 @@
+.training-program {
+  margin: 0 0 150px;
+  &__suptitle {
+    @include title-small;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 15px;
+  }
+
+  &__title {
+    @include title-main($color-black);
+    text-align: center;
+    margin: 0 auto 40px;
+  }
+
+  &__introduction {
+    @include apercu;
+    @include Text(18px, 26px, $color-black);
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 30px;
+  }
+
+  &__block {
+    position: relative;
+    padding: 30px 60px 40px;
+    background-color: $color-aqua-haze;
+    height: calc(100% - 8px);
+
+    &--left {
+      margin: 0 4px 8px 0;
+    }
+
+    &--right {
+      margin: 0 0 8px 4px;
+    }
+
+    &-image-wrap {
+      margin: 0 auto 20px;
+    }
+
+    &-separator {
+      @include no-font-size;
+      z-index: 1;
+      position: absolute;
+      right: -27px;
+      top: 50%;
+      transform: translate(0, -50%);
+      background-color: $color-white;
+      height: 52px;
+      width: 52px;
+      border-radius: 50%;
+      display: flex;
+    }
+
+    &-separator-dot {
+      @include no-font-size;
+      display: inline-block;
+      vertical-align: middle;
+      margin: auto 5px auto auto;
+    }
+
+    &-separator-dot::after {
+      @include Text(10px, 16px, $color-blumine);
+      content: "\25CF";
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    &-separator-arrow {
+      @include Text(16px, 16px, $color-blumine);
+      display: inline-block;
+      vertical-align: middle;
+      transform: rotate(90deg);
+      margin: auto auto auto 0;
+    }
+  }
+
+  &__block-title {
+    @include apercu(700);
+    @include Text(26px, 34px, $color-blumine);
+    margin: 0 auto 30px;
+    max-width: 360px;
+    text-align: center;
+  }
+
+  &__block-content {
+    ul {
+      list-style: none;
+      padding-inline-start: 30px;
+      max-width: 350px;
+    }
+
+    ul li {
+      @include apercu;
+      @include Text(15px, 21px, $color-black);
+
+      text-indent: -15.5px;
+
+      &:not(:last-of-type) {
+        margin: 0 0 7px;
+      }
+
+      &:last-of-type {
+        margin: 0;
+      }
+    }
+
+    ul li::before {
+      @include icoMoon(16px, $color-blumine);
+      content: "\e91b";
+      transform: rotate(-10deg);
+      display: inline-block;
+      padding: 0 15px 0 0;
+    }
+  }
+
+  &__bottom {
+    border: 3px solid $color-aqua-haze;
+    padding: 40px 200px;
+    margin: 0 0 30px;
+  }
+
+  &__bottom-title {
+    @include apercu(700);
+    @include Text(18px, 24px, $color-black);
+    text-align: center;
+    margin: 0 auto 30px;
+  }
+
+  &__bottom-content {
+    @include apercu;
+    @include Text(15px, 21px, $color-black);
+
+    p,
+    a {
+      @include apercu;
+      @include Text(15px, 21px, $color-black);
+    }
+
+    ul {
+      list-style: none;
+      padding-inline-start: 30px;
+      max-width: 350px;
+    }
+
+    ul li {
+      @include apercu;
+      @include Text(15px, 21px, $color-black);
+      text-indent: -15.5px;
+
+      &:not(:last-of-type) {
+        margin: 0 0 7px;
+      }
+
+      &:last-of-type {
+        margin: 0;
+      }
+    }
+
+    ul li::before {
+      @include icoMoon(16px, $color-blumine);
+      content: "\e91b";
+      transform: rotate(-10deg);
+      display: inline-block;
+      padding: 0 15px 0 0;
+    }
+  }
+
+  &__bottom-note {
+    @include apercu;
+    @include Text(13.5px, 21px, rgba($color-black, 0.5));
+    text-align: center;
+    margin: 30px 0 0;
+  }
+
+  &__bottom-text {
+    @include apercu;
+    @include Text(15px, 21px, rgba($color-black, 0.7));
+    text-align: center;
+    margin: 0 auto 30px;
+    max-width: 650px;
+  }
+
+  &__link-wrap {
+    text-align: center;
+  }
+
+  &__link {
+    @include button(main);
+    padding: 19px;
+    display: block;
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  @include media-query("medium-down") {
+    margin: 0 0 90px;
+    &__suptitle {
+      margin: 0 auto 10px;
+    }
+
+    &__title {
+      margin: 0 auto 20px;
+    }
+
+    &__introduction {
+      font-size: 16px;
+      line-height: 22px;
+      margin: 0 auto 20px;
+    }
+
+    &__block {
+      padding: 30px 50px;
+    }
+
+    &__block-title {
+      font-size: 20px;
+      line-height: 26px;
+      margin: 0 auto 20px;
+    }
+
+    &__block-content {
+      ul li {
+        font-size: 13.5px;
+      }
+
+      ul li::before {
+        font-size: 14px;
+      }
+    }
+
+    &__bottom {
+      padding: 30px 100px;
+    }
+
+    &__bottom-title {
+      font-size: 16px;
+      line-height: 22px;
+      margin: 0 auto 20px;
+    }
+
+    &__bottom-content {
+      font-size: 13.5px;
+
+      p,
+      a {
+        font-size: 13.5px;
+      }
+
+      ul {
+        list-style: none;
+        padding-inline-start: 30px;
+        max-width: 350px;
+      }
+
+      ul li {
+        font-size: 13.5px;
+        text-indent: -15.5px;
+
+        &:not(:last-of-type) {
+          margin: 0 0 7px;
+        }
+
+        &:last-of-type {
+          margin: 0;
+        }
+      }
+
+      ul li::before {
+        font-size: 13.5px;
+      }
+    }
+
+    &__bottom-note {
+      margin: 20px 0 0;
+    }
+
+    &__bottom-text {
+      font-size: 13.5px;
+      margin: 0 auto 20px;
+    }
+
+    &__link {
+      padding: 15px;
+    }
+  }
+
+  @include media-query("small-down") {
+    &__block {
+      padding: 30px;
+
+      &--left {
+        margin: 0 0 8px;
+      }
+
+      &--right {
+        margin: 0 0 8px;
+      }
+
+      &-separator {
+        @include no-font-size;
+        z-index: 1;
+        position: absolute;
+        right: 50%;
+        top: calc(100% - 27px);
+        transform: translate(50%, 0);
+        flex-flow: column;
+      }
+
+      &-separator-dot {
+        display: block;
+        margin: auto auto 0;
+      }
+
+      &-separator-arrow {
+        display: block;
+        transform: rotate(180deg);
+        margin: 0 auto auto;
+      }
+
+      &-content ul {
+        max-width: 100%;
+      }
+    }
+
+    &__bottom {
+      padding: 30px 50px;
+
+      &-content ul {
+        max-width: 100%;
+      }
+    }
+  }
+
+  @include media-query("v-small") {
+    &__introduction {
+      font-size: 13.5px;
+      line-height: 21px;
+    }
+
+    &__block {
+      padding: 20px;
+
+      &--left {
+        padding: 20px 20px 30px;
+      }
+
+      &--right {
+        padding: 30px 20px 20px;
+      }
+
+      &-separator {
+        top: calc(100% - 20px);
+        height: 40px;
+        width: 40px;
+      }
+
+      &-title {
+        font-size: 16px;
+        line-height: 22px;
+      }
+    }
+
+    &__bottom {
+      padding: 20px;
+
+      &-text {
+        font-size: 11px;
+      }
+
+      &-note {
+        font-size: 11px;
+      }
+    }
+  }
+}

@@ -1,0 +1,175 @@
+.training-steps {
+  padding: 80px 0 100px;
+  background-color: $color-aqua-haze;
+
+  &__title {
+    @include title-main($color-black);
+    text-align: center;
+    margin: 0 auto 30px;
+  }
+
+  &__introduction {
+    @include apercu;
+    @include Text(18px, 26px, $color-black);
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 60px;
+  }
+
+  &__section-title {
+    @include apercu(700);
+    @include Text(16px, 22px, $color-black);
+    text-align: center;
+    margin: 0 auto 30px;
+  }
+
+  &__image-wrap {
+  }
+
+  &__image {
+    object-fit: scale-down;
+    height: 100%;
+    width: 100%;
+  }
+
+  &__content {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+  }
+
+  &__content-title {
+    @include apercu(700);
+    @include Text(24px, 32px, $color-black);
+    margin: auto auto 20px 22%;
+    max-width: 55%;
+  }
+
+  &__content-text {
+    @include apercu;
+    @include Text(14px, 18px, $color-black);
+    margin: 0 auto auto 22%;
+    max-width: 55%;
+  }
+
+  &__bottom-title {
+    @include apercu;
+    @include Text(18px, 22px, $color-black);
+    text-align: center;
+    margin: 80px auto 10px;
+  }
+
+  &__bottom-text {
+    @include apercu;
+    @include Text(15px, 21px, rgba($color-black, 0.7));
+    text-align: center;
+    margin: 0 auto 30px;
+    max-width: 650px;
+  }
+
+  &__bottom-link-wrap {
+    text-align: center;
+  }
+
+  &__bottom-link {
+    @include button(main);
+    padding: 19px;
+    display: block;
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  @include media-query("medium-down") {
+    padding: 60px 0;
+
+    &__title {
+      margin: 0 auto 20px;
+    }
+
+    &__introduction {
+      font-size: 16px;
+      line-height: 22px;
+      margin: 0 auto 40px;
+    }
+
+    &__content-title {
+      font-size: 18px;
+      line-height: 24px;
+      margin: auto auto 20px 15%;
+      max-width: 70%;
+    }
+
+    &__content-text {
+      font-size: 12px;
+      line-height: 18px;
+      margin: 0 auto auto 15%;
+      max-width: 70%;
+    }
+
+    &__bottom-title {
+      font-size: 16px;
+      line-height: 22px;
+      margin: 60px auto 10px;
+    }
+
+    &__bottom-text {
+      font-size: 13.5px;
+      line-height: 21px;
+      margin: 0 auto 20px;
+    }
+
+    &__bottom-link {
+      padding: 15px;
+    }
+  }
+
+  @include media-query("small-down") {
+    &__content-title {
+      margin: 0 auto 10px;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    &__content-text {
+      margin: 0 auto 40px;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    &__image-wrap {
+      max-width: 400px;
+      margin: 0 auto 10px;
+    }
+
+    &__bottom-title {
+      margin: 0 auto 10px;
+    }
+  }
+
+  @include media-query("v-small") {
+    padding: 40px 0;
+
+    &__introduction {
+      font-size: 13.5px;
+      line-height: 21px;
+      margin: 0 auto 20px;
+    }
+
+    &__section-title {
+      font-size: 13.5px;
+      line-height: 18px;
+    }
+
+    &__bottom-title {
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    &__bottom-text {
+      font-size: 11px;
+      line-height: 18px;
+      margin: 0 auto 20px;
+    }
+  }
+}

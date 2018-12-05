@@ -96,6 +96,8 @@
   or template == "page.training"
  %}
   <div data-header-offset></div>
+{% else %}
+  <div class="d-lg-none" data-header-offset></div>
 {% endunless %}
 
 {% include 'responsive-sidemenu' %}

@@ -4,12 +4,12 @@
     <h2 class="training-program__title">{{ section.settings.title }}</h2>
     <div class="training-program__introduction">{{ section.settings.introduction }}</div>
 
-    <div class="row">
+    <div class="row no-gutters">
       <div class="col-md-6">
-        <div class="training-program__block">
+        <div class="training-program__block training-program__block--left">
           {% if section.settings.image_l %}
             {% include 'responsive-image' with
-              image: .settings.image_l,
+              image: section.settings.image_l,
               max_width: 100,
               max_height: 100,
               wrapper_class: 'training-program__block-image-wrap',
@@ -18,13 +18,18 @@
           {% endif %}
           <h3 class="training-program__block-title">{{ section.settings.title_l }}</h3>
           <div class="training-program__block-content">{{ section.settings.content_l }}</div>
+
+          <div class="training-program__block-separator">
+            <span class="training-program__block-separator-dot"></span>
+            <span class="training-program__block-separator-arrow icon-triangle"></span>
+          </div>
         </div>
       </div>
       <div class="col-md-6">
-        <div class="training-program__block">
+        <div class="training-program__block training-program__block--right">
           {% if section.settings.image_r %}
             {% include 'responsive-image' with
-              image: .settings.image_r,
+              image: section.settings.image_r,
               max_width: 100,
               max_height: 100,
               wrapper_class: 'training-program__block-image-wrap',
@@ -39,13 +44,14 @@
         <div class="training-program__bottom">
           <h3 class="training-program__bottom-title">{{ section.settings.title_b }}</h3>
           <div class="row">
-            <div class="col-sm-6">
+            <div class="col-md-6">
               <div class="training-program__bottom-content">{{ section.settings.content_b_l }}</div>
             </div>
-            <div class="col-sm-6">
+            <div class="col-md-6">
               <div class="training-program__bottom-content">{{ section.settings.content_b_r }}</div>
             </div>
           </div>
+          <div class="training-program__bottom-note">{{ section.settings.note_b }}</div>
         </div>
       </div>
     </div>
@@ -149,6 +155,11 @@
         "type": "textarea",
         "id": "content_b_r",
         "label": "Content right"
+      },
+      {
+        "type": "textarea",
+        "id": "note_b",
+        "label": "Disclaimer"
       }
     ]
   }
