@@ -8,14 +8,13 @@
 
   <div class="authorization-filter" data-authorization-filter>
     <div data-filter-set>
-      {% comment %} !TODO ? authorization - Convert to B2B  {% endcomment %}
       <div class="authorization-filter__wrap">
         <input
           id="authorization-filter-all"
           class="authorization-filter__radio"
           type="radio"
           name="product-type"
-          value="authorization-all"
+          value="availability-all"
           checked="checked"
         />
         <label for="authorization-filter-all" class="authorization-filter__label">All</label>
@@ -26,9 +25,9 @@
           class="authorization-filter__radio"
           type="radio"
           name="product-type"
-          value="authorization-required"
+          value="availability-retail"
         />
-        <label for="authorization-filter-required" class="authorization-filter__label">Needs Authorization</label>
+        <label for="authorization-filter-required" class="authorization-filter__label">Retail</label>
       </div>
       <div class="authorization-filter__wrap">
         <input
@@ -36,9 +35,9 @@
           class="authorization-filter__radio"
           type="radio"
           name="product-type"
-          value="no-authorization"
+          value="availability-backbar"
         />
-        <label for="authorization-filter-not-required" class="authorization-filter__label">No Authorization</label>
+        <label for="authorization-filter-not-required" class="authorization-filter__label">Back Bar</label>
       </div>
     </div>
   </div>

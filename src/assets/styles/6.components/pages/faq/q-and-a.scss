@@ -17,11 +17,11 @@
     width: 100%;
 
     &::before {
+      @include icoMoon;
       content: "\e904";
       position: absolute;
       left: 5px;
       top: 16px;
-      @include icoMoon;
       color: $color-dusty-gray;
     }
   }

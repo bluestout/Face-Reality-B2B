@@ -51,6 +51,7 @@
   <form class="product-item__form d-none d-md-block" action="/cart/add" method="post" enctype="multipart/form-data">
     <input type="hidden" name="product-id" value="{{ product.id }}"/>
     <input type="hidden" name="product-title" value="{{ product.title }}"/>
+    <input type="hidden" name="quantity" value="1"/>
     <select name="id" class="no-js" data-product-item-select>
       {% for variant in product-item.variants %}
         <option
@@ -106,7 +107,7 @@
     </button>
   </form>
 
-  <div class="text-center d-block d-md-none">
+  <div class="text-center d-md-none">
     <a href="{{ product.url }}" class="product-item__form-submit ">Learn more</a>
   </div>
 

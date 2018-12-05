@@ -133,7 +133,7 @@
     "account": {
       "title": "My Account",
       "details": "Account Details",
-      "view_addresses": "View Addresses",
+      "view_addresses": "View Address",
       "return": "Return to order history"
     },
     "activate_account": {

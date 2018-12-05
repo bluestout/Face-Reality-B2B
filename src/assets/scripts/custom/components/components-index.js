@@ -9,7 +9,6 @@ import "./image-compare";
 import "./home-banner-slick";
 import "./qty-changer";
 import "./accordion";
-import "./product-item";
 import "./ajax-add-to-cart";
 import "./case-study-slick";
 import "./responsive-sidemenu";

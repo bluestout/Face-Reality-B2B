@@ -6,7 +6,7 @@
 
   &__title {
     @include myriad(700);
-    @include Text(18px, 22px, $color-blumine);
+    @include Text(18px, 22px, $color-black);
     margin: 0 0 60px;
   }
 
@@ -19,27 +19,27 @@
 
   &__totals-text {
     @include apercu;
-    @include Text(13.5px, 24px, $color-blumine);
+    @include Text(13.5px, 24px, $color-black);
     flex: 1;
     text-align: left;
   }
 
   &__totals-price {
     @include apercu;
-    @include Text(18px, 24px, $color-blumine);
+    @include Text(18px, 24px, $color-black);
     flex: 1;
     text-align: right;
   }
 
   &__note {
     @include apercu;
-    @include Text(14px, 20px, $color-blumine);
+    @include Text(14px, 20px, $color-black);
     margin: 0 0 30px;
   }
 
   &__label {
     @include apercu;
-    @include Text(14px, 20px, $color-blumine);
+    @include Text(14px, 20px, $color-black);
     display: inline-block;
     margin: 0 0 5px;
   }

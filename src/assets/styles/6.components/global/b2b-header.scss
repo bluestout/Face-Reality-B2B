@@ -1,0 +1,10 @@
+.b2b-header {
+  background-color: $color-blumine;
+  margin: 0 0 30px;
+
+  &__title {
+    @include title-main($color-white);
+    padding: 30px;
+    text-align: center;
+  }
+}
