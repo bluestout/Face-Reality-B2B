@@ -1,0 +1,16 @@
+<div class="cart-table__wrap responsive-table">
+  <table class="cart-table">
+    <thead class="cart-table__thead">
+      <tr>
+        <th class="cart-table__cell cart-table__cell--head"></th>
+        <th class="cart-table__cell cart-table__cell--head text-left">Item</th>
+        <th class="cart-table__cell cart-table__cell--head">{{ 'general.glossary.option' | t }}</th>
+        <th class="cart-table__cell cart-table__cell--head">{{ 'cart.label.price' | t }}</th>
+        <th class="cart-table__cell cart-table__cell--head">Qty</th>
+      </tr>
+    </thead>
+    <tbody data-wholesale-table-body>
+      {% comment %} filled with Ajax - API - wholesale-order.js {% endcomment %}
+    </tbody>
+  </table>
+</div>

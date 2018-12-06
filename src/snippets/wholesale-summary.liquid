@@ -1,0 +1,18 @@
+<div class="wholesale-summary">
+  <div class="cart-summary">
+    <h2 class="cart-summary__title">Order summary</h2>
+    <div class="cart-summary__totals">
+      <span class="cart-summary__totals-text">Subtotal</span>
+      <span class="cart-summary__totals-price">#SUBTOTAL</span>
+    </div>
+
+    <div class="cart-summary__totals">
+      <span class="cart-summary__totals-text">Savings</span>
+      <span class="cart-summary__totals-text">#SAVINGS</span>
+    </div>
+
+    <input class="cart-summary__checkout-button" type="submit" value="{{ 'cart.general.checkout' | t }}" data-wholesale-submit/>
+
+    {% include 'usp-triple-icons' %}
+  </div>
+</div>

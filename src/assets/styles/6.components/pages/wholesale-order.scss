@@ -1,0 +1,18 @@
+.wholesale-order {
+  @include media-query("small-down") {
+    .cart-table {
+      &__cell {
+        width: auto;
+        min-width: 100px;
+      }
+      &__cell--last {
+        width: auto;
+        min-width: 150px;
+      }
+
+      &__quantity {
+        max-width: 100%;
+      }
+    }
+  }
+}
