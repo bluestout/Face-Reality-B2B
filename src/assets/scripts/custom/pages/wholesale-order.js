@@ -1,9 +1,14 @@
 import $ from "jquery";
+import { formatMoney } from "@shopify/theme-currency";
 
 const el = {
   table: "[data-wholesale-table-body]",
   submit: "[data-wholesale-submit]",
   product: "[data-wholesale-single-product]",
+  count: "[data-wholesale-product-count]",
+  sort: "[data-wholesale-sort-type]",
+  row: "[data-wholesale-row]",
+  reset: "[data-wholesale-sort-reset]",
 };
 
 function getFormattedSrc(src, size) {
@@ -30,10 +35,56 @@ function loadproducts() {
     if (!json.products || json.products <= 0) {
       return null;
     }
+
+    // sort object keys by product type
+    const keysSorted = Object.keys(json.products).sort((a, b) => {
+      if (json.products[a].product_type < json.products[b].product_type) {
+        return -1;
+      }
+      if (json.products[a].product_type > json.products[b].product_type) {
+        return 1;
+      }
+      return 0;
+    });
+
+    let currentType = "";
+    let currentTypesCount = {};
+
     for (let i = 0; i < json.products.length; i++) {
-      const product = json.products[i];
-      const imageSrc = getFormattedSrc(product.image.src, "90x90");
+      // use the sorted keys to determine in what order to show products
+      const product = json.products[keysSorted[i]];
       const pTitle = product.title;
+      const pType = product.product_type;
+      const pTypeClean = pType.replace(" ", "-");
+
+      // declare new type, if it does not exist yet
+      if (!currentTypesCount[pTypeClean]) {
+        currentTypesCount[pTypeClean] = 0;
+      }
+
+      // add to the product counter
+      currentTypesCount[pTypeClean] += 1;
+      if (product.variants.length > 1) {
+        currentTypesCount[pTypeClean] += product.variants.length - 1;
+      }
+
+      // add a header at the top of new product types
+      if (currentType !== pType) {
+        currentType = pType;
+        products += `<tr class=' cart-table__row' data-wholesale-row="${pTypeClean}">
+          <td class='cart-table__cell cart-table__cell--type' colspan="5">
+            <h3 class="cart-table__type-header">${currentType}</h3>
+            <span class="cart-table__type-count" data-type="${pTypeClean}">0</span>
+            <span class="cart-table__type-count">products</span>
+          </td>
+        </tr>`;
+      }
+
+      let image = "";
+      if (product.image) {
+        image = getFormattedSrc(product.image.src, "90x90");
+        image = `<img src=${image} alt=${pTitle}/>`;
+      }
 
       for (let j = 0; j < product.variants.length; j++) {
         const variant = product.variants[j];
@@ -44,9 +95,15 @@ function loadproducts() {
         const inventory = variant.inventory_quantity;
 
         if (comparePrice) {
-          price = `${currentPrice} <s>${comparePrice}</s>`;
+          price = `<span data-wholesale-price>${formatMoney(
+            currentPrice,
+            theme.moneyFormat,
+          )}<span> <s>${formatMoney(currentPrice, theme.moneyFormat)}</s>`;
         } else {
-          price = currentPrice;
+          price = `<span data-wholesale-price>${formatMoney(
+            currentPrice,
+            theme.moneyFormat,
+          )}<span>`;
         }
 
         let qtyString = `<div class="cart-table__note">Out of stock</div>
@@ -64,19 +121,17 @@ function loadproducts() {
                 value='0'
                 min='0'
                 max='${inventory}'
-                data-qty-max-limit
+                data-wholesale-quantity
                 product-qty-${i}-${j}/>
               <button type='button' class='cart-table__quantity-button' data-qty-change='[product-qty-${i}-${j}]' data-direction='up'>+</button>
             </div>
           `;
         }
 
-        products += `<tr class=' cart-table__row'>
-          <td class='cart-table__cell cart-table__cell--image text-left'>
-            <img src=${imageSrc} alt=${pTitle}/>
-          </td>
+        products += `<tr class=' cart-table__row' data-wholesale-row="${pTypeClean}">
+          <td class='cart-table__cell cart-table__cell--image text-left'>${image}</td>
 
-          <td class='cart-table__cell text-left'>
+          <td class='cart-table__cell cart-table__cell--title text-left'>
             <h3 class='cart-table__product-title'>
               <a class='cart-table__product-link' nohref>${pTitle}</a>
             </h3>
@@ -104,6 +159,28 @@ function loadproducts() {
         </tr>`;
       }
     }
+    // now that we have all the product counts, replace the values in the products string
+    let productCountAll = 0;
+    let sortOptions = "";
+    if (currentTypesCount && typeof currentTypesCount === "object") {
+      for (let i = 0; i < Object.keys(currentTypesCount).length; i++) {
+        const value = currentTypesCount[Object.keys(currentTypesCount)[i]];
+        const key = Object.keys(currentTypesCount)[i];
+        let niceKey = "";
+        key && typeof key === "string"
+          ? (niceKey = key.replace("-", " "))
+          : null;
+        products = products.replace(
+          `type="${key}">0`,
+          `type="${key}">${value}`,
+        );
+        productCountAll += value;
+        sortOptions += `<option value="${key}">${niceKey}</option>`;
+      }
+    }
+
+    $(el.sort).append(sortOptions);
+    $(el.count).text(`${productCountAll} products total`);
     return $(el.table).html(products);
   });
 }
@@ -155,6 +232,28 @@ function wholesaleSubmit(event) {
   });
 }
 
+function wholesaleSort(event) {
+  const $this = $(event.currentTarget);
+  const option = $this.val();
+  if (option === "all") {
+    $(el.row).show();
+  } else {
+    $(el.row)
+      .not(`[data-wholesale-row="${option}"]`)
+      .hide();
+    $(`[data-wholesale-row="${option}"]`).show();
+  }
+}
+
+function wholesaleSortReset() {
+  $(el.row).show();
+  $(el.sort).val("all");
+}
+
 $(document).on("click", el.submit, wholesaleSubmit);
+
+$(document).on("click", el.reset, wholesaleSortReset);
+
+$(document).on("change", el.sort, wholesaleSort);
 
 $(document).ready(loadproducts);

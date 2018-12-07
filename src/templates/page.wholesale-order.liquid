@@ -4,21 +4,19 @@
   </div>
 
   <div class="wholesale-order__container">
-    <div class="wholesale-filter">
-      <div class="row no-gutters">
-        <div class="col-lg-9">
-          
-        </div>
-        <div class="col-lg-3"></div>
+    <div class="row no-gutters">
+      <div class="col-lg-8">
+        {% include 'wholesale-filter' %}
       </div>
+      <div class="col-lg-4"></div>
     </div>
 
     <div class="wholesale-order__form">
       <div class="row no-gutters">
-        <div class="col-lg-9">
+        <div class="col-lg-8">
           {% include 'wholesale-products' %}
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-4">
           {% include 'wholesale-summary' %}
         </div>
       </div>
