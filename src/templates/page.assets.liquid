@@ -71,19 +71,79 @@
         <div class="row">
           {% paginate downloads.articles by 20 %}
             {% for i in (1..8) %}
-              <div class="col-lg-3 col-sm-4 col-6">
-                <a class="assets-item">
-                  <span class="assets-item__image-wrap">
-                    <img src="http://via.placeholder.com/200x200" alt="#" class="assets-item__image"/>
-                    <span class="assets-item__type">jpg</span>
-                    <span class="assets-item__download icon-cloud-download"></span>
-                  </span>
-                  <h4 class="assets-item__title">anitoxidant_scrub.jpg</h4>
-                  <span class="assets-item__tags">
-                    <span class="assets-item__tag">1300x1300px</span>
-                    <span class="assets-item__tag">1,2Mb</span>
-                  </span>
-                </a>
+              {% if forloop.index > 5 %}
+                <div class="col-lg-3 col-sm-4 col-6" data-asset-item>
+                  <a class="assets-item">
+                    <span class="assets-item__image-wrap">
+                      <img src="http://via.placeholder.com/200x200" alt="#" class="assets-item__image"/>
+                      <span class="assets-item__type assets-item__type--jpg">jpg</span>
+                      <span class="assets-item__download icon-cloud-download"></span>
+                    </span>
+                    <h4 class="assets-item__title" data-asset-item-title>anitoxidant_scrub.jpg</h4>
+                    <span class="assets-item__tags">
+                      <span class="assets-item__tag">1300x1300px</span>
+                    </span>
+                  </a>
+                </div>
+              {% else %}
+                <div class="col-lg-3 col-sm-4 col-6" data-asset-item>
+                  <a class="assets-item">
+                    <span class="assets-item__image-wrap">
+                      <img src="http://via.placeholder.com/200x200" alt="#" class="assets-item__image"/>
+                      <span class="assets-item__type assets-item__type--png">png</span>
+                      <span class="assets-item__download icon-cloud-download"></span>
+                    </span>
+                    <h4 class="assets-item__title" data-asset-item-title>acne_cream.png</h4>
+                    <span class="assets-item__tags">
+                      <span class="assets-item__tag">1300x1300px</span>
+                    </span>
+                  </a>
+                </div>
+              {% endif %}
+            {% endfor %}
+
+            {% for item in downloads.articles %}
+              <div class="col-lg-3 col-sm-4 col-6" data-asset-item>
+                {% if item.image %}
+                  {{ item.description }}
+                  <a href="{{ item.image.src | img_url: 'original' }}" class="assets-item" download>
+                    <span class="assets-item__image-wrap">
+                        <img src="{{ item.image.src | img_url: '200x200' }}" alt="{{ item.title }}" class="assets-item__image"/>
+                        {% if item.image.src contains ".png" %}
+                          <span class="assets-item__type assets-item__type--png">png</span>
+                        {% elsif item.image.src contains ".jpg" %}
+                          <span class="assets-item__type assets-item__type--jpg">jpg</span>
+                        {% elsif item.image.src contains ".jpeg" %}
+                          <span class="assets-item__type assets-item__type--jpeg">jpeg</span>
+                        {% elsif item.image.src contains ".gif" %}
+                          <span class="assets-item__type assets-item__type--gif">gif</span>
+                        {% endif %}
+                      <span class="assets-item__download icon-cloud-download"></span>
+                    </span>
+                    <h4 class="assets-item__title" data-asset-item-title>{{ item.title }}</h4>
+                    <span class="assets-item__tags">
+                      {% if item.image %}
+                        <span class="assets-item__tag">{{ item.image.width }}x{{ item.image.width }}px </span>
+                      {% endif %}
+                    </span>
+                  </a>
+                {% else %}
+                  <a href="{{ item.content | strip | strip_html }}" class="assets-item" download>
+                    <span class="assets-item__image-wrap">
+                        {% if item.content contains ".pdf" %}
+                          <span class="assets-item__type assets-item__type--pdf">pdf</span>
+                          <embed src="{{ item.content }}" width="200" height="200" type='application/pdf'/>
+                        {% endif %}
+                      <span class="assets-item__download icon-cloud-download"></span>
+                    </span>
+                    <h4 class="assets-item__title" data-asset-item-title>{{ item.title }}</h4>
+                    <span class="assets-item__tags">
+                      {% if item.image %}
+                        <span class="assets-item__tag">{{ item.image.width }}x{{ item.image.width }}px </span>
+                      {% endif %}
+                    </span>
+                  </a>
+                {% endif %}
               </div>
             {% endfor %}
           {% endpaginate %}

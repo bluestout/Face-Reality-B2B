@@ -37,8 +37,20 @@
     top: 5px;
     left: 5px;
     padding: 2px 5px;
-    background-color: #afc981;
     text-transform: uppercase;
+    background-color: $color-calico;
+
+    &--png {
+      background-color: $color-fountain-blue;
+    }
+
+    &--pdf {
+      background-color: #e5734d;
+    }
+
+    &--jpg {
+      background-color: #afc981;
+    }
   }
 
   &__download {
