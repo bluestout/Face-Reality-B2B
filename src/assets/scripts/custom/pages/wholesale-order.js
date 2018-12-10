@@ -3,12 +3,18 @@ import { formatMoney } from "@shopify/theme-currency";
 
 const el = {
   table: "[data-wholesale-table-body]",
+  qty: "[data-wholesale-quantity]",
   submit: "[data-wholesale-submit]",
   product: "[data-wholesale-single-product]",
   count: "[data-wholesale-product-count]",
   sort: "[data-wholesale-sort-type]",
   row: "[data-wholesale-row]",
   reset: "[data-wholesale-sort-reset]",
+  price: "[data-wholesale-price]",
+  priceCompare: "[data-wholesale-price-compare]",
+  savingsBox: "[data-wholesale-savings-container]",
+  savings: "[data-wholesale-savings]",
+  total: "[data-wholesale-total]",
 };
 
 function getFormattedSrc(src, size) {
@@ -98,9 +104,13 @@ function loadproducts() {
           price = `<span data-wholesale-price>${formatMoney(
             currentPrice,
             theme.moneyFormat,
-          )}<span> <s>${formatMoney(currentPrice, theme.moneyFormat)}</s>`;
+          )}</span>
+          <span><s data-wholesale-price-compare="${comparePrice}">${formatMoney(
+            comparePrice,
+            theme.moneyFormat,
+          )}</s></span>`;
         } else {
-          price = `<span data-wholesale-price>${formatMoney(
+          price = `<span data-wholesale-price="${currentPrice}">${formatMoney(
             currentPrice,
             theme.moneyFormat,
           )}<span>`;
@@ -250,10 +260,41 @@ function wholesaleSortReset() {
   $(el.sort).val("all");
 }
 
+function calculateTotals() {
+  let totals = 0;
+  let compare = 0;
+  $(el.row).each(function() {
+    const $this = $(this);
+    const qty = $(el.qty, $this).val();
+    if (qty > 0) {
+      const price = $(el.price, $this).data("wholesale-price");
+      const priceCompare = $(el.price, $this).data("wholesale-price-compare");
+      totals += price * qty;
+
+      if (priceCompare) {
+        compare += priceCompare * qty;
+      } else {
+        compare += price * qty;
+      }
+    }
+  });
+
+  $(el.savings).text(formatMoney(compare * 100, theme.moneyFormat));
+  $(el.total).text(formatMoney(totals * 100, theme.moneyFormat));
+
+  if (compare && compare > totals) {
+    $(el.savingsBox).show();
+  } else {
+    $(el.savingsBox).hide();
+  }
+}
+
 $(document).on("click", el.submit, wholesaleSubmit);
 
 $(document).on("click", el.reset, wholesaleSortReset);
 
 $(document).on("change", el.sort, wholesaleSort);
+
+$(document).on("change", el.qty, calculateTotals);
 
 $(document).ready(loadproducts);

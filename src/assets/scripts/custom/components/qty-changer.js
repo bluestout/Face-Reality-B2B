@@ -13,7 +13,7 @@ function QuantityChange(event) {
   const max = $input.attr("max");
   const direction = $source.data("direction");
   if (direction === "down") {
-    if ($input.val() > 1) {
+    if ($input.val() > 0) {
       $input.val(parseInt($input.val(), 10) - 1);
     }
   } else if (direction === "up") {
