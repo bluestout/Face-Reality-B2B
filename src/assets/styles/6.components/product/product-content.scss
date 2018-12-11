@@ -138,10 +138,10 @@
   }
 
   &__quantity-button {
+    @include Text(20px, 40px, $color-blumine);
     width: 28px;
     height: 40px;
     float: left;
-    @include Text(20px, 40px, $color-blumine);
     background: none;
     border: none;
     appearance: none;

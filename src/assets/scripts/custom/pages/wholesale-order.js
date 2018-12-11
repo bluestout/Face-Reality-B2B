@@ -43,18 +43,18 @@ function loadproducts() {
     }
 
     // sort object keys by product type
-    const keysSorted = Object.keys(json.products).sort((a, b) => {
-      if (json.products[a].product_type < json.products[b].product_type) {
+    const keysSorted = Object.keys(json.products).sort((ela, elb) => {
+      if (json.products[ela].product_type < json.products[elb].product_type) {
         return -1;
       }
-      if (json.products[a].product_type > json.products[b].product_type) {
+      if (json.products[ela].product_type > json.products[elb].product_type) {
         return 1;
       }
       return 0;
     });
 
     let currentType = "";
-    let currentTypesCount = {};
+    const currentTypesCount = {};
 
     for (let i = 0; i < json.products.length; i++) {
       // use the sorted keys to determine in what order to show products
@@ -195,24 +195,47 @@ function loadproducts() {
   });
 }
 
-Shopify.queue = [];
-Shopify.moveAlong = function() {
-  if (Shopify.queue.length) {
-    const request = Shopify.queue.shift();
-    Shopify.addItem(
+const addToCartQueue = [];
+function moveAlong() {
+  if (addToCartQueue.length > 0) {
+    const request = addToCartQueue.shift();
+    addItemCustom(
       request.variantId,
       request.quantity,
       request.properties,
-      Shopify.moveAlong,
+      moveAlong,
     );
   } else {
     window.location.replace(`${window.location.origin}/checkout`);
   }
-};
+}
+
+function addItemCustom(id, qty, properties, callback) {
+  const params = {
+    quantity: qty,
+    id,
+  };
+  if (properties) {
+    params.properties = properties;
+  }
+  $.ajax({
+    type: "POST",
+    url: "/cart/add.js",
+    dataType: "json",
+    data: params,
+    async: false,
+    success: () => {
+      typeof callback === "function" ? callback() : null;
+    },
+    error: (jqXHR, textStatus) => {
+      console.log(textStatus);
+    },
+  });
+}
 
 // add item to the ajax queue, rather than adding it directly
 function pushToQueue(variantId, quantity, properties, callback) {
-  Shopify.queue.push({
+  addToCartQueue.push({
     variantId,
     quantity,
     properties,
@@ -222,7 +245,7 @@ function pushToQueue(variantId, quantity, properties, callback) {
   }
 }
 
-// pushToQueue(gifts.waterbottle, 1, {}, Shopify.moveAlong);
+// pushToQueue(gifts.waterbottle, 1, {}, moveAlong);
 
 function wholesaleSubmit(event) {
   event.preventDefault();
@@ -234,9 +257,9 @@ function wholesaleSubmit(event) {
     const max = $("[name='inventory']", $this).val();
     if (qty > 0) {
       if (qty > max) {
-        pushToQueue(id, max, {}, Shopify.moveAlong);
+        pushToQueue(id, max, {}, moveAlong);
       } else {
-        pushToQueue(id, qty, {}, Shopify.moveAlong);
+        pushToQueue(id, qty, {}, moveAlong);
       }
     }
   });

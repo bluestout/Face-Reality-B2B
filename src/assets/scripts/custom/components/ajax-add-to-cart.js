@@ -16,52 +16,58 @@ function ajaxAddToCart(event) {
   const $source = $(event.currentTarget);
 
   const $form = $source.closest("form");
+  const $qty = $form.find("[name='quantity']");
+
+  $qty.attr("max");
+  if ($qty.val() > $qty.attr("max")) {
+    return null;
+  }
   return $.ajax({
     type: "POST",
     url: "/cart/add.js",
     async: false,
     data: $form.serialize(),
     dataType: "json",
-    error: addToCartFail,
-    success: addToCartSuccess($form.serializeArray()),
+    complete: addToCartHandle,
     cache: false,
   });
 }
 
-function addToCartFail(jqXHR, textStatus, errorThrown) {
-  const response = $.parseJSON(jqXHR.responseText);
-  console.log(response, errorThrown, textStatus);
-}
-
-function addToCartSuccess(formArray) {
-  let title = "";
-  let qty = 0;
-  for (let i = 0; i < formArray.length; i++) {
-    const element = formArray[i];
-    if (element.name === "product-title") {
-      title = element.value;
-    }
-    if (element.name === "quantity") {
-      qty = element.value;
-    }
+function addToCartHandle(jqXHR, textStatus) {
+  if (textStatus === "success") {
+    itemAddedMessage(
+      jqXHR.responseJSON.product_title,
+      jqXHR.responseJSON.quantity,
+    );
+  } else if (jqXHR.responseJSON.message === "Cart Error") {
+    showMessage(jqXHR.responseJSON.description);
+  } else {
+    showMessage("Unable to add to cart at the moment.");
   }
-  itemAddedMessage(title, qty);
 }
 
-let eventHolder = null;
 function itemAddedMessage(title, qty) {
   if (!title && !qty) {
     return false;
   } else {
-    clearTimeout(eventHolder);
     const verb = qty > 1 ? "have" : "has";
-    $(el.addedMessage).html(`${qty} of ${title} ${verb} been added to cart.`);
-    $(el.addedContainer).addClass("active");
-    eventHolder = setTimeout(() => {
-      $(el.addedContainer).removeClass("active");
-    }, 4500);
-    return eventHolder;
+    const message = `${qty} of ${title} ${verb} been added to cart.`;
+    return showMessage(message);
   }
+}
+
+let eventHolder = null;
+function showMessage(message) {
+  if (!message || typeof message !== "string") {
+    return null;
+  }
+  clearTimeout(eventHolder);
+  $(el.addedMessage).html(message);
+  $(el.addedContainer).addClass("active");
+  eventHolder = setTimeout(() => {
+    $(el.addedContainer).removeClass("active");
+  }, 4500);
+  return eventHolder;
 }
 
 /*

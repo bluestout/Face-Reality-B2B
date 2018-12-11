@@ -13,10 +13,12 @@
 
   &__separator {
     position: relative;
+    height: 100%;
+
     &::after {
       content: "";
       position: absolute;
-      left: 50%;
+      right: 0;
       top: 0;
       height: 100%;
       width: 1px;
@@ -26,7 +28,7 @@
 
   &__title {
     @include apercu(700);
-    @include Text(35.5px, 40px, $color-blumine);
+    @include Text(35.5px, 40px, $color-black);
     margin: 0 auto 15px;
   }
 

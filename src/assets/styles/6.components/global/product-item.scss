@@ -13,6 +13,7 @@
 }
 
 .product-item {
+  @include transition(background-color);
   position: relative;
   display: flex;
   flex-flow: column wrap;
@@ -21,7 +22,6 @@
   text-align: center;
   margin: 0 0 30px;
   padding: 0 5px 20px;
-  @include transition(background-color);
 
   &:hover,
   &:active {
@@ -64,11 +64,11 @@
   }
 
   &__tag-text {
+    @include Text(13.5px, 20px, $color-white);
+    @include apercu;
     position: relative;
     z-index: 2;
     display: block;
-    @include Text(13.5px, 20px, $color-white);
-    @include apercu;
     text-align: left;
     width: 60px;
     padding: 5px;
@@ -85,37 +85,28 @@
 
   &__title {
     @include apercu(700);
-    @include Text(20px, 22px, $color-calypso);
+    @include Text(20px, 22px, $color-black);
+    @include transition(color);
     margin: 0 auto 13px;
     max-width: 190px;
-    @include transition(color);
   }
 
   &__description {
     @include apercu(400);
     @include Text(12.5px, 16px, $color-black, 0.5px);
+    @include transition(opacity);
     margin: 0 auto 14px;
+    display: block;
     max-width: 220px;
     opacity: 0.5;
-    @include transition(opacity);
-  }
-
-  &__authorization {
-    @include myriad(400);
-    @include Text(11.5px, 16px, $color-white);
-    background-color: $color-de-york;
-    padding: 6px;
-    width: 180px;
-    margin: 0 auto 15px;
-    display: block;
   }
 
   &__price {
     @include aller(700);
-    @include Text(13.5px, 16px, $color-blumine);
+    @include Text(13.5px, 16px, $color-black);
     display: block;
     width: 100%;
-    margin: 0 0 5px;
+    margin: 0 0 10px;
   }
 
   &__form {
@@ -148,6 +139,7 @@
   }
 
   &__variant {
+    @include transition(background-color, color);
     position: absolute;
     left: 0;
     top: 0;
@@ -159,7 +151,6 @@
     background-color: $color-mystic;
     outline: none;
     cursor: pointer;
-    @include transition(background-color, color);
 
     &:hover + label,
     &:active + label {
@@ -182,19 +173,71 @@
     }
   }
 
+  &__qty-wrap {
+    @include clearfix;
+    border: 1px solid $color-bermuda-gray;
+    margin: 0 auto;
+    width: 180px;
+  }
+
+  &__quantity-button {
+    @include Text(20px, 40px, $color-blumine);
+    width: 28px;
+    height: 40px;
+    float: left;
+    background-color: $color-white;
+    border: none;
+    appearance: none;
+
+    &[data-direction="up"] {
+      border-left: 1px solid rgba($color-bermuda-gray, 0.5);
+    }
+    &[data-direction="down"] {
+      border-right: 1px solid rgba($color-bermuda-gray, 0.5);
+    }
+  }
+
+  &__quantity {
+    @include apercu;
+    height: 40px;
+    width: calc(100% - 56px);
+    float: left;
+    text-align-last: center;
+    text-align: center;
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+
   &__variant-label {
-    z-index: 2;
-    position: relative;
     @include apercu(400);
     @include Text(11px, 12px, $color-dove-gray);
+    @include transition(opacity, color);
+    z-index: 2;
+    position: relative;
     opacity: 0.5;
     margin: 0;
     padding: 6px;
     display: inline-block;
     pointer-events: none;
-    @include transition(opacity, color);
+  }
+
+  .spr-badge {
+    margin: 0 0 10px;
+  }
+
+  // hide products with no rating;
+  [data-rating="0.0"] {
+    display: none;
+  }
+
+  .spr-badge-caption {
+    display: none;
   }
 }
+
 @include media-query("medium-down") {
   .product-item {
     &__image-wrap {
