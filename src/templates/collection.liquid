@@ -1,63 +1,68 @@
 {% comment %} TODO - load more products when enabling filters, but no products found? {% endcomment %}
-<div class="collection-page">
+{% unless customer and customer.tags contains "quiz_completed" %}
+  {% include 'clinic-order' %}
+{% else %}
+  <div class="collection-page">
 
-  {% section 'collection-banner' %}
+    {% section 'collection-banner' %}
 
-  <div class="collection-content max-wrap">
-    <div class="row no-gutters">
-      <div class="col-md-3">
+    <div class="collection-content max-wrap">
+      <div class="row no-gutters">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-9">
+          {% include 'authorization-filter' %}
+        </div>
       </div>
-      <div class="col-md-9">
-        {% include 'authorization-filter' %}
-      </div>
-    </div>
-    <div class="row no-gutters">
-      <div class="col-md-3">
+      <div class="row no-gutters">
+        <div class="col-md-3">
 
-        {% include 'product-filter' %}
+          {% include 'product-filter' %}
 
-      </div>
-      <div class="col-md-9">
-        <div class="collection-products">
-          {% if collection.products.size > 0 %}
-            {% paginate collection.products by 9 %}
-              <div class="row no-gutters" data-paginate-collection-content>
-                {% for product in collection.products %}
-                  {% assign filtered_tags_s = "" %}
-                  {% for p_tag in product.tags %}
-                    {% if p_tag contains "skin-" or p_tag contains "use-" or p_tag contains "availability-" %}
-                      {% comment %} from all the tags, extract the skin- use- and availability tags {% endcomment %}
-                      {% assign p_tag_h = p_tag | handleize %}
-                      {% assign filtered_tags_s = filtered_tags_s | append: p_tag_h | append: '::'  %}
+        </div>
+        <div class="col-md-9">
+          <div class="collection-products">
+            {% if collection.products.size > 0 %}
+              {% paginate collection.products by 9 %}
+                <div class="row no-gutters" data-paginate-collection-content>
+                  {% for product in collection.products %}
+                    {% assign filtered_tags_s = "" %}
+                    {% for p_tag in product.tags %}
+                      {% if p_tag contains "skin-" or p_tag contains "use-" or p_tag contains "availability-" %}
+                        {% comment %} from all the tags, extract the skin- use- and availability tags {% endcomment %}
+                        {% assign p_tag_h = p_tag | handleize %}
+                        {% assign filtered_tags_s = filtered_tags_s | append: p_tag_h | append: '::'  %}
+                      {% endif %}
+                    {% endfor %}
+
+                    {% assign filtered_tags_a = filtered_tags_s  | split: '::' %}
+                    {% capture p_filtered_tag_classes %}{% unless filtered_tags_a == empty %}{% for f_tag in filtered_tags_a %} {{ f_tag }}{% endfor %}{% endunless %}{% endcapture %}
+                    {% assign all_tags = "skin-all usecase-all type-all availability-all" %}
+                    {% assign type_tag = "type-" | append: product.type | handleize %}
+                    {% if condition %}
                     {% endif %}
+                    {% comment %} add all the products we extracted and the all- tags in order for the filters to work {% endcomment %}
+                    <div class="col-lg-4 col-6 {{ all_tags }} {{ type_tag }} {{ p_filtered_tag_classes }}" data-collection-product-column>
+                      {% include 'product-item' with product, index: forloop.index %}
+                    </div>
                   {% endfor %}
-
-                  {% assign filtered_tags_a = filtered_tags_s  | split: '::' %}
-                  {% capture p_filtered_tag_classes %}{% unless filtered_tags_a == empty %}{% for f_tag in filtered_tags_a %} {{ f_tag }}{% endfor %}{% endunless %}{% endcapture %}
-                  {% assign all_tags = "skin-all usecase-all type-all availability-all" %}
-                  {% assign type_tag = "type-" | append: product.type | handleize %}
-                  {% if condition %}
+                </div>
+                {% if paginate.pages > 1 %}
+                  {% if paginate.next.is_link %}
+                    <div class="collection-products__pagination" data-collection-pagination>
+                      <a class="collection-products__load-more" href="{{ paginate.next.url }}" data-order-load-more>Load more</a>
+                    </div>
                   {% endif %}
-                  {% comment %} add all the products we extracted and the all- tags in order for the filters to work {% endcomment %}
-                  <div class="col-lg-4 col-6 {{ all_tags }} {{ type_tag }} {{ p_filtered_tag_classes }}" data-collection-product-column>
-                    {% include 'product-item' with product, index: forloop.index %}
-                  </div>
-                {% endfor %}
-              </div>
-              {% if paginate.pages > 1 %}
-                {% if paginate.next.is_link %}
-                  <div class="collection-products__pagination" data-collection-pagination>
-                    <a class="collection-products__load-more" href="{{ paginate.next.url }}" data-order-load-more>Load more</a>
-                  </div>
                 {% endif %}
-              {% endif %}
-            {% endpaginate %}
-          {% else %}
-            <p class="collection-products__no-products">There are no products in this collection.</p>
-          {% endif %}
+              {% endpaginate %}
+            {% else %}
+              <p class="collection-products__no-products">There are no products in this collection.</p>
+            {% endif %}
+          </div>
         </div>
       </div>
     </div>
+
   </div>
 
-</div>
+{% endunless %}
