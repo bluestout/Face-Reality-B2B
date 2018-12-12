@@ -106,7 +106,7 @@
               <div class="col-lg-3 col-sm-4 col-6" data-asset-item>
                 {% if item.image %}
                   {{ item.description }}
-                  <a href="{{ item.image.src | img_url: 'original' }}" class="assets-item" download>
+                  <a href="{{ item.image.src | img_url: 'original' }}" class="assets-item" download data-download-asset>
                     <span class="assets-item__image-wrap">
                         <img src="{{ item.image.src | img_url: '200x200' }}" alt="{{ item.title }}" class="assets-item__image"/>
                         {% if item.image.src contains ".png" %}
@@ -128,7 +128,7 @@
                     </span>
                   </a>
                 {% else %}
-                  <a href="{{ item.content | strip | strip_html }}" class="assets-item" download>
+                  <a href="{{ item.content | strip | strip_html }}" class="assets-item" download data-download-asset>
                     <span class="assets-item__image-wrap">
                         {% if item.content contains ".pdf" %}
                           <span class="assets-item__type assets-item__type--pdf">pdf</span>
@@ -151,6 +151,9 @@
     </div>
   </div>
 </section>
+
+<script>
+</script>
 
 {% comment %}
 <div>
