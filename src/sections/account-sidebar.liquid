@@ -14,7 +14,40 @@
       <a href="/account/addresses" class="account-sidebar__link">{{ 'customer.account.view_addresses' | t }}</a><br>
     </div>
   {% endunless %}
+  {% for block in section.blocks %}
+    {% if block.settings.url and block.settings.title %}
+      <div>
+        <a href="{{ block.settings.url }}" class="account-sidebar__link">{{ block.settings.title }}</a><br>
+      </div>
+    {% endif %}
+  {% endfor %}
   <div>
     <a href="/account/logout" class="account-sidebar__link">Sign Out</a><br>
   </div>
 </div>
+
+{% schema %}
+  {
+    "name": "Sidebar",
+    "blocks": [
+      {
+        "type": "block",
+        "name": "Additional links",
+        "settings": [
+          {
+            "type": "url",
+            "id": "url",
+            "label": "Link URL"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Link text"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+
