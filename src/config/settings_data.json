@@ -642,7 +642,9 @@
       },
       "information-topics": {
         "type": "information-topics",
-        "settings": {}
+        "settings": {
+          "info_center_links": ""
+        }
       },
       "info-cta": {
         "type": "info-cta",
@@ -1174,6 +1176,33 @@
           "phone": "866-477-3077",
           "email": "pros@facerealityacneclinic.com"
         }
+      },
+      "product-content": {
+        "type": "product-content",
+        "settings": {
+          "show_share_buttons": true
+        }
+      },
+      "product-related": {
+        "type": "product-related",
+        "blocks": {
+          "1544785595104": {
+            "type": "block",
+            "settings": {
+              "product": "ultra-gentle-cleanser-dev",
+              "collection": "sensitive-skin"
+            }
+          }
+        },
+        "block_order": ["1544785595104"],
+        "settings": {
+          "title": "Other products in this group",
+          "collection": "featured"
+        }
+      },
+      "account-sidebar": {
+        "type": "account-sidebar",
+        "settings": {}
       }
     },
     "content_for_index": [
