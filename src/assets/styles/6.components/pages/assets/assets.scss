@@ -1,4 +1,8 @@
 .assets {
   @import "./assets-search";
   @import "./assets-item";
+
+  .pagination {
+    text-align: center;
+  }
 }
