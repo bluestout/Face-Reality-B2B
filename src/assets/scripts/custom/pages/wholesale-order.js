@@ -1,5 +1,5 @@
-import $ from "jquery";
 import { formatMoney } from "@shopify/theme-currency";
+import $ from "jquery";
 
 const el = {
   table: "[data-wholesale-table-body]",
@@ -15,6 +15,12 @@ const el = {
   savingsBox: "[data-wholesale-savings-container]",
   savings: "[data-wholesale-savings]",
   total: "[data-wholesale-total]",
+  addedContainer: "[data-item-added-container]",
+  addedMessage: "[data-item-added-message]",
+};
+
+const values = {
+  minOrder: 500,
 };
 
 function getFormattedSrc(src, size) {
@@ -247,22 +253,46 @@ function pushToQueue(variantId, quantity, properties, callback) {
 
 // pushToQueue(gifts.waterbottle, 1, {}, moveAlong);
 
+let eventHolder = null;
+function showMessage(message) {
+  if (!message || typeof message !== "string") {
+    return null;
+  }
+  clearTimeout(eventHolder);
+  $(el.addedMessage).html(message);
+  $(el.addedContainer).addClass("active");
+  eventHolder = setTimeout(() => {
+    $(el.addedContainer).removeClass("active");
+  }, 4500);
+  return eventHolder;
+}
+
 function wholesaleSubmit(event) {
   event.preventDefault();
-  const $products = $(el.product);
-  $products.each(function() {
-    const $this = $(this);
-    const id = $("[name='id']", $this).val();
-    const qty = $("[name='quantity']", $this).val();
-    const max = $("[name='inventory']", $this).val();
-    if (qty > 0) {
-      if (qty > max) {
-        pushToQueue(id, max, {}, moveAlong);
-      } else {
-        pushToQueue(id, qty, {}, moveAlong);
+  const totals = $(el.total).data("wholesale-total");
+  if (totals > values.minOrder * 100) {
+    const $products = $(el.product);
+    $products.each(function() {
+      const $this = $(this);
+      const id = $("[name='id']", $this).val();
+      const qty = $("[name='quantity']", $this).val();
+      const max = $("[name='inventory']", $this).val();
+      if (qty > 0) {
+        if (qty > max) {
+          pushToQueue(id, max, {}, moveAlong);
+        } else {
+          pushToQueue(id, qty, {}, moveAlong);
+        }
       }
-    }
-  });
+    });
+  } else {
+    showMessage(
+      `Minimum order value is ${formatMoney(
+        values.minOrder * 100,
+        theme.moneyFormat,
+      )}`,
+    );
+  }
 }
 
 function wholesaleSort(event) {
@@ -303,7 +333,9 @@ function calculateTotals() {
   });
 
   $(el.savings).text(formatMoney(compare * 100, theme.moneyFormat));
-  $(el.total).text(formatMoney(totals * 100, theme.moneyFormat));
+  $(el.total)
+    .text(formatMoney(totals * 100, theme.moneyFormat))
+    .data("wholesale-total", totals);
 
   if (compare && compare > totals) {
     $(el.savingsBox).show();
