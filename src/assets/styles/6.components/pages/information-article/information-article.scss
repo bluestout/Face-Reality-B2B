@@ -212,6 +212,10 @@
       margin: 0 0 10px;
     }
 
+    &__introduction {
+      margin: 0 0 30px;
+    }
+
     &__navigation {
       margin: 0 auto 20px;
     }
@@ -315,9 +319,6 @@
   }
 
   @include media-query("v-small") {
-    &__introduction {
-      margin: 0 0 30px;
-    }
     &__inner {
       margin: 0 auto 30px;
     }

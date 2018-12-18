@@ -1,15 +1,14 @@
 <div class="max-width">
+  <div class="container">
+    <h1 class="page-testimonials__title">{{ page.title }}</h1>
+    <h2 class="page-testimonials__subtitle">{{ page.content | strip | strip_html }}</h2>
+  </div>
+
   <div class="page-testimonials">
-
-  {% section 'testimonials-banner' %}
-
-  <section class="testimonials-content__wrap">
-    {% section 'testimonials-video' %}
-
-    {% section 'testimonials-content' %}
-  </section>
-
-  {% section 'different-mentions' %}
-
+    <div class="testimonials-content__wrap">
+      {% section 'testimonials-video' %}
+      {% section 'testimonials-content' %}
+    </div>
+    {% section 'different-mentions' %}
   </div>
 </div>

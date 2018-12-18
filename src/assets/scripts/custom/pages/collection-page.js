@@ -95,15 +95,29 @@ function runFilter() {
   if (allClasses.length > 0) {
     $(`${filter.item}${activeTags}`).fadeIn();
     $(`${filter.item}:not(${activeTags})`).fadeOut();
+    // this if prevents infinite recursion - run only if no results after filtering
+    if (
+      $(`${filter.item}${activeTags}`).length <= 0 &&
+      $(page.button).length > 0
+    ) {
+      loadMore();
+    }
   } else {
     $(filter.item).fadeIn();
   }
 }
 
 // load more order items on click - pagination ajax
-function loadMore(event) {
+function loadMoreClick(event) {
   event.preventDefault();
-  const $source = $(event.currentTarget);
+  loadMore();
+}
+
+function loadMore() {
+  const $source = $(page.button);
+  if ($source.length <= 0) {
+    return false;
+  }
   const link = $source.attr("href");
   $(page.pagination).html("<div class='linear-loader'></div>");
   $.get(link, (data) => {
@@ -118,7 +132,9 @@ function loadMore(event) {
     } else {
       $(page.pagination).html("");
     }
+    return true;
   });
+  return false;
 }
 
 function resetFilters() {
@@ -258,7 +274,7 @@ function getVariant(options, variants) {
 
 $(document).ready(productItemInit);
 
-$(document).on("click", page.button, loadMore);
+$(document).on("click", page.button, loadMoreClick);
 
 $(document).on("click", filter.responsiveToggle, responsiveToggle);
 
