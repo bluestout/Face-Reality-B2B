@@ -66,7 +66,7 @@
             "type": "testimonial",
             "settings": {
               "testimonial": "This place really is amazing and anyone with acne knows $25 (which they waive if you elect to get a treatment) is REALLY cheap and worth it to get his or her skin under control. I have been to so many different places, spent tons of money, even tried the stuff from acne.org, just to be disappointed. I finally decided to check this place out based on all the great reviews and really nice man (Pat) I spoke with at the clinic over the phone. This place is the first place I have been able to leave from after getting a facial where I didn’t feel like I needed to hide.",
-              "image": "shopify://shop_images/placeholder400x400.png",
+              "image": "shopify://shop_images/testimonials-avatar1_8ad1b84d-d4b5-4a98-b92c-2b4e79b58761.png",
               "title": "Jeannine L.",
               "date": "Jun 2018"
             }
@@ -75,7 +75,7 @@
             "type": "testimonial",
             "settings": {
               "testimonial": "Within two to three weeks we noticed a huge change. The inflammation was going down and with treatments every two weeks my daughter Sarah’s skin really did start to clear. What amazes me is that Sarah has been to dermatologists since she was in junior high school. The last time she went in, the doctor said he did not know what to do, they had tried it all. Well, Sarah walked down the aisle on her wedding day acne free, thanks to Face Reality!",
-              "image": "shopify://shop_images/placeholder400x400.png",
+              "image": "shopify://shop_images/testimonials-avatarx_8c7c06a0-8875-49be-adb6-c7c668ab6cd1.png",
               "title": "Sune N.",
               "date": "Jun 2018"
             }
@@ -84,7 +84,7 @@
             "type": "testimonial",
             "settings": {
               "testimonial": "This place really is amazing and anyone with acne knows $25 (which they waive if you elect to get a treatment) is REALLY cheap and worth it to get his or her skin under control. I have been to so many different places, spent tons of money, even tried the stuff from acne.org, just to be disappointed. I finally decided to check this place out based on all the great reviews and really nice man (Pat) I spoke with at the clinic over the phone. This place is the first place I have been able to leave from after getting a facial where I didn’t feel like I needed to hide.",
-              "image": "shopify://shop_images/placeholder400x400.png",
+              "image": "shopify://shop_images/testimonials-avatar1_9a923400-2a31-4c31-9564-26e49d8930ab.png",
               "title": "Jeannine L.",
               "date": "Jun 2018"
             }
@@ -93,7 +93,7 @@
             "type": "testimonial",
             "settings": {
               "testimonial": "This place really is amazing and anyone with acne knows $25 (which they waive if you elect to get a treatment) is REALLY cheap and worth it to get his or her skin under control. I have been to so many different places, spent tons of money, even tried the stuff from acne.org, just to be disappointed. I finally decided to check this place out based on all the great reviews and really nice man (Pat) I spoke with at the clinic over the phone. This place is the first place I have been able to leave from after getting a facial where I didn’t feel like I needed to hide.",
-              "image": "shopify://shop_images/placeholder400x400.png",
+              "image": "shopify://shop_images/testimonials-avatar1_5814ed98-a102-4c0a-97ed-1148899b7d20.png",
               "title": "Jeannine L.",
               "date": "Jun 2018"
             }
@@ -102,7 +102,7 @@
             "type": "testimonial",
             "settings": {
               "testimonial": "Within two to three weeks we noticed a huge change. The inflammation was going down and with treatments every two weeks my daughter Sarah’s skin really did start to clear. What amazes me is that Sarah has been to dermatologists since she was in junior high school. The last time she went in, the doctor said he did not know what to do, they had tried it all. Well, Sarah walked down the aisle on her wedding day acne free, thanks to Face Reality!",
-              "image": "shopify://shop_images/placeholder400x400.png",
+              "image": "shopify://shop_images/testimonials-avatarx_fd4f250a-11e7-472a-b363-445129e2ad23.png",
               "title": "Sune N.",
               "date": "Jun 2018"
             }
@@ -141,13 +141,13 @@
           "title": "Join the team of highly successful acne specialists",
           "text": "",
           "button_text": "Read all testimonials",
-          "button_link": ""
+          "button_link": "shopify://pages/testimonials"
         }
       },
       "about-banner": {
         "type": "about-banner",
         "settings": {
-          "bg": "",
+          "bg": "shopify://shop_images/banner-about.png",
           "suptitle": "Laura Cooksey’s Story",
           "title": "Our founder"
         }
@@ -156,15 +156,15 @@
         "type": "about-content",
         "settings": {
           "content_top": "<p>In her mid-thirties, she finally found an esthetician who got her skin clear. She immediately felt compelled to help others as she had been helped. After all, she knew first-hand how adversely it had affected her life; and she wanted to spare others the agony of dealing with acne.</p>\n<p><br>She became a California state-licensed esthetician in 1990 and set out to learn everything about acne that she could. After having been a sole practitioner for many years, her dream of opening an acne-only clinic came true in 2005. As a result of her astounding results with acne, other&nbsp;estheticians started demanding classes to learn her protocol. Out of this was born her comprehensive Acne Specialist training and she has certified over 400 skin care professionals, including nurses and doctors, around the United States.&nbsp;</p>",
-          "image_top": "",
-          "image_middle": "",
+          "image_top": "shopify://shop_images/lara-tuhmbnail-2.png",
+          "image_middle": "shopify://shop_images/banner-about-lara.png",
           "content_middle": "After all, Laura knew first-hand how adversely it had affected her life; and she wanted to spare others the agony of dealing with acne.",
           "content_bottom": "<p>She organized the first U.S. conference for acne specialists in September 2014, and continues to write articles about acne and acne treatment in several skin care industry publications. She is continually doing research and testing products to increase her understanding of the disease known as retention hyperkeratosis, aka acne.</p>\n<p></p>\n<p></p>",
           "cta_content": "Learn more about Face Reality Clinic, and why we can help you when nobody else can.",
           "cta_button_text": "Learn more about Face Reality",
-          "cta_button_url": "#",
+          "cta_button_url": "shopify://pages/about-our-products",
           "cta_link_text": "Explore our products",
-          "cta_link_url": "#"
+          "cta_link_url": "/collections/all"
         }
       },
       "different-full-w-rows": {
@@ -172,10 +172,10 @@
         "settings": {
           "title_top": "Acne can be controlled with the right products and process",
           "description_top": "<p>Acne is a mysterious skin disorder, but one thing is for sure &ndash; it can be controlled with the right combination of products, used in the correct way. Just as in a clogged drain, the pore must be treated with products that unclog it and kill the acne bacteria.</p>\n<p><br>Face Reality Acne Clinic has a clear-skin system that will have your acne under control in about three to four months, depending on your type of acne. We combine the power of clinical-grade products that are customized for your type of acne, with a series of bi-monthly treatments. We also teach you about other aggravating factors that make you break out &ndash; foods, medications, cosmetics, stress, and common ingredients in skin care formulations that might be clogging your pores (even professional and prescription products).</p>",
-          "image_top": "",
+          "image_top": "shopify://shop_images/how-we-are-diff-1.png",
           "title_bottom": "Find the right products for your skin. And learn how to use it.",
           "description_bottom": "<p>The most important aspect of our system is not just starting you with the right products, but we teach you how to use them. We test your skin to make sure you are getting the most effective products for your acne type, skin type, and skin tolerance. It won&rsquo;t be enough just to have the right products &ndash; it&rsquo;s all about having the right routine for those products. You will learn how to use products slowly at first, so that your skin stays receptive without causing irritation or dehydration. But skin can become accustomed to products and then become less effective over time &ndash; that is why we will adjust your regimen little by little, to get rid of your acne.</p>",
-          "image_bottom": ""
+          "image_bottom": "shopify://shop_images/how-we-are-diff-2.png"
         }
       },
       "different-mentions": {
@@ -184,42 +184,35 @@
           "1539180221416": {
             "type": "mention",
             "settings": {
-              "image": "",
-              "url": "#"
+              "image": "shopify://shop_images/logo-bay-area.png",
+              "url": ""
             }
           },
           "1539180267265": {
             "type": "mention",
             "settings": {
-              "image": "",
+              "image": "shopify://shop_images/logo-marin-independent.png",
               "url": "#"
             }
           },
           "1539180274197": {
             "type": "mention",
             "settings": {
-              "image": "",
-              "url": "#"
+              "image": "shopify://shop_images/logo-the-argus.png",
+              "url": ""
             }
           },
           "1539180281285": {
             "type": "mention",
             "settings": {
-              "image": "",
-              "url": "#"
+              "image": "shopify://shop_images/logo-alameda-times.png",
+              "url": ""
             }
           },
           "1539180288733": {
             "type": "mention",
             "settings": {
-              "image": "",
-              "url": "#"
-            }
-          },
-          "1539180295473": {
-            "type": "mention",
-            "settings": {
-              "image": "",
+              "image": "shopify://shop_images/logo-dermascope.png",
               "url": "#"
             }
           }
@@ -229,8 +222,7 @@
           "1539180267265",
           "1539180274197",
           "1539180281285",
-          "1539180288733",
-          "1539180295473"
+          "1539180288733"
         ],
         "settings": {
           "title": "We’ve got some mentions..."
@@ -251,7 +243,7 @@
             "type": "testimonial",
             "settings": {
               "testimonial": "This place really is amazing and anyone with acne knows $25 (which they waive if you elect to get a treatment) is REALLY cheap and worth it to get his or her skin under control. I have been to so many different places, spent tons of money, even tried the stuff from acne.org, just to be disappointed. I finally decided to check this place out based on all the great reviews and really nice man (Pat) I spoke with at the clinic over the phone. This place is the first place I have been able to leave from after getting a facial where I didn’t feel like I needed to hide.",
-              "image": "",
+              "image": "shopify://shop_images/testimonials-avatar1.png",
               "title": "Jeannine L.",
               "date": "Jun 2018"
             }
@@ -260,7 +252,7 @@
             "type": "testimonial",
             "settings": {
               "testimonial": "Within two to three weeks we noticed a huge change. The inflammation was going down and with treatments every two weeks my daughter Sarah’s skin really did start to clear. What amazes me is that Sarah has been to dermatologists since she was in junior high school. The last time she went in, the doctor said he did not know what to do, they had tried it all. Well, Sarah walked down the aisle on her wedding day acne free, thanks to Face Reality!",
-              "image": "",
+              "image": "shopify://shop_images/testimonials-avatarx.png",
               "title": "Sune N.",
               "date": "Jun 2018"
             }
@@ -269,7 +261,7 @@
             "type": "testimonial",
             "settings": {
               "testimonial": "This place really is amazing and anyone with acne knows $25 (which they waive if you elect to get a treatment) is REALLY cheap and worth it to get his or her skin under control. I have been to so many different places, spent tons of money, even tried the stuff from acne.org, just to be disappointed. I finally decided to check this place out based on all the great reviews and really nice man (Pat) I spoke with at the clinic over the phone. This place is the first place I have been able to leave from after getting a facial where I didn’t feel like I needed to hide.",
-              "image": "",
+              "image": "shopify://shop_images/testimonials-avatar1_bfeaf5be-2ce7-4d78-813f-203caf0a9825.png",
               "title": "Jeannine L.",
               "date": "Jun 2018"
             }
@@ -278,7 +270,7 @@
             "type": "testimonial",
             "settings": {
               "testimonial": "Within two to three weeks we noticed a huge change. The inflammation was going down and with treatments every two weeks my daughter Sarah’s skin really did start to clear. What amazes me is that Sarah has been to dermatologists since she was in junior high school. The last time she went in, the doctor said he did not know what to do, they had tried it all. Well, Sarah walked down the aisle on her wedding day acne free, thanks to Face Reality!",
-              "image": "",
+              "image": "shopify://shop_images/testimonials-avatarx_b3d1c8a6-67ab-4eba-9269-9e0fed39a655.png",
               "title": "Sune N.",
               "date": "Jun 2018"
             }
@@ -287,7 +279,7 @@
             "type": "testimonial",
             "settings": {
               "testimonial": "This place really is amazing and anyone with acne knows $25 (which they waive if you elect to get a treatment) is REALLY cheap and worth it to get his or her skin under control. I have been to so many different places, spent tons of money, even tried the stuff from acne.org, just to be disappointed. I finally decided to check this place out based on all the great reviews and really nice man (Pat) I spoke with at the clinic over the phone. This place is the first place I have been able to leave from after getting a facial where I didn’t feel like I needed to hide.",
-              "image": "",
+              "image": "shopify://shop_images/testimonials-avatar1_085433f6-bc3a-469f-8a81-47f1dda609d9.png",
               "title": "Jeannine L.",
               "date": "Jun 2018"
             }
@@ -296,16 +288,7 @@
             "type": "testimonial",
             "settings": {
               "testimonial": "Within two to three weeks we noticed a huge change. The inflammation was going down and with treatments every two weeks my daughter Sarah’s skin really did start to clear. What amazes me is that Sarah has been to dermatologists since she was in junior high school. The last time she went in, the doctor said he did not know what to do, they had tried it all. Well, Sarah walked down the aisle on her wedding day acne free, thanks to Face Reality!",
-              "image": "",
-              "title": "Sune N.",
-              "date": "Jun 2018"
-            }
-          },
-          "1539250613041": {
-            "type": "testimonial",
-            "settings": {
-              "testimonial": "Within two to three weeks we noticed a huge change. The inflammation was going down and with treatments every two weeks my daughter Sarah’s skin really did start to clear. What amazes me is that Sarah has been to dermatologists since she was in junior high school. The last time she went in, the doctor said he did not know what to do, they had tried it all. Well, Sarah walked down the aisle on her wedding day acne free, thanks to Face Reality!",
-              "image": "",
+              "image": "shopify://shop_images/testimonials-avatarx_e1965aed-d24f-45de-8c87-97b95d7e35f1.png",
               "title": "Sune N.",
               "date": "Jun 2018"
             }
@@ -336,7 +319,6 @@
           "1539250563709",
           "1539250579142",
           "1539250597246",
-          "1539250613041",
           "1543846607400",
           "1543846649910",
           "1543846652884"
@@ -354,9 +336,9 @@
       "about-products-banner": {
         "type": "about-products-banner",
         "settings": {
-          "bg": "",
+          "bg": "shopify://shop_images/banner-about-our-products_411e9c30-7ca8-4dba-8d5f-4817d70924b3.png",
           "bg_mobile": "",
-          "color": "black"
+          "color": "white"
         }
       },
       "about-products-content": {
@@ -373,73 +355,61 @@
           "1539593230204": {
             "type": "tab-1",
             "settings": {
-              "collection": ""
+              "collection": "chronically-dry-skin"
             }
           },
           "1539593241165": {
             "type": "tab-1",
             "settings": {
-              "collection": ""
+              "collection": "mature-skin"
             }
           },
           "1539593246766": {
             "type": "tab-1",
             "settings": {
-              "collection": ""
+              "collection": "non-sensitive-skin"
             }
           },
           "1539593252090": {
             "type": "tab-1",
             "settings": {
-              "collection": ""
+              "collection": "sensitive-skin"
             }
           },
           "1539593259746": {
             "type": "tab-1",
             "settings": {
-              "collection": ""
-            }
-          },
-          "1539593265355": {
-            "type": "tab-1",
-            "settings": {
-              "collection": ""
-            }
-          },
-          "1539593278367": {
-            "type": "tab-2",
-            "settings": {
-              "collection": ""
-            }
-          },
-          "1539593284221": {
-            "type": "tab-2",
-            "settings": {
-              "collection": ""
+              "collection": "featured"
             }
           },
           "1539593290583": {
             "type": "tab-2",
             "settings": {
-              "collection": ""
+              "collection": "cleansers"
             }
           },
           "1539593296523": {
             "type": "tab-2",
             "settings": {
-              "collection": ""
+              "collection": "serums"
             }
           },
           "1539593301437": {
             "type": "tab-2",
             "settings": {
-              "collection": ""
+              "collection": "toners"
             }
           },
           "1539593308239": {
             "type": "tab-2",
             "settings": {
-              "collection": ""
+              "collection": "home-care"
+            }
+          },
+          "1545146913920": {
+            "type": "tab-2",
+            "settings": {
+              "collection": "featured"
             }
           }
         },
@@ -449,19 +419,17 @@
           "1539593246766",
           "1539593252090",
           "1539593259746",
-          "1539593265355",
-          "1539593278367",
-          "1539593284221",
           "1539593290583",
           "1539593296523",
           "1539593301437",
-          "1539593308239"
+          "1539593308239",
+          "1545146913920"
         ],
         "settings": {
           "title": "Explore our products",
           "collection_1_title": "Browse by skin type",
           "collection_2_title": "Browse by product type",
-          "button_2_url": "#",
+          "button_2_url": "/collections/all/",
           "button_2_text": "Browse all products"
         }
       },
@@ -567,7 +535,7 @@
       "faq-banner": {
         "type": "faq-banner",
         "settings": {
-          "bg": "",
+          "bg": "shopify://shop_images/banner-faq.png",
           "bg_mobile": "",
           "color": "white"
         }
@@ -649,8 +617,8 @@
       "info-cta": {
         "type": "info-cta",
         "settings": {
-          "title": "Learn more about face reality clinic, and why we can help you when nobody else can.",
-          "bg": "",
+          "title": "Learn more about face reality certification process, and why we can help you improve your acne treatment business",
+          "bg": "shopify://shop_images/background-cta.png",
           "button_url": "shopify://pages/about",
           "button_text": "Learn more about Face Reality",
           "link_url": "/collections/all",
@@ -764,7 +732,7 @@
       "contact-banner": {
         "type": "contact-banner",
         "settings": {
-          "bg": "",
+          "bg": "shopify://shop_images/banner-contact.png",
           "bg_mobile": "",
           "color": "white"
         }
@@ -787,7 +755,7 @@
           "1543846117523": {
             "type": "block",
             "settings": {
-              "reason": "Acne advice"
+              "reason": "Advice on acne"
             }
           }
         },
@@ -803,7 +771,7 @@
           "text": "Get over 90% of acne clients clear with our training and support. With Proven Strategies for Treating Acne, you will become a confident acne expert and a hero",
           "video": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/NpEaa2P7qZI\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\"></iframe>",
           "button_text": "Get started",
-          "button_link": "#"
+          "button_link": "shopify://pages/certification-test"
         }
       },
       "1543826452076": {
@@ -838,7 +806,7 @@
         "settings": {
           "bottom_text": "Get over 90% of acne clients clear with our training and support. With Proven Strategies for Treating Acne, you will become a confident acne expert and a hero",
           "button_text": "Get Certified",
-          "button_link": "#"
+          "button_link": "shopify://pages/certification-test"
         }
       },
       "1543827485748": {
@@ -854,7 +822,7 @@
               "link_url": "#certification-video",
               "link_text": "<span class=\"icon-play-circle\"></span> Watch promo video",
               "background": "shopify://shop_images/iStock-908578294.jpg",
-              "badge": "shopify://shop_images/badge-plceholder.png"
+              "badge": "shopify://shop_images/success-rate-badge_7d04f359-7747-4ea0-9cb6-9b1aae2c79e8.png"
             }
           },
           "1543828046160": {
@@ -867,7 +835,7 @@
               "link_url": "",
               "link_text": "",
               "background": "shopify://shop_images/iStock-908578294.jpg",
-              "badge": "shopify://shop_images/badge-plceholder.png"
+              "badge": "shopify://shop_images/success-rate-badge_4c79b073-78db-4916-adb2-9a5162f654c8.png"
             }
           },
           "1543828085320": {
@@ -880,20 +848,20 @@
               "link_url": "",
               "link_text": "",
               "background": "shopify://shop_images/iStock-908578294.jpg",
-              "badge": "shopify://shop_images/badge-plceholder.png"
+              "badge": "shopify://shop_images/success-rate-badge_1e143e66-2fc8-404d-9f83-f6d5e5367660.png"
             }
           }
         },
         "block_order": ["1543827984584", "1543828046160", "1543828085320"],
         "settings": {
-          "title": "Get the most comprehensive acne specialist training and become certified",
-          "description": "With +90% success rate our Clear Skin program will help you become a confident acne specialist and offer relief ti your clients",
-          "button_url": "#",
-          "button_text": "Learn more",
-          "link_url": "#certification-video",
-          "link_text": "<span class=\"icon-play-circle\"></span> Watch promo video",
-          "background": "shopify://shop_images/iStock-908578294.jpg",
-          "badge": "shopify://shop_images/badge-plceholder.png"
+          "title": "",
+          "description": "",
+          "button_url": "",
+          "button_text": "",
+          "link_url": "",
+          "link_text": "",
+          "background": "",
+          "badge": ""
         }
       },
       "1543838718533": {
@@ -1203,6 +1171,20 @@
       "account-sidebar": {
         "type": "account-sidebar",
         "settings": {}
+      },
+      "study-acne-hyperpigmentation": {
+        "type": "study-acne-hyperpigmentation",
+        "settings": {}
+      },
+      "study-back-acne": {
+        "type": "study-back-acne",
+        "settings": {}
+      },
+      "studies-articles": {
+        "type": "studies-articles",
+        "settings": {
+          "case_studies_links": ""
+        }
       }
     },
     "content_for_index": [
