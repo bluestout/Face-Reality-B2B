@@ -1,4 +1,6 @@
 .study-sidebar {
+  @include transition(bottom 400ms ease-out);
+
   &__title {
     @include apercu(700);
     @include Text(22px, 27px, $color-blumine);
@@ -10,12 +12,11 @@
     margin: 0 0 30px;
     opacity: 0.55;
   }
-  &__items {
-    margin: 0 0 30px;
-  }
 
   &__item {
-    margin: 0 0 4px;
+    &:not(:last-of-type) {
+      margin: 0 0 4px;
+    }
   }
 
   &__link {
@@ -67,6 +68,10 @@
       font-size: 18px;
       line-height: 24px;
       margin: 0 0 15px;
+    }
+
+    &__items {
+      margin: 0 0 30px;
     }
 
     &__link {

@@ -13,7 +13,6 @@ function quickSearch() {
     const value = $(el.search)
       .val()
       .toLowerCase();
-    console.log(value);
     if (value.length > 0) {
       $(el.title).each(function() {
         const $this = $(this);
