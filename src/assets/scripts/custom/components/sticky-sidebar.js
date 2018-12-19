@@ -25,18 +25,20 @@ function stickySidebar(lastPosition, padding = 30) {
   $(el.sidebar).each(function() {
     const $this = $(this);
     const $container = $this.closest(el.container);
-    const containerOffset = $container.offset().top;
-    const containerHeight = $container.height();
-    const maxH = containerHeight - containerOffset - padding;
+    if ($container.length > 0) {
+      const containerOffset = $container.offset().top;
+      const containerHeight = $container.height();
+      const maxH = containerHeight - containerOffset - padding;
 
-    if (containerOffset < lastPosition) {
-      if (lastPosition > maxH) {
-        $this.css("bottom", 0);
+      if (containerOffset < lastPosition) {
+        if (lastPosition > maxH) {
+          $this.css("bottom", 0);
+        } else {
+          $this.css("bottom", maxH - lastPosition);
+        }
       } else {
-        $this.css("bottom", maxH - lastPosition);
+        $this.css("bottom", containerHeight - $this.height());
       }
-    } else {
-      $this.css("bottom", containerHeight - $this.height());
     }
   });
 }
