@@ -20,7 +20,7 @@ const el = {
 };
 
 const values = {
-  minOrder: 500,
+  minOrder: 125,
 };
 
 function getFormattedSrc(src, size) {
@@ -269,8 +269,9 @@ function showMessage(message) {
 
 function wholesaleSubmit(event) {
   event.preventDefault();
-  const totals = $(el.total).data("wholesale-total");
-  if (totals > values.minOrder * 100) {
+  const totals = parseInt($(el.total).data("wholesale-total"), 10);
+  console.log(totals, values.minOrder);
+  if (totals > values.minOrder) {
     const $products = $(el.product);
     $products.each(function() {
       const $this = $(this);
