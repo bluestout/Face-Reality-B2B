@@ -1,6 +1,7 @@
 import { formatMoney } from "@shopify/theme-currency";
 import $ from "jquery";
 
+// list all the dom elements used in the script here
 const el = {
   table: "[data-wholesale-table-body]",
   qty: "[data-wholesale-quantity]",
@@ -19,10 +20,18 @@ const el = {
   addedMessage: "[data-item-added-message]",
 };
 
+// all the product variant ids used
+const cartProducts = {
+  pump: 19188271874137,
+  acneMedDev6Red: 18709580578905,
+};
+
+// any constant values used
 const values = {
   minOrder: 125,
 };
 
+// format source text with correct file type
 function getFormattedSrc(src, size) {
   if (!src || typeof size !== "string") {
     return null;
@@ -40,6 +49,7 @@ function getFormattedSrc(src, size) {
   return iSrc;
 }
 
+// use the shopify api to load products - only way to actually get all the prodcuts and variants like we need them to
 function loadproducts() {
   // PUT /admin/products/#{product_id}/variants/#{variant_id}.json
   $.getJSON("/admin/products.json?limit=250", (json) => {
@@ -183,9 +193,7 @@ function loadproducts() {
         const value = currentTypesCount[Object.keys(currentTypesCount)[i]];
         const key = Object.keys(currentTypesCount)[i];
         let niceKey = "";
-        key && typeof key === "string"
-          ? (niceKey = key.replace("-", " "))
-          : null;
+        niceKey = key && typeof key === "string" ? key.replace("-", " ") : null;
         products = products.replace(
           `type="${key}">0`,
           `type="${key}">${value}`,
@@ -202,7 +210,7 @@ function loadproducts() {
 }
 
 const addToCartQueue = [];
-function moveAlong() {
+function moveAlong(redirect) {
   if (addToCartQueue.length > 0) {
     const request = addToCartQueue.shift();
     addItemCustom(
@@ -211,7 +219,7 @@ function moveAlong() {
       request.properties,
       moveAlong,
     );
-  } else {
+  } else if (redirect) {
     window.location.replace(`${window.location.origin}/checkout`);
   }
 }
@@ -344,6 +352,67 @@ function calculateTotals() {
   }
 }
 
+// insert id/line, quantity, isline?
+// reduce the remove from cart & change quantity for id & line to 1 function
+function ajaxChangeCartQty(id, qty, line) {
+  let data = { quantity: qty, id };
+  if (line) {
+    data = { quantity: qty, line: id };
+  }
+  $.ajax({
+    type: "POST",
+    url: "/cart/change.js",
+    async: false,
+    data,
+    dataType: "json",
+    success: () => {
+      console.log("item removed");
+    },
+    cache: false,
+  });
+}
+
+// this function checks if products need to added or removed from the cart automatically,
+// based on the products already in the cart
+function automaticProducts(cart) {
+  let pumpsInCart = 0;
+  let pumpsQtyShouldBe = 0;
+
+  const idsInCart = [];
+  for (let i = 0; i < cart.items.length; i++) {
+    idsInCart.push([cart.items[i].id, cart.items[i].quantity]);
+    if (cart.items[i].id === cartProducts.pump) {
+      pumpsInCart += cart.items[i].quantity;
+    }
+  }
+
+  // will need to define these for each use-case. Or we can get data from a json from liquid, but that would be less safe
+  const specificIds = [cartProducts.acneMedDev6Red];
+
+  for (let index = 0; index < idsInCart.length; index++) {
+    const element = idsInCart[index];
+    if (specificIds.includes(element[0])) {
+      pumpsQtyShouldBe += element[1];
+    }
+  }
+
+  if (pumpsInCart > 0 && pumpsQtyShouldBe === 0) {
+    // if there are items in cart that should not be there and the number that should be is 0
+    ajaxChangeCartQty(cartProducts.pump, 0);
+  } else if (pumpsQtyShouldBe > pumpsInCart) {
+    // if more items should be in the cart than there currently are - add more to cart
+    pushToQueue(
+      cartProducts.pump,
+      pumpsQtyShouldBe - pumpsInCart,
+      {},
+      moveAlong,
+    );
+  } else if (pumpsQtyShouldBe < pumpsInCart) {
+    // if fewer items should be added than there currently are - remove some from cart
+    ajaxChangeCartQty(cartProducts.pump, pumpsQtyShouldBe);
+  }
+}
+
 $(document).on("click", el.submit, wholesaleSubmit);
 
 $(document).on("click", el.reset, wholesaleSortReset);
@@ -353,3 +422,10 @@ $(document).on("change", el.sort, wholesaleSort);
 $(document).on("change", el.qty, calculateTotals);
 
 $(document).ready(loadproducts);
+
+// run ajax on page load to get cart contents
+$(document).ready(() => {
+  $.getJSON("/cart.js", (json) => {
+    automaticProducts(json);
+  });
+});

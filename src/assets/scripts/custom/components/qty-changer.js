@@ -10,7 +10,8 @@ function QuantityChange(event) {
   }
   const $source = $(event.currentTarget);
   const $input = $($source.data("qty-change"));
-  const max = $input.attr("max");
+  // if no max, inventory is not tracked, so there's technically no limit to how many of that product can be added
+  const max = $input.attr("max") || 99999;
   const direction = $source.data("direction");
   if (direction === "down") {
     if ($input.val() > 0) {
