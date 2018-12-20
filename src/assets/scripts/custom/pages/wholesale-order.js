@@ -75,114 +75,120 @@ function loadproducts() {
     for (let i = 0; i < json.products.length; i++) {
       // use the sorted keys to determine in what order to show products
       const product = json.products[keysSorted[i]];
-      const pTitle = product.title;
-      const pType = product.product_type;
-      const pTypeClean = pType.replace(" ", "-");
 
-      // declare new type, if it does not exist yet
-      if (!currentTypesCount[pTypeClean]) {
-        currentTypesCount[pTypeClean] = 0;
-      }
+      // hide hidden products (has hidden-product tag)
+      if (!product.tags.includes("hidden-product")) {
+        const pTitle = product.title;
+        const pType = product.product_type;
+        const pTypeClean = pType.replace(" ", "-");
 
-      // add to the product counter
-      currentTypesCount[pTypeClean] += 1;
-      if (product.variants.length > 1) {
-        currentTypesCount[pTypeClean] += product.variants.length - 1;
-      }
-
-      // add a header at the top of new product types
-      if (currentType !== pType) {
-        currentType = pType;
-        products += `<tr class=' cart-table__row' data-wholesale-row="${pTypeClean}">
-          <td class='cart-table__cell cart-table__cell--type' colspan="5">
-            <h3 class="cart-table__type-header">${currentType}</h3>
-            <span class="cart-table__type-count" data-type="${pTypeClean}">0</span>
-            <span class="cart-table__type-count">products</span>
-          </td>
-        </tr>`;
-      }
-
-      let image = "";
-      if (product.image) {
-        image = getFormattedSrc(product.image.src, "90x90");
-        image = `<img src=${image} alt=${pTitle}/>`;
-      }
-
-      for (let j = 0; j < product.variants.length; j++) {
-        const variant = product.variants[j];
-        let price = 0;
-        const comparePrice = variant.compare_at_price;
-        const currentPrice = variant.price;
-        const option = variant.title === "Default Title" ? "" : variant.title;
-        const inventory = variant.inventory_quantity;
-
-        if (comparePrice) {
-          price = `<span data-wholesale-price>${formatMoney(
-            currentPrice,
-            theme.moneyFormat,
-          )}</span>
-          <span><s data-wholesale-price-compare="${comparePrice}">${formatMoney(
-            comparePrice,
-            theme.moneyFormat,
-          )}</s></span>`;
-        } else {
-          price = `<span data-wholesale-price="${currentPrice}">${formatMoney(
-            currentPrice,
-            theme.moneyFormat,
-          )}<span>`;
+        // declare new type, if it does not exist yet
+        if (!currentTypesCount[pTypeClean]) {
+          currentTypesCount[pTypeClean] = 0;
         }
 
-        let qtyString = `<div class="cart-table__note">Out of stock</div>
-        <input type="hidden" name="inventory" value="0"/>
-        <input type="hidden" name="quantity" value="0"/>`;
-        if (inventory > 0) {
-          qtyString = `
-            <div class='cart-table__quantity'>
-              <input type="hidden" name="inventory" value="${inventory}"/>
-              <button type='button' class='cart-table__quantity-button' data-qty-change='[product-qty-${i}-${j}]' data-direction='down'>-</button>
-              <input
-                class='cart-table__quantity-input'
-                type='number'
-                name='quantity'
-                value='0'
-                min='0'
-                max='${inventory}'
-                data-wholesale-quantity
-                product-qty-${i}-${j}/>
-              <button type='button' class='cart-table__quantity-button' data-qty-change='[product-qty-${i}-${j}]' data-direction='up'>+</button>
-            </div>
-          `;
+        // add to the product counter
+        currentTypesCount[pTypeClean] += 1;
+        if (product.variants.length > 1) {
+          currentTypesCount[pTypeClean] += product.variants.length - 1;
         }
 
-        products += `<tr class=' cart-table__row' data-wholesale-row="${pTypeClean}">
-          <td class='cart-table__cell cart-table__cell--image text-left'>${image}</td>
+        // add a header at the top of new product types
+        if (currentType !== pType) {
+          currentType = pType;
+          products += `<tr class=' cart-table__row' data-wholesale-row="${pTypeClean}">
+            <td class='cart-table__cell cart-table__cell--type' colspan="5">
+              <h3 class="cart-table__type-header">${currentType}</h3>
+              <span class="cart-table__type-count" data-type="${pTypeClean}">0</span>
+              <span class="cart-table__type-count">products</span>
+            </td>
+          </tr>`;
+        }
 
-          <td class='cart-table__cell cart-table__cell--title text-left'>
-            <h3 class='cart-table__product-title'>
-              <a class='cart-table__product-link' nohref>${pTitle}</a>
-            </h3>
-            <div class='cart-table__product-id'>Product ID. ${variant.id}</div>
-          </td>
+        let image = "";
+        if (product.image) {
+          image = getFormattedSrc(product.image.src, "90x90");
+          image = `<img src=${image} alt=${pTitle}/>`;
+        }
 
-          <td class='cart-table__cell text-center'>
-            <div class='cart-table__option'>
-              ${option}
-            </div>
-          </td>
+        for (let j = 0; j < product.variants.length; j++) {
+          const variant = product.variants[j];
+          let price = 0;
+          const comparePrice = variant.compare_at_price;
+          const currentPrice = variant.price;
+          const option = variant.title === "Default Title" ? "" : variant.title;
+          const inventory = variant.inventory_quantity;
 
-          <td class='cart-table__cell text-center'>
-            <div class='cart-table__price'>
-              ${price}
-            </div>
-          </td>
+          if (comparePrice) {
+            price = `<span data-wholesale-price>${formatMoney(
+              currentPrice,
+              theme.moneyFormat,
+            )}</span>
+            <span><s data-wholesale-price-compare="${comparePrice}">${formatMoney(
+              comparePrice,
+              theme.moneyFormat,
+            )}</s></span>`;
+          } else {
+            price = `<span data-wholesale-price="${currentPrice}">${formatMoney(
+              currentPrice,
+              theme.moneyFormat,
+            )}<span>`;
+          }
 
-          <td class='cart-table__cell cart-table__cell--last'>
-            <form action="/" method="post" novalidate data-wholesale-single-product>
-              <input type="hidden" name="id" value="${variant.id}"/>
-              ${qtyString}
-            </form>
-          </td>
-        </tr>`;
+          let qtyString = `<div class="cart-table__note">Out of stock</div>
+          <input type="hidden" name="inventory" value="0"/>
+          <input type="hidden" name="quantity" value="0"/>`;
+          if (inventory > 0) {
+            qtyString = `
+              <div class='cart-table__quantity'>
+                <input type="hidden" name="inventory" value="${inventory}"/>
+                <button type='button' class='cart-table__quantity-button' data-qty-change='[product-qty-${i}-${j}]' data-direction='down'>-</button>
+                <input
+                  class='cart-table__quantity-input'
+                  type='number'
+                  name='quantity'
+                  value='0'
+                  min='0'
+                  max='${inventory}'
+                  data-wholesale-quantity
+                  product-qty-${i}-${j}/>
+                <button type='button' class='cart-table__quantity-button' data-qty-change='[product-qty-${i}-${j}]' data-direction='up'>+</button>
+              </div>
+            `;
+          }
+
+          products += `<tr class=' cart-table__row' data-wholesale-row="${pTypeClean}">
+            <td class='cart-table__cell cart-table__cell--image text-left'>${image}</td>
+
+            <td class='cart-table__cell cart-table__cell--title text-left'>
+              <h3 class='cart-table__product-title'>
+                <a class='cart-table__product-link' nohref>${pTitle}</a>
+              </h3>
+              <div class='cart-table__product-id'>Product ID. ${
+                variant.id
+              }</div>
+            </td>
+
+            <td class='cart-table__cell text-center'>
+              <div class='cart-table__option'>
+                ${option}
+              </div>
+            </td>
+
+            <td class='cart-table__cell text-center'>
+              <div class='cart-table__price'>
+                ${price}
+              </div>
+            </td>
+
+            <td class='cart-table__cell cart-table__cell--last'>
+              <form action="/" method="post" novalidate data-wholesale-single-product>
+                <input type="hidden" name="id" value="${variant.id}"/>
+                ${qtyString}
+              </form>
+            </td>
+          </tr>`;
+        }
       }
     }
     // now that we have all the product counts, replace the values in the products string
