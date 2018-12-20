@@ -25,9 +25,17 @@
   </div>
 </div>
 {% if section.settings.link and section.settings.link_text %}
-  <div class="quiz-landing__links">
-    <a href="{{ section.settings.link }}" class="quiz-landing__link">{{ section.settings.link_text }}</a>
-  </div>
+  {% if customer %}
+    <div class="quiz-landing__links">
+      <a data-quiz-redirect data-customer-email="{{ customer.email }}" data-customer-id="{{ customer.id }}" href="{{ section.settings.link }}" class="quiz-landing__link">{{ section.settings.link_text }}</a>
+    </div>
+  {% else %}
+    <p>You must be logged in to access the quiz</p>
+    <div class="quiz-landing__links">
+      <a href="/account/login" class="quiz-landing__link">Log in</a>
+      <a href="/account/register" class="quiz-landing__link">Sign up</a>
+    </div>
+  {% endif %}
 {% endif %}
 
 {% schema %}

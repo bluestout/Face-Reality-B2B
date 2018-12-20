@@ -16,3 +16,4 @@ import "./responsive-sidemenu";
 import "./search";
 import "./sticky-sidebar";
 import "./omega-col-override";
+import "./data-quiz-redirect";
