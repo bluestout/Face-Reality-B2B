@@ -53,7 +53,10 @@ $(el.sublist).hover(listIn, listOut);
 $(window).on("load resize", headerOffset);
 
 function scrolling() {
-  const authPos = $(el.authSwitch).offset().top;
+  let authPos = "";
+  if ($(el.authSwitch).length > 0) {
+    authPos = $(el.authSwitch).offset().top;
+  }
   let lastKnownScrollPos = 0;
   let ticking = false;
   window.addEventListener("scroll", () => {
@@ -62,7 +65,9 @@ function scrolling() {
     if (!ticking) {
       window.requestAnimationFrame(() => {
         isHeaderScrolled(lastKnownScrollPos);
-        isCollFilterScrolled(lastKnownScrollPos, authPos);
+        if (authPos.length > 0) {
+          isCollFilterScrolled(lastKnownScrollPos, authPos);
+        }
         ticking = false;
       });
 
