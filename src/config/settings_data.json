@@ -40,12 +40,12 @@
         "type": "header",
         "settings": {
           "phone": "(510) 351-1842",
-          "top_inline_nav": "",
-          "professionals_text": "For professionals",
-          "professionals_url": "#",
+          "top_inline_nav": "top-header-navigation",
+          "professionals_text": "<span class=\"icon-shopping-cart\"></span> Go to shop",
+          "professionals_url": "https://facerealityskincare.myshopify.com/",
           "announcement_bar_enabled": true,
           "announcement_bar_home_page_only": true,
-          "announcement_bar_text": "10% promo discount on all products. Only this week. <a href=\"#\">Shop Now</a>",
+          "announcement_bar_text": "10% promo discount on all products. Only this week. <a href=\"/collections/all/\">Shop Now</a>",
           "logo": "shopify://shop_images/face-reality-logo.png",
           "logo_max_width": 180,
           "menu": "main-menu"
@@ -950,7 +950,7 @@
           "bg_mobile": "",
           "title": "Never struggle again to get your clients clear",
           "subtitle": "Invest in a system taht's gotten thousands of acne clients clear without drugs",
-          "badge": "shopify://shop_images/badge-plceholder.png"
+          "badge": "shopify://shop_images/success-rate-badge_1e143e66-2fc8-404d-9f83-f6d5e5367660.png"
         }
       },
       "training-program": {
@@ -960,7 +960,7 @@
           "title": "Join the highly successful acne specialists",
           "introduction": "The certification program includes:",
           "bottom_text": "Get over 90% of acne clients clear with our training and support. With Proven Strategies for Treating Acne, you will become a confident acne expert and a hero",
-          "link": "#",
+          "link": "shopify://pages/certification-test",
           "link_text": "Get Certified",
           "image_l": "shopify://shop_images/icon-cosmetics.png",
           "title_l": "The Face Reality Method for clearing acne aincludes:",
@@ -1022,7 +1022,7 @@
           "section_title": "Some Of the certification benefits",
           "bottom_title": "Sign up today and start elevating your acne knowledge.",
           "bottom_text": "Get over 90% Of acne clients clear with Our training and support. With Proven Strategies for\nTreating Acne, you will become a confident acne expert and a hero",
-          "link": "#",
+          "link": "shopify://pages/certification-test",
           "link_text": "Get certified"
         }
       },
@@ -1037,7 +1037,7 @@
             "type": "testimonial",
             "settings": {
               "testimonial": "This place really is amazing and anyone with acne knows $25 (which they waive if you elect to get a treatment) is REALLY cheap and worth it to get his or her skin under control. I have been to so many different places, spent tons of money, even tried the stuff from acne.org, just to be disappointed. I finally decided to check this place out based on all the great reviews and really nice man (Pat) I spoke with at the clinic over the phone. This place is the first place I have been able to leave from after getting a facial where I didn’t feel like I needed to hide.",
-              "image": "shopify://shop_images/placeholder400x400.png",
+              "image": "shopify://shop_images/testimonials-avatar1_8ad1b84d-d4b5-4a98-b92c-2b4e79b58761.png",
               "title": "Jeannine L.",
               "date": "Jun 2018"
             }
@@ -1046,7 +1046,7 @@
             "type": "testimonial",
             "settings": {
               "testimonial": "Within two to three weeks we noticed a huge change. The inflammation was going down and with treatments every two weeks my daughter Sarah’s skin really did start to clear. What amazes me is that Sarah has been to dermatologists since she was in junior high school. The last time she went in, the doctor said he did not know what to do, they had tried it all. Well, Sarah walked down the aisle on her wedding day acne free, thanks to Face Reality!",
-              "image": "shopify://shop_images/placeholder400x400.png",
+              "image": "shopify://shop_images/testimonials-avatarx_8c7c06a0-8875-49be-adb6-c7c668ab6cd1.png",
               "title": "Sune N.",
               "date": "Jun 2018"
             }
@@ -1055,7 +1055,7 @@
             "type": "testimonial",
             "settings": {
               "testimonial": "This place really is amazing and anyone with acne knows $25 (which they waive if you elect to get a treatment) is REALLY cheap and worth it to get his or her skin under control. I have been to so many different places, spent tons of money, even tried the stuff from acne.org, just to be disappointed. I finally decided to check this place out based on all the great reviews and really nice man (Pat) I spoke with at the clinic over the phone. This place is the first place I have been able to leave from after getting a facial where I didn’t feel like I needed to hide.",
-              "image": "shopify://shop_images/placeholder400x400.png",
+              "image": "shopify://shop_images/testimonials-avatar1_8ad1b84d-d4b5-4a98-b92c-2b4e79b58761.png",
               "title": "Jeannine L.",
               "date": "Jun 2018"
             }
@@ -1064,7 +1064,7 @@
             "type": "testimonial",
             "settings": {
               "testimonial": "Within two to three weeks we noticed a huge change. The inflammation was going down and with treatments every two weeks my daughter Sarah’s skin really did start to clear. What amazes me is that Sarah has been to dermatologists since she was in junior high school. The last time she went in, the doctor said he did not know what to do, they had tried it all. Well, Sarah walked down the aisle on her wedding day acne free, thanks to Face Reality!",
-              "image": "shopify://shop_images/placeholder400x400.png",
+              "image": "shopify://shop_images/testimonials-avatarx_8c7c06a0-8875-49be-adb6-c7c668ab6cd1.png",
               "title": "Sune N.",
               "date": "Jun 2018"
             }
@@ -1095,7 +1095,7 @@
           "title": "Join the team of highly successful acne specialists",
           "text": "",
           "button_text": "Read all testimonials",
-          "button_link": ""
+          "button_link": "shopify://pages/testimonials"
         }
       },
       "training-comparison": {
