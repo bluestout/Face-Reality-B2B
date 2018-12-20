@@ -853,16 +853,7 @@
           }
         },
         "block_order": ["1543827984584", "1543828046160", "1543828085320"],
-        "settings": {
-          "title": "",
-          "description": "",
-          "button_url": "",
-          "button_text": "",
-          "link_url": "",
-          "link_text": "",
-          "background": "",
-          "badge": ""
-        }
+        "settings": {}
       },
       "1543838718533": {
         "type": "home-contact-banner",
@@ -1183,7 +1174,13 @@
       "studies-articles": {
         "type": "studies-articles",
         "settings": {
-          "case_studies_links": ""
+          "case_studies_links": "case-studies"
+        }
+      },
+      "site-links": {
+        "type": "site-links",
+        "settings": {
+          "b2c_link": "https://facerealityskincare.myshopify.com/"
         }
       }
     },
