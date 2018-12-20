@@ -5,6 +5,7 @@ const el = {
   header: "[data-section-id='header']",
   link: "[data-primary-nav-link]",
   sublist: "[data-primary-nav-sublist]",
+  authSwitch: "[data-collection-authorization-switch]",
 };
 
 function headerOffset() {
@@ -34,22 +35,40 @@ function isHeaderScrolled(scroll) {
   }
 }
 
+function isCollFilterScrolled(scroll, authPos) {
+  console.log("scroll:", scroll);
+  console.log("auth:", authPos);
+  console.log("header", $(el.header).outerHeight());
+  if (scroll > authPos - $(el.header).outerHeight()) {
+    $(el.authSwitch)
+      .css("top", $(el.header).outerHeight())
+      .addClass("scrolled");
+  } else {
+    $(el.authSwitch).removeClass("scrolled");
+  }
+}
+
 $(el.sublist).hover(listIn, listOut);
 
-let lastKnownScrollPos = 0;
-let ticking = false;
-
-window.addEventListener("scroll", () => {
-  lastKnownScrollPos = window.scrollY;
-
-  if (!ticking) {
-    window.requestAnimationFrame(() => {
-      isHeaderScrolled(lastKnownScrollPos);
-      ticking = false;
-    });
-
-    ticking = true;
-  }
-});
-
 $(window).on("load resize", headerOffset);
+
+function scrolling() {
+  const authPos = $(el.authSwitch).offset().top;
+  let lastKnownScrollPos = 0;
+  let ticking = false;
+  window.addEventListener("scroll", () => {
+    lastKnownScrollPos = window.scrollY;
+
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        isHeaderScrolled(lastKnownScrollPos);
+        isCollFilterScrolled(lastKnownScrollPos, authPos);
+        ticking = false;
+      });
+
+      ticking = true;
+    }
+  });
+}
+
+$(document).ready(scrolling);
