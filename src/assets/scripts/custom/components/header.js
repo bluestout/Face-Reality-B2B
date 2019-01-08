@@ -36,9 +36,6 @@ function isHeaderScrolled(scroll) {
 }
 
 function isCollFilterScrolled(scroll, authPos) {
-  console.log("scroll:", scroll);
-  console.log("auth:", authPos);
-  console.log("header", $(el.header).outerHeight());
   if (scroll > authPos - $(el.header).outerHeight()) {
     $(el.authSwitch)
       .css("top", $(el.header).outerHeight())
@@ -53,19 +50,22 @@ $(el.sublist).hover(listIn, listOut);
 $(window).on("load resize", headerOffset);
 
 function scrolling() {
-  let authPos = "";
+  let authPos = 0;
   if ($(el.authSwitch).length > 0) {
     authPos = $(el.authSwitch).offset().top;
   }
+
   let lastKnownScrollPos = 0;
   let ticking = false;
+  lastKnownScrollPos = window.scrollY;
+  isHeaderScrolled(lastKnownScrollPos);
+
   window.addEventListener("scroll", () => {
     lastKnownScrollPos = window.scrollY;
-
     if (!ticking) {
       window.requestAnimationFrame(() => {
         isHeaderScrolled(lastKnownScrollPos);
-        if (authPos.length > 0) {
+        if ($(el.authSwitch).length > 0) {
           isCollFilterScrolled(lastKnownScrollPos, authPos);
         }
         ticking = false;

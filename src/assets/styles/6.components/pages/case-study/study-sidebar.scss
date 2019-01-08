@@ -1,6 +1,4 @@
 .study-sidebar {
-  @include transition(bottom 400ms ease-out);
-
   &__title {
     @include apercu(700);
     @include Text(22px, 27px, $color-blumine);

@@ -88,8 +88,7 @@
     }
 
     &__cell--type {
-      border-bottom: none;
-      padding: 20px 0;
+      padding: 20px 10px;
     }
 
     &__note {
@@ -117,6 +116,7 @@
       &__cell {
         width: auto;
         min-width: 100px;
+        padding: 10px;
       }
       &__cell--last {
         width: auto;

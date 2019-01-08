@@ -25,7 +25,7 @@ window.addEventListener("scroll", () => {
 function stickySidebar(lastPosition, padding = 90) {
   $(el.sidebar).each(function() {
     const $this = $(this);
-    if ($(window).width > 991) {
+    if ($(window).width() > 991) {
       const $container = $this.closest(el.container);
       const headerH = $(el.header).outerHeight() || 0;
       if ($container.length > 0) {
@@ -61,7 +61,7 @@ function prepSticky() {
   $(el.sidebar).each(function() {
     const $this = $(this);
     $this.closest(el.container).css("min-height", $this.height());
-    if ($(window).width > 991) {
+    if ($(window).width() > 991) {
       $this.addClass("sticky-active").css({
         height: $this.height(),
       });

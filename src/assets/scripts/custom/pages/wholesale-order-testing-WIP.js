@@ -97,7 +97,8 @@ function loadproducts() {
         if (currentType !== pType) {
           currentType = pType;
           products += `<tr class=' cart-table__row' data-wholesale-row="${pTypeClean}">
-            <td class='cart-table__cell cart-table__cell--type' colspan="5">
+            <td class='cart-table__cell" colspan="1"></td>
+            <td class='cart-table__cell cart-table__cell--type' colspan="4">
               <h3 class="cart-table__type-header">${currentType}</h3>
               <span class="cart-table__type-count" data-type="${pTypeClean}">0</span>
               <span class="cart-table__type-count">products</span>
