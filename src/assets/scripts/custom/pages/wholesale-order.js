@@ -21,9 +21,10 @@ const el = {
 };
 
 // all the product variant ids used
-const cartProducts = {
-  pump: 19188271874137,
-  acneMedDev6Red: 18709580578905,
+// currently supports pumps only. If more products should become addable, this needs to be adjusted,
+// starting from making this variable an array rather than an object
+const addableIds = {
+  pump: 19946386686041,
 };
 
 // any constant values used
@@ -50,7 +51,7 @@ function getFormattedSrc(src, size) {
 }
 
 // use the shopify api to load products - only way to actually get all the prodcuts and variants like we need them to
-function loadproducts() {
+function loadProducts() {
   // PUT /admin/products/#{product_id}/variants/#{variant_id}.json
   $.getJSON("/admin/products.json?limit=250", (json) => {
     let products = "";
@@ -96,9 +97,9 @@ function loadproducts() {
         // add a header at the top of new product types
         if (currentType !== pType) {
           currentType = pType;
-          products += `<tr class=' cart-table__row' data-wholesale-row="${pTypeClean}">
-            <td class='cart-table__cell' colspan="1"></td>
-            <td class='cart-table__cell cart-table__cell--type' colspan="5">
+          products += `<tr class="cart-table__row" data-wholesale-row="${pTypeClean}">
+            <td class="cart-table__cell" colspan="1"></td>
+            <td class="cart-table__cell cart-table__cell--type" colspan="4">
               <h3 class="cart-table__type-header">${currentType}</h3>
               <span class="cart-table__type-count" data-type="${pTypeClean}">0</span>
               <span class="cart-table__type-count">products</span>
@@ -226,7 +227,7 @@ function moveAlong(redirect) {
       request.properties,
       moveAlong,
     );
-  } else if (redirect) {
+  } else if (false) {
     window.location.replace(`${window.location.origin}/checkout`);
   }
 }
@@ -248,8 +249,13 @@ function addItemCustom(id, qty, properties, callback) {
     success: () => {
       typeof callback === "function" ? callback() : null;
     },
-    error: (jqXHR, textStatus) => {
-      console.log(textStatus);
+    error: (jqXHR) => {
+      if (
+        jqXHR.responseJSON.status === 422 &&
+        jqXHR.responseJSON.description.length > 0
+      ) {
+        showMessage(jqXHR.responseJSON.description);
+      }
     },
   });
 }
@@ -265,8 +271,6 @@ function pushToQueue(variantId, quantity, properties, callback) {
     callback();
   }
 }
-
-// pushToQueue(gifts.waterbottle, 1, {}, moveAlong);
 
 let eventHolder = null;
 function showMessage(message) {
@@ -361,10 +365,10 @@ function calculateTotals() {
 
 // insert id/line, quantity, isline?
 // reduce the remove from cart & change quantity for id & line to 1 function
-function ajaxChangeCartQty(id, qty, line) {
+function ajaxChangeCartQty(id, qty, isLine) {
   let data = { quantity: qty, id };
-  if (line) {
-    data = { quantity: qty, line: id };
+  if (isLine) {
+    data = { quantity: qty, isLine: id };
   }
   $.ajax({
     type: "POST",
@@ -384,39 +388,76 @@ function ajaxChangeCartQty(id, qty, line) {
 function automaticProducts(cart) {
   let pumpsInCart = 0;
   let pumpsQtyShouldBe = 0;
+  const cartProducts = [];
 
   const idsInCart = [];
   for (let i = 0; i < cart.items.length; i++) {
     idsInCart.push([cart.items[i].id, cart.items[i].quantity]);
-    if (cart.items[i].id === cartProducts.pump) {
+    if (cart.items[i].id === addableIds.pump) {
       pumpsInCart += cart.items[i].quantity;
     }
   }
 
-  // will need to define these for each use-case. Or we can get data from a json from liquid, but that would be less safe
-  const specificIds = [cartProducts.acneMedDev6Red];
-
-  for (let index = 0; index < idsInCart.length; index++) {
-    const element = idsInCart[index];
-    if (specificIds.includes(element[0])) {
-      pumpsQtyShouldBe += element[1];
+  (async function loop() {
+    for (let j = 0; j < cart.items.length; j++) {
+      await new Promise((resolve) => {
+        resolve(
+          $.getJSON(
+            `/admin/products/${cart.items[j].product_id}.json?fields=tags`,
+            (json) => {
+              const varIdToAdd = addToCartByTag(json);
+              cartProducts.push({
+                id: varIdToAdd,
+                qty: cart.items[j].quantity,
+              });
+            },
+          ),
+        );
+      });
     }
-  }
 
-  if (pumpsInCart > 0 && pumpsQtyShouldBe === 0) {
-    // if there are items in cart that should not be there and the number that should be is 0
-    ajaxChangeCartQty(cartProducts.pump, 0);
-  } else if (pumpsQtyShouldBe > pumpsInCart) {
-    // if more items should be in the cart than there currently are - add more to cart
-    pushToQueue(
-      cartProducts.pump,
-      pumpsQtyShouldBe - pumpsInCart,
-      {},
-      moveAlong,
-    );
-  } else if (pumpsQtyShouldBe < pumpsInCart) {
-    // if fewer items should be added than there currently are - remove some from cart
-    ajaxChangeCartQty(cartProducts.pump, pumpsQtyShouldBe);
+    for (let i = 0; i < cartProducts.length; i++) {
+      const productAddTag = cartProducts[i];
+      if (productAddTag.id === addableIds.pump) {
+        pumpsQtyShouldBe += productAddTag.qty;
+      }
+    }
+
+    // console.log("cartProducts: ", cartProducts);
+    // console.log("pumpsInCart: ", pumpsInCart);
+    // console.log("pumpsQtyShouldBe: ", pumpsQtyShouldBe);
+
+    if (pumpsInCart > 0 && pumpsQtyShouldBe === 0) {
+      ajaxChangeCartQty(addableIds.pump, 0);
+    } else if (pumpsQtyShouldBe > pumpsInCart) {
+      pushToQueue(
+        addableIds.pump,
+        pumpsQtyShouldBe - pumpsInCart,
+        {},
+        moveAlong,
+      );
+    } else if (pumpsQtyShouldBe < pumpsInCart) {
+      ajaxChangeCartQty(addableIds.pump, pumpsQtyShouldBe);
+    }
+  })();
+}
+
+function addToCartByTag(json) {
+  if (json && json.product && json.product.tags) {
+    const tag = json.product.tags;
+    const addStart = tag.indexOf("add-equivalent-");
+    if (addStart === -1) {
+      return false;
+    }
+    const addEnd = tag.indexOf(" ", addStart);
+    const addId = tag.substring(15, addEnd - 1);
+    if (/^[0-9]{14,}$/.test(addId)) {
+      return parseInt(addId, 10);
+    } else {
+      return false;
+    }
+  } else {
+    return false;
   }
 }
 
@@ -428,10 +469,10 @@ $(document).on("change", el.sort, wholesaleSort);
 
 $(document).on("change", el.qty, calculateTotals);
 
-$(document).ready(loadproducts);
-
 // run ajax on page load to get cart contents
 $(document).ready(() => {
+  loadProducts();
+
   $.getJSON("/cart.js", (json) => {
     automaticProducts(json);
   });
