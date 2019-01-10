@@ -29,6 +29,9 @@
 
   <a href="/cart" class="utility-nav__icon-wrap" {% comment %} data-quick-cart-toggle {% endcomment %}>
     <span class="icon-shopping-cart utility-nav__icon"></span>
+    {% if cart.item_count > 0 %}
+      <span class="utility-nav__count">{{ cart.item_count }}</span>
+    {% endif %}
   </a>
 
   <a href="/pages/certification-test" class="utility-nav__big-button">Get Certified</a>

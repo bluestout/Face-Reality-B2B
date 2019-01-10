@@ -6,9 +6,9 @@
         <tr>
           <th class="cart-table__cell cart-table__cell--head">{% comment %} image {% endcomment %}</th>
           <th class="cart-table__cell cart-table__cell--head text-left">{{ 'cart.label.product' | t }}</th>
-          <th class="cart-table__cell cart-table__cell--head">{{ 'general.glossary.option' | t }}</th>
+          <th class="cart-table__cell cart-table__cell--head">{{ 'general.glossary.size' | t }}</th>
           <th class="cart-table__cell cart-table__cell--head">{{ 'cart.label.price' | t }}</th>
-          <th class="cart-table__cell cart-table__cell--head">Qty</th>
+          <th class="cart-table__cell cart-table__cell--head">{{ 'general.glossary.quantity' | t }}</th>
         </tr>
       </thead>
       <tbody>
@@ -38,7 +38,7 @@
                 <h3 class="cart-table__product-title">
                   <a class="cart-table__product-link" href="{{ item.url }}">{{ item.product.title }}</a>
                 </h3>
-                <div class="cart-table__product-id">{{ 'cart.label.product' | t }} ID. {{ item.variant_id }} {% comment %} {{ item.sku }} {% endcomment %}</div>
+                <div class="cart-table__product-id">{{ 'cart.label.product' | t }} ID. {{ item.sku }} {% comment %} {{ item.sku }} {% endcomment %}</div>
                 {% unless obscured %}
                   <a class="cart-table__remove" href="/cart/change?line={{ forloop.index }}&amp;quantity=0">{{ 'cart.general.remove' | t }}</a>
                 {% endunless %}
@@ -98,7 +98,7 @@
                       {% unless item.product.has_only_default_variant %}
                         <span class="cart-table__rsp-option">{{ item.variant.title }}</span>
                       {% endunless %}
-                      <span class="cart-table__rsp-id">{{ 'cart.label.product' | t }} ID. {{ item.variant_id }} {% comment %} {{ item.sku }} {% endcomment %}</span>
+                      <span class="cart-table__rsp-id">{{ 'cart.label.product' | t }} ID. {{ item.sku }} {% comment %} {{ item.sku }} {% endcomment %}</span>
                     </div>
                     {% unless obscured %}
                       <a class="cart-table__rsp-remove" href="/cart/change?line={{ forloop.index }}&amp;quantity=0">{{ 'cart.general.remove' | t }}</a>

@@ -167,7 +167,7 @@ function loadProducts() {
                 <a class='cart-table__product-link' nohref>${pTitle}</a>
               </h3>
               <div class='cart-table__product-id'>Product ID. ${
-                variant.id
+                variant.sku
               }</div>
             </td>
 
