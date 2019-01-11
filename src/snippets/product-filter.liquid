@@ -85,15 +85,17 @@
                 <label for="type-f-all" class="product-filter__label">All product types</label>
               </li>
               {% for type in types %}
-                <li class="product-filter__item">
-                  <input
-                    id="type-f-{{ type | handleize }}"
-                    class="product-filter__radio"
-                    type="radio"
-                    name="product-f-type"
-                    value="type-{{ type | handleize }}"
-                  />
-                  <label for="type-f-{{ type | handleize }}" class="product-filter__label">{{ type }}</label>
+                {% if type.size > 0 %}
+                  <li class="product-filter__item">
+                    <input
+                      id="type-f-{{ type | handleize }}"
+                      class="product-filter__radio"
+                      type="radio"
+                      name="product-f-type"
+                      value="type-{{ type | handleize }}"
+                    />
+                    <label for="type-f-{{ type | handleize }}" class="product-filter__label">{{ type }}</label>
+                {% endif %}
                 </li>
               {% endfor %}
             </ul>
