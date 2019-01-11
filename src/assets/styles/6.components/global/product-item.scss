@@ -18,6 +18,7 @@
   display: flex;
   flex-flow: column wrap;
   width: 100%;
+  min-height: 360px;
   height: calc(100% - 30px);
   text-align: center;
   margin: 0 0 30px;
@@ -260,11 +261,6 @@
       color: $color-white;
       background-color: $color-blumine;
     }
-    /* &.show-tooltip {
-      .swym-tooltip {
-        display: block;
-      }
-    } */
   }
   &__wishlist-icon {
     font-size: 18px;
@@ -288,6 +284,7 @@
 }
 
 @include media-query("medium-down") {
+  min-height: 210px;
   .product-item {
     &__image-wrap {
       max-height: 240px;
@@ -354,6 +351,15 @@
         padding: 12px;
         width: auto;
       }
+    }
+  }
+}
+
+@include media-query("v-small") {
+  .product-item {
+    &__authorization {
+      width: auto;
+      max-width: 90%;
     }
   }
 }
