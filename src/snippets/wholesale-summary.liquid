@@ -11,7 +11,10 @@
       <span class="cart-summary__totals-price" data-wholesale-savings>$0</span>
     </div>
 
-    <input class="cart-summary__checkout-button" type="submit" value="{{ 'cart.general.checkout' | t }}" data-wholesale-submit/>
+    <div class="wholesale-order__submit-wrap">
+      <input class="cart-summary__checkout-button" type="submit" value="{{ 'cart.general.checkout' | t }}" data-wholesale-submit/>
+      <span class="wholesale-order__shipping-check" data-wholesale-shipping-check>You are $600 away form free shipping</span>
+    </div>
 
     {% include 'usp-triple-icons' %}
   </div>

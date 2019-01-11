@@ -18,6 +18,7 @@ const el = {
   total: "[data-wholesale-total]",
   addedContainer: "[data-item-added-container]",
   addedMessage: "[data-item-added-message]",
+  shippingCheck: "[data-wholesale-shipping-check]",
 };
 
 // all the product variant ids used
@@ -30,6 +31,10 @@ const addableIds = {
 // any constant values used
 const values = {
   minOrder: 125,
+  freeShipping: 600,
+  eligibleText: "You are eligible for free shipping",
+  notEligibleLeft: "You are ",
+  notEligibleRight: " away from free shipping",
 };
 
 // format source text with correct file type
@@ -356,6 +361,16 @@ function calculateTotals() {
     .text(formatMoney(totals * 100, theme.moneyFormat))
     .data("wholesale-total", totals);
 
+  if (totals >= values.freeShipping) {
+    $(el.shippingCheck).text(values.eligibleText);
+  } else {
+    $(el.shippingCheck).text(
+      values.notEligibleLeft +
+        formatMoney((values.freeShipping - totals) * 100, theme.moneyFormat) +
+        values.notEligibleRight,
+    );
+  }
+
   if (compare && compare > totals) {
     $(el.savingsBox).show();
   } else {
@@ -422,10 +437,6 @@ function automaticProducts(cart) {
         pumpsQtyShouldBe += productAddTag.qty;
       }
     }
-
-    // console.log("cartProducts: ", cartProducts);
-    // console.log("pumpsInCart: ", pumpsInCart);
-    // console.log("pumpsQtyShouldBe: ", pumpsQtyShouldBe);
 
     if (pumpsInCart > 0 && pumpsQtyShouldBe === 0) {
       ajaxChangeCartQty(addableIds.pump, 0);

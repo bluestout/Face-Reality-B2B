@@ -104,6 +104,42 @@
       @include Text(12px, 20px, rgba($color-black, 0.4));
     }
   }
+  &__submit-wrap {
+    margin: 0 0 30px;
+  }
+
+  .cart-summary__checkout-button {
+    margin: 0;
+    &:hover {
+      + .wholesale-order__shipping-check {
+        top: 0;
+        opacity: 1;
+      }
+    }
+  }
+
+  &__shipping-check {
+    @include apercu;
+    @include Text(13.5px, 18px, $color-black);
+    @include transition(top 200ms ease-in, opacity);
+    position: relative;
+    top: -20px;
+    opacity: 0;
+    padding: 10px 15px;
+    white-space: nowrap;
+    display: inline-block;
+    background-color: $color-iron;
+    margin: 15px 0;
+    &::before {
+      content: "";
+      position: absolute;
+      top: -20px;
+      left: calc(50% - 10px);
+      display: block;
+      border: 10px solid transparent;
+      border-bottom: 10px solid $color-iron;
+    }
+  }
 
   @include media-query("xl-down") {
     .wholesale-filter {
