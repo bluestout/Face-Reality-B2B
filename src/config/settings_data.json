@@ -19,7 +19,7 @@
     "social_youtube_link": "#",
     "social_vimeo_link": "",
     "social_linkedin_link": "#",
-    "cart_notes_enable": true,
+    "cart_notes_enable": false,
     "favicon": "",
     "checkout_header_image": "",
     "checkout_logo_image": "shopify://shop_images/FRS-Logo-1-19_7695834c-2c04-47a3-a148-88321362aa8b.png",
@@ -781,24 +781,24 @@
             "type": "feature",
             "settings": {
               "title": "Get certified and enjoy +90% success rate with your clients",
-              "text": "as you go through your process of achieving clear sin on your face and/or body, you will want to come in for treatments every two weeks.",
+              "text": "As you go through your process of achieving clear sin on your face and/or body, you will want to come in for treatments every two weeks.",
               "image": "shopify://shop_images/iStock-908578294.jpg"
             }
           },
           "1543826636511": {
             "type": "feature",
             "settings": {
-              "title": "Get certified and enjoy +90% success rate with your clients",
-              "text": "as you go through your process of achieving clear sin on your face and/or body, you will want to come in for treatments every two weeks. #2",
+              "title": "Learn how to use products",
+              "text": "We won't just find the right products for you, but we teach you how to use them.  We test your skin to make sure you are getting the most effective products for your acne type, skin type and skin tolerance.",
               "image": "shopify://shop_images/iStock-908578294.jpg"
             }
           },
           "1543826656991": {
             "type": "feature",
             "settings": {
-              "title": "Get certified and enjoy +90% success rate with your clients",
-              "text": "as you go through your process of achieving clear sin on your face and/or body, you will want to come in for treatments every two weeks. #3",
-              "image": "shopify://shop_images/iStock-908578294.jpg"
+              "title": "Clinical-grade products + customization",
+              "text": "We combine the power of clinical-grade products that are customized for your type of acne, with a series of bi-monthly treatments.",
+              "image": "shopify://shop_images/B2B_home.jpg"
             }
           }
         },
