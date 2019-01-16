@@ -5,7 +5,7 @@
   padding: 70px 15% 0;
 
   &__title {
-    @include myriad(700);
+    @include apercu(700);
     @include Text(18px, 22px, $color-black);
     margin: 0 0 60px;
   }
@@ -54,7 +54,11 @@
     padding: 22px;
     font-size: 14px;
     width: 100%;
-    margin: 0 0 30px;
+    margin: 0;
+  }
+
+  .wholesale-order__shipping-check {
+    margin: 15px 0 30px;
   }
 
   .usp-triple-icons {
