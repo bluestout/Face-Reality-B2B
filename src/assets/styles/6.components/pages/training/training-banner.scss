@@ -39,7 +39,7 @@
 
   &__subtitle {
     position: relative;
-    @include apercu(400);
+    @include apercu;
     @include Text(13.5px, 21px, $color-white);
     margin: 0 auto;
     max-width: 400px;
@@ -69,7 +69,7 @@
   }
 
   &__scroll-text {
-    @include open-sans(700);
+    @include apercu(700);
     @include Text(12px, 1, $color-white);
     display: block;
     margin: 0 0 3px;

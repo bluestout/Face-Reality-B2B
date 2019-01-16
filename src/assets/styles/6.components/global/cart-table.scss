@@ -2,7 +2,7 @@
   border-spacing: 0;
 
   &__responsive-header {
-    @include myriad(700);
+    @include apercu(700);
     @include Text(18px, 22px, $color-black);
     text-align: center;
     margin: 0 auto 30px;
@@ -159,7 +159,7 @@
     }
 
     &-price {
-      @include open-sans(400);
+      @include apercu;
       @include Text(14px, 22px, $color-black);
       text-align: right;
       float: left;

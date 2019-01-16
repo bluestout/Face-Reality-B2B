@@ -23,11 +23,11 @@
   }
 
   &__text {
-    @include apercu(400);
+    @include apercu;
     @include Text(14px, 21px, $color-black);
     margin: 0 auto 55px;
     * {
-      @include apercu(400);
+      @include apercu;
       @include Text(14px, 21px, $color-black);
     }
   }
@@ -75,7 +75,7 @@
 
   &__or {
     position: relative;
-    @include apercu(400);
+    @include apercu;
     @include Text(10px, 14px, $color-black);
     text-transform: uppercase;
     opacity: 0.35;

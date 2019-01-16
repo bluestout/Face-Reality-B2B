@@ -94,7 +94,7 @@
   }
 
   &__description {
-    @include apercu(400);
+    @include apercu;
     @include Text(12.5px, 16px, $color-black, 0.5px);
     @include transition(opacity);
     margin: 0 auto 14px;
@@ -104,7 +104,7 @@
   }
 
   &__price {
-    @include aller(700);
+    @include apercu(700);
     @include Text(13.5px, 16px, $color-black);
     display: block;
     width: 100%;
@@ -124,7 +124,7 @@
   }
 
   &__option-name {
-    @include myriad(400);
+    @include apercu;
     @include Text(11.5px, 16px, $color-blumine);
   }
 
@@ -215,7 +215,7 @@
   }
 
   &__variant-label {
-    @include apercu(400);
+    @include apercu;
     @include Text(11px, 12px, $color-dove-gray);
     @include transition(opacity, color);
     z-index: 2;
