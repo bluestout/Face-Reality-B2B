@@ -1,5 +1,6 @@
 import { formatMoney } from "@shopify/theme-currency";
 import $ from "jquery";
+import { COPYFILE_EXCL } from "constants";
 
 // list all the dom elements used in the script here
 const el = {
@@ -19,6 +20,11 @@ const el = {
   addedContainer: "[data-item-added-container]",
   addedMessage: "[data-item-added-message]",
   shippingCheck: "[data-wholesale-shipping-check]",
+  inCartTotalBox: "[data-wholesale-in-cart-container]",
+  inCartTotal: "[data-wholesale-in-cart-total]",
+  inCartHeader: "[data-wholesale-in-cart-qty-header]",
+  inCartQty: "[data-wholesale-in-cart-qty]",
+  orderTotal: "[data-wholesale-order-total]",
 };
 
 // all the product variant ids used
@@ -30,11 +36,12 @@ const addableIds = {
 
 // any constant values used
 const values = {
-  minOrder: 125,
+  minOrder: 1,
   freeShipping: 600,
   eligibleText: "You are eligible for free shipping",
   notEligibleLeft: "You are ",
   notEligibleRight: " away from free shipping",
+  addToCartQueue: [],
 };
 
 // format source text with correct file type
@@ -56,9 +63,25 @@ function getFormattedSrc(src, size) {
 }
 
 // use the shopify api to load products - only way to actually get all the prodcuts and variants like we need them to
-function loadProducts() {
+function loadProducts(cart) {
   // PUT /admin/products/#{product_id}/variants/#{variant_id}.json
   $.getJSON("/admin/products.json?limit=250", (json) => {
+    const itemsInCart = [];
+    for (let i = 0; i < cart.items.length; i++) {
+      itemsInCart.push({
+        id: cart.items[i].id,
+        quantity: cart.items[i].quantity,
+      });
+    }
+
+    const cartHasItems = itemsInCart.length > 0 ? true : false;
+    if (cartHasItems) {
+      // add in cart table header
+      $(el.inCartHeader).show();
+      // add in cart qty to table
+      // show in cart subtotal
+    }
+
     let products = "";
     if (!json.products || json.products <= 0) {
       return null;
@@ -102,9 +125,10 @@ function loadProducts() {
         // add a header at the top of new product types
         if (currentType !== pType) {
           currentType = pType;
+          const colspan = cartHasItems ? 5 : 4;
           products += `<tr class="cart-table__row" data-wholesale-row="${pTypeClean}">
             <td class="cart-table__cell" colspan="1"></td>
-            <td class="cart-table__cell cart-table__cell--type" colspan="4">
+            <td class="cart-table__cell cart-table__cell--type" colspan="${colspan}">
               <h3 class="cart-table__type-header">${currentType}</h3>
               <span class="cart-table__type-count" data-type="${pTypeClean}">0</span>
               <span class="cart-table__type-count">products</span>
@@ -126,8 +150,23 @@ function loadProducts() {
           const option = variant.title === "Default Title" ? "" : variant.title;
           const inventory = variant.inventory_quantity;
 
+          let quantityInCart = 0;
+          let inCart = "";
+          for (let k = 0; k < itemsInCart.length; k++) {
+            if (itemsInCart[k].id === variant.id) {
+              quantityInCart = itemsInCart[k].quantity;
+            }
+          }
+          if (cartHasItems) {
+            inCart = `<td class='cart-table__cell text-center'>
+              <div class='cart-table__price' data-wholesale-in-cart-qty>
+                ${quantityInCart}
+              </div>
+            </td>`;
+          }
+
           if (comparePrice) {
-            price = `<span data-wholesale-price>${formatMoney(
+            price = `<span data-wholesale-price="${currentPrice}">${formatMoney(
               currentPrice,
               theme.moneyFormat,
             )}</span>
@@ -154,7 +193,7 @@ function loadProducts() {
                   class='cart-table__quantity-input'
                   type='number'
                   name='quantity'
-                  value='0'
+                  value=0
                   min='0'
                   max='${inventory}'
                   data-wholesale-quantity
@@ -194,6 +233,7 @@ function loadProducts() {
                 ${qtyString}
               </form>
             </td>
+            ${inCart}
           </tr>`;
         }
       }
@@ -218,24 +258,38 @@ function loadProducts() {
 
     $(el.sort).append(sortOptions);
     $(el.count).text(`${productCountAll} products total`);
-    return $(el.table).html(products);
+    $(el.table).html(products);
+    return calculateTotals();
   });
 }
 
-const addToCartQueue = [];
-function moveAlong(redirect) {
-  if (addToCartQueue.length > 0) {
-    const request = addToCartQueue.shift();
+// this movealong is used first
+// when loop is done, re-iterate the cart
+function moveAlong(data) {
+  if (values.addToCartQueue.length > 0) {
+    const request = values.addToCartQueue.shift();
     addItemCustom(
       request.variantId,
       request.quantity,
       request.properties,
-      moveAlong,
+      () => {
+        moveAlong(data);
+      },
     );
-  } else if (false) {
+  } else if (data === "re-loop") {
+    $.getJSON("/cart.js", (json) => {
+      automaticProducts(json, true);
+    });
+  } else if (data === "redirect") {
     window.location.replace(`${window.location.origin}/checkout`);
   }
 }
+
+/*
+$.getJSON("/cart.js", (json) => {
+  automaticProducts(json, true);
+});
+ */
 
 function addItemCustom(id, qty, properties, callback) {
   const params = {
@@ -251,7 +305,8 @@ function addItemCustom(id, qty, properties, callback) {
     dataType: "json",
     data: params,
     async: false,
-    success: () => {
+    success: (data) => {
+      showMessage(itemAddedMessage(data.title, data.quantity));
       typeof callback === "function" ? callback() : null;
     },
     error: (jqXHR) => {
@@ -265,9 +320,19 @@ function addItemCustom(id, qty, properties, callback) {
   });
 }
 
+function itemAddedMessage(title, qty) {
+  if (!title && !qty) {
+    return false;
+  } else {
+    const verb = qty > 1 ? "are" : "is";
+    const message = `${qty} of ${title} ${verb} now in your cart.`;
+    return showMessage(message);
+  }
+}
+
 // add item to the ajax queue, rather than adding it directly
 function pushToQueue(variantId, quantity, properties, callback) {
-  addToCartQueue.push({
+  values.addToCartQueue.push({
     variantId,
     quantity,
     properties,
@@ -303,9 +368,13 @@ function wholesaleSubmit(event) {
       const max = $("[name='inventory']", $this).val();
       if (qty > 0) {
         if (qty > max) {
-          pushToQueue(id, max, {}, moveAlong);
+          pushToQueue(id, max, {}, () => {
+            moveAlong("re-loop");
+          });
         } else {
-          pushToQueue(id, qty, {}, moveAlong);
+          pushToQueue(id, qty, {}, () => {
+            moveAlong("re-loop");
+          });
         }
       }
     });
@@ -339,24 +408,46 @@ function wholesaleSortReset() {
 
 function calculateTotals() {
   let totals = 0;
+  let cartTotals = 0;
+  let orderTotals = 0;
   let compare = 0;
   $(el.row).each(function() {
     const $this = $(this);
     const qty = $(el.qty, $this).val();
+    const inCartQty = parseInt($(el.inCartQty, $this).text(), 10);
+    const price = parseFloat($(el.price, $this).data("wholesale-price"));
+    const priceCompare = parseFloat(
+      $(el.priceCompare, $this).data("wholesale-price-compare"),
+    );
     if (qty > 0) {
-      const price = $(el.price, $this).data("wholesale-price");
-      const priceCompare = $(el.price, $this).data("wholesale-price-compare");
-      totals += price * qty;
-
-      if (priceCompare) {
+      orderTotals += price * qty;
+      if (priceCompare > 0) {
         compare += priceCompare * qty;
       } else {
         compare += price * qty;
       }
     }
+    if (inCartQty > 0) {
+      cartTotals += price * inCartQty;
+      if (priceCompare > 0) {
+        compare += priceCompare * inCartQty;
+      } else {
+        compare += price * inCartQty;
+      }
+    }
   });
 
-  $(el.savings).text(formatMoney(compare * 100, theme.moneyFormat));
+  totals = cartTotals + orderTotals;
+  const savings = compare - totals;
+
+  if (cartTotals > 0) {
+    $(el.inCartTotal).text(formatMoney(cartTotals * 100), theme.moneyFormat);
+    $(el.inCartTotalBox).show();
+  }
+
+  $(el.orderTotal).text(formatMoney(orderTotals * 100, theme.moneyFormat));
+
+  $(el.savings).text(formatMoney(savings * 100, theme.moneyFormat));
   $(el.total)
     .text(formatMoney(totals * 100, theme.moneyFormat))
     .data("wholesale-total", totals);
@@ -400,7 +491,8 @@ function ajaxChangeCartQty(id, qty, isLine) {
 
 // this function checks if products need to added or removed from the cart automatically,
 // based on the products already in the cart
-function automaticProducts(cart) {
+function automaticProducts(cart, redirect) {
+  const redirectData = redirect ? "redirect" : "nothing";
   let pumpsInCart = 0;
   let pumpsQtyShouldBe = 0;
   const cartProducts = [];
@@ -413,18 +505,20 @@ function automaticProducts(cart) {
     }
   }
 
-  (async function loop() {
+  (async function variantLoop() {
     for (let j = 0; j < cart.items.length; j++) {
       await new Promise((resolve) => {
         resolve(
           $.getJSON(
-            `/admin/products/${cart.items[j].product_id}.json?fields=tags`,
+            `/admin/variants/${cart.items[j].variant_id}/metafields.json`,
             (json) => {
-              const varIdToAdd = addToCartByTag(json);
-              cartProducts.push({
-                id: varIdToAdd,
-                qty: cart.items[j].quantity,
-              });
+              const varIdToAdd = addToCartByMetafield(json);
+              if (varIdToAdd) {
+                cartProducts.push({
+                  id: varIdToAdd,
+                  qty: cart.items[j].quantity,
+                });
+              }
             },
           ),
         );
@@ -445,7 +539,9 @@ function automaticProducts(cart) {
         addableIds.pump,
         pumpsQtyShouldBe - pumpsInCart,
         {},
-        moveAlong,
+        () => {
+          moveAlong("redirect");
+        },
       );
     } else if (pumpsQtyShouldBe < pumpsInCart) {
       ajaxChangeCartQty(addableIds.pump, pumpsQtyShouldBe);
@@ -472,6 +568,24 @@ function addToCartByTag(json) {
   }
 }
 
+function addToCartByMetafield(json) {
+  if (json && json.metafields.length > 0) {
+    for (let i = 0; i < json.metafields.length; i++) {
+      const mField = json.metafields[i];
+      if (
+        mField.key === "equivalent" &&
+        mField.namespace === "add" &&
+        mField.value
+      ) {
+        if (/^[0-9]{14,}$/.test(mField.value)) {
+          return parseInt(mField.value, 10);
+        }
+      }
+    }
+  }
+  return false;
+}
+
 $(document).on("click", el.submit, wholesaleSubmit);
 
 $(document).on("click", el.reset, wholesaleSortReset);
@@ -482,9 +596,10 @@ $(document).on("change", el.qty, calculateTotals);
 
 // run ajax on page load to get cart contents
 $(document).ready(() => {
-  loadProducts();
-
   $.getJSON("/cart.js", (json) => {
-    automaticProducts(json);
+    automaticProducts(json, false);
+    if (document.getElementById("wholesale-order-form")) {
+      loadProducts(json);
+    }
   });
 });

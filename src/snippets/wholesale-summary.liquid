@@ -1,15 +1,25 @@
 <div class="wholesale-summary">
   <div class="cart-summary">
     <h2 class="cart-summary__title">Order summary</h2>
+    <div class="cart-summary__totals" data-wholesale-in-cart-container style="display:none">
+      <span class="cart-summary__totals-text">Cart Subtotal</span>
+      <span class="cart-summary__totals-price" data-wholesale-in-cart-total=0>$0</span>
+    </div>
+
     <div class="cart-summary__totals">
-      <span class="cart-summary__totals-text">Subtotal</span>
-      <span class="cart-summary__totals-price" data-wholesale-total=0>$0</span>
+      <span class="cart-summary__totals-text">Order Subtotal</span>
+      <span class="cart-summary__totals-price" data-wholesale-order-total=0>$0</span>
     </div>
 
     <div class="cart-summary__totals" style="display:none" data-wholesale-savings-container>
       <span class="cart-summary__totals-text">Savings</span>
       <span class="cart-summary__totals-price" data-wholesale-savings>$0</span>
     </div>
+    <div class="cart-summary__totals">
+      <span class="cart-summary__totals-text">Subtotal</span>
+      <span class="cart-summary__totals-price" data-wholesale-total=0>$0</span>
+    </div>
+
 
     <div class="wholesale-order__submit-wrap">
       <input class="cart-summary__checkout-button" type="submit" value="{{ 'cart.general.checkout' | t }}" data-wholesale-submit/>
