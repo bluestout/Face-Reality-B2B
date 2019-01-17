@@ -99,11 +99,13 @@
                         {% endif %}
                       <span class="assets-item__download icon-cloud-download"></span>
                     </span>
-                    <h4 class="assets-item__title" data-asset-item-title>{{ item.title }}</h4>
-                    <span class="assets-item__tags">
-                      {% if item.image %}
-                        <span class="assets-item__tag">{{ item.image.width }}x{{ item.image.width }}px </span>
-                      {% endif %}
+                    <span class="assets-item__flex-splitter">
+                      <h4 class="assets-item__title" data-asset-item-title>{{ item.title }}</h4>
+                      <span class="assets-item__tags">
+                        {% if item.image %}
+                          <span class="assets-item__tag">{{ item.image.width }}x{{ item.image.width }}px </span>
+                        {% endif %}
+                      </span>
                     </span>
                   </a>
                 </div>
@@ -117,16 +119,18 @@
                           {% endif %}
                         <span class="assets-item__download icon-cloud-download"></span>
                       </span>
-                      <h4 class="assets-item__title" data-asset-item-title>{{ item.title }}</h4>
-                      <span class="assets-item__tags">
-                        {% if item.image %}
-                          <span class="assets-item__tag">{{ item.image.width }}x{{ item.image.width }}px </span>
-                        {% endif %}
-                        {% for tag in item.tags %}
-                          {% unless tag contains "type-" %}
-                            <span class="assets-item__tag">{{ tag }}</span>
-                          {% endunless %}
-                        {% endfor %}
+                      <span class="assets-item__flex-splitter">
+                        <h4 class="assets-item__title" data-asset-item-title>{{ item.title }}</h4>
+                        <span class="assets-item__tags">
+                          {% if item.image %}
+                            <span class="assets-item__tag">{{ item.image.width }}x{{ item.image.width }}px </span>
+                          {% endif %}
+                          {% for tag in item.tags %}
+                            {% unless tag contains "type-" %}
+                              <span class="assets-item__tag">{{ tag }}</span>
+                            {% endunless %}
+                          {% endfor %}
+                        </span>
                       </span>
                     </a>
                   </div>

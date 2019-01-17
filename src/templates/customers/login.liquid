@@ -28,6 +28,8 @@
 
             {% form 'customer_login' %}
 
+              <input type="hidden" name="checkout_url" value="/collections/all" />
+
               {{ form.errors | default_errors }}
 
               <div class="register__input-wrap">

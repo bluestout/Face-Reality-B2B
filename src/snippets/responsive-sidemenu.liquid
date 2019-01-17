@@ -27,14 +27,12 @@
     <div class="responsive-sidemenu__big-buttons">
       <a href="#" class="responsive-sidemenu__big-button responsive-sidemenu__big-button--solid">Find a nearby clinic</a>
 
-      {% if section.settings.professionals_text != "" %}
-        <a
-          href="{{ section.settings.professionals_url }}"
-          class="responsive-sidemenu__big-button responsive-sidemenu__big-button--alternate"
-          >
-          {{ section.settings.professionals_text }}
-          <span class="icon-arrow-right responsive-sidemenu__big-button-icon"></span>
+      {% if customer and customer.tags contains "quiz_completed" %}
+        <a href="/pages/wholesale-order-form" class="responsive-sidemenu__big-button responsive-sidemenu__big-button--alternate">
+          Order form
         </a>
+      {% else %}
+        <a href="/pages/certification-test" class="responsive-sidemenu__big-button responsive-sidemenu__big-button--alternate">Get Certified</a>
       {% endif %}
     </div>
 

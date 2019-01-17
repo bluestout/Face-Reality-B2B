@@ -41,14 +41,8 @@
         {% endfor %}
       {% endif %}
 
-      {% if section.settings.professionals_text != "" %}
-        <a
-          href="{{ section.settings.professionals_url }}"
-          class="site-header__secondary-nav-button"
-          >
-          {{ section.settings.professionals_text }}
-          <span class="icon-arrow-right site-header__secondary-nav-icon site-header__secondary-nav-icon--right"></span>
-        </a>
+      {% if customer and customer.tags contains "quiz_completed" %}
+        <a href="/pages/wholesale-order-form" class="utility-nav__big-button">Order form</a>
       {% endif %}
     </div>
 
