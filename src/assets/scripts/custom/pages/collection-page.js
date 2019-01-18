@@ -37,6 +37,8 @@ const page = {
   product: "[data-collection-product-column]",
 };
 
+const filterEvent = new Event("runFilter");
+
 // remove falsy && empty values from array
 function cleanArray(actual) {
   const newArray = [];
@@ -105,6 +107,9 @@ function runFilter() {
   } else {
     $(filter.item).fadeIn();
   }
+  return document
+    .getElementsByClassName("product-filter__container")[0]
+    .dispatchEvent(filterEvent);
 }
 
 // load more order items on click - pagination ajax
@@ -132,6 +137,9 @@ function loadMore() {
     } else {
       $(page.pagination).html("");
     }
+    document
+      .getElementsByClassName("product-filter__container")[0]
+      .dispatchEvent(filterEvent);
     return true;
   });
   return false;
