@@ -3,7 +3,7 @@
   {% assign obscured_product = true %}
 {% endif %}
 
-<article class="product-content" data-section-id="{{ section.id }}" data-section-type="product" data-enable-history-state="true">
+<article class="product-content">
   {%- assign current_variant = product.selected_or_first_available_variant -%}
 
   <h1 class="product-content__title">{{ product.title }}</h1>
