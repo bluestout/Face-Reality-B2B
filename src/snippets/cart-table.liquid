@@ -14,7 +14,14 @@
       <tbody>
 
         {% for item in cart.items %}
-          {% unless item.product.tags contains "hidden-product" %}
+          {% assign hidden = false %}
+          {% if item.product.tags contains "hidden-product"  %}
+            {% assign hidden = true %}
+          {% endif %}
+          {% if item.product.tags contains "training-course"  %}
+            {% assign hidden = false %}
+          {% endif %}
+          {% unless hidden %}
             {% comment %} hide only certain aspects of this product {% endcomment %}
             {% if item.product.tags contains "obscured-product" %}
               {% assign obscured = true %}

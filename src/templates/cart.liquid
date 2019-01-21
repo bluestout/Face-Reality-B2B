@@ -1,25 +1,21 @@
-{% unless customer and customer.tags contains "quiz_completed" %}
-  {% include 'clinic-order' %}
-{% else %}
-  <div class="cart max-wrap">
-    {% include 'cart-header' %}
+<div class="cart max-wrap">
+  {% include 'cart-header' %}
 
-    <div class="cart-content">
+  <div class="cart-content">
 
-      {% if cart.item_count > 0 %}
-        <form action="/cart" method="post" novalidate>
-          <div class="row no-gutters">
-            <div class="col-xl-8 order-xl-1 order-2">
-              {% include 'cart-table' %}
-            </div>
-            <div class="col-xl-4 order-xl-2 order-1">
-              {% include 'cart-summary' %}
-            </div>
+    {% if cart.item_count > 0 %}
+      <form action="/cart" method="post" novalidate>
+        <div class="row no-gutters">
+          <div class="col-xl-8 order-xl-1 order-2">
+            {% include 'cart-table' %}
           </div>
-        </form>
-      {% else %}
-        <p class="cart-content__cart-empty">{{ 'cart.general.empty' | t }}</p>
-      {% endif %}
-    </div>
+          <div class="col-xl-4 order-xl-2 order-1">
+            {% include 'cart-summary' %}
+          </div>
+        </div>
+      </form>
+    {% else %}
+      <p class="cart-content__cart-empty">{{ 'cart.general.empty' | t }}</p>
+    {% endif %}
   </div>
-{% endunless %}
+</div>
