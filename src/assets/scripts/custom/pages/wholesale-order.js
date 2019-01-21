@@ -526,13 +526,13 @@ function automaticProducts(cart, redirect) {
     }
 
     if (pumpsInCart > 0 && pumpsQtyShouldBe === 0) {
-      ajaxChangeCartQty(addableIds.pump, 0, redirectData);
+      ajaxChangeCartQty(addableIds.pump, 0, false, redirectData);
     } else if (pumpsQtyShouldBe > pumpsInCart) {
       pushToQueue(addableIds.pump, pumpsQtyShouldBe - pumpsInCart, {}, () => {
         moveAlong(redirectData);
       });
     } else if (pumpsQtyShouldBe < pumpsInCart) {
-      ajaxChangeCartQty(addableIds.pump, pumpsQtyShouldBe, redirectData);
+      ajaxChangeCartQty(addableIds.pump, pumpsQtyShouldBe, false, redirectData);
     } else {
       moveAlong(redirectData);
     }
