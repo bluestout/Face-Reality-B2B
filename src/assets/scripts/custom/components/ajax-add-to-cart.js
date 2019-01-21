@@ -3,6 +3,7 @@ import $ from "jquery";
 
 const el = {
   add: "[data-add-to-cart]",
+  addTrain: "[data-add-to-cart-training]",
   qCart: "[data-quick-cart]",
   qCartContent: "[data-quick-cart-content]",
   overlay: "[data-quick-cart-overlay]",
@@ -31,6 +32,35 @@ function ajaxAddToCart(event) {
     complete: addToCartHandle,
     cache: false,
   });
+}
+
+function ajaxAddToCartTrain(event) {
+  event.preventDefault();
+  const $source = $(event.currentTarget);
+
+  const $form = $source.closest("form");
+  const $qty = $form.find("[name='quantity']");
+
+  if ($qty.val() > $qty.attr("max")) {
+    return null;
+  }
+  return $.ajax({
+    type: "POST",
+    url: "/cart/add.js",
+    async: false,
+    data: $form.serialize(),
+    dataType: "json",
+    complete: redirectToCheckout,
+    cache: false,
+  });
+}
+
+function redirectToCheckout(jqXHR, textStatus) {
+  if (textStatus === "success") {
+    window.location.replace(`${window.location.origin}/checkout`);
+  } else {
+    showMessage("Unable to add to cart at the moment.");
+  }
 }
 
 function addToCartHandle(jqXHR, textStatus) {
@@ -71,3 +101,4 @@ function showMessage(message) {
 }
 
 $(document).on("click", el.add, ajaxAddToCart);
+$(document).on("click", el.addTrain, ajaxAddToCartTrain);
