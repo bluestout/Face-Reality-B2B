@@ -14,11 +14,9 @@
       <tbody>
 
         {% for item in cart.items %}
-          {% assign line_item_handle = item.title | handleize %}
-          {% assign line_product = all_products[line_item_handle] %}
-          {% unless line_product.tags contains "hidden-product" %}
+          {% unless item.product.tags contains "hidden-product" %}
             {% comment %} hide only certain aspects of this product {% endcomment %}
-            {% if line_product.tags contains "obscured-product" %}
+            {% if item.product.tags contains "obscured-product" %}
               {% assign obscured = true %}
             {% else %}
               {% assign obscured = false %}
