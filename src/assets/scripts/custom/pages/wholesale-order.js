@@ -1,6 +1,5 @@
 import { formatMoney } from "@shopify/theme-currency";
 import $ from "jquery";
-import { COPYFILE_EXCL } from "constants";
 
 // list all the dom elements used in the script here
 const el = {
@@ -36,7 +35,7 @@ const addableIds = {
 
 // any constant values used
 const values = {
-  minOrder: 1,
+  minOrder: 125,
   freeShipping: 600,
   eligibleText: "You are eligible for free shipping",
   notEligibleLeft: "You are ",
@@ -285,12 +284,6 @@ function moveAlong(data) {
   }
 }
 
-/*
-$.getJSON("/cart.js", (json) => {
-  automaticProducts(json, true);
-});
- */
-
 function addItemCustom(id, qty, properties, callback) {
   const params = {
     quantity: qty,
@@ -471,7 +464,7 @@ function calculateTotals() {
 
 // insert id/line, quantity, isline?
 // reduce the remove from cart & change quantity for id & line to 1 function
-function ajaxChangeCartQty(id, qty, isLine) {
+function ajaxChangeCartQty(id, qty, isLine, redirect) {
   let data = { quantity: qty, id };
   if (isLine) {
     data = { quantity: qty, isLine: id };
@@ -483,7 +476,7 @@ function ajaxChangeCartQty(id, qty, isLine) {
     data,
     dataType: "json",
     success: () => {
-      console.log("item removed");
+      redirect && moveAlong(redirect);
     },
     cache: false,
   });
@@ -533,39 +526,17 @@ function automaticProducts(cart, redirect) {
     }
 
     if (pumpsInCart > 0 && pumpsQtyShouldBe === 0) {
-      ajaxChangeCartQty(addableIds.pump, 0);
+      ajaxChangeCartQty(addableIds.pump, 0, redirectData);
     } else if (pumpsQtyShouldBe > pumpsInCart) {
-      pushToQueue(
-        addableIds.pump,
-        pumpsQtyShouldBe - pumpsInCart,
-        {},
-        () => {
-          moveAlong("redirect");
-        },
-      );
+      pushToQueue(addableIds.pump, pumpsQtyShouldBe - pumpsInCart, {}, () => {
+        moveAlong(redirectData);
+      });
     } else if (pumpsQtyShouldBe < pumpsInCart) {
-      ajaxChangeCartQty(addableIds.pump, pumpsQtyShouldBe);
+      ajaxChangeCartQty(addableIds.pump, pumpsQtyShouldBe, redirectData);
+    } else {
+      moveAlong(redirectData);
     }
   })();
-}
-
-function addToCartByTag(json) {
-  if (json && json.product && json.product.tags) {
-    const tag = json.product.tags;
-    const addStart = tag.indexOf("add-equivalent-");
-    if (addStart === -1) {
-      return false;
-    }
-    const addEnd = tag.indexOf(" ", addStart);
-    const addId = tag.substring(15, addEnd - 1);
-    if (/^[0-9]{14,}$/.test(addId)) {
-      return parseInt(addId, 10);
-    } else {
-      return false;
-    }
-  } else {
-    return false;
-  }
 }
 
 function addToCartByMetafield(json) {
