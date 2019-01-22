@@ -1,8 +1,8 @@
 {% unless customer and customer.tags contains "quiz_completed" %}
   {% include 'clinic-order' %}
 {% else %}
-  <div class="product-page" data-section-id="{{ section.id }}" data-section-type="product" data-enable-history-state="true">
-    <div class="container">
+  <div class="product-page">
+    <div class="container" data-section-id="{{ section.id }}" data-section-type="product" data-enable-history-state="true">
       <div class="row no-gutters">
         <div class="col-lg-6 ">
           {% include 'product-gallery' %}
