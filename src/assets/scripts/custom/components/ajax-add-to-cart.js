@@ -80,8 +80,8 @@ function itemAddedMessage(title, qty) {
   if (!title && !qty) {
     return false;
   } else {
-    const verb = qty > 1 ? "have" : "has";
-    const message = `${qty} of ${title} ${verb} been added to cart.`;
+    const verb = qty > 1 ? "are" : "is";
+    const message = `${qty} of ${title} ${verb} now in your cart.`;
     return showMessage(message);
   }
 }

@@ -20,7 +20,7 @@
     "social_vimeo_link": "",
     "social_linkedin_link": "#",
     "cart_notes_enable": false,
-    "favicon": "",
+    "favicon": "shopify://shop_images/fr-favicon.png",
     "checkout_header_image": "",
     "checkout_logo_image": "shopify://shop_images/FRS-Logo-1-19_7695834c-2c04-47a3-a148-88321362aa8b.png",
     "checkout_logo_position": "left",
@@ -611,7 +611,7 @@
       "information-topics": {
         "type": "information-topics",
         "settings": {
-          "info_center_links": ""
+          "info_center_links": "information-center"
         }
       },
       "info-cta": {

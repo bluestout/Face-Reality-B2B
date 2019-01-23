@@ -17,6 +17,7 @@ const el = {
   option: "[data-product-item-option]",
   optionInput: "[data-product-item-option-input]",
   json: "[data-product-item-json]",
+  imageWrap: "[data-product-image-wrapper]",
 };
 
 const filter = {
@@ -213,6 +214,16 @@ function productItemInit() {
     });
 }
 
+function switchImage(imageId, parent) {
+  const $newImage = $(`${el.imageWrap}[data-image-id='${imageId}']`, parent);
+  const $otherImages = $(
+    `${el.imageWrap}:not([data-image-id='${imageId}'])`,
+    parent,
+  );
+  $newImage.removeClass("hide");
+  $otherImages.addClass("hide");
+}
+
 // this function sets new values for prices, id & availability on the parent product item
 function setNewVariant(parent, variant) {
   if (!parent || !variant) {
@@ -238,6 +249,11 @@ function setNewVariant(parent, variant) {
   } else {
     $(el.addToCart, parent).prop("disabled", true);
     $(el.addToCartText, parent).html(theme.strings.soldOut);
+  }
+
+  // switch image
+  if (variant.featured_image) {
+    switchImage(variant.featured_image.id, parent);
   }
   return null;
 }
