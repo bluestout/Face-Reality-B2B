@@ -270,27 +270,16 @@
     &__testimonial {
       padding: 0 25px 15px;
 
-      .zig-line-separator-wrapper {
-        order: 3;
-      }
-
       &-info {
         margin: 0 0 15px;
-        order: 2;
       }
 
       &-text {
         margin: 0 0 20px;
-        order: 4;
       }
 
       &-image-wrap {
-        order: 1;
-        margin: 0 0 10px;
-      }
-
-      .flex-shaper {
-        order: 5;
+        margin: 0 auto 10px;
       }
     }
 
