@@ -15,14 +15,8 @@ const el = {
 function ajaxAddToCart(event) {
   event.preventDefault();
   const $source = $(event.currentTarget);
-
   const $form = $source.closest("form");
-  const $qty = $form.find("[name='quantity']");
 
-  $qty.attr("max");
-  if ($qty.val() > $qty.attr("max")) {
-    return null;
-  }
   return $.ajax({
     type: "POST",
     url: "/cart/add.js",
@@ -37,13 +31,7 @@ function ajaxAddToCart(event) {
 function ajaxAddToCartTrain(event) {
   event.preventDefault();
   const $source = $(event.currentTarget);
-
   const $form = $source.closest("form");
-  const $qty = $form.find("[name='quantity']");
-
-  if ($qty.val() > $qty.attr("max")) {
-    return null;
-  }
   return $.ajax({
     type: "POST",
     url: "/cart/add.js",
@@ -96,7 +84,7 @@ function showMessage(message) {
   $(el.addedContainer).addClass("active");
   eventHolder = setTimeout(() => {
     $(el.addedContainer).removeClass("active");
-  }, 4500);
+  }, 3000);
   return eventHolder;
 }
 

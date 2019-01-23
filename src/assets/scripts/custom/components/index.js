@@ -1,6 +1,5 @@
 import "./site-link";
 import "./home-testimonials-slick";
-import "./featured-collection-slick";
 import "./tabs";
 import "./product-related-slick";
 import "./different-mentions-slick";
