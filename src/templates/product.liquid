@@ -1,6 +1,4 @@
-{% unless customer and customer.tags contains "quiz_completed" %}
-  {% include 'clinic-order' %}
-{% else %}
+{% if customer and customer.tags contains "quiz_completed" %}
   <div class="product-page">
     <div class="container" data-section-id="{{ section.id }}" data-section-type="product" data-enable-history-state="true">
       <div class="row no-gutters">
@@ -80,4 +78,8 @@
     }
     </script>
   </div>
-{% endunless %}
+{% elsif customer %}
+  {% include 'clinic-order' with "quiz-incomplete" %}
+{% else %}
+  {% include 'clinic-order' with "not-logged" %}
+{% endif %}

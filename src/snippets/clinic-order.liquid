@@ -1,25 +1,38 @@
 <div class="clinic-order" style="background-image:url('{{ '../assets/images/aboutproducts-bg.min.png' | asset_img_url: 'original' }}');">
   <div class="clinic-order__inner">
-    <h1 class="clinic-order__title">{{ page.title }}</h1>
-    <p class="clinic-order__text shopify-rte">{{ page.content | strip }}</p>
+    <h1 class="clinic-order__title">Order Face Reality Products</h1>
+    {% if clinic-order == "quiz-incomplete" %}
+      <p class="clinic-order__text shopify-rte">You must complete the certification quiz to order our products.</p>
+    {% else %}
+      <p class="clinic-order__text shopify-rte">Please log in to be able to order our products</p>
+    {% endif %}
     <div class="clinic-order__row-wrap">
       <div class="row no-gutters">
-        <div class="col-md-1"></div>
-        <div class="col-md-4">
-          <img class="clinic-order__icon" src="{{ '../assets/images/icon-key.png' | asset_img_url: '60x' }}" alt="Log in"/>
-          <p class="clinic-order__col-text">If you already have an account, please log in.</p>
-          <a href="/account/login" class="clinic-order__link">Log in</a>
-        </div>
-        <div class="col-md-1">
-          <div class="clinic-order__separator"></div>
-        </div>
-        <div class="col-md-1"></div>
-        <div class="col-md-4">
-          <img class="clinic-order__icon" src="{{ '../assets/images/icon-user.png' | asset_img_url: '60x' }}" alt="Register"/>
-          <p class="clinic-order__col-text">If you don’t have an account, please register.</p>
-          <a href="/customer/register" class="clinic-order__link">Register</a>
-        </div>
-        <div class="col-md-1"></div>
+        {% if clinic-order == "quiz-incomplete" %}
+          <div class="col-md-3"></div>
+          <div class="col-md-6">
+            <img class="clinic-order__icon" src="{{ '../assets/images/icon-certification.png' | asset_img_url: '80x' }}" alt="Log in"/>
+            <a href="/pages/certification-test" class="clinic-order__link clinic-order__link--wide">Proceed to certification training</a>
+          </div>
+          <div class="col-md-3"></div>
+        {% else %}
+          <div class="col-md-1"></div>
+          <div class="col-md-4">
+            <img class="clinic-order__icon" src="{{ '../assets/images/icon-key.png' | asset_img_url: '60x' }}" alt="Log in"/>
+            <p class="clinic-order__col-text">If you already have an account, please log in.</p>
+            <a href="/account/login" class="clinic-order__link">Log in</a>
+          </div>
+          <div class="col-md-1">
+            <div class="clinic-order__separator"></div>
+          </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-4">
+            <img class="clinic-order__icon" src="{{ '../assets/images/icon-user.png' | asset_img_url: '60x' }}" alt="Register"/>
+            <p class="clinic-order__col-text">If you don’t have an account, please register.</p>
+            <a href="/customer/register" class="clinic-order__link">Register</a>
+          </div>
+          <div class="col-md-1"></div>
+        {% endif %}
       </div>
     </div>
   </div>

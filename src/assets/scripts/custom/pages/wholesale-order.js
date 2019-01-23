@@ -31,6 +31,7 @@ const el = {
 // starting from making this variable an array rather than an object
 const addableIds = {
   pump: 19946386686041,
+  training: 20157070442585,
 };
 
 // any constant values used
@@ -487,6 +488,7 @@ function ajaxChangeCartQty(id, qty, isLine, redirect) {
 function automaticProducts(cart, redirect) {
   const redirectData = redirect ? "redirect" : "nothing";
   let pumpsInCart = 0;
+  let trainingQty = 0;
   let pumpsQtyShouldBe = 0;
   const cartProducts = [];
 
@@ -496,9 +498,12 @@ function automaticProducts(cart, redirect) {
     if (cart.items[i].id === addableIds.pump) {
       pumpsInCart += cart.items[i].quantity;
     }
+    if (cart.items[i].id === addableIds.training) {
+      trainingQty += cart.items[i].quantity;
+    }
   }
 
-  (async function variantLoop() {
+  (async () => {
     for (let j = 0; j < cart.items.length; j++) {
       await new Promise((resolve) => {
         resolve(
@@ -518,24 +523,38 @@ function automaticProducts(cart, redirect) {
       });
     }
 
-    for (let i = 0; i < cartProducts.length; i++) {
-      const productAddTag = cartProducts[i];
-      if (productAddTag.id === addableIds.pump) {
-        pumpsQtyShouldBe += productAddTag.qty;
-      }
-    }
-
-    if (pumpsInCart > 0 && pumpsQtyShouldBe === 0) {
-      ajaxChangeCartQty(addableIds.pump, 0, false, redirectData);
-    } else if (pumpsQtyShouldBe > pumpsInCart) {
-      pushToQueue(addableIds.pump, pumpsQtyShouldBe - pumpsInCart, {}, () => {
-        moveAlong(redirectData);
+    (async () => {
+      await new Promise((resolve) => {
+        if (trainingQty > 1) {
+          resolve(ajaxChangeCartQty(addableIds.training, 1));
+        } else {
+          resolve();
+        }
       });
-    } else if (pumpsQtyShouldBe < pumpsInCart) {
-      ajaxChangeCartQty(addableIds.pump, pumpsQtyShouldBe, false, redirectData);
-    } else {
-      moveAlong(redirectData);
-    }
+      for (let i = 0; i < cartProducts.length; i++) {
+        const productAddTag = cartProducts[i];
+        if (productAddTag.id === addableIds.pump) {
+          pumpsQtyShouldBe += productAddTag.qty;
+        }
+      }
+
+      if (pumpsInCart > 0 && pumpsQtyShouldBe === 0) {
+        ajaxChangeCartQty(addableIds.pump, 0, false, redirectData);
+      } else if (pumpsQtyShouldBe > pumpsInCart) {
+        pushToQueue(addableIds.pump, pumpsQtyShouldBe - pumpsInCart, {}, () => {
+          moveAlong(redirectData);
+        });
+      } else if (pumpsQtyShouldBe < pumpsInCart) {
+        ajaxChangeCartQty(
+          addableIds.pump,
+          pumpsQtyShouldBe,
+          false,
+          redirectData,
+        );
+      } else {
+        moveAlong(redirectData);
+      }
+    })();
   })();
 }
 

@@ -41,6 +41,7 @@
   &__icon {
     display: block;
     margin: 0 auto 20px;
+    max-width: 120px;
   }
 
   &__col-text {
@@ -54,6 +55,9 @@
     line-height: 20px;
     width: 180px;
     height: 42px;
+    &--wide {
+      width: auto;
+    }
   }
 
   @include media-query("medium-down") {

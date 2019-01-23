@@ -1,6 +1,4 @@
-{% unless customer and customer.tags contains "quiz_completed" %}
-  {% include 'clinic-order' %}
-{% else %}
+{% if customer and customer.tags contains "quiz_completed" %}
   <div class="collection-page">
 
     {% section 'collection-banner' %}
@@ -70,7 +68,9 @@
         </div>
       </div>
     </div>
-
   </div>
-
-{% endunless %}
+{% elsif customer %}
+  {% include 'clinic-order' with "quiz-incomplete" %}
+{% else %}
+  {% include 'clinic-order' with "not-logged" %}
+{% endif %}

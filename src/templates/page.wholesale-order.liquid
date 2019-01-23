@@ -1,6 +1,4 @@
-{% unless customer and customer.tags contains "quiz_completed" %}
-  {% include 'clinic-order' %}
-{% else %}
+{% if customer and customer.tags contains "quiz_completed" %}
   <section class="wholesale-order">
     <div class="b2b-header">
       <h1 class="b2b-header__title">{{ page.title }}</h1>
@@ -26,4 +24,8 @@
       </div>
     </div>
   </div>
-{% endunless %}
+{% elsif customer %}
+  {% include 'clinic-order' with "quiz-incomplete" %}
+{% else %}
+  {% include 'clinic-order' with "not-logged" %}
+{% endif %}

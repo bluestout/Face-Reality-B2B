@@ -14,13 +14,17 @@
       <tbody>
 
         {% for item in cart.items %}
+          {% if item.product.tags contains "training-course"  %}
+            {% assign is_training = true %}
+          {% endif %}
           {% assign hidden = false %}
           {% if item.product.tags contains "hidden-product"  %}
             {% assign hidden = true %}
           {% endif %}
-          {% if item.product.tags contains "training-course"  %}
+          {% if is_training  %}
             {% assign hidden = false %}
           {% endif %}
+
           {% unless hidden %}
             {% comment %} hide only certain aspects of this product {% endcomment %}
             {% if item.product.tags contains "obscured-product" %}
@@ -43,10 +47,14 @@
                 <h3 class="cart-table__product-title">
                   <a class="cart-table__product-link" href="{{ item.url }}">{{ item.product.title }}</a>
                 </h3>
-                <div class="cart-table__product-id">{{ 'cart.label.product' | t }} ID. {{ item.sku }} {% comment %} {{ item.sku }} {% endcomment %}</div>
-                {% unless obscured %}
+                <div class="cart-table__product-id">{{ 'cart.label.product' | t }} ID. {{ item.sku }}</div>
+                {% if is_training %}
                   <a class="cart-table__remove" href="/cart/change?line={{ forloop.index }}&amp;quantity=0">{{ 'cart.general.remove' | t }}</a>
-                {% endunless %}
+                {% elsif obscured %}
+                  {% comment %} show nothing, except if product. no not operator  {% endcomment %}
+                {% else %}
+                  <a class="cart-table__remove" href="/cart/change?line={{ forloop.index }}&amp;quantity=0">{{ 'cart.general.remove' | t }}</a>
+                {% endif %}
               </td>
 
               <td class="cart-table__cell d-none d-md-table-cell text-center {% unless forloop.last %}cart-table__cell--border{% endunless %}">
@@ -105,14 +113,24 @@
                       {% endunless %}
                       <span class="cart-table__rsp-id">{{ 'cart.label.product' | t }} ID. {{ item.sku }} {% comment %} {{ item.sku }} {% endcomment %}</span>
                     </div>
-                    {% unless obscured %}
+                    {% if is_training %}
                       <a class="cart-table__rsp-remove" href="/cart/change?line={{ forloop.index }}&amp;quantity=0">{{ 'cart.general.remove' | t }}</a>
-                    {% endunless %}
+                    {% elsif obscured %}
+                      {% comment %} show nothing, except if product {% endcomment %}
+                    {% else %}
+                      <a class="cart-table__rsp-remove" href="/cart/change?line={{ forloop.index }}&amp;quantity=0">{{ 'cart.general.remove' | t }}</a>
+                    {% endif %}
                     <div class="clearfix"></div>
                   </div>
                 </div>
                 <div class="clearfix"></div>
-                {% unless obscured %}
+                {% if is_training %}
+                  <div class="cart-table__price text-center">
+                    {{ item.quantity }}
+                  </div>
+                {% elsif obscured %}
+                  {% comment %} show nothing, except if product. no not operator  {% endcomment %}
+                {% else %}
                   <div class="cart-table__quantity">
                     <button type="button" class="cart-table__quantity-button" data-qty-change="[product-qty-{{ forloop.index }}]" data-direction="down">-</button>
                     <input
@@ -126,7 +144,7 @@
                       product-qty-{{ forloop.index }}/>
                     <button type="button" class="cart-table__quantity-button" data-qty-change="[product-qty-{{ forloop.index }}]" data-direction="up">+</button>
                   </div>
-                {% endunless %}
+                {% endif %}
               </td>
             </tr>
           {% endunless %}

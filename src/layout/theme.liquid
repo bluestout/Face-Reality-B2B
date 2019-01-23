@@ -74,11 +74,14 @@
 
 <body id="{{ page_title | handle }}" class="template-{{ template.name | handle }}">
 
-  <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
-
   {% include 'item-added-message' %}
 
-  {% section 'header' %}
+  {% if template == "page.quiz-landing"
+    or template == "product.training-course" %}
+    {% section 'header-quiz' %}
+  {% else %}
+    {% section 'header' %}
+  {% endif %}
 
   {% comment %} {% include 'quick-cart' %} {% endcomment %}
 
@@ -106,7 +109,13 @@
     {{ content_for_layout }}
   </main>
 
-  {% section 'footer' %}
+  {% if
+    template == "page.quiz-landing"
+    or template == "product.training-course" %}
+    {% section 'footer-quiz' %}
+  {% else %}
+    {% section 'footer' %}
+  {% endif %}
 
   {% section 'site-links' %}
 

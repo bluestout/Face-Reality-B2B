@@ -1,6 +1,6 @@
 .quiz-landing {
   @include backgroundImage;
-  margin: 40px 0 10px;
+  margin: 10px 0;
   padding: 85px 0 120px;
   text-align: center;
 
@@ -64,14 +64,13 @@
     }
 
     &::before {
-      @include icoMoon(14px,$color-blumine);
+      @include icoMoon(14px, $color-blumine);
       content: "\e91b";
       transform: rotate(-10deg);
       display: inline-block;
       padding: 0 5px 0 0;
     }
   }
-
 
   &__or {
     position: relative;
@@ -104,7 +103,6 @@
   }
 
   @include media-query("medium-down") {
-    margin: 10px 0;
     padding: 30px 30px 90px;
 
     &__banner {
