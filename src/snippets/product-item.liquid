@@ -87,7 +87,7 @@
       {% unless product-item.has_only_default_variant %}
         {% for option in product-item.options_with_values %}
           <div class="product-item__option-name">{{ option.name }}</div>
-          <div class="product-item__variants-wrap {% if forloop.last %}product-item__variants-wrap--last{% endif %}" data-product-item-option>
+          <div class="product-item__variants-wrap {% if forloop.last %}product-item__variants-wrap--last{% endif %} {% if option.values.size == 1 %}product-item__variants-wrap--constrict{% endif %}" data-product-item-option>
             {% for value in option.values %}
               <div class="product-item__variant-wrap">
                 <input
