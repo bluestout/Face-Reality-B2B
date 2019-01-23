@@ -20,11 +20,6 @@
 
           <div class="col-lg-4 col-md-6 flex">
             <div class="testimonials-content__testimonial flex-col-wrap">
-              {% if block.settings.testimonial %}
-                <p class="testimonials-content__testimonial-text">{{ block.settings.testimonial }}</p>
-                <div class="flex-shaper"></div>
-                {% include 'zig-line-separator' %}
-              {% endif %}
               {% if block.settings.image %}
                 {% include 'responsive-image'
                   with image: block.settings.image,
@@ -34,10 +29,13 @@
                   image_class: 'testimonials-content__testimonial-image lazyload'
                 %}
               {% endif %}
-              <div>
-                <span class="testimonials-content__testimonial-name">{{ block.settings.title }}</span>
-                <span class="testimonials-content__testimonial-date">{{ block.settings.date }}</span>
-              </div>
+              <div class="testimonials-content__testimonial-name">{{ block.settings.title }}</div>
+              <div class="testimonials-content__testimonial-date">{{ block.settings.date }}</div>
+              {% if block.settings.testimonial %}
+                {% include 'zig-line-separator' %}
+                <p class="testimonials-content__testimonial-text">{{ block.settings.testimonial }}</p>
+                <div class="flex-shaper"></div>
+              {% endif %}
             </div>
           </div>
 
@@ -87,17 +85,6 @@
             "type": "text",
             "id": "date",
             "label": "Date"
-          }
-        ]
-      },
-      {
-        "type": "video",
-        "name": "Video testimonial",
-        "settings": [
-          {
-            "type": "textarea",
-            "id": "video",
-            "label": "Video"
           }
         ]
       }

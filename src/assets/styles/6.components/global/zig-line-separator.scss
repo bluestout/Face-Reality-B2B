@@ -1,6 +1,6 @@
 .zig-line-separator {
   position: relative;
-  border-top: 1px solid $color-mercury;
+  border-bottom: 1px solid $color-mercury;
   height: 10px;
   width: 100%;
 
@@ -12,8 +12,8 @@
   &::before {
     content: "";
     position: absolute;
-    left: 20px;
-    top: -10px;
+    left: 19px;
+    top: 0;
     display: block;
     border: 10px solid transparent;
     border-left: 16px solid $color-mercury;
@@ -22,8 +22,8 @@
   &::after {
     content: "";
     position: absolute;
-    left: 21px;
-    top: -12px;
+    left: 20px;
+    top: 2px;
     display: block;
     border: 10px solid transparent;
     border-left: 16px solid $color-white;

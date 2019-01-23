@@ -4,14 +4,14 @@
   }
 
   .zig-line-separator {
-    border-top: 1px solid #ddd;
+    border-bottom: 1px solid $color-alto;
 
     &-wrapper {
       margin: 0 0 20px;
     }
 
     &::before {
-      border-left: 16px solid #ddd;
+      border-left: 16px solid $color-alto;
     }
 
     &::after {
@@ -72,14 +72,15 @@
 
     &-name {
       @include apercu;
-      @include Text(11.5px, 12.5px, $color-blumine);
-      margin: 0 11px 0 0;
+      @include Text(13.5px, 18px, $color-black);
+      margin: 0 0 5px 0 0;
     }
 
     &-date {
       @include apercu;
-      @include Text(11.5px, 12.5px, $color-blumine);
+      @include Text(12.5px, 16px, $color-black);
       opacity: 0.5;
+      margin: 0 0 15px;
     }
   }
 

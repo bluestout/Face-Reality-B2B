@@ -30,10 +30,8 @@
                 image_class: 'home-testimonials__testimonial-image'
               %}
             {% endif %}
-            <div class="home-testimonials__testimonial-info">
-              <span class="home-testimonials__testimonial-name">{{ block.settings.title }}</span>
-              <span class="home-testimonials__testimonial-date">{{ block.settings.date }}</span>
-            </div>
+            <div class="home-testimonials__testimonial-name">{{ block.settings.title }}</div>
+            <div class="home-testimonials__testimonial-date">{{ block.settings.date }}</div>
             {% include 'zig-line-separator' %}
             <p class="home-testimonials__testimonial-text">{{ block.settings.testimonial }}</p>
           </div>

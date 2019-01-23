@@ -292,24 +292,6 @@
               "title": "Sune N.",
               "date": "Jun 2018"
             }
-          },
-          "1543846607400": {
-            "type": "video",
-            "settings": {
-              "video": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/NpEaa2P7qZI\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\"></iframe>"
-            }
-          },
-          "1543846649910": {
-            "type": "video",
-            "settings": {
-              "video": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/NpEaa2P7qZI\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\"></iframe>"
-            }
-          },
-          "1543846652884": {
-            "type": "video",
-            "settings": {
-              "video": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/NpEaa2P7qZI\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\"></iframe>"
-            }
           }
         },
         "block_order": [
@@ -318,10 +300,7 @@
           "1539250548694",
           "1539250563709",
           "1539250579142",
-          "1539250597246",
-          "1543846607400",
-          "1543846649910",
-          "1543846652884"
+          "1539250597246"
         ],
         "settings": {}
       },
