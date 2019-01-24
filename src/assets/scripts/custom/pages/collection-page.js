@@ -29,6 +29,7 @@ const filter = {
   responsiveToggle: "[data-responsive-filter-toggle]",
   responsiveContent: "[data-product-filter-responsive-content]",
   reset: "[data-responsive-filter-reset]",
+  variantAvailability: "[data-variant-availability]",
 };
 
 const page = {
@@ -62,13 +63,28 @@ function toggleFilter(event) {
     $currentset.addClass(`product-filter__filter-wrap ${tag}`);
   }
 
+  if (event.currentTarget.id.indexOf("availability-filter-all") > -1) {
+    $("[data-variant-availability=backbar]").fadeIn();
+    $("[data-variant-availability=retail]").fadeIn();
+  } else if (
+    event.currentTarget.id.indexOf("availability-filter-retail") > -1
+  ) {
+    $("[data-variant-availability=retail]").fadeIn();
+    $("[data-variant-availability=backbar]").fadeOut();
+  } else if (
+    event.currentTarget.id.indexOf("availability-filter-backbar") > -1
+  ) {
+    $("[data-variant-availability=backbar]").fadeIn();
+    $("[data-variant-availability=retail]").fadeOut();
+  }
+
   runFilter();
 }
 
 // do the actual filtering here
 function runFilter() {
   const $allSets = $(filter.set);
-  let allClasses = [];
+  const allClasses = [];
   let activeTags = "";
 
   // remove the -all tag and the element class from the query

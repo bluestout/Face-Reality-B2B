@@ -28,10 +28,12 @@ function stickySidebar(lastPosition, padding = 90) {
     if ($(window).width() > 991) {
       const $container = $this.closest(el.container);
       const headerH = $(el.header).outerHeight() || 0;
+      const windowH = $(window).height();
       if ($container.length > 0) {
         const containerOffset = $container.offset().top;
         const containerHeight = $container.height();
         const maxH = containerHeight - containerOffset - headerH - padding;
+        const sidebarH = $this.height();
 
         if (lastPosition > containerOffset - headerH) {
           if (lastPosition > maxH) {
@@ -40,7 +42,7 @@ function stickySidebar(lastPosition, padding = 90) {
             $this.css({
               bottom:
                 containerHeight -
-                $this.height() -
+                sidebarH -
                 lastPosition +
                 containerOffset -
                 headerH -
@@ -75,7 +77,6 @@ function prepSticky() {
 }
 
 $(document).ajaxComplete(stickySidebar);
-
 $(document).ready(() => {
   document.addEventListener("runFilter", () => {
     lastKnownScrollPos = window.scrollY;
