@@ -85,6 +85,19 @@
     @include backgroundImage;
   }
 
+  &__gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      180deg,
+      rgba($color-white, 1) 0,
+      rgba($color-white, 0) 30%
+    );
+  }
+
   &__title {
     @include Text(34px, 38x, $color-black);
     @include apercu(700);
@@ -146,6 +159,10 @@
 @include media-query("medium-down") {
   .primary-banner {
     padding: 100px 0 40px;
+
+    &__gradient {
+      display: none;
+    }
 
     &__title {
       font-size: 22px;
