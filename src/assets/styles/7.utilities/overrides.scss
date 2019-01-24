@@ -133,3 +133,12 @@
     color: $color-blumine !important;
   }
 }
+
+#swym-close-notepad-button {
+  z-index: 10;
+}
+
+#swym-plugin .swym-tab-overlay,
+#swym-hosted-plugin .swym-tab-overlay {
+  z-index: 9;
+}
