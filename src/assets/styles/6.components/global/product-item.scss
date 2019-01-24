@@ -117,8 +117,9 @@
 
     &-submit {
       @include button(main);
-      padding: 16px;
-      width: 180px;
+      padding: 13px;
+      max-width: 180px;
+      width: 100%;
     }
   }
 
@@ -130,17 +131,18 @@
   &__variants-wrap {
     display: flex;
     flex-flow: row wrap;
-    margin: 0 auto 10px;
-    max-width: 300px;
+    margin: 0 auto;
+    max-width: 180px;
     border: 1px solid $color-bermuda-gray;
-    &--constrict {
-      max-width: 180px;
-    }
+    border-bottom: none;
   }
 
   &__variant-wrap {
     position: relative;
-    flex: 1 0 25%;
+    flex: 1 0 33%;
+    display: flex;
+    justify-content: center;
+    min-height: 38px;
   }
 
   &__variant {
@@ -186,9 +188,9 @@
   }
 
   &__quantity-button {
-    @include Text(20px, 40px, $color-blumine);
+    @include Text(20px, 38px, $color-blumine);
     width: 28px;
-    height: 40px;
+    height: 38px;
     float: left;
     background-color: $color-white;
     border: none;
@@ -204,7 +206,7 @@
 
   &__quantity {
     @include apercu;
-    height: 40px;
+    height: 38px;
     width: calc(100% - 56px);
     float: left;
     text-align-last: center;
@@ -227,6 +229,7 @@
     padding: 6px;
     display: inline-block;
     pointer-events: none;
+    align-self: center;
   }
 
   .spr-badge {
