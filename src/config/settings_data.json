@@ -10,15 +10,15 @@
     "share_facebook": true,
     "share_twitter": true,
     "share_pinterest": true,
-    "social_twitter_link": "#",
-    "social_facebook_link": "#",
-    "social_pinterest_link": "",
-    "social_instagram_link": "#",
+    "social_twitter_link": "https://twitter.com/FaceRealityAcne",
+    "social_facebook_link": "https://www.facebook.com/FaceRealityAcneClinic",
+    "social_pinterest_link": "https://www.pinterest.com/acneexpert/",
+    "social_instagram_link": "https://www.instagram.com/explore/tags/facerealityacneclinic/?hl=en",
     "social_snapchat_link": "",
     "social_tumblr_link": "",
-    "social_youtube_link": "#",
+    "social_youtube_link": "https://www.youtube.com/user/AcneExpert/videos",
     "social_vimeo_link": "",
-    "social_linkedin_link": "#",
+    "social_linkedin_link": "https://www.linkedin.com/in/facerealityacneclinic/",
     "cart_notes_enable": false,
     "favicon": "shopify://shop_images/fr-favicon.png",
     "checkout_header_image": "",
@@ -55,7 +55,7 @@
         "type": "footer",
         "settings": {
           "footer_linklist": "footer",
-          "newsletter_text": "Sign up for Face Reality Newsletter and\u0003 receive promotions, announcements in your inbox",
+          "newsletter_text": "Sign up for Face Reality Newsletter and receive promotions, announcements in your inbox",
           "logo": "shopify://shop_images/FRS-Logo-1-19_505b8f2d-77de-4a7b-a46e-7f952100454d.png"
         }
       },
@@ -68,7 +68,7 @@
               "testimonial": "This place really is amazing and anyone with acne knows $25 (which they waive if you elect to get a treatment) is REALLY cheap and worth it to get his or her skin under control. I have been to so many different places, spent tons of money, even tried the stuff from acne.org, just to be disappointed. I finally decided to check this place out based on all the great reviews and really nice man (Pat) I spoke with at the clinic over the phone. This place is the first place I have been able to leave from after getting a facial where I didn’t feel like I needed to hide.",
               "image": "shopify://shop_images/testimonials-avatar1_8ad1b84d-d4b5-4a98-b92c-2b4e79b58761.png",
               "title": "Jeannine L.",
-              "date": "Jun 2018"
+              "date": "Acme Spa, Miami Beach FL"
             }
           },
           "1538384503030": {
@@ -77,7 +77,7 @@
               "testimonial": "Within two to three weeks we noticed a huge change. The inflammation was going down and with treatments every two weeks my daughter Sarah’s skin really did start to clear. What amazes me is that Sarah has been to dermatologists since she was in junior high school. The last time she went in, the doctor said he did not know what to do, they had tried it all. Well, Sarah walked down the aisle on her wedding day acne free, thanks to Face Reality!",
               "image": "shopify://shop_images/testimonials-avatarx_8c7c06a0-8875-49be-adb6-c7c668ab6cd1.png",
               "title": "Sune N.",
-              "date": "Jun 2018"
+              "date": "Medi Spa, Los Angeles CA"
             }
           },
           "1538384524495": {
@@ -86,7 +86,7 @@
               "testimonial": "This place really is amazing and anyone with acne knows $25 (which they waive if you elect to get a treatment) is REALLY cheap and worth it to get his or her skin under control. I have been to so many different places, spent tons of money, even tried the stuff from acne.org, just to be disappointed. I finally decided to check this place out based on all the great reviews and really nice man (Pat) I spoke with at the clinic over the phone. This place is the first place I have been able to leave from after getting a facial where I didn’t feel like I needed to hide.",
               "image": "shopify://shop_images/testimonials-avatar1_9a923400-2a31-4c31-9564-26e49d8930ab.png",
               "title": "Jeannine L.",
-              "date": "Jun 2018"
+              "date": "Acne Clinic, New York NY"
             }
           },
           "1538665766851": {
@@ -796,7 +796,7 @@
             "settings": {
               "title": "Get the most comprehensive acne specialist training and become certified",
               "description": "With +90% success rate our Clear Skin program will help you become a confident acne specialist and offer relief ti your clients",
-              "button_url": "#",
+              "button_url": "shopify://pages/certification-training",
               "button_text": "Learn more",
               "link_url": "#certification-video",
               "link_text": "<span class=\"icon-play-circle\"></span> Watch promo video",
