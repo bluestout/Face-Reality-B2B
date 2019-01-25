@@ -59,7 +59,15 @@
   }
 
   &__form {
-    margin: 0 0 65px;
+    margin: 0 0 10px;
+  }
+
+  .swym-dummy {
+    margin: 0 0 50px;
+  }
+
+  .swym-button-bar {
+    margin: 0 auto;
   }
 
   &__price {
@@ -87,19 +95,20 @@
   }
 
   &__variant-label {
-    z-index: 2;
-    position: relative;
     @include apercu;
     @include Text(12.5px, 14px, $color-dove-gray);
+    @include transition(opacity, color);
+    z-index: 2;
+    position: relative;
     opacity: 0.5;
     margin: 0;
     padding: 16px;
     display: inline-block;
     pointer-events: none;
-    @include transition(opacity, color);
   }
 
   &__variant {
+    @include transition(background-color);
     position: absolute;
     left: 0;
     top: 0;
@@ -110,7 +119,6 @@
     border-left: 1px solid $color-botticelli;
     background-color: $color-mystic;
     outline: none;
-    @include transition(background-color);
 
     &::after,
     &::before {
@@ -198,8 +206,8 @@
       line-height: 30px;
     }
 
-    &__form {
-      margin: 0 0 45px;
+    .swym-dummy {
+      margin: 0 0 30px;
     }
 
     &__reviews {

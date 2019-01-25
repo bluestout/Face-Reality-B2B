@@ -19,7 +19,7 @@
   flex-flow: column wrap;
   width: 100%;
   min-height: 360px;
-  height: calc(100% - 30px);
+  height: calc(100% - 29px);
   text-align: center;
   margin: 0 0 30px;
   padding: 0 5px 20px;
@@ -301,22 +301,18 @@
     }
 
     &__background {
-      height: 220px;
+      height: 50%;
     }
 
     &__variants-wrap {
-      margin: 0 0 -1px;
+      margin: 0 auto -1px;
       &--last {
-        margin: 0 0 10px;
+        margin: 0 auto 10px;
       }
     }
 
     &__option-name {
       display: none;
-    }
-
-    &__authorization {
-      margin: 0 auto 10px;
     }
 
     &__form {
@@ -354,17 +350,7 @@
     &__form {
       &-submit {
         padding: 12px;
-        width: auto;
       }
-    }
-  }
-}
-
-@include media-query("v-small") {
-  .product-item {
-    &__authorization {
-      width: auto;
-      max-width: 90%;
     }
   }
 }
