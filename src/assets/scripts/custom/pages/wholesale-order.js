@@ -263,6 +263,12 @@ function loadProducts(cart) {
   });
 }
 
+function updateCartQty() {
+  $.getJSON("/cart.js", (json) => {
+    $(el.cartQty).text(json.item_count);
+  });
+}
+
 // this movealong is used first
 // when loop is done, re-iterate the cart
 function moveAlong(data) {
@@ -554,6 +560,7 @@ function automaticProducts(cart, redirect) {
       } else {
         moveAlong(redirectData);
       }
+      updateCartQty();
     })();
   })();
 }

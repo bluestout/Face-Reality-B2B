@@ -10,7 +10,14 @@ const el = {
   qCartButton: "[data-quick-cart-toggle]",
   addedContainer: "[data-item-added-container]",
   addedMessage: "[data-item-added-message]",
+  cartQty: "[data-cart-count]",
 };
+
+function updateCartQty() {
+  $.getJSON("/cart.js", (json) => {
+    $(el.cartQty).text(json.item_count);
+  });
+}
 
 function ajaxAddToCart(event) {
   event.preventDefault();
@@ -52,6 +59,7 @@ function redirectToCheckout(jqXHR, textStatus) {
 }
 
 function addToCartHandle(jqXHR, textStatus) {
+  updateCartQty();
   if (textStatus === "success") {
     itemAddedMessage(
       jqXHR.responseJSON.product_title,
