@@ -192,28 +192,35 @@
     width: 28px;
     height: 38px;
     float: left;
+    padding: 0;
     background-color: $color-white;
     border: none;
     appearance: none;
 
-    &[data-direction="up"] {
-      border-left: 1px solid rgba($color-bermuda-gray, 0.5);
-    }
     &[data-direction="down"] {
       border-right: 1px solid rgba($color-bermuda-gray, 0.5);
+      float: left;
+    }
+    &[data-direction="up"] {
+      border-left: 1px solid rgba($color-bermuda-gray, 0.5);
+      float: right;
     }
   }
 
   &__quantity {
     @include apercu;
     height: 38px;
-    width: calc(100% - 56px);
+    width: 100%;
+    max-width: calc(100% - 60px);
+    margin: 0 auto;
+    background-color: $color-white;
     float: left;
     text-align-last: center;
     text-align: center;
+
     &::-webkit-inner-spin-button,
     &::-webkit-outer-spin-button {
-      -webkit-appearance: none;
+      appearance: none;
       margin: 0;
     }
   }
@@ -302,13 +309,6 @@
 
     &__background {
       height: 50%;
-    }
-
-    &__variants-wrap {
-      margin: 0 auto -1px;
-      &--last {
-        margin: 0 auto 10px;
-      }
     }
 
     &__option-name {

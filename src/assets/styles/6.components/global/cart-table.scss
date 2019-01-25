@@ -100,6 +100,7 @@
     @include Text(20px, 40px, $color-blumine);
     width: 28px;
     height: 40px;
+    padding: 0;
     float: left;
     background: none;
     border: none;
@@ -118,7 +119,7 @@
   &__quantity-input {
     @include apercu;
     height: 40px;
-    width: auto;
+    width: 100%;
     max-width: calc(100% - 60px);
     margin: 0 auto;
     background-color: transparent;
@@ -279,7 +280,7 @@
 
     &__quantity-input {
       height: 35px;
-      width: calc(100% - 80px);
+      width: calc(100% - 82px);
     }
 
     &__update-wrap {

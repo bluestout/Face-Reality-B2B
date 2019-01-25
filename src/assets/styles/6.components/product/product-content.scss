@@ -149,6 +149,7 @@
     @include Text(20px, 40px, $color-blumine);
     width: 28px;
     height: 40px;
+    padding: 0;
     float: left;
     background: none;
     border: none;
@@ -156,22 +157,27 @@
 
     &[data-direction="up"] {
       border-left: 1px solid rgba($color-bermuda-gray, 0.5);
+      float: right;
     }
+
     &[data-direction="down"] {
       border-right: 1px solid rgba($color-bermuda-gray, 0.5);
+      float: left;
     }
   }
 
   &__quantity {
     @include apercu;
     height: 40px;
-    width: calc(100% - 56px);
+    width: 100%;
+    max-width: calc(100% - 60px);
+    margin: 0 auto;
     float: left;
     text-align-last: center;
     text-align: center;
     &::-webkit-inner-spin-button,
     &::-webkit-outer-spin-button {
-      -webkit-appearance: none;
+      appearance: none;
       margin: 0;
     }
   }
@@ -200,6 +206,14 @@
 
   @include media-query("medium-down") {
     margin: 0 auto 60px;
+
+    &__input-wrap {
+      width: 50%;
+    }
+
+    &__submit {
+      width: 50%;
+    }
 
     &__title {
       font-size: 26px;
@@ -252,7 +266,7 @@
 
     &__quantity {
       height: 45px;
-      width: calc(100% - 100px);
+      width: calc(100% - 102px);
     }
   }
 }

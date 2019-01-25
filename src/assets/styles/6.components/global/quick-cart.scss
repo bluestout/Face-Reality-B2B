@@ -204,10 +204,10 @@
   }
 
   &__qty {
+    @include Text(16px, 20px, $color-mercury);
     display: inline-block;
     width: 50px;
     vertical-align: middle;
-    @include Text(16px, 20px, $color-mercury);
     font-weight: 400;
     text-align-last: center;
     text-align: center;
