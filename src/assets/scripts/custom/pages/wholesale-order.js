@@ -57,209 +57,214 @@ function getFormattedSrc(src, size) {
   } else if (iSrc.indexOf(".jpeg") > -1) {
     iSrc = `${iSrc.substring(0, iSrc.length - 5)}_${size}.jpeg`;
   } else if (iSrc.indexOf(".gif") > -1) {
-    iSrc = `${iSrc.substring(0, iSrc.length - 4)}_${size}.gif`;
   }
   return iSrc;
 }
 
 // use the shopify api to load products - only way to actually get all the prodcuts and variants like we need them to
 function loadProducts(cart) {
-  // PUT /admin/products/#{product_id}/variants/#{variant_id}.json
-  $.getJSON("/admin/products.json?limit=250", (json) => {
-    const itemsInCart = [];
-    for (let i = 0; i < cart.items.length; i++) {
-      itemsInCart.push({
-        id: cart.items[i].id,
-        quantity: cart.items[i].quantity,
+  $.ajax({
+    type: "GET",
+    url: "/pages/wholesale-order-form?view=wholesale-order-products.json",
+    async: false,
+    dataType: "html",
+    success: (json) => {
+      const data = JSON.parse(json);
+      const itemsInCart = [];
+      for (let i = 0; i < cart.items.length; i++) {
+        itemsInCart.push({
+          id: cart.items[i].id,
+          quantity: cart.items[i].quantity,
+        });
+      }
+
+      const cartHasItems = itemsInCart.length > 0 ? true : false;
+      if (cartHasItems) {
+        // add in cart table header
+        $(el.inCartHeader).show();
+        // add in cart qty to table
+        // show in cart subtotal
+      }
+
+      let products = "";
+      if (!data.products || data.products <= 0) {
+        return null;
+      }
+
+      // sort object keys by product type
+      const keysSorted = Object.keys(data.products).sort((ela, elb) => {
+        if (data.products[ela].type < data.products[elb].type) {
+          return -1;
+        }
+        if (data.products[ela].type > data.products[elb].type) {
+          return 1;
+        }
+        return 0;
       });
-    }
 
-    const cartHasItems = itemsInCart.length > 0 ? true : false;
-    if (cartHasItems) {
-      // add in cart table header
-      $(el.inCartHeader).show();
-      // add in cart qty to table
-      // show in cart subtotal
-    }
+      let currentType = "";
+      const currentTypesCount = {};
 
-    let products = "";
-    if (!json.products || json.products <= 0) {
-      return null;
-    }
+      for (let i = 0; i < data.products.length; i++) {
+        // use the sorted keys to determine in what order to show products
+        const product = data.products[keysSorted[i]];
 
-    // sort object keys by product type
-    const keysSorted = Object.keys(json.products).sort((ela, elb) => {
-      if (json.products[ela].product_type < json.products[elb].product_type) {
-        return -1;
-      }
-      if (json.products[ela].product_type > json.products[elb].product_type) {
-        return 1;
-      }
-      return 0;
-    });
+        // hide hidden products (has hidden-product tag)
+        if (!product.tags.includes("hidden-product")) {
+          const pTitle = product.title;
+          const pType = product.type;
+          const pTypeClean = pType.replace(" ", "-");
 
-    let currentType = "";
-    const currentTypesCount = {};
+          // declare new type, if it does not exist yet
+          if (!currentTypesCount[pTypeClean]) {
+            currentTypesCount[pTypeClean] = 0;
+          }
 
-    for (let i = 0; i < json.products.length; i++) {
-      // use the sorted keys to determine in what order to show products
-      const product = json.products[keysSorted[i]];
+          // add to the product counter
+          currentTypesCount[pTypeClean] += 1;
+          if (product.variants.length > 1) {
+            currentTypesCount[pTypeClean] += product.variants.length - 1;
+          }
 
-      // hide hidden products (has hidden-product tag)
-      if (!product.tags.includes("hidden-product")) {
-        const pTitle = product.title;
-        const pType = product.product_type;
-        const pTypeClean = pType.replace(" ", "-");
+          // add a header at the top of new product types
+          if (currentType !== pType) {
+            currentType = pType;
+            const colspan = cartHasItems ? 5 : 4;
+            products += `<tr class="cart-table__row" data-wholesale-row="${pTypeClean}">
+              <td class="cart-table__cell" colspan="1"></td>
+              <td class="cart-table__cell cart-table__cell--type" colspan="${colspan}">
+                <h3 class="cart-table__type-header">${currentType}</h3>
+                <span class="cart-table__type-count" data-type="${pTypeClean}">0</span>
+                <span class="cart-table__type-count">products</span>
+              </td>
+            </tr>`;
+          }
 
-        // declare new type, if it does not exist yet
-        if (!currentTypesCount[pTypeClean]) {
-          currentTypesCount[pTypeClean] = 0;
-        }
+          let image = "";
+          if (product.images && product.images[0]) {
+            image = getFormattedSrc(product.images[0], "90x90");
+            image = `<img src=${image} alt=${pTitle}/>`;
+          }
 
-        // add to the product counter
-        currentTypesCount[pTypeClean] += 1;
-        if (product.variants.length > 1) {
-          currentTypesCount[pTypeClean] += product.variants.length - 1;
-        }
+          for (let j = 0; j < product.variants.length; j++) {
+            const variant = product.variants[j];
+            let price = 0;
+            const comparePrice = variant.compare_at_price;
+            const currentPrice = variant.price;
+            const option =
+              variant.title === "Default Title" ? "" : variant.title;
 
-        // add a header at the top of new product types
-        if (currentType !== pType) {
-          currentType = pType;
-          const colspan = cartHasItems ? 5 : 4;
-          products += `<tr class="cart-table__row" data-wholesale-row="${pTypeClean}">
-            <td class="cart-table__cell" colspan="1"></td>
-            <td class="cart-table__cell cart-table__cell--type" colspan="${colspan}">
-              <h3 class="cart-table__type-header">${currentType}</h3>
-              <span class="cart-table__type-count" data-type="${pTypeClean}">0</span>
-              <span class="cart-table__type-count">products</span>
-            </td>
-          </tr>`;
-        }
-
-        let image = "";
-        if (product.image) {
-          image = getFormattedSrc(product.image.src, "90x90");
-          image = `<img src=${image} alt=${pTitle}/>`;
-        }
-
-        for (let j = 0; j < product.variants.length; j++) {
-          const variant = product.variants[j];
-          let price = 0;
-          const comparePrice = variant.compare_at_price;
-          const currentPrice = variant.price;
-          const option = variant.title === "Default Title" ? "" : variant.title;
-          const inventory = variant.inventory_quantity;
-
-          let quantityInCart = 0;
-          let inCart = "";
-          for (let k = 0; k < itemsInCart.length; k++) {
-            if (itemsInCart[k].id === variant.id) {
-              quantityInCart = itemsInCart[k].quantity;
+            let quantityInCart = 0;
+            let inCart = "";
+            for (let k = 0; k < itemsInCart.length; k++) {
+              if (itemsInCart[k].id === variant.id) {
+                quantityInCart = itemsInCart[k].quantity;
+              }
             }
+            if (cartHasItems) {
+              inCart = `<td class='cart-table__cell text-center'>
+                <div class='cart-table__price' data-wholesale-in-cart-qty>
+                  ${quantityInCart}
+                </div>
+              </td>`;
+            }
+
+            if (comparePrice) {
+              price = `<span data-wholesale-price="${currentPrice}">${formatMoney(
+                currentPrice,
+                theme.moneyFormat,
+              )}</span>
+              <span><s data-wholesale-price-compare="${comparePrice}">${formatMoney(
+                comparePrice,
+                theme.moneyFormat,
+              )}</s></span>`;
+            } else {
+              price = `<span data-wholesale-price="${currentPrice}">${formatMoney(
+                currentPrice,
+                theme.moneyFormat,
+              )}<span>`;
+            }
+
+            let qtyString = `<div class="cart-table__note">Out of stock</div>
+            <input type="hidden" name="inventory" value="0"/>
+            <input type="hidden" name="quantity" value="0"/>`;
+            if (variant.available) {
+              qtyString = `
+                <div class='cart-table__quantity'>
+                  <button type='button' class='cart-table__quantity-button' data-qty-change='[product-qty-${i}-${j}]' data-direction='down'>-</button>
+                  <input
+                    class='cart-table__quantity-input'
+                    type='number'
+                    name='quantity'
+                    value=0
+                    min='0'
+                    data-wholesale-quantity
+                    product-qty-${i}-${j}/>
+                  <button type='button' class='cart-table__quantity-button' data-qty-change='[product-qty-${i}-${j}]' data-direction='up'>+</button>
+                </div>
+              `;
+            }
+
+            products += `<tr class=' cart-table__row' data-wholesale-row="${pTypeClean}">
+              <td class='cart-table__cell cart-table__cell--image text-left'>${image}</td>
+
+              <td class='cart-table__cell cart-table__cell--title text-left'>
+                <h3 class='cart-table__product-title'>
+                  <a class='cart-table__product-link' nohref>${pTitle}</a>
+                </h3>
+                <div class='cart-table__product-id'>Product ID. ${
+                  variant.sku
+                }</div>
+              </td>
+
+              <td class='cart-table__cell text-center'>
+                <div class='cart-table__option'>
+                  ${option}
+                </div>
+              </td>
+
+              <td class='cart-table__cell text-center'>
+                <div class='cart-table__price'>
+                  ${price}
+                </div>
+              </td>
+
+              <td class='cart-table__cell cart-table__cell--last'>
+                <form action="/" method="post" novalidate data-wholesale-single-product>
+                  <input type="hidden" name="id" value="${variant.id}"/>
+                  ${qtyString}
+                </form>
+              </td>
+              ${inCart}
+            </tr>`;
           }
-          if (cartHasItems) {
-            inCart = `<td class='cart-table__cell text-center'>
-              <div class='cart-table__price' data-wholesale-in-cart-qty>
-                ${quantityInCart}
-              </div>
-            </td>`;
-          }
-
-          if (comparePrice) {
-            price = `<span data-wholesale-price="${currentPrice}">${formatMoney(
-              currentPrice,
-              theme.moneyFormat,
-            )}</span>
-            <span><s data-wholesale-price-compare="${comparePrice}">${formatMoney(
-              comparePrice,
-              theme.moneyFormat,
-            )}</s></span>`;
-          } else {
-            price = `<span data-wholesale-price="${currentPrice}">${formatMoney(
-              currentPrice,
-              theme.moneyFormat,
-            )}<span>`;
-          }
-
-          let qtyString = `<div class="cart-table__note">Out of stock</div>
-          <input type="hidden" name="inventory" value="0"/>
-          <input type="hidden" name="quantity" value="0"/>`;
-          if (inventory > 0) {
-            qtyString = `
-              <div class='cart-table__quantity'>
-                <input type="hidden" name="inventory" value="${inventory}"/>
-                <button type='button' class='cart-table__quantity-button' data-qty-change='[product-qty-${i}-${j}]' data-direction='down'>-</button>
-                <input
-                  class='cart-table__quantity-input'
-                  type='number'
-                  name='quantity'
-                  value=0
-                  min='0'
-                  max='${inventory}'
-                  data-wholesale-quantity
-                  product-qty-${i}-${j}/>
-                <button type='button' class='cart-table__quantity-button' data-qty-change='[product-qty-${i}-${j}]' data-direction='up'>+</button>
-              </div>
-            `;
-          }
-
-          products += `<tr class=' cart-table__row' data-wholesale-row="${pTypeClean}">
-            <td class='cart-table__cell cart-table__cell--image text-left'>${image}</td>
-
-            <td class='cart-table__cell cart-table__cell--title text-left'>
-              <h3 class='cart-table__product-title'>
-                <a class='cart-table__product-link' nohref>${pTitle}</a>
-              </h3>
-              <div class='cart-table__product-id'>Product ID. ${
-                variant.sku
-              }</div>
-            </td>
-
-            <td class='cart-table__cell text-center'>
-              <div class='cart-table__option'>
-                ${option}
-              </div>
-            </td>
-
-            <td class='cart-table__cell text-center'>
-              <div class='cart-table__price'>
-                ${price}
-              </div>
-            </td>
-
-            <td class='cart-table__cell cart-table__cell--last'>
-              <form action="/" method="post" novalidate data-wholesale-single-product>
-                <input type="hidden" name="id" value="${variant.id}"/>
-                ${qtyString}
-              </form>
-            </td>
-            ${inCart}
-          </tr>`;
         }
       }
-    }
-    // now that we have all the product counts, replace the values in the products string
-    let productCountAll = 0;
-    let sortOptions = "";
-    if (currentTypesCount && typeof currentTypesCount === "object") {
-      for (let i = 0; i < Object.keys(currentTypesCount).length; i++) {
-        const value = currentTypesCount[Object.keys(currentTypesCount)[i]];
-        const key = Object.keys(currentTypesCount)[i];
-        let niceKey = "";
-        niceKey = key && typeof key === "string" ? key.replace("-", " ") : null;
-        products = products.replace(
-          `type="${key}">0`,
-          `type="${key}">${value}`,
-        );
-        productCountAll += value;
-        sortOptions += `<option value="${key}">${niceKey}</option>`;
+      // now that we have all the product counts, replace the values in the products string
+      let productCountAll = 0;
+      let sortOptions = "";
+      if (currentTypesCount && typeof currentTypesCount === "object") {
+        for (let i = 0; i < Object.keys(currentTypesCount).length; i++) {
+          const value = currentTypesCount[Object.keys(currentTypesCount)[i]];
+          const key = Object.keys(currentTypesCount)[i];
+          let niceKey = "";
+          niceKey =
+            key && typeof key === "string" ? key.replace("-", " ") : null;
+          products = products.replace(
+            `type="${key}">0`,
+            `type="${key}">${value}`,
+          );
+          productCountAll += value;
+          sortOptions += `<option value="${key}">${niceKey}</option>`;
+        }
       }
-    }
 
-    $(el.sort).append(sortOptions);
-    $(el.count).text(`${productCountAll} products total`);
-    $(el.table).html(products);
-    return calculateTotals();
+      $(el.sort).append(sortOptions);
+      $(el.count).text(`${productCountAll} products total`);
+      $(el.table).html(products);
+      return calculateTotals();
+    },
+    cache: false,
   });
 }
 
@@ -365,17 +370,12 @@ function wholesaleSubmit(event) {
       const $this = $(this);
       const id = $("[name='id']", $this).val();
       const qty = $("[name='quantity']", $this).val();
-      const max = $("[name='inventory']", $this).val();
       if (qty > 0) {
-        if (qty > max) {
-          pushToQueue(id, max, {}, () => {
-            moveAlong("re-loop");
-          });
-        } else {
-          pushToQueue(id, qty, {}, () => {
-            moveAlong("re-loop");
-          });
-        }
+        pushToQueue(id, qty, {}, () => {
+          moveAlong("re-loop");
+        });
+      } else {
+        moveAlong("redirect");
       }
     });
   } else {
@@ -489,6 +489,8 @@ function ajaxChangeCartQty(id, qty, isLine, redirect) {
   });
 }
 
+// https://facerealityskincare-b2b.myshopify.com/pages/wholesale-order-form?view=wholesale-order.json
+
 // this function checks if products need to added or removed from the cart automatically,
 // based on the products already in the cart
 function automaticProducts(cart, redirect) {
@@ -513,10 +515,16 @@ function automaticProducts(cart, redirect) {
     for (let j = 0; j < cart.items.length; j++) {
       await new Promise((resolve) => {
         resolve(
-          $.getJSON(
-            `/admin/variants/${cart.items[j].variant_id}/metafields.json`,
-            (json) => {
-              const varIdToAdd = addToCartByMetafield(json);
+          $.ajax({
+            type: "GET",
+            url: "/pages/wholesale-order-form?view=wholesale-order-meta.json",
+            async: false,
+            dataType: "html",
+            success: (data) => {
+              const varIdToAdd = addToCartByMetafield(
+                JSON.parse(data),
+                cart.items[j],
+              );
               if (varIdToAdd) {
                 cartProducts.push({
                   id: varIdToAdd,
@@ -524,7 +532,8 @@ function automaticProducts(cart, redirect) {
                 });
               }
             },
-          ),
+            cache: false,
+          }),
         );
       });
     }
@@ -537,6 +546,7 @@ function automaticProducts(cart, redirect) {
           resolve();
         }
       });
+
       for (let i = 0; i < cartProducts.length; i++) {
         const productAddTag = cartProducts[i];
         if (productAddTag.id === addableIds.pump) {
@@ -565,17 +575,20 @@ function automaticProducts(cart, redirect) {
   })();
 }
 
-function addToCartByMetafield(json) {
-  if (json && json.metafields.length > 0) {
-    for (let i = 0; i < json.metafields.length; i++) {
-      const mField = json.metafields[i];
-      if (
-        mField.key === "equivalent" &&
-        mField.namespace === "add" &&
-        mField.value
-      ) {
-        if (/^[0-9]{14,}$/.test(mField.value)) {
-          return parseInt(mField.value, 10);
+function addToCartByMetafield(json, cartItem) {
+  if (json && json.products.length > 0 && cartItem) {
+    for (let i = 0; i < json.products.length; i++) {
+      const product = json.products[i].variants;
+      for (let j = 0; j < product.length; j++) {
+        const variant = product[j];
+        if (
+          variant.add &&
+          variant.add.length > 0 &&
+          variant.id === cartItem.variant_id
+        ) {
+          if (/^[0-9]{14,}$/.test(variant.add)) {
+            return parseInt(variant.add, 10);
+          }
         }
       }
     }
