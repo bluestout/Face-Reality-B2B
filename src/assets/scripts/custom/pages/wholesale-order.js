@@ -24,6 +24,8 @@ const el = {
   inCartHeader: "[data-wholesale-in-cart-qty-header]",
   inCartQty: "[data-wholesale-in-cart-qty]",
   orderTotal: "[data-wholesale-order-total]",
+  cartQty: "[data-cart-count]",
+  cartQtyPos: "[data-cart-count-position]",
 };
 
 // all the product variant ids used
@@ -36,8 +38,8 @@ const addableIds = {
 
 // any constant values used
 const values = {
-  minOrder: 125,
-  freeShipping: 600,
+  minOrder: 12500,
+  freeShipping: 60000,
   eligibleText: "You are eligible for free shipping",
   notEligibleLeft: "You are ",
   notEligibleRight: " away from free shipping",
@@ -270,7 +272,17 @@ function loadProducts(cart) {
 
 function updateCartQty() {
   $.getJSON("/cart.js", (json) => {
-    $(el.cartQty).text(json.item_count);
+    if (json.item_count > 0) {
+      if ($(el.cartQty).length > 0) {
+        $(el.cartQty).text(json.item_count);
+      } else {
+        $(el.cartQtyPos).append(
+          `<span class="utility-nav__count" data-cart-count>${
+            json.item_count
+          }</span>`,
+        );
+      }
+    }
   });
 }
 
@@ -381,7 +393,7 @@ function wholesaleSubmit(event) {
   } else {
     showMessage(
       `Minimum order value is ${formatMoney(
-        values.minOrder * 100,
+        values.minOrder,
         theme.moneyFormat,
       )}`,
     );
@@ -441,15 +453,15 @@ function calculateTotals() {
   const savings = compare - totals;
 
   if (cartTotals > 0) {
-    $(el.inCartTotal).text(formatMoney(cartTotals * 100), theme.moneyFormat);
+    $(el.inCartTotal).text(formatMoney(cartTotals, theme.moneyFormat));
     $(el.inCartTotalBox).show();
   }
 
-  $(el.orderTotal).text(formatMoney(orderTotals * 100, theme.moneyFormat));
+  $(el.orderTotal).text(formatMoney(orderTotals, theme.moneyFormat));
 
-  $(el.savings).text(formatMoney(savings * 100, theme.moneyFormat));
+  $(el.savings).text(formatMoney(savings, theme.moneyFormat));
   $(el.total)
-    .text(formatMoney(totals * 100, theme.moneyFormat))
+    .text(formatMoney(totals, theme.moneyFormat))
     .data("wholesale-total", totals);
 
   if (totals >= values.freeShipping) {
@@ -457,7 +469,7 @@ function calculateTotals() {
   } else {
     $(el.shippingCheck).text(
       values.notEligibleLeft +
-        formatMoney((values.freeShipping - totals) * 100, theme.moneyFormat) +
+        formatMoney(values.freeShipping - totals, theme.moneyFormat) +
         values.notEligibleRight,
     );
   }

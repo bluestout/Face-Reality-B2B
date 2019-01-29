@@ -192,7 +192,7 @@
             "type": "mention",
             "settings": {
               "image": "shopify://shop_images/logo-marin-independent.png",
-              "url": "#"
+              "url": ""
             }
           },
           "1539180274197": {
@@ -213,7 +213,7 @@
             "type": "mention",
             "settings": {
               "image": "shopify://shop_images/logo-dermascope.png",
-              "url": "#"
+              "url": ""
             }
           }
         },
