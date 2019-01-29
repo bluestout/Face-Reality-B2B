@@ -42,9 +42,9 @@
     padding: 30px;
 
     &-text {
-      position: relative;
       @include apercu;
-      @include Text(14px, 22px, $color-black);
+      @include paragraph-m-s;
+      position: relative;
       margin: 0 0 35px;
 
       &::before {
@@ -72,13 +72,13 @@
 
     &-name {
       @include apercu;
-      @include Text(13.5px, 18px, $color-black);
+      @include paragraph-m-s;
       margin: 0 0 5px 0 0;
     }
 
     &-date {
       @include apercu;
-      @include Text(12.5px, 16px, $color-black);
+      @include paragraph-xs;
       opacity: 0.5;
       margin: 0 0 15px;
     }
@@ -117,6 +117,7 @@
   }
 
   .slick-arrow {
+    @include transition(color);
     position: absolute;
     z-index: 1;
     bottom: 50%;
@@ -126,7 +127,6 @@
     font-size: 20px;
     color: rgba($color-blumine, 0.3);
     outline: none;
-    @include transition(color);
 
     &:hover,
     &:active {
@@ -163,13 +163,13 @@
       padding: 10px 5px;
 
       &::after {
+        @include transition(opacity, background-color);
         content: "";
         display: block;
         background-color: $color-blumine;
         width: 15px;
         height: 3px;
         opacity: 0.25;
-        @include transition(opacity, background-color);
       }
 
       &:hover,

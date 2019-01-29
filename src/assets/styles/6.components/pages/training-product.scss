@@ -16,20 +16,19 @@
   }
 
   &__title {
-    @include apercu(700);
-    @include Text(35.5px, 40px, $color-black);
+    @include title-l;
     margin: 0 auto 15px;
     max-width: 500px;
   }
 
   &__text {
     @include apercu;
-    @include Text(14px, 21px, $color-black);
+    @include paragraph-s;
     margin: 0 auto 40px;
     max-width: 500px;
     p {
       @include apercu;
-      @include Text(14px, 21px, $color-black);
+      @include paragraph-s;
     }
   }
 
@@ -48,7 +47,7 @@
 
   &__disclaimer {
     @include apercu;
-    @include Text(13px, 18px, rgba($color-black, 0.5));
+    @include paragraph-xs(rgba($color-black, 0.5));
     margin: 0 auto;
     max-width: 400px;
   }
@@ -73,14 +72,12 @@
     }
 
     &__alias {
-      font-size: 13.5px;
+      font-size: 14px;
       line-height: 18px;
       margin: 0 auto 35px;
     }
 
     &__text {
-      font-size: 13.5px;
-      line-height: 21px;
       margin: 0 auto 30px;
       max-width: 400px;
     }

@@ -1,13 +1,13 @@
 .how-different {
   &__title {
-    @include Text(13.5px, 21px, $color-blumine);
+    @include paragraph-m-s($color-blumine);
     text-align: center;
     font-weight: 400;
     margin: 0 0 30px;
   }
 
   &__subtitle {
-    @include title-main($color-black);
+    @include title-xl;
     text-align: center;
     margin: 0 0 85px;
   }

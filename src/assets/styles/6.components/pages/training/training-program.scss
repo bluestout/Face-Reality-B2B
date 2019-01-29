@@ -1,21 +1,21 @@
 .training-program {
   margin: 0 0 150px;
   &__suptitle {
-    @include title-small;
+    @include title-xxs;
     text-align: center;
     max-width: 700px;
     margin: 0 auto 15px;
   }
 
   &__title {
-    @include title-main($color-black);
+    @include title-xl($color-black);
     text-align: center;
     margin: 0 auto 40px;
   }
 
   &__introduction {
     @include apercu;
-    @include Text(18px, 26px, $color-black);
+    @include paragraph-l;
     text-align: center;
     max-width: 700px;
     margin: 0 auto 30px;
@@ -77,8 +77,7 @@
   }
 
   &__block-title {
-    @include apercu(700);
-    @include Text(26px, 34px, $color-blumine);
+    @include title-s($color-blumine);
     margin: 0 auto 30px;
     max-width: 360px;
     text-align: center;
@@ -93,8 +92,7 @@
 
     ul li {
       @include apercu;
-      @include Text(15px, 21px, $color-black);
-
+      @include paragraph-m;
       text-indent: -15.5px;
 
       &:not(:last-of-type) {
@@ -123,19 +121,19 @@
 
   &__bottom-title {
     @include apercu(700);
-    @include Text(18px, 24px, $color-black);
+    @include paragraph-l;
     text-align: center;
     margin: 0 auto 30px;
   }
 
   &__bottom-content {
     @include apercu;
-    @include Text(15px, 21px, $color-black);
+    @include paragraph-m;
 
     p,
     a {
       @include apercu;
-      @include Text(15px, 21px, $color-black);
+      @include paragraph-m;
     }
 
     ul {
@@ -146,7 +144,7 @@
 
     ul li {
       @include apercu;
-      @include Text(15px, 21px, $color-black);
+      @include paragraph-m;
       text-indent: -15.5px;
 
       &:not(:last-of-type) {
@@ -169,14 +167,14 @@
 
   &__bottom-note {
     @include apercu;
-    @include Text(13.5px, 21px, rgba($color-black, 0.5));
+    @include paragraph-m-s(rgba($color-black, 0.5));
     text-align: center;
     margin: 30px 0 0;
   }
 
   &__bottom-text {
     @include apercu;
-    @include Text(15px, 21px, rgba($color-black, 0.7));
+    @include paragraph-m(rgba($color-black, 0.7));
     text-align: center;
     margin: 0 auto 30px;
     max-width: 650px;
@@ -206,8 +204,6 @@
     }
 
     &__introduction {
-      font-size: 16px;
-      line-height: 22px;
       margin: 0 auto 20px;
     }
 
@@ -216,14 +212,12 @@
     }
 
     &__block-title {
-      font-size: 20px;
-      line-height: 26px;
       margin: 0 auto 20px;
     }
 
     &__block-content {
       ul li {
-        font-size: 13.5px;
+        font-size: 14px;
       }
 
       ul li::before {
@@ -236,17 +230,15 @@
     }
 
     &__bottom-title {
-      font-size: 16px;
-      line-height: 22px;
       margin: 0 auto 20px;
     }
 
     &__bottom-content {
-      font-size: 13.5px;
+      font-size: 14px;
 
       p,
       a {
-        font-size: 13.5px;
+        font-size: 14px;
       }
 
       ul {
@@ -256,7 +248,7 @@
       }
 
       ul li {
-        font-size: 13.5px;
+        font-size: 14px;
         text-indent: -15.5px;
 
         &:not(:last-of-type) {
@@ -269,7 +261,7 @@
       }
 
       ul li::before {
-        font-size: 13.5px;
+        font-size: 14px;
       }
     }
 
@@ -278,7 +270,7 @@
     }
 
     &__bottom-text {
-      font-size: 13.5px;
+      font-size: 14px;
       margin: 0 auto 20px;
     }
 
@@ -335,11 +327,6 @@
   }
 
   @include media-query("v-small") {
-    &__introduction {
-      font-size: 13.5px;
-      line-height: 21px;
-    }
-
     &__block {
       padding: 20px;
 

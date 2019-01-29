@@ -3,7 +3,7 @@
 }
 
 .spr-badge-caption {
-  @include Text(11px, 18px, $color-blumine);
+  @include paragraph-xxs($color-blumine);
   margin: 0 0 0 3px;
 }
 
@@ -20,7 +20,7 @@
 }
 
 .spr-header-title {
-  @include title-main($color-black);
+  @include title-xl($color-black);
   text-align: center;
 }
 
@@ -47,7 +47,7 @@
 }
 
 .spr-review-content-body {
-  @include Text(15px, 22px, $color-black);
+  @include paragraph-m-s;
 }
 
 .spr-review-reply {
@@ -79,9 +79,9 @@
   vertical-align: middle;
 
   a {
+    @include button;
     font-size: 15px;
     line-height: 20px;
-    @include button;
     display: inline-block;
     text-decoration: none;
     vertical-align: middle;
@@ -119,11 +119,6 @@
     float: none;
     width: 100%;
     padding: 15px;
-  }
-
-  .spr-review-content-body {
-    font-size: 13.5px;
-    line-height: 18px;
   }
 
   .spr-review-reply {

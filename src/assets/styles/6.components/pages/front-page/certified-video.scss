@@ -4,7 +4,7 @@
 
   &__title {
     @include apercu;
-    @include Text(18px, 26px, $color-black);
+    @include paragraph-l;
     text-align: center;
     margin: 0 0 40px;
   }
@@ -16,7 +16,7 @@
 
   &__text {
     @include apercu;
-    @include Text(13.5px, 21px, $color-black);
+    @include paragraph-m;
     text-align: center;
     opacity: 0.5;
     margin: 0 auto 40px;
@@ -58,8 +58,6 @@
     padding: 30px 0 0;
 
     &__title {
-      font-size: 16px;
-      line-height: 22px;
       margin: 0 auto 20px;
       max-width: 300px;
     }

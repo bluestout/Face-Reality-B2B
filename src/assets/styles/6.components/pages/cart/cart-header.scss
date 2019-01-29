@@ -2,8 +2,7 @@
   margin: 0 0 35px;
 
   &__title {
-    @include apercu(700);
-    @include Text(25px, 30px, $color-black);
+    @include title-s;
     text-align: center;
   }
 
@@ -12,10 +11,10 @@
   }
 
   &__return-link {
+    @include transition(color);
     text-decoration: none;
     color: $color-blumine;
     display: inline-block;
-    @include transition(color);
     &:hover,
     &:active {
       color: $color-accent;
@@ -34,11 +33,6 @@
 
   @include media-query("v-small") {
     margin: 0 0 20px;
-
-    &__title {
-      font-size: 23px;
-      line-height: 28px;
-    }
 
     &__return-link {
       display: flex;

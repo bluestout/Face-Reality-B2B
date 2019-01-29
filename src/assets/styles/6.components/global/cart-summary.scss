@@ -6,7 +6,7 @@
 
   &__title {
     @include apercu(700);
-    @include Text(18px, 22px, $color-black);
+    @include paragraph-l;
     margin: 0 0 60px;
   }
 
@@ -19,27 +19,27 @@
 
   &__totals-text {
     @include apercu;
-    @include Text(13.5px, 24px, $color-black);
+    @include paragraph-m-s;
     flex: 1;
     text-align: left;
   }
 
   &__totals-price {
     @include apercu;
-    @include Text(18px, 24px, $color-black);
+    @include paragraph-l;
     flex: 1;
     text-align: right;
   }
 
   &__note {
     @include apercu;
-    @include Text(14px, 20px, $color-black);
+    @include paragraph-s;
     margin: 0 0 30px;
   }
 
   &__label {
     @include apercu;
-    @include Text(14px, 20px, $color-black);
+    @include paragraph-s;
     display: inline-block;
     margin: 0 0 5px;
   }

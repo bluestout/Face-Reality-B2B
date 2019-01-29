@@ -3,7 +3,7 @@
   margin: 0 0 30px;
 
   &__title {
-    @include title-main($color-white);
+    @include title-xl($color-white);
     padding: 30px;
     text-align: center;
   }

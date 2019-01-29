@@ -16,7 +16,7 @@
 
   &__link {
     @include apercu(700);
-    @include Text(13.5px, 16px, $color-black);
+    @include paragraph-s;
     position: relative;
     padding: 5px;
     display: inline-block;

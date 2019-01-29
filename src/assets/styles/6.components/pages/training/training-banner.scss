@@ -31,16 +31,16 @@
   }
 
   &__title {
-    position: relative;
     @include apercu(700);
     @include Text(40px, 49px, $color-white);
+    position: relative;
     margin: 0 0 10px;
   }
 
   &__subtitle {
-    position: relative;
     @include apercu;
-    @include Text(13.5px, 21px, $color-white);
+    @include paragraph-m-s($color-white);
+    position: relative;
     margin: 0 auto;
     max-width: 400px;
   }

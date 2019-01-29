@@ -20,21 +20,21 @@
   }
 
   &__suptitle {
-    @include title-small;
+    @include title-xxs;
     margin: 0 0 10px;
     text-align: center;
   }
 
   &__title {
     @include apercu(700);
-    @include Text(32px, 38px, $color-black);
+    @include title-m;
     text-align: center;
     margin: 0 0 40px;
   }
 
   &__text {
     @include apercu;
-    @include Text(20.5px, 27px, $color-black);
+    @include title-s-s;
     text-align: center;
     margin: 0 auto 90px;
     max-width: 700px;
@@ -65,9 +65,9 @@
     }
 
     &-text {
-      position: relative;
       @include apercu;
-      @include Text(14px, 22px, $color-black);
+      @include default-page-padding;
+      position: relative;
       margin: 0;
 
       &::before {
@@ -95,13 +95,13 @@
 
     &-name {
       @include apercu;
-      @include Text(13.5px, 18px, $color-black);
+      @include paragraph-m;
       margin: 0 0 5px 0 0;
     }
 
     &-date {
       @include apercu;
-      @include Text(12.5px, 16px, $color-black);
+      @include paragraph-m;
       opacity: 0.5;
       margin: 0 0 15px;
     }

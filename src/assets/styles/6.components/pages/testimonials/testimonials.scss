@@ -4,14 +4,14 @@
   @import "./testimonials-content";
 
   &__title {
-    @include Text(13.5px, 21px, $color-blumine);
+    @include paragraph-m-s($color-blumine);
     text-align: center;
     font-weight: 400;
     margin: 0 0 20px;
   }
 
   &__subtitle {
-    @include title-main($color-black);
+    @include title-xl($color-black);
     text-align: center;
     margin: 0 0 60px;
   }

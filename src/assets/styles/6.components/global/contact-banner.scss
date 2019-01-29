@@ -15,20 +15,20 @@
 
     ul li {
       @include apercu;
-      @include Text(14px, 22px, $color-white);
+      @include paragraph-s($color-white);
       margin: 0 0 10px;
     }
   }
 
   &__suptitle {
     text-align: center;
-    @include title-small;
+    @include title-xxs;
     margin: 0 0 20px;
   }
 
   &__title {
     @include apercu(700);
-    @include Text(32px, 38px, $color-white);
+    @include title-m($color-white);
     text-align: center;
     margin: 0 0 40px;
   }
@@ -40,7 +40,7 @@
 
   &__note {
     @include apercu;
-    @include Text(14px, 22px, $color-white);
+    @include paragraph-s($color-white);
     margin: 0 0 20px;
   }
 
@@ -98,7 +98,7 @@
 
   &__location {
     @include apercu;
-    @include Text(13.5px, 21px, rgba($color-white, 0.8));
+    @include paragraph-m-s(rgba($color-white, 0.8));
     position: relative;
     top: -30px;
     text-align: center;
@@ -115,7 +115,7 @@
 
   &__contact-link {
     @include apercu;
-    @include Text(16px, 20px, $color-white, 0.5px);
+    @include paragraph-m($color-white, 0.5px);
     text-decoration: none;
     display: inline-block;
     vertical-align: middle;

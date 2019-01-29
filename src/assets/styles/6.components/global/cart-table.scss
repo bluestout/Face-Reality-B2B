@@ -3,7 +3,7 @@
 
   &__responsive-header {
     @include apercu(700);
-    @include Text(18px, 22px, $color-black);
+    @include paragraph-l;
     text-align: center;
     margin: 0 auto 30px;
   }
@@ -31,7 +31,7 @@
 
     &--head {
       @include apercu;
-      @include Text(13px, 20px, rgba($color-black, 0.5));
+      @include paragraph-xs(rgba($color-black, 0.5));
       padding: 10px 20px;
     }
 
@@ -56,14 +56,14 @@
 
   &__product-link {
     @include apercu(700);
-    @include Text(18px, 22px, $color-black);
+    @include paragraph-l;
     text-decoration: none;
     display: inline-block;
   }
 
   &__product-id {
     @include apercu;
-    @include Text(12px, 16px, $color-dove-gray);
+    @include paragraph-xxs($color-dove-gray);
     text-decoration: none;
     margin: 0 20px 20px 0;
     float: left;
@@ -71,7 +71,7 @@
 
   &__remove {
     @include apercu;
-    @include Text(12px, 16px, rgba($color-black, 0.6));
+    @include paragraph-xxs(rgba($color-black, 0.6));
     text-decoration: none;
     float: left;
 
@@ -83,12 +83,12 @@
 
   &__option {
     @include apercu;
-    @include Text(12px, 16px, $color-black);
+    @include paragraph-xxs;
   }
 
   &__price {
     @include apercu;
-    @include Text(16px, 20px, $color-black);
+    @include paragraph-m;
   }
 
   &__quantity {
@@ -161,7 +161,7 @@
 
     &-link {
       @include apercu(700);
-      @include Text(16px, 22px, $color-black);
+      @include paragraph-m;
       float: left;
       width: calc(100% - 70px);
       white-space: normal;
@@ -169,7 +169,7 @@
 
     &-price {
       @include apercu;
-      @include Text(14px, 22px, $color-black);
+      @include paragraph-s;
       text-align: right;
       float: left;
       width: 70px;

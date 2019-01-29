@@ -12,13 +12,13 @@
 
     &__count {
       @include apercu;
-      @include Text(13.5px, 21px, $color-black);
+      @include paragraph-m-s;
       margin: 0 30px 0 0;
     }
 
     &__sort-text {
       @include apercu;
-      @include Text(13.5px, 21px, $color-black);
+      @include paragraph-m-s;
       opacity: 0.4;
     }
 
@@ -28,7 +28,7 @@
     }
 
     &__sort {
-      @include Text(13.5px, 21px, $color-black);
+      @include paragraph-m-s;
       padding: 0 20px 0 5px;
       background-color: transparent;
       appearance: none;
@@ -36,7 +36,7 @@
     }
 
     &__sort-caret {
-      @include Text(13.5px, 21px, $color-black);
+      @include paragraph-m-s;
       position: absolute;
       right: 5px;
       opacity: 0.5;
@@ -44,7 +44,7 @@
     }
 
     &__reset {
-      @include Text(13.5px, 21px, $color-blumine);
+      @include paragraph-m-s;
       border: 0;
       text-align: center;
       text-decoration: none;
@@ -101,7 +101,7 @@
     }
 
     &__type-count {
-      @include Text(12px, 20px, rgba($color-black, 0.4));
+      @include paragraph-xxs(rgba($color-black, 0.4));
     }
   }
   &__submit-wrap {
@@ -114,7 +114,7 @@
 
   &__shipping-check {
     @include apercu;
-    @include Text(13.5px, 18px, $color-black);
+    @include paragraph-m-s;
     position: relative;
     top: 0;
     opacity: 1;

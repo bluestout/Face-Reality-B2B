@@ -8,7 +8,7 @@
 
   &__return-link {
     @include apercu;
-    @include Text(12.5px, 14px, $color-black);
+    @include Text(13px, 14px, $color-black);
     @include transition(opacity);
     text-decoration: none;
     display: inline-block;
@@ -45,7 +45,7 @@
 
 .quiz-copyright {
   @include apercu;
-  @include Text(12px, 14px, $color-blumine);
+  @include paragraph-xxs($color-blumine);
   text-align: center;
   opacity: 0.5;
   margin: 20px 0 40px;

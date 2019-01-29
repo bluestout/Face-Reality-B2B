@@ -99,7 +99,7 @@
 
   &__title {
     @include apercu(700);
-    @include Text(13.5px, 18px);
+    @include paragraph-m-s;
     text-align: center;
     margin: 0 0 5px;
   }

@@ -64,7 +64,7 @@
   }
 
   &__tag-text {
-    @include Text(13.5px, 20px, $color-white);
+    @include paragraph-m-s($color-white);
     @include apercu;
     position: relative;
     z-index: 2;
@@ -86,7 +86,7 @@
 
   &__title {
     @include apercu(700);
-    @include Text(20px, 22px, $color-black);
+    @include title-s-s;
     @include transition(color);
     margin: 0 auto 13px;
     max-width: 190px;
@@ -94,7 +94,7 @@
 
   &__description {
     @include apercu;
-    @include Text(12.5px, 16px, $color-black, 0.5px);
+    @include paragraph-xs($color-black, 0.5px);
     @include transition(opacity);
     margin: 0 auto 14px;
     display: block;
@@ -104,7 +104,7 @@
 
   &__price {
     @include apercu(700);
-    @include Text(13.5px, 16px, $color-black);
+    @include Text(14px, 16px, $color-black);
     display: block;
     width: 100%;
     margin: 0 0 10px;
@@ -125,7 +125,7 @@
 
   &__option-name {
     @include apercu;
-    @include Text(11.5px, 16px, $color-blumine);
+    @include paragraph-xxs($color-blumine);
   }
 
   &__variants-wrap {
@@ -290,7 +290,7 @@
   }
 
   .swym-tooltip-text {
-    @include Text(13.5px, 18px, $color-black);
+    @include paragraph-m-s;
     white-space: nowrap;
   }
 }

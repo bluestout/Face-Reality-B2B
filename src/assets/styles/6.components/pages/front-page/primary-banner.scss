@@ -99,14 +99,13 @@
   }
 
   &__title {
-    @include Text(34px, 38x, $color-black);
-    @include apercu(700);
+    @include title-l;
     margin: 0 auto 15px;
     max-width: 500px;
   }
 
   &__text {
-    @include Text(15px, 22px, $color-black);
+    @include paragraph-m-s;
     @include apercu;
     margin: 0 auto 20px;
     max-width: 400px;
@@ -119,7 +118,7 @@
   }
 
   &__link-inline {
-    @include Text(12.5px, 14px, $color-blumine);
+    @include Text(13px, 14px, $color-blumine);
     text-decoration: none;
     @include transition(color);
 
@@ -171,8 +170,6 @@
     }
 
     &__text {
-      font-size: 13.5px;
-      line-height: 18px;
       margin: 0 auto 10px;
       max-width: 340px;
     }
@@ -210,8 +207,6 @@
     }
 
     &__text {
-      font-size: 13.5px;
-      line-height: 18px;
       margin: 0 auto 10px;
       max-width: 340px;
     }
@@ -233,14 +228,6 @@
 @include media-query("v-small") {
   .primary-banner {
     padding: 200px 0 40px;
-
-    &__title {
-      font-size: 18px;
-    }
-
-    &__text {
-      font-size: 12px;
-    }
 
     &__badge-wrap-rsp {
       display: block;
