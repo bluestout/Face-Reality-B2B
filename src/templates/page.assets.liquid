@@ -57,7 +57,7 @@
                           name="asset-type"
                           value="{{ tag | handleize }}"
                         />
-                        <label for="asset-{{ tag | handleize }}" class="product-filter__label">{{ tag | remove: 'type-' | replace: '-', ' ' | replace: '_', ' ' | capitalize }}</label>
+                        <label for="asset-{{ tag | handleize }}" class="product-filter__label">{{ tag | remove: 'type-' | replace: '-', ' ' | replace: '_', ' ' }}</label>
                       </li>
                     {% endif %}
                   {% endfor %}
