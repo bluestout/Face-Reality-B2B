@@ -37,6 +37,17 @@
     }
   }
 
+  .errors {
+    li {
+      @include paragraph-m-s;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+  }
+
   &__submit {
     @include apercu(700);
     @include transition(color);

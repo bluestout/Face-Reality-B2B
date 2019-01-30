@@ -17,3 +17,4 @@ import "./search";
 import "./sticky-sidebar";
 import "./omega-col-override";
 import "./data-quiz-redirect";
+import "./newsletter";
