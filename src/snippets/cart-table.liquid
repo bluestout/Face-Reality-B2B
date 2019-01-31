@@ -1,6 +1,6 @@
 <div class="cart-table__wrap">
   <div class="cart-table__responsive-header d-xl-none">Cart content</div>
-  {% if cart.item_count > 4 %}
+  {% if cart.items.size > 6 %}
     <div class="cart-table__update-wrap">
       <input class="cart-table__update" data-cart-update-button type="submit" name="update" value="{{ 'cart.general.update' | t }}">
     </div>
@@ -30,7 +30,6 @@
             {% assign hidden = false %}
           {% endif %}
 
-          {% unless hidden %}
             {% comment %} hide only certain aspects of this product {% endcomment %}
             {% if item.product.tags contains "obscured-product" %}
               {% assign obscured = true %}
@@ -38,7 +37,8 @@
               {% assign obscured = false %}
             {% endif %}
 
-            <tr class="responsive-table-row cart-table__row">
+  
+            <tr class="responsive-table-row cart-table__row {% if hidden %}cart-table__row--invisible{% endif %}">
 
               <td class="cart-table__cell cart-table__cell--image d-none d-md-table-cell text-left {% unless forloop.last %}cart-table__cell--border{% endunless %}">
                 {% if item.image != blank %}
@@ -134,7 +134,12 @@
                     {{ item.quantity }}
                   </div>
                 {% elsif obscured %}
-                  {% comment %} show nothing, except if product. no not operator  {% endcomment %}
+                  <input
+                    type="hidden"
+                    name="updates[]"
+                    id="updates_{{ item.key }}"
+                    value="{{ item.quantity }}"
+                    />
                 {% else %}
                   <div class="cart-table__quantity" {% if forloop.first %}data-cart-table-quantity{% endif %}>
                     <button type="button" class="cart-table__quantity-button" data-qty-change="[product-qty-{{ forloop.index }}]" data-direction="down">-</button>
@@ -152,8 +157,6 @@
                 {% endif %}
               </td>
             </tr>
-          {% endunless %}
-
 
         {% endfor %}
       </tbody>
