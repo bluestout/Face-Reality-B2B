@@ -1,0 +1,56 @@
+.information-popup {
+  position: relative;
+  margin: 0 0 0 3px;
+  &__marker {
+    font-family: sans-serif;
+    width: 22px;
+    font-size: 16px;
+    line-height: 1;
+    padding: 3px;
+    color: $color-white;
+    background-color: $color-black;
+    border-radius: 50%;
+    display: inline-block;
+    &:hover,
+    &:active {
+      + .information-popup__message {
+        opacity: 1;
+        top: 30px;
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        width: 30px;
+        left:  calc(50% - 15px);
+      }
+    }
+  }
+
+  &__message {
+    @include transition(top, opacity);
+    z-index: 11;
+    position: absolute;
+    left: -89px;
+    top: 40px;
+    width: 200px;
+    opacity: 0;
+    padding: 10px;
+    background-color: $color-white;
+    box-shadow: 0 0 1px 1px rgba($color-black, 0.05);
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: -22px;
+      left:  calc(50% - 10px);
+      border: 10px solid transparent;
+      border-bottom: 12px solid $color-white;
+    }
+    &:hover,
+    &:active {
+      opacity: 1;
+      top: 30px;
+    }
+  }
+}

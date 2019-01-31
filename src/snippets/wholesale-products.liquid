@@ -7,7 +7,13 @@
         <th class="cart-table__cell cart-table__cell--head">{{ 'general.glossary.size' | t }}</th>
         <th class="cart-table__cell cart-table__cell--head">{{ 'cart.label.price' | t }}</th>
         <th class="cart-table__cell cart-table__cell--head">{{ 'general.glossary.quantity' | t }}</th>
-        <th class="cart-table__cell cart-table__cell--head" data-wholesale-in-cart-qty-header style="display:none">{{ 'layout.cart.title' | t }} {{ 'general.glossary.quantity' | t }}</th>
+        <th class="cart-table__cell cart-table__cell--head cart-table__cell--info" data-wholesale-in-cart-qty-header style="display:none">
+          <span>{{ 'layout.cart.title' | t }} {{ 'general.glossary.quantity' | t }}</span>
+          <span class="information-popup">
+            <span class="information-popup__marker">?</span>
+            <span class="information-popup__message">Quantity already in cart. Adjust from cart page.</span>
+          </span>
+        </th>
       </tr>
     </thead>
     <tbody data-wholesale-table-body>
