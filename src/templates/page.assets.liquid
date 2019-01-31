@@ -13,107 +13,88 @@
       </div>
     </div>
 
-    <div class="row no-gutters">
-      <div class="col-lg-3">
-        <div class="product-filter__wrap">
+    <div class="max-wrap">
+      <div class="row no-gutters">
+        <div class="col-lg-3">
+          <div class="product-filter__wrap">
 
-          <div class="product-filter" data-accordion-parent=false>
-            <h2 class="product-filter__main-title">
-              Filter assets
-              <button type="button" class="product-filter__responsive-toggle d-md-none" data-responsive-filter-toggle>
-                <span class="icon-close"></span>
-              </button>
-            </h2>
+            <div class="product-filter" data-accordion-parent=false>
+              <h2 class="product-filter__main-title">
+                Filter assets
+                <button type="button" class="product-filter__responsive-toggle d-md-none" data-responsive-filter-toggle>
+                  <span class="icon-close"></span>
+                </button>
+              </h2>
 
-            <div class="product-filter__responsive-content d-md-none" data-asset-filter-responsive-content>
-              <button type="button" class="product-filter__responsive-reset" data-responsive-filter-reset>Clear filters</button>
-            </div>
-
-            <div class="product-filter__filter-wrap" data-asset-filter-set>
-              <div class="product-filter__title" data-accordion-button=true>
-                <span class="product-filter__icon icon-add"></span>
-                <span class="product-filter__title-text">By  type</span>
+              <div class="product-filter__responsive-content d-md-none" data-asset-filter-responsive-content>
+                <button type="button" class="product-filter__responsive-reset" data-responsive-filter-reset>Clear filters</button>
               </div>
-              <div class="product-filter__content skin-all" data-accordion-content>
-                <ul class="product-filter__list">
-                  <li class="product-filter__item">
-                    <input
-                      id="asset-type-all"
-                      class="product-filter__radio"
-                      type="radio"
-                      name="asset-type"
-                      value="type-all"
-                      checked="checked"
-                    />
-                    <label for="asset-type-all" class="product-filter__label">All types</label>
-                  </li>
-                  {% for tag in downloads.all_tags %}
-                    {% if tag contains "type-" %}
-                      <li class="product-filter__item">
-                        <input
-                          id="asset-{{ tag | handleize }}"
-                          class="product-filter__radio"
-                          type="radio"
-                          name="asset-type"
-                          value="{{ tag | handleize }}"
-                        />
-                        <label for="asset-{{ tag | handleize }}" class="product-filter__label">{{ tag | remove: 'type-' | replace: '-', ' ' | replace: '_', ' ' }}</label>
-                      </li>
-                    {% endif %}
-                  {% endfor %}
-                </ul>
+
+              <div class="product-filter__filter-wrap" data-asset-filter-set>
+                <div class="product-filter__title" data-accordion-button=true>
+                  <span class="product-filter__icon icon-add"></span>
+                  <span class="product-filter__title-text">By  type</span>
+                </div>
+                <div class="product-filter__content skin-all" data-accordion-content>
+                  <ul class="product-filter__list">
+                    <li class="product-filter__item">
+                      <input
+                        id="asset-type-all"
+                        class="product-filter__radio"
+                        type="radio"
+                        name="asset-type"
+                        value="type-all"
+                        checked="checked"
+                      />
+                      <label for="asset-type-all" class="product-filter__label">All types</label>
+                    </li>
+                    {% for tag in downloads.all_tags %}
+                      {% if tag contains "type-" %}
+                        <li class="product-filter__item">
+                          <input
+                            id="asset-{{ tag | handleize }}"
+                            class="product-filter__radio"
+                            type="radio"
+                            name="asset-type"
+                            value="{{ tag | handleize }}"
+                          />
+                          <label for="asset-{{ tag | handleize }}" class="product-filter__label">{{ tag | remove: 'type-' | replace: '-', ' ' | replace: '_', ' ' }}</label>
+                        </li>
+                      {% endif %}
+                    {% endfor %}
+                  </ul>
+                </div>
               </div>
+
             </div>
 
           </div>
-
         </div>
-      </div>
-      <div class="col-lg-9">
-        <div class="row">
-          {% paginate downloads.articles by 30 %}
-            {% for item in downloads.articles %}
-              {% assign item_tags = "" %}
-              {% for tag in item.tags %}
-                {% if tag contains "type-" %}
-                  {% assign handle_tag = tag | handleize %}
-                  {% assign item_tags = item_tags | append: handle_tag | append: " " %}
-                {% endif %}
-              {% endfor %}
-              {% if item.image %}
-                <div class="col-lg-3 col-sm-4 col-6 {{ item_tags }}" data-asset-item >
-                  {{ item.description }}
-                  <a href="{{ item.image.src | img_url: 'original' }}" class="assets-item" download data-download-asset>
-                    <span class="assets-item__image-wrap">
-                        <img src="{{ item.image.src | img_url: '200x200' }}" alt="{{ item.title }}" class="assets-item__image"/>
-                        {% if item.image.src contains ".png" %}
-                          <span class="assets-item__type assets-item__type--png">png</span>
-                        {% elsif item.image.src contains ".jpg" %}
-                          <span class="assets-item__type assets-item__type--jpg">jpg</span>
-                        {% elsif item.image.src contains ".jpeg" %}
-                          <span class="assets-item__type assets-item__type--jpeg">jpeg</span>
-                        {% elsif item.image.src contains ".gif" %}
-                          <span class="assets-item__type assets-item__type--gif">gif</span>
-                        {% endif %}
-                      <span class="assets-item__download icon-cloud-download"></span>
-                    </span>
-                    <span class="assets-item__flex-splitter">
-                      <h4 class="assets-item__title" data-asset-item-title>{{ item.title }}</h4>
-                      <span class="assets-item__tags">
-                        {% if item.image %}
-                          <span class="assets-item__tag">{{ item.image.width }}x{{ item.image.width }}px </span>
-                        {% endif %}
-                      </span>
-                    </span>
-                  </a>
-                </div>
-                {% else %}
-                  <div class="col-lg-3 col-sm-4 col-6 {{ item_tags }}" data-asset-item>
-                    <a href="{{ item.content | strip | strip_html }}" class="assets-item" download data-download-asset>
+        <div class="col-lg-9">
+          <div class="row no-gutters">
+            {% paginate downloads.articles by 30 %}
+              {% for item in downloads.articles %}
+                {% assign item_tags = "" %}
+                {% for tag in item.tags %}
+                  {% if tag contains "type-" %}
+                    {% assign handle_tag = tag | handleize %}
+                    {% assign item_tags = item_tags | append: handle_tag | append: " " %}
+                  {% endif %}
+                {% endfor %}
+                {% if item.image %}
+                  <div class="col-lg-3 col-sm-4 col-6 {{ item_tags }}" data-asset-item >
+                    {{ item.description }}
+                    <a href="{{ item.image.src | img_url: 'original' }}" class="assets-item" download data-download-asset>
                       <span class="assets-item__image-wrap">
-                          {% if item.content contains ".pdf" %}
-                            <span class="assets-item__type assets-item__type--pdf">pdf</span>
-                            <embed class="assets-item__embed" src="{{ item.content }}" width="200" height="200" type='application/pdf'/>
+                          <img src="{{ item.image.src | img_url: '300x' }}" alt="{{ item.title }}" class="assets-item__image"/>
+                          {% if item.image.src contains ".png" %}
+                            <span class="assets-item__type assets-item__type--png">png</span>
+                          {% elsif item.image.src contains ".jpg" %}
+                            <span class="assets-item__type assets-item__type--jpg">jpg</span>
+                          {% elsif item.image.src contains ".jpeg" %}
+                            <span class="assets-item__type assets-item__type--jpeg">jpeg</span>
+                          {% elsif item.image.src contains ".gif" %}
+                            <span class="assets-item__type assets-item__type--gif">gif</span>
                           {% endif %}
                         <span class="assets-item__download icon-cloud-download"></span>
                       </span>
@@ -123,26 +104,48 @@
                           {% if item.image %}
                             <span class="assets-item__tag">{{ item.image.width }}x{{ item.image.width }}px </span>
                           {% endif %}
-                          {% for tag in item.tags %}
-                            {% unless tag contains "type-" %}
-                              <span class="assets-item__tag">{{ tag }}</span>
-                            {% endunless %}
-                          {% endfor %}
                         </span>
                       </span>
                     </a>
                   </div>
+                  {% else %}
+                    <div class="col-lg-3 col-sm-4 col-6 {{ item_tags }}" data-asset-item>
+                      <a href="{{ item.content | strip | strip_html }}" class="assets-item" download data-download-asset>
+                        <span class="assets-item__image-wrap">
+                            {% if item.content contains ".pdf" %}
+                              <span class="assets-item__type assets-item__type--pdf">pdf</span>
+                              <embed class="assets-item__embed" src="{{ item.content }}" width="200" height="200" type='application/pdf'/>
+                            {% endif %}
+                          <span class="assets-item__download icon-cloud-download"></span>
+                        </span>
+                        <span class="assets-item__flex-splitter">
+                          <h4 class="assets-item__title" data-asset-item-title>{{ item.title }}</h4>
+                          <span class="assets-item__tags">
+                            {% if item.image %}
+                              <span class="assets-item__tag">{{ item.image.width }}x{{ item.image.width }}px </span>
+                            {% endif %}
+                            {% for tag in item.tags %}
+                              {% unless tag contains "type-" %}
+                                <span class="assets-item__tag">{{ tag }}</span>
+                              {% endunless %}
+                            {% endfor %}
+                          </span>
+                        </span>
+                      </a>
+                    </div>
+                {% endif %}
+              {% endfor %}
+              {% if paginate.pages > 1 %}
+                <div class="col-12">
+                  {% include 'pagination' %}
+                </div>
               {% endif %}
-            {% endfor %}
-            {% if paginate.pages > 1 %}
-              <div class="col-12">
-                {% include 'pagination' %}
-              </div>
-            {% endif %}
-          {% endpaginate %}
+            {% endpaginate %}
+          </div>
         </div>
       </div>
     </div>
+
   </section>
 {% elsif customer %}
   {% include 'clinic-order' with "quiz-incomplete" %}
