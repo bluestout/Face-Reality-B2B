@@ -116,7 +116,7 @@ function runFilter() {
 }
 
 function downloadInit(event) {
-  event.preventDefault();
+  event.preventDefault ? event.preventDefault() : (event.returnValue = false);
   forceDownload($(event.currentTarget));
 }
 

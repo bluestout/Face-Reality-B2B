@@ -31,7 +31,7 @@ function updateCartQty() {
 }
 
 function ajaxAddToCart(event) {
-  event.preventDefault();
+  event.preventDefault ? event.preventDefault() : (event.returnValue = false);
   const $source = $(event.currentTarget);
   const $form = $source.closest("form");
 
@@ -47,7 +47,7 @@ function ajaxAddToCart(event) {
 }
 
 function ajaxAddToCartTrain(event) {
-  event.preventDefault();
+  event.preventDefault ? event.preventDefault() : (event.returnValue = false);
   const $source = $(event.currentTarget);
   const $form = $source.closest("form");
   return $.ajax({

@@ -374,7 +374,7 @@ function showMessage(message) {
 }
 
 function wholesaleSubmit(event) {
-  event.preventDefault();
+  event.preventDefault ? event.preventDefault() : (event.returnValue = false);
   const totals = parseInt($(el.total).data("wholesale-total"), 10);
   if (totals > values.minOrder) {
     const $products = $(el.product);

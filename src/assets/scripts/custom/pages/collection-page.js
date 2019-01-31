@@ -131,7 +131,7 @@ function runFilter() {
 
 // load more order items on click - pagination ajax
 function loadMoreClick(event) {
-  event.preventDefault();
+  event.preventDefault ? event.preventDefault() : (event.returnValue = false);
   loadMore();
 }
 
