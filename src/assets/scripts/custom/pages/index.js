@@ -7,3 +7,4 @@ import "./case-studies";
 import "./certification-training";
 import "./wholesale-order";
 import "./assets";
+import "./cart";
