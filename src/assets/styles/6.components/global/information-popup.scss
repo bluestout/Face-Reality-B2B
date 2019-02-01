@@ -4,12 +4,13 @@
   &__marker {
     font-family: sans-serif;
     width: 22px;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1;
-    padding: 3px;
-    color: $color-white;
-    background-color: $color-black;
+    padding: 2px;
+    color: rgba($color-black, 0.5);
+    background-color: transparent;
     border-radius: 50%;
+    border: 2px solid rgba($color-black, 0.5);
     display: inline-block;
     &:hover,
     &:active {
@@ -22,7 +23,7 @@
         position: absolute;
         bottom: -10px;
         width: 30px;
-        left:  calc(50% - 15px);
+        left: calc(50% - 15px);
       }
     }
   }
@@ -43,7 +44,7 @@
       content: "";
       position: absolute;
       top: -22px;
-      left:  calc(50% - 10px);
+      left: calc(50% - 10px);
       border: 10px solid transparent;
       border-bottom: 12px solid $color-white;
     }
