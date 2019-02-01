@@ -52,6 +52,19 @@ function cleanArray(actual) {
   return newArray;
 }
 
+function setAvailabilityOptions() {
+  if ($("#availability-filter-all").prop("checked")) {
+    $("[data-variant-availability=backbar]").fadeIn();
+    $("[data-variant-availability=retail]").fadeIn();
+  } else if ($("#availability-filter-retail").prop("checked")) {
+    $("[data-variant-availability=retail]").fadeIn();
+    $("[data-variant-availability=backbar]").fadeOut();
+  } else if ($("#availability-filter-backbar").prop("checked")) {
+    $("[data-variant-availability=backbar]").fadeIn();
+    $("[data-variant-availability=retail]").fadeOut();
+  }
+}
+
 function toggleFilter(event) {
   const $source = $(event.currentTarget);
   const tag = $source.val();
@@ -62,22 +75,6 @@ function toggleFilter(event) {
     $currentset.removeClass();
     $currentset.addClass(`product-filter__filter-wrap ${tag}`);
   }
-
-  if (event.currentTarget.id.indexOf("availability-filter-all") > -1) {
-    $("[data-variant-availability=backbar]").fadeIn();
-    $("[data-variant-availability=retail]").fadeIn();
-  } else if (
-    event.currentTarget.id.indexOf("availability-filter-retail") > -1
-  ) {
-    $("[data-variant-availability=retail]").fadeIn();
-    $("[data-variant-availability=backbar]").fadeOut();
-  } else if (
-    event.currentTarget.id.indexOf("availability-filter-backbar") > -1
-  ) {
-    $("[data-variant-availability=backbar]").fadeIn();
-    $("[data-variant-availability=retail]").fadeOut();
-  }
-
   runFilter();
 }
 
@@ -109,6 +106,9 @@ function runFilter() {
       // push the remaining (actual tags) to the allclasses array
     }
   });
+
+  // show or hide the availability options
+  setAvailabilityOptions();
 
   // depending on the allClasses content show or hide items
   if (allClasses.length > 0) {
@@ -219,6 +219,7 @@ function productItemInit() {
         });
       }
     });
+  runFilter();
 }
 
 function switchImage(imageId, parent) {
