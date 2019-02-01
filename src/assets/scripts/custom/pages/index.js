@@ -8,3 +8,4 @@ import "./certification-training";
 import "./wholesale-order";
 import "./assets";
 import "./cart";
+import "./challenge";
