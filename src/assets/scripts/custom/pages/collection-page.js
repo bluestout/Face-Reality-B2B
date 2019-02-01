@@ -308,14 +308,16 @@ function getVariant(options, variants) {
   return found || null;
 }
 
-$(document).ready(productItemInit);
+if (document.getElementsByClassName("template-collection").length) {
+  $(document).ready(productItemInit);
 
-$(document).on("click", page.button, loadMoreClick);
+  $(document).on("click", page.button, loadMoreClick);
 
-$(document).on("click", filter.responsiveToggle, responsiveToggle);
+  $(document).on("click", filter.responsiveToggle, responsiveToggle);
 
-$(document).on("click", filter.reset, resetFilters);
+  $(document).on("click", filter.reset, resetFilters);
 
-$(document).on("click", `${filter.set} input`, toggleFilter);
+  $(document).on("click", `${filter.set} input`, toggleFilter);
 
-$(window).on("load resize", MoveAuthorizationFilter);
+  $(window).on("load resize", MoveAuthorizationFilter);
+}
