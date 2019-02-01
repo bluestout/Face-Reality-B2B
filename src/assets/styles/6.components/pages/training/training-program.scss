@@ -93,7 +93,7 @@
     ul li {
       @include apercu;
       @include paragraph-m;
-      text-indent: -15.5px;
+      position: relative;
 
       &:not(:last-of-type) {
         margin: 0 0 7px;
@@ -107,9 +107,12 @@
     ul li::before {
       @include icoMoon(16px, $color-blumine);
       content: "\e91b";
+      position: absolute;
+      left: -30px;
+      top: 3px;
       transform: rotate(-10deg);
       display: inline-block;
-      padding: 0 15px 0 0;
+      padding: 0;
     }
   }
 
@@ -145,7 +148,7 @@
     ul li {
       @include apercu;
       @include paragraph-m;
-      text-indent: -15.5px;
+      position: relative;
 
       &:not(:last-of-type) {
         margin: 0 0 7px;
@@ -159,9 +162,12 @@
     ul li::before {
       @include icoMoon(16px, $color-blumine);
       content: "\e91b";
+      position: absolute;
+      left: -30px;
+      top: 3px;
       transform: rotate(-10deg);
       display: inline-block;
-      padding: 0 15px 0 0;
+      padding: 0;
     }
   }
 
@@ -249,7 +255,6 @@
 
       ul li {
         font-size: 14px;
-        text-indent: -15.5px;
 
         &:not(:last-of-type) {
           margin: 0 0 7px;

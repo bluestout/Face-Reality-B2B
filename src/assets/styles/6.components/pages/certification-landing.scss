@@ -53,7 +53,8 @@
   }
 
   &__item {
-    text-indent: -11.5px;
+    position: relative;
+
     &:not(:last-of-type) {
       margin: 0 0 10px;
     }
@@ -65,9 +66,11 @@
     &::before {
       @include icoMoon(14px, $color-blumine);
       content: "\e91b";
-      transform: rotate(-10deg);
+      position: absolute;
+      left: -30px;
+      top: 3px;
       display: inline-block;
-      padding: 0 5px 0 0;
+      transform: rotate(-10deg);
     }
   }
 
