@@ -304,7 +304,7 @@ function moveAlong(data) {
       automaticProducts(json, true);
     });
   } else if (data === "redirect") {
-    window.location.replace(`${window.location.origin}/checkout`);
+    window.location.replace(`${window.location.origin}/cart`);
   }
 }
 
