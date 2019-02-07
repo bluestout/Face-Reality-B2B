@@ -2,9 +2,41 @@
   @import "./assets-search";
   @import "./assets-item";
   overflow: hidden;
-  background-color:  $color-aqua-haze;
+  background-color: $color-aqua-haze;
+
+  &__responsive-toggle {
+    text-align: center;
+    padding: 8px;
+    background-color: $color-white;
+    margin: 0 0 10px;
+  }
+
+  &__responsive-button {
+    appearance: none;
+    border: none;
+    background: transparent;
+    padding: 2px 5px;
+  }
+
+  &__responsive-text {
+    @include apercu(700);
+    @include paragraph-xs($color-fountain-blue);
+  }
+
+  &__responsive-icon {
+    font-size: 16px;
+    line-height: 16px;
+    color: $color-fountain-blue;
+    margin: 0 0 0 10px;
+  }
 
   .pagination {
     text-align: center;
+  }
+
+  @include media-query("small-down") {
+    .b2b-header {
+      margin: 0;
+    }
   }
 }

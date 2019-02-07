@@ -308,12 +308,17 @@ function getVariant(options, variants) {
   return found || null;
 }
 
+if (
+  document.getElementsByClassName("template-collection").length ||
+  document.getElementById("downloads")
+) {
+  $(document).on("click", filter.responsiveToggle, responsiveToggle);
+}
+
 if (document.getElementsByClassName("template-collection").length) {
   $(document).ready(productItemInit);
 
   $(document).on("click", page.button, loadMoreClick);
-
-  $(document).on("click", filter.responsiveToggle, responsiveToggle);
 
   $(document).on("click", filter.reset, resetFilters);
 

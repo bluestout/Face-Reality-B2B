@@ -55,7 +55,7 @@
         "type": "footer",
         "settings": {
           "footer_linklist": "footer",
-          "newsletter_text": "Sign up for Face Reality Newsletter and receive promotions, announcements in your inbox",
+          "newsletter_text": "Sign up for Face Reality Newsletter to receive promotions and announcements in your inbox.",
           "logo": "shopify://shop_images/FRS-Logo-1-19_505b8f2d-77de-4a7b-a46e-7f952100454d.png"
         }
       },
@@ -66,7 +66,7 @@
             "type": "testimonial",
             "settings": {
               "testimonial": "This place really is amazing and anyone with acne knows $25 (which they waive if you elect to get a treatment) is REALLY cheap and worth it to get his or her skin under control. I have been to so many different places, spent tons of money, even tried the stuff from acne.org, just to be disappointed. I finally decided to check this place out based on all the great reviews and really nice man (Pat) I spoke with at the clinic over the phone. This place is the first place I have been able to leave from after getting a facial where I didn’t feel like I needed to hide.",
-              "image": "shopify://shop_images/testimonials-avatar1_8ad1b84d-d4b5-4a98-b92c-2b4e79b58761.png",
+              "image": "shopify://shop_images/Untitled-32.jpg",
               "title": "Jeannine L.",
               "date": "Acme Spa, Miami Beach FL"
             }
@@ -172,7 +172,7 @@
         "settings": {
           "title_top": "Acne can be controlled with the right products and process",
           "description_top": "<p>Acne is a mysterious skin disorder, but one thing is for sure &ndash; it can be controlled with the right combination of products, used in the correct way. Just as in a clogged drain, the pore must be treated with products that unclog it and kill the acne bacteria.</p>\n<p><br>Face Reality Acne Clinic has a clear-skin system that will have your acne under control in about three to four months, depending on your type of acne. We combine the power of clinical-grade products that are customized for your type of acne, with a series of bi-monthly treatments. We also teach you about other aggravating factors that make you break out &ndash; foods, medications, cosmetics, stress, and common ingredients in skin care formulations that might be clogging your pores (even professional and prescription products).</p>",
-          "image_top": "shopify://shop_images/how-we-are-diff-1.png",
+          "image_top": "shopify://shop_images/about1.jpg",
           "title_bottom": "Find the right products for your skin. And learn how to use them.",
           "description_bottom": "<p>The most important aspect of our system is not just starting you with the right products, but we teach you how to use them. We test your skin to make sure you are getting the most effective products for your acne type, skin type, and skin tolerance. It won&rsquo;t be enough just to have the right products &ndash; it&rsquo;s all about having the right routine for those products. You will learn how to use products slowly at first, so that your skin stays receptive without causing irritation or dehydration. But skin can become accustomed to products and then become less effective over time &ndash; that is why we will adjust your regimen little by little, to get rid of your acne.</p>",
           "image_bottom": "shopify://shop_images/how-we-are-diff-2.png"
@@ -759,24 +759,24 @@
           "1543826517988": {
             "type": "feature",
             "settings": {
-              "title": "Get certified and enjoy +90% success rate with your clients",
-              "text": "As you go through your process of achieving clear sin on your face and/or body, you will want to come in for treatments every two weeks.",
-              "image": "shopify://shop_images/iStock-908578294.jpg"
+              "title": "Get Certified and Enjoy +90% Success Rate With Your Clients",
+              "text": "We have made it our mission to provide premium products and a comprehensive treatment protocol for estheticians across the country.",
+              "image": "shopify://shop_images/Esty_ba504429-1b02-41d0-b82d-0b84618caff9.jpg"
             }
           },
           "1543826636511": {
             "type": "feature",
             "settings": {
-              "title": "Learn how to use products",
-              "text": "We won't just find the right products for you, but we teach you how to use them.  We test your skin to make sure you are getting the most effective products for your acne type, skin type and skin tolerance.",
-              "image": "shopify://shop_images/iStock-908578294.jpg"
+              "title": "Real Results + Customization",
+              "text": "We provide custom treatment options for every age, gender, acne type and skin type, including Fitzpatrick 4+. We even take it one step further and take diet and lifestyle factors into careful consideration. In as little as 3-4 months, your clients will see a drastic improvement in their overall complexion.",
+              "image": "shopify://shop_images/Isaiah_3_resize_for_web.jpg"
             }
           },
           "1543826656991": {
             "type": "feature",
             "settings": {
-              "title": "Clinical-grade products + customization",
-              "text": "We combine the power of clinical-grade products that are customized for your type of acne, with a series of bi-monthly treatments.",
+              "title": "Clinical Grade Products",
+              "text": "All Face Reality Skincare products are meticulously crafted without acne-causing ingredients that are commonly found in other “acne fighting” skincare lines on the market. Our formulations contain only the highest-quality skin nourishing ingredients, resulting in significant benefits beyond treating acne.",
               "image": "shopify://shop_images/B2B_home.jpg"
             }
           }
@@ -795,7 +795,7 @@
             "type": "block",
             "settings": {
               "title": "Get the most comprehensive acne specialist training and become certified",
-              "description": "With +90% success rate our Clear Skin program will help you become a confident acne specialist and offer relief ti your clients",
+              "description": "With +90% success rate our clear skin program will help you become a confident acne specialist and offer relief to your clients",
               "button_url": "shopify://pages/certification-training",
               "button_text": "Learn more",
               "link_url": "#certification-video",
@@ -839,7 +839,7 @@
         "settings": {
           "suptitle": "Contact us",
           "title": "Have questions? Get in touch",
-          "location": "Face reality Acne Clinic serves San Leandro, Fremont, Hayward, Oakland, East Bay, and the greater San Francisco Bay Area.",
+          "location": "Face Reality Skincare offers the most comprehensive acne training to estheticians across the United States. From getting started, to product knowledge and treatment questions, we're here to support you every step of the way.",
           "phone": "866-477-3077",
           "email": "pros@facerealityacneclinic.com"
         }
@@ -959,8 +959,8 @@
           "1543942478653": {
             "type": "block",
             "settings": {
-              "title": "Access Pro only portal",
-              "text": "A Certified Pro's area of the website, which features all Of the modules in this course, plus many more articles, forms and document.",
+              "title": "Professional Resource Center + Business Tools",
+              "text": "Access exclusive business building assets 24/7. Download our Acne Home care Guideline, training modules, client forms, before and after images, product information and more. You'll find everything you need to succeed as an acne specialist.",
               "image": "shopify://shop_images/iStock-908578294.jpg"
             }
           },
@@ -968,24 +968,24 @@
             "type": "block",
             "settings": {
               "title": "Join the Pro Community",
-              "text": "An invitation to join the Facebook community for Face Reality Certified Pro's where you'll get to compare notes with other professionals as well as the Face Reality team.",
-              "image": "shopify://shop_images/iStock-908578294.jpg"
+              "text": "An invitation to join the Facebook community for Face Reality Certified Pro's where you'll have the opportunity to connect and compare notes with other professionals as well as the Face Reality team.",
+              "image": "shopify://shop_images/Facebook_Image_2-19_761d28ef-af55-46ce-9c8b-ffe91a79505d.jpg"
             }
           },
           "1543942549794": {
             "type": "block",
             "settings": {
-              "title": "Access online store and wholesale purchase skincare products",
-              "text": "Access to the online store for purchasing Face\nReality skincare and acne treatment products\nat wholesale pricing.",
-              "image": "shopify://shop_images/iStock-908578294.jpg"
+              "title": "Online Store & Wholesale Product Pricing",
+              "text": "Access our online store to purchase professional Face Reality Skincare and acne treatment products at wholesale pricing.",
+              "image": "shopify://shop_images/B2B_home.jpg"
             }
           },
           "1543942608210": {
             "type": "block",
             "settings": {
-              "title": "Exclusive invitation to trainings and events",
-              "text": "Exclusive invitations to special trainings, events and opportunities to help you grow your business.",
-              "image": "shopify://shop_images/iStock-908578294.jpg"
+              "title": "Exclusive Invitation to Training and Events",
+              "text": "Receive exclusive invitations to special training, events and opportunities to help you grow your business.",
+              "image": "shopify://shop_images/iStock-871718064.jpg"
             }
           }
         },
@@ -998,9 +998,9 @@
         "settings": {
           "title": "Get Trained and Certified",
           "introduction": "First, you'll get access to highly informative step-by-step instructional modules inside Proven Strategies for Treating Acne. Once you've completed the course, you will take a Certification Test, which you can take as many times as necessary in order to pass with 100%.",
-          "section_title": "Some of the certification benefits",
+          "section_title": "Certification Benefits",
           "bottom_title": "Sign up today and start elevating your acne knowledge.",
-          "bottom_text": "Get over 90% Of acne clients clear with Our training and support. With Proven Strategies for\nTreating Acne, you will become a confident acne expert and a hero",
+          "bottom_text": "Get over 90% of acne clients clear with Our training and support. With Proven Strategies for\nTreating Acne, you will become a confident acne expert and a hero",
           "link": "shopify://pages/certification-test",
           "link_text": "Get certified"
         }
@@ -1080,22 +1080,31 @@
             "type": "study",
             "settings": {
               "title": "Inflamed Acne",
-              "description": "Inflamed and cystic acne is the easiest type of acne to treat, as it responds quickly to the right antibacterial routine. This client got clear in about three months. She still had some redness left over from the acne which eventually faded, but her acne was gone.",
-              "image_before": "shopify://shop_images/fernando-before.png",
-              "image_after": "shopify://shop_images/fernando-after.png"
+              "description": "Francisco has the classic case of teenage inflamed acne. Acne can really ravage the skin of teenage boys – the hormonal fluctuations that teenage boys have can give them horrendous cysts and often they end up with lifelong scars because of it.",
+              "image_before": "shopify://shop_images/francisco-before.jpg",
+              "image_after": "shopify://shop_images/francisco-after.jpg"
             }
           },
           "1543943503754": {
             "type": "study",
             "settings": {
-              "title": "Inflamed Acne #2",
-              "description": "Inflamed and cystic acne is the easiest type of acne to treat, as it responds quickly to the right antibacterial routine. This client got clear in about three months. She still had some redness left over from the acne which eventually faded, but her acne was gone.",
-              "image_before": "shopify://shop_images/fernando-before.png",
-              "image_after": "shopify://shop_images/fernando-after.png"
+              "title": "Acne & Hyperpigmentation",
+              "description": "Sophia was very motivated to finally get her skin clear because she had tried so many different things. With the right products, her skin cleared in a little over three months.",
+              "image_before": "shopify://shop_images/sophia-before.jpg",
+              "image_after": "shopify://shop_images/sophia-after.jpg"
+            }
+          },
+          "1549311010519": {
+            "type": "study",
+            "settings": {
+              "title": "Noninflamed Acne",
+              "description": "Holly came to us with severe noninflamed acne – every pore was clogged. We knew that we would have to have a very aggressive treatment plan to get her skin clear.",
+              "image_before": "shopify://shop_images/holly-before.jpg",
+              "image_after": "shopify://shop_images/holly-after.jpg"
             }
           }
         },
-        "block_order": ["1543943414648", "1543943503754"],
+        "block_order": ["1543943414648", "1543943503754", "1549311010519"],
         "settings": {
           "suptitle": "Before and after",
           "title": "See the results for yourself"
