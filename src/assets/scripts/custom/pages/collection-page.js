@@ -308,6 +308,41 @@ function getVariant(options, variants) {
   return found || null;
 }
 
+function getUrlParams() {
+  const params = {};
+  if (window.location.search.length > 0) {
+    document.location.search
+      .substr(1)
+      .split("&")
+      .forEach((pair) => {
+        const paramsSplit = pair.split("=");
+        params[paramsSplit[0]] = paramsSplit[1];
+      });
+  }
+  return params;
+}
+
+function runUrlFilter() {
+  const params = getUrlParams();
+  if (params.availability) {
+    $(`#availability-filter-${params.availability}`).click();
+  }
+  if (params.type) {
+    $(`#type-f-${params.type}`).click();
+  }
+  if (params.usecase) {
+    $(`#usecase-f-${params.usecase}`).click();
+  }
+  if (params.skin) {
+    $(`#skin-f-${params.skin}`).click();
+  }
+}
+
+function initialize() {
+  productItemInit();
+  runUrlFilter();
+}
+
 if (
   document.getElementsByClassName("template-collection").length ||
   document.getElementById("downloads")
@@ -316,7 +351,7 @@ if (
 }
 
 if (document.getElementsByClassName("template-collection").length) {
-  $(document).ready(productItemInit);
+  $(document).ready(initialize);
 
   $(document).on("click", page.button, loadMoreClick);
 
