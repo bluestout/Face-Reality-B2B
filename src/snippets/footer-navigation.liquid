@@ -14,9 +14,24 @@
             </a>
             <ul class="footer-navigation__list" data-footer-nav-list>
               {% for childlink in link.links %}
-                <li class="footer-navigation__subitem">
-                  <a href="{{ childlink.url }}" class="footer-navigation__sublink">{{ childlink.title }}<span class="icon-angle-right footer-navigation__sub-caret"></a>
-                </li>
+                {% assign handle = childlink.title | handleize %}
+                {% if handle == "shipping-policy" or handle == "returns-policy" or handle == "supply-agreement"%}
+                  {% if customer %}
+                    <li class="footer-navigation__subitem">
+                      <a href="{{ childlink.url }}" class="footer-navigation__sublink">{{ childlink.title }}<span class="icon-angle-right footer-navigation__sub-caret"></a>
+                    </li>
+                  {% endif %}
+                {% elsif handle == "downloads" %}
+                  {% if customer and customer.tags contains "training_approved" %}
+                    <li class="footer-navigation__subitem">
+                      <a href="{{ childlink.url }}" class="footer-navigation__sublink">{{ childlink.title }}<span class="icon-angle-right footer-navigation__sub-caret"></a>
+                    </li>
+                  {% endif %}
+                {% else %}
+                  <li class="footer-navigation__subitem">
+                    <a href="{{ childlink.url }}" class="footer-navigation__sublink">{{ childlink.title }}<span class="icon-angle-right footer-navigation__sub-caret"></a>
+                  </li>
+                {% endif %}
               {% endfor %}
             </ul>
           {% else %}

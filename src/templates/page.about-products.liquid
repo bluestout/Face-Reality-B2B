@@ -4,6 +4,8 @@
 
   {% section 'about-products-content' %}
 
-  {% section 'about-products-explore' %}
+  {% if customer and customer.tags contains "training_approved" %}
+    {% section 'about-products-explore' %}
+  {% endif %}
 
 </div>

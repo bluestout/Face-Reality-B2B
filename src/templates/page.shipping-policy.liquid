@@ -1,19 +1,23 @@
-<div class="default-page">
-  <div class="default-page__inner">
-    <div class="container">
-      <article>
-        <div class="row justify-content-center">
-          <div class="col-lg-9 col-sm-11">
-            {% section 'shipping-header' %}
-          </div>
-          <div class="col-lg-8 col-sm-11">
-            <div class="default-page__content shopify-rte">
-              {% section 'shipping-table' %}
-              {{ page.content }}
+{% if customer %}
+  <div class="default-page">
+    <div class="default-page__inner">
+      <div class="container">
+        <article>
+          <div class="row justify-content-center">
+            <div class="col-lg-9 col-sm-11">
+              {% section 'shipping-header' %}
+            </div>
+            <div class="col-lg-8 col-sm-11">
+              <div class="default-page__content shopify-rte">
+                {% section 'shipping-table' %}
+                {{ page.content }}
+              </div>
             </div>
           </div>
-        </div>
-      </article>
+        </article>
+      </div>
     </div>
   </div>
-</div>
+{% else %}
+  {% include 'clinic-order' with "not-logged" %}
+{% endif %}
