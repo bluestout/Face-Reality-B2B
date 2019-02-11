@@ -34,6 +34,19 @@
     padding: 0 60px;
   }
 
+  &__image-wrap {
+    @include no-font-size;
+    max-width: 60px;
+    height: 100px;
+    margin: 0 auto;
+    text-align: center;
+    img {
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: scale-down;
+    }
+  }
+
   &__cell {
     padding: 20px;
     width: auto;
@@ -107,6 +120,16 @@
     max-width: 200px;
   }
 
+  &__item-form {
+    @include clearfix;
+    width: 100%;
+    max-width: 200px;
+  }
+
+  &__qty-in-cart {
+    margin: 8px 0 0;
+  }
+
   &__quantity-button {
     @include Text(20px, 40px, $color-blumine);
     width: 28px;
@@ -152,7 +175,7 @@
     }
 
     &-image-wrap {
-      width: 60px;
+      width: 50px;
       margin: 0 10px 0 0;
       display: block;
       float: left;
@@ -287,6 +310,10 @@
 
     &__quantity {
       max-width: 200px;
+      margin: 0 0 0 auto;
+    }
+
+    &__item-form {
       margin: 0 0 0 auto;
     }
 

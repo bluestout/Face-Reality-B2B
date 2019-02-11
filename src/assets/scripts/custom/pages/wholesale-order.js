@@ -131,9 +131,12 @@ function loadProducts(cart) {
           // add a header at the top of new product types
           if (currentType !== pType) {
             currentType = pType;
-            const colspan = cartHasItems ? 5 : 4;
+            let colspan = cartHasItems ? 5 : 4;
+            if ($(window).width() < 992) {
+              colspan = 1;
+            }
             products += `<tr class="cart-table__row" data-wholesale-row="${pTypeClean}">
-              <td class="cart-table__cell" colspan="1"></td>
+              <td class="cart-table__cell d-none d-md-table-cell" colspan="1"></td>
               <td class="cart-table__cell cart-table__cell--type" colspan="${colspan}">
                 <h3 class="cart-table__type-header">${currentType}</h3>
                 <span class="cart-table__type-count" data-type="${pTypeClean}">0</span>
@@ -144,7 +147,7 @@ function loadProducts(cart) {
 
           let image = "";
           if (product.images && product.images[0]) {
-            image = getFormattedSrc(product.images[0], "90x90");
+            image = getFormattedSrc(product.images[0], "180x180");
             image = `<img src=${image} alt=${pTitle}/>`;
           }
 
@@ -158,17 +161,22 @@ function loadProducts(cart) {
 
             let quantityInCart = 0;
             let inCart = "";
+            let inCartDiv = "";
             for (let k = 0; k < itemsInCart.length; k++) {
               if (itemsInCart[k].id === variant.id) {
                 quantityInCart = itemsInCart[k].quantity;
               }
             }
             if (cartHasItems) {
-              inCart = `<td class='cart-table__cell text-center'>
+              inCart = `<td class='cart-table__cell text-center d-none d-md-table-cell'>
                 <div class='cart-table__price' data-wholesale-in-cart-qty>
                   ${quantityInCart}
                 </div>
               </td>`;
+              inCartDiv = `<div class='cart-table__qty-in-cart d-md-none text-right'>
+                <span>Cart Quantity:</span>
+                <span>${quantityInCart}</span>
+              </div>`;
             }
 
             if (comparePrice) {
@@ -208,9 +216,13 @@ function loadProducts(cart) {
             }
 
             products += `<tr class=' cart-table__row' data-wholesale-row="${pTypeClean}">
-              <td class='cart-table__cell cart-table__cell--image text-left'>${image}</td>
+              <td class='cart-table__cell cart-table__cell--image text-left d-none d-md-table-cell'>
+                <div class="cart-table__image-wrap">
+                  ${image}
+                </div>
+              </td>
 
-              <td class='cart-table__cell cart-table__cell--title text-left'>
+              <td class='cart-table__cell cart-table__cell--title text-left d-none d-md-table-cell'>
                 <h3 class='cart-table__product-title'>
                   <a class='cart-table__product-link' nohref>${pTitle}</a>
                 </h3>
@@ -219,23 +231,44 @@ function loadProducts(cart) {
                 }</div>
               </td>
 
-              <td class='cart-table__cell text-center'>
+              <td class='cart-table__cell text-center d-none d-md-table-cell'>
                 <div class='cart-table__option'>
                   ${option}
                 </div>
               </td>
 
-              <td class='cart-table__cell text-center'>
+              <td class='cart-table__cell text-center d-none d-md-table-cell'>
                 <div class='cart-table__price'>
                   ${price}
                 </div>
               </td>
 
               <td class='cart-table__cell cart-table__cell--last'>
-                <form action="/" method="post" novalidate data-wholesale-single-product>
+
+                <div class="d-md-none">
+                  <div class="cart-table__rsp-image-wrap">${image}</div>
+                  <div class="cart-table__rsp-content">
+                    <h3 class="cart-table__rsp-title">
+                      <a class='cart-table__rsp-link' nohref>${pTitle}</a>
+                      <span class="cart-table__rsp-price">${price}</span>
+                    </h3>
+                    <div class="cart-table__rsp-info">
+                      <span class="cart-table__rsp-option">${
+                        variant.title
+                      }</span>
+                      <span class="cart-table__rsp-id">Product ID. ${
+                        variant.sku
+                      }</span>
+                      </div>
+                    </div>
+                  <div class="clearfix"></div>
+                </div>
+
+                <form action="/" method="post" class="cart-table__item-form" novalidate data-wholesale-single-product>
                   <input type="hidden" name="id" value="${variant.id}"/>
                   ${qtyString}
                 </form>
+                ${inCartDiv}
               </td>
               ${inCart}
             </tr>`;
