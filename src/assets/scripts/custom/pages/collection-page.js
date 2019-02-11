@@ -120,7 +120,6 @@ function runFilter() {
     $(`${filter.product}:not(${activeTags})`).fadeOut();
     // this if prevents infinite recursion - run only if no results after filtering
     setTimeout(() => {
-      console.log("filters: ", $(`${filter.product}${activeTags}`).length);
       if (
         $(`${filter.product}${activeTags}`).length <= 0 &&
         $(page.button).length > 0
