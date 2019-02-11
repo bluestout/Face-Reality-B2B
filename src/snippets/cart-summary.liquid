@@ -2,7 +2,7 @@
   <h2 class="cart-summary__title">Order summary</h2>
   <div class="cart-summary__totals">
     <span class="cart-summary__totals-text">{{ 'cart.general.subtotal' | t }}</span>
-    <span class="cart-summary__totals-price">{{ cart.total_price | money }}</span>
+    <span class="cart-summary__totals-price" data-cart-summary-total={{ cart.total_price }}>{{ cart.total_price | money }}</span>
   </div>
 
   {% if cart.total_discounts > 0 %}

@@ -38,7 +38,7 @@ const addableIds = {
 
 // any constant values used
 const values = {
-  minOrder: 12500,
+  minOrder: 0,
   freeShipping: 60000,
   eligibleText: "You are eligible for free shipping",
   notEligibleLeft: "You are ",
@@ -332,10 +332,6 @@ function moveAlong(data) {
         moveAlong(data);
       },
     );
-  } else if (data === "re-loop") {
-    $.getJSON("/cart.js", (json) => {
-      automaticProducts(json, true);
-    });
   } else if (data === "redirect") {
     window.location.replace(`${window.location.origin}/cart`);
   }
@@ -356,8 +352,10 @@ function addItemCustom(id, qty, properties, callback) {
     data: params,
     async: false,
     success: (data) => {
-      showMessage(itemAddedMessage(data.title, data.quantity));
-      typeof callback === "function" ? callback() : null;
+      if (data.variant_id !== addableIds.pump) {
+        showMessage(itemAddedMessage(data.title, data.quantity));
+        typeof callback === "function" ? callback() : null;
+      }
     },
     error: (jqXHR) => {
       if (
@@ -417,7 +415,7 @@ function wholesaleSubmit(event) {
       const qty = $("[name='quantity']", $this).val();
       if (qty > 0) {
         pushToQueue(id, qty, {}, () => {
-          moveAlong("re-loop");
+          moveAlong("redirect");
         });
       } else {
         moveAlong("redirect");
