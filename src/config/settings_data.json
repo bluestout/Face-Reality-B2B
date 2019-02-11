@@ -65,77 +65,32 @@
           "1538384458991": {
             "type": "testimonial",
             "settings": {
-              "testimonial": "This place really is amazing and anyone with acne knows $25 (which they waive if you elect to get a treatment) is REALLY cheap and worth it to get his or her skin under control. I have been to so many different places, spent tons of money, even tried the stuff from acne.org, just to be disappointed. I finally decided to check this place out based on all the great reviews and really nice man (Pat) I spoke with at the clinic over the phone. This place is the first place I have been able to leave from after getting a facial where I didn’t feel like I needed to hide.",
-              "image": "shopify://shop_images/Untitled-32.jpg",
-              "title": "Jeannine L.",
-              "date": "Acme Spa, Miami Beach FL"
+              "testimonial": "After 1 year of starting Face Reality, I dropped all my lash clients and went full blast acne.  I had to hire 2 other Estheticians to help with the work load! Isn’t that crazy? My clientele is 95% acne! Face Reality was the best, most impactful decision I made for my career - I am rewarded daily with an income that I only dreamed about, plus I deliver incredible value and confidence to my clients that no one else can!",
+              "image": "shopify://shop_images/LoriWard.jpg",
+              "title": "Lori Ward Skincare",
+              "date": "Rexburg, ID"
             }
           },
           "1538384503030": {
             "type": "testimonial",
             "settings": {
-              "testimonial": "Within two to three weeks we noticed a huge change. The inflammation was going down and with treatments every two weeks my daughter Sarah’s skin really did start to clear. What amazes me is that Sarah has been to dermatologists since she was in junior high school. The last time she went in, the doctor said he did not know what to do, they had tried it all. Well, Sarah walked down the aisle on her wedding day acne free, thanks to Face Reality!",
-              "image": "shopify://shop_images/testimonials-avatarx_8c7c06a0-8875-49be-adb6-c7c668ab6cd1.png",
-              "title": "Sune N.",
-              "date": "Medi Spa, Los Angeles CA"
+              "testimonial": "Becoming a Certified Acne Specialist has not only changed my life personally with Acne but has allowed me to change hundreds of people’s lives through the knowledge of what causes Acne. Having the knowledge I have of what causes Acne and how to maintain healthy clear skin through daily lifestyle choices, eating habits, and a balanced skincare regimen has been a true blessing. I am grateful to be able to share my knowledge with hundreds of people a week through myself, social media, and my business.",
+              "image": "shopify://shop_images/SpaKingston.jpg",
+              "title": "Spa Kingston",
+              "date": "San Diego, CA"
             }
           },
           "1538384524495": {
             "type": "testimonial",
             "settings": {
-              "testimonial": "This place really is amazing and anyone with acne knows $25 (which they waive if you elect to get a treatment) is REALLY cheap and worth it to get his or her skin under control. I have been to so many different places, spent tons of money, even tried the stuff from acne.org, just to be disappointed. I finally decided to check this place out based on all the great reviews and really nice man (Pat) I spoke with at the clinic over the phone. This place is the first place I have been able to leave from after getting a facial where I didn’t feel like I needed to hide.",
-              "image": "shopify://shop_images/testimonials-avatar1_9a923400-2a31-4c31-9564-26e49d8930ab.png",
-              "title": "Jeannine L.",
-              "date": "Acne Clinic, New York NY"
-            }
-          },
-          "1538665766851": {
-            "type": "testimonial",
-            "settings": {
-              "testimonial": "This place really is amazing and anyone with acne knows $25 (which they waive if you elect to get a treatment) is REALLY cheap and worth it to get his or her skin under control. I have been to so many different places, spent tons of money, even tried the stuff from acne.org, just to be disappointed. I finally decided to check this place out based on all the great reviews and really nice man (Pat) I spoke with at the clinic over the phone. This place is the first place I have been able to leave from after getting a facial where I didn’t feel like I needed to hide.",
-              "image": "shopify://shop_images/testimonials-avatar1_5814ed98-a102-4c0a-97ed-1148899b7d20.png",
-              "title": "Jeannine L.",
-              "date": "Jun 2018"
-            }
-          },
-          "1538665789693": {
-            "type": "testimonial",
-            "settings": {
-              "testimonial": "Within two to three weeks we noticed a huge change. The inflammation was going down and with treatments every two weeks my daughter Sarah’s skin really did start to clear. What amazes me is that Sarah has been to dermatologists since she was in junior high school. The last time she went in, the doctor said he did not know what to do, they had tried it all. Well, Sarah walked down the aisle on her wedding day acne free, thanks to Face Reality!",
-              "image": "shopify://shop_images/testimonials-avatarx_fd4f250a-11e7-472a-b363-445129e2ad23.png",
-              "title": "Sune N.",
-              "date": "Jun 2018"
-            }
-          },
-          "1543595500417": {
-            "type": "video",
-            "settings": {
-              "video": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/NpEaa2P7qZI\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\"></iframe>"
-            }
-          },
-          "1543833886484": {
-            "type": "video",
-            "settings": {
-              "video": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/NpEaa2P7qZI\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\"></iframe>"
-            }
-          },
-          "1543833889824": {
-            "type": "video",
-            "settings": {
-              "video": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/NpEaa2P7qZI\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\"></iframe>"
+              "testimonial": "We are committed to bringing only the best and highest quality to our clients; in service, professionalism and product lines. Face Reality is one of our biggest ways of providing this. Providing our acne clients with Face Reality products and services is a way to extend that respect for our clients, who we believe are the backbone of our lovely little place.",
+              "image": "shopify://shop_images/MarisasSkincare.jpg",
+              "title": "Marisa's Skin Care",
+              "date": "North Attleboro, MA"
             }
           }
         },
-        "block_order": [
-          "1538384458991",
-          "1538384503030",
-          "1538384524495",
-          "1538665766851",
-          "1538665789693",
-          "1543595500417",
-          "1543833886484",
-          "1543833889824"
-        ],
+        "block_order": ["1538384458991", "1538384503030", "1538384524495"],
         "settings": {
           "suptitle": "Certified Professional Testimonials",
           "title": "Join the team of highly successful acne specialists",
@@ -242,66 +197,32 @@
           "1539250518552": {
             "type": "testimonial",
             "settings": {
-              "testimonial": "This place really is amazing and anyone with acne knows $25 (which they waive if you elect to get a treatment) is REALLY cheap and worth it to get his or her skin under control. I have been to so many different places, spent tons of money, even tried the stuff from acne.org, just to be disappointed. I finally decided to check this place out based on all the great reviews and really nice man (Pat) I spoke with at the clinic over the phone. This place is the first place I have been able to leave from after getting a facial where I didn’t feel like I needed to hide.",
-              "image": "shopify://shop_images/testimonials-avatar1.png",
-              "title": "Jeannine L.",
-              "date": "Jun 2018"
+              "testimonial": "After 1 year of starting Face Reality, I dropped all my lash clients and went full blast acne.  I had to hire 2 other Estheticians to help with the work load! Isn’t that crazy? My clientele is 95% acne! Face Reality was the best, most impactful decision I made for my career - I am rewarded daily with an income that I only dreamed about, plus I deliver incredible value and confidence to my clients that no one else can!",
+              "image": "shopify://shop_images/LoriWard.jpg",
+              "title": "Lori Ward Skincare",
+              "date": "Rexburg, ID"
             }
           },
           "1539250535261": {
             "type": "testimonial",
             "settings": {
-              "testimonial": "Within two to three weeks we noticed a huge change. The inflammation was going down and with treatments every two weeks my daughter Sarah’s skin really did start to clear. What amazes me is that Sarah has been to dermatologists since she was in junior high school. The last time she went in, the doctor said he did not know what to do, they had tried it all. Well, Sarah walked down the aisle on her wedding day acne free, thanks to Face Reality!",
-              "image": "shopify://shop_images/testimonials-avatarx.png",
-              "title": "Sune N.",
-              "date": "Jun 2018"
+              "testimonial": "Becoming a Certified Acne Specialist has not only changed my life personally with Acne but has allowed me to change hundreds of people’s lives through the knowledge of what causes Acne. Having the knowledge I have of what causes Acne and how to maintain healthy clear skin through daily lifestyle choices, eating habits, and a balanced skincare regimen has been a true blessing. I am grateful to be able to share my knowledge with hundreds of people a week through myself, social media, and my business.",
+              "image": "shopify://shop_images/SpaKingston.jpg",
+              "title": "Spa Kingston",
+              "date": "San Diego, CA"
             }
           },
           "1539250548694": {
             "type": "testimonial",
             "settings": {
               "testimonial": "This place really is amazing and anyone with acne knows $25 (which they waive if you elect to get a treatment) is REALLY cheap and worth it to get his or her skin under control. I have been to so many different places, spent tons of money, even tried the stuff from acne.org, just to be disappointed. I finally decided to check this place out based on all the great reviews and really nice man (Pat) I spoke with at the clinic over the phone. This place is the first place I have been able to leave from after getting a facial where I didn’t feel like I needed to hide.",
-              "image": "shopify://shop_images/testimonials-avatar1_bfeaf5be-2ce7-4d78-813f-203caf0a9825.png",
-              "title": "Jeannine L.",
-              "date": "Jun 2018"
-            }
-          },
-          "1539250563709": {
-            "type": "testimonial",
-            "settings": {
-              "testimonial": "Within two to three weeks we noticed a huge change. The inflammation was going down and with treatments every two weeks my daughter Sarah’s skin really did start to clear. What amazes me is that Sarah has been to dermatologists since she was in junior high school. The last time she went in, the doctor said he did not know what to do, they had tried it all. Well, Sarah walked down the aisle on her wedding day acne free, thanks to Face Reality!",
-              "image": "shopify://shop_images/testimonials-avatarx_b3d1c8a6-67ab-4eba-9269-9e0fed39a655.png",
-              "title": "Sune N.",
-              "date": "Jun 2018"
-            }
-          },
-          "1539250579142": {
-            "type": "testimonial",
-            "settings": {
-              "testimonial": "This place really is amazing and anyone with acne knows $25 (which they waive if you elect to get a treatment) is REALLY cheap and worth it to get his or her skin under control. I have been to so many different places, spent tons of money, even tried the stuff from acne.org, just to be disappointed. I finally decided to check this place out based on all the great reviews and really nice man (Pat) I spoke with at the clinic over the phone. This place is the first place I have been able to leave from after getting a facial where I didn’t feel like I needed to hide.",
-              "image": "shopify://shop_images/testimonials-avatar1_085433f6-bc3a-469f-8a81-47f1dda609d9.png",
-              "title": "Jeannine L.",
-              "date": "Jun 2018"
-            }
-          },
-          "1539250597246": {
-            "type": "testimonial",
-            "settings": {
-              "testimonial": "Within two to three weeks we noticed a huge change. The inflammation was going down and with treatments every two weeks my daughter Sarah’s skin really did start to clear. What amazes me is that Sarah has been to dermatologists since she was in junior high school. The last time she went in, the doctor said he did not know what to do, they had tried it all. Well, Sarah walked down the aisle on her wedding day acne free, thanks to Face Reality!",
-              "image": "shopify://shop_images/testimonials-avatarx_e1965aed-d24f-45de-8c87-97b95d7e35f1.png",
-              "title": "Sune N.",
-              "date": "Jun 2018"
+              "image": "shopify://shop_images/MarisasSkincare.jpg",
+              "title": "Marisa's Skin Care",
+              "date": "North Attleboro, MA"
             }
           }
         },
-        "block_order": [
-          "1539250518552",
-          "1539250535261",
-          "1539250548694",
-          "1539250563709",
-          "1539250579142",
-          "1539250597246"
-        ],
+        "block_order": ["1539250518552", "1539250535261", "1539250548694"],
         "settings": {}
       },
       "contact-information": {
@@ -798,40 +719,14 @@
               "description": "With +90% success rate our clear skin program will help you become a confident acne specialist and offer relief to your clients",
               "button_url": "shopify://pages/certification-training",
               "button_text": "Learn more",
-              "link_url": "#certification-video",
+              "link_url": "#home-certified-anchor",
               "link_text": "<span class=\"icon-play-circle\"></span> Watch promo video",
-              "background": "shopify://shop_images/iStock-908578294.jpg",
+              "background": "shopify://shop_images/Hero_Image_2-19.jpg",
               "badge": "shopify://shop_images/success-rate-badge_7d04f359-7747-4ea0-9cb6-9b1aae2c79e8.png"
-            }
-          },
-          "1543828046160": {
-            "type": "block",
-            "settings": {
-              "title": "Get the most comprehensive acne specialist training and become certified #2",
-              "description": "With +90% success rate our Clear Skin program will help you become a confident acne specialist and offer relief ti your clients",
-              "button_url": "#",
-              "button_text": "Learn more",
-              "link_url": "",
-              "link_text": "",
-              "background": "shopify://shop_images/iStock-908578294.jpg",
-              "badge": "shopify://shop_images/success-rate-badge_4c79b073-78db-4916-adb2-9a5162f654c8.png"
-            }
-          },
-          "1543828085320": {
-            "type": "block",
-            "settings": {
-              "title": "Get the most comprehensive acne specialist training and become certified #3",
-              "description": "With +90% success rate our Clear Skin program will help you become a confident acne specialist and offer relief ti your clients",
-              "button_url": "#",
-              "button_text": "Learn more",
-              "link_url": "",
-              "link_text": "",
-              "background": "shopify://shop_images/iStock-908578294.jpg",
-              "badge": "shopify://shop_images/success-rate-badge_1e143e66-2fc8-404d-9f83-f6d5e5367660.png"
             }
           }
         },
-        "block_order": ["1543827984584", "1543828046160", "1543828085320"],
+        "block_order": ["1543827984584"],
         "settings": {}
       },
       "1543838718533": {
@@ -936,7 +831,7 @@
         "type": "training-program",
         "settings": {
           "suptitle": "The certification program",
-          "title": "Join the highly successful acne specialists",
+          "title": "Join the Team of Highly Successful Acne Specialists",
           "introduction": "The certification program includes:",
           "bottom_text": "Get over 90% of acne clients clear with our training and support. With Proven Strategies for Treating Acne, you will become a confident acne expert and a hero",
           "link": "shopify://pages/certification-test",
@@ -961,7 +856,7 @@
             "settings": {
               "title": "Professional Resource Center + Business Tools",
               "text": "Access exclusive business building assets 24/7. Download our Acne Home care Guideline, training modules, client forms, before and after images, product information and more. You'll find everything you need to succeed as an acne specialist.",
-              "image": "shopify://shop_images/iStock-908578294.jpg"
+              "image": "shopify://shop_images/Training_Image_FINAL_2.7.19_d35da36f-42cf-46c6-a956-aa0310933612.jpg"
             }
           },
           "1543942535524": {
@@ -977,7 +872,7 @@
             "settings": {
               "title": "Online Store & Wholesale Product Pricing",
               "text": "Access our online store to purchase professional Face Reality Skincare and acne treatment products at wholesale pricing.",
-              "image": "shopify://shop_images/B2B_home.jpg"
+              "image": "shopify://shop_images/Training_Image_FINAL_2.7.19_-_products6.jpg"
             }
           },
           "1543942608210": {
@@ -1000,7 +895,7 @@
           "introduction": "First, you'll get access to highly informative step-by-step instructional modules inside Proven Strategies for Treating Acne. Once you've completed the course, you will take a Certification Test, which you can take as many times as necessary in order to pass with 100%.",
           "section_title": "Certification Benefits",
           "bottom_title": "Sign up today and start elevating your acne knowledge.",
-          "bottom_text": "Get over 90% of acne clients clear with Our training and support. With Proven Strategies for\nTreating Acne, you will become a confident acne expert and a hero",
+          "bottom_text": "Get over 90% of acne clients clear with Our training and support. With Proven Strategies for\nTreating Acne, you will become a confident acne expert and a hero.",
           "link": "shopify://pages/certification-test",
           "link_text": "Get certified"
         }
@@ -1115,7 +1010,7 @@
         "settings": {
           "suptitle": "Contact us",
           "title": "Have questions? Get in touch",
-          "location": "Face reality Acne Clinic serves San Leandro, Fremont, Hayward, Oakland, East Bay, and the greater San Francisco Bay Area.",
+          "location": "Face Reality Skincare offers the most comprehensive acne training to estheticians across the United States. From getting started, to product knowledge and treatment questions, we're here to support you every step of the way.",
           "phone": "866-477-3077",
           "email": "pros@facerealityacneclinic.com"
         }

@@ -1,5 +1,5 @@
 <div class="quiz-header">
-  <div class="row">
+  <div class="row no-gutters">
     <div class="col-md-3 flex justify-content-center">
       <div class="quiz-header__return-wrap">
         <a href="/" class="quiz-header__return-link"><span class="quiz-header__icon icon-angle-left"></span> Back to homepage</a>
@@ -8,8 +8,8 @@
     <div class="col-md-6 flex justify-content-center">
       <h1 class="quiz-header__logo-title">
         <!-- logo with title is one asset image -->
-        <a href="/">
-          <img src="{{ '../assets/images/logo-quiz.png' | asset_img_url: '400x' }}" alt="Certification test" class="quiz-header__logo"/>
+        <a href="/" class="quiz-header__logo-link">
+          <img src="{{ '../assets/images/logo-quiz.png' | asset_img_url: '1000x' }}" alt="Certification test" class="quiz-header__logo"/>
         </a>
         <span style="display: none;">Certification test</span>
       </h1>

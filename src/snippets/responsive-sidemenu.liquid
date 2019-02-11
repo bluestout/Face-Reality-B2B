@@ -25,9 +25,7 @@
     </div>
 
     <div class="responsive-sidemenu__big-buttons">
-      <a href="#" class="responsive-sidemenu__big-button responsive-sidemenu__big-button--solid">Find a nearby clinic</a>
-
-      {% if customer and customer.tags contains "quiz_completed" %}
+      {% if customer and customer.tags contains "training_approved" %}
         <a href="/pages/wholesale-order-form" class="responsive-sidemenu__big-button responsive-sidemenu__big-button--alternate">
           Order form
         </a>

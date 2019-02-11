@@ -11,6 +11,7 @@
     @include title-s($color-black);
     margin: auto auto 20px;
     max-width: 300px;
+    width: 100%;
   }
 
   &__description {
@@ -18,6 +19,7 @@
     @include paragraph-m;
     margin: 0 auto auto;
     max-width: 300px;
+    width: 100%;
   }
 
   &__bottom-text {
