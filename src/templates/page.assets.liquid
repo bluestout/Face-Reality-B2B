@@ -78,8 +78,8 @@
           </div>
         </div>
         <div class="col-md-9">
-          <div class="row no-gutters">
-            {% paginate downloads.articles by 30 %}
+          {% paginate downloads.articles by 30 %}
+            <div class="row no-gutters" data-paginate-collection-content>
               {% for item in downloads.articles %}
                 {% assign item_tags = "" %}
                 {% for tag in item.tags %}
@@ -89,7 +89,7 @@
                   {% endif %}
                 {% endfor %}
                 {% if item.image %}
-                  <div class="col-lg-3 col-sm-4 col-6 {{ item_tags }}" data-asset-item >
+                  <div class="col-lg-3 col-sm-4 col-6 {{ item_tags }}" data-product-column>
                     {{ item.description }}
                     <a href="{{ item.image.src | img_url: 'original' }}" class="assets-item" download data-download-asset>
                       <span class="assets-item__image-wrap">
@@ -116,7 +116,7 @@
                     </a>
                   </div>
                   {% else %}
-                    <div class="col-lg-3 col-sm-4 col-6 {{ item_tags }}" data-asset-item>
+                    <div class="col-lg-3 col-sm-4 col-6 {{ item_tags }}" data-product-column>
                       <a href="{{ item.content | strip | strip_html }}" class="assets-item" download data-download-asset>
                         <span class="assets-item__image-wrap">
                             {% if item.content contains ".pdf" %}
@@ -142,13 +142,15 @@
                     </div>
                 {% endif %}
               {% endfor %}
-              {% if paginate.pages > 1 %}
-                <div class="col-12">
-                  {% include 'pagination' %}
+            </div>
+            {% if paginate.pages > 1 %}
+              {% if paginate.next.is_link %}
+                <div class="assets__pagination" data-collection-pagination>
+                  <a class="assets__load-more" href="{{ paginate.next.url }}" data-order-load-more>Load more</a>
                 </div>
               {% endif %}
-            {% endpaginate %}
-          </div>
+            {% endif %}
+          {% endpaginate %}
         </div>
       </div>
     </div>

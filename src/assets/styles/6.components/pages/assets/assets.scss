@@ -30,8 +30,30 @@
     margin: 0 0 0 10px;
   }
 
-  .pagination {
+  &__pagination {
     text-align: center;
+    margin: 20px 0 40px;
+  }
+
+  &__load-more {
+    @include button(wire);
+    opacity: 0.65;
+    padding: 16px 150px;
+    text-transform: uppercase;
+
+    &:hover,
+    &:active {
+      opacity: 1;
+    }
+  }
+
+  @include media-query("medium-down") {
+    &__load-more {
+      padding: 12px;
+      display: block;
+      max-width: 180px;
+      margin: 0 auto;
+    }
   }
 
   @include media-query("small-down") {

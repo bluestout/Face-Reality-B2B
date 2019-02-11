@@ -1,11 +1,11 @@
+/*
+  This page shares a large portion of the script with the assets page - look for assets.js
+  Changes made here will affect the assets page
+ */
+
 import $ from "jquery";
 import { formatMoney } from "@shopify/theme-currency";
 
-/**
- *  Allow every product item to function as a full product
- *  with variant selection, price & availability changes on the fly
- */
-// all of these are in the product-item snippet
 const el = {
   container: "[data-product-item]",
   varSelect: "[data-product-item-select]",
@@ -21,7 +21,7 @@ const el = {
 };
 
 const filter = {
-  item: "[data-collection-product-column]",
+  product: "[data-product-column]",
   authorization: "[data-authorization-filter]",
   set: "[data-filter-set]",
   authFilterBox: "[data-authorization-filter-container]",
@@ -30,15 +30,16 @@ const filter = {
   responsiveContent: "[data-product-filter-responsive-content]",
   reset: "[data-responsive-filter-reset]",
   variantAvailability: "[data-variant-availability]",
+  noResults: "[data-collections-no-results]",
 };
 
 const page = {
   button: "[data-order-load-more]",
   pagination: "[data-collection-pagination]",
   content: "[data-paginate-collection-content]",
-  product: "[data-collection-product-column]",
 };
 
+// register new filter event
 const filterEvent = new Event("runFilter");
 
 // remove falsy && empty values from array
@@ -52,6 +53,7 @@ function cleanArray(actual) {
   return newArray;
 }
 
+// b2b - availability filter specific
 function setAvailabilityOptions() {
   if ($("#availability-filter-all").prop("checked")) {
     $("[data-variant-availability=backbar]").fadeIn();
@@ -65,10 +67,12 @@ function setAvailabilityOptions() {
   }
 }
 
+// main filter functionality - toggle items based on what filter was clicked
 function toggleFilter(event) {
   const $source = $(event.currentTarget);
   const tag = $source.val();
   const $currentset = $source.closest($(filter.set));
+  $(filter.noResults).fadeOut();
 
   // when clicking an input, change the active tag classes
   if ($source[0].tagName === "INPUT") {
@@ -112,29 +116,38 @@ function runFilter() {
 
   // depending on the allClasses content show or hide items
   if (allClasses.length > 0) {
-    $(`${filter.item}${activeTags}`).fadeIn();
-    $(`${filter.item}:not(${activeTags})`).fadeOut();
+    $(`${filter.product}${activeTags}`).fadeIn();
+    $(`${filter.product}:not(${activeTags})`).fadeOut();
     // this if prevents infinite recursion - run only if no results after filtering
-    if (
-      $(`${filter.item}${activeTags}`).length <= 0 &&
-      $(page.button).length > 0
-    ) {
-      loadMore();
-    }
+    setTimeout(() => {
+      console.log("filters: ", $(`${filter.product}${activeTags}`).length);
+      if (
+        $(`${filter.product}${activeTags}`).length <= 0 &&
+        $(page.button).length > 0
+      ) {
+        loadMore();
+      } else if (
+        $(`${filter.product}${activeTags}`).length === 0 &&
+        $(page.button).length === 0
+      ) {
+        $(filter.noResults).fadeIn();
+      }
+    }, 30);
   } else {
-    $(filter.item).fadeIn();
+    $(filter.product).fadeIn();
   }
   return document
     .getElementsByClassName("product-filter__container")[0]
     .dispatchEvent(filterEvent);
 }
 
-// load more order items on click - pagination ajax
+// proxy for clicking the load more button
 function loadMoreClick(event) {
   event.preventDefault ? event.preventDefault() : (event.returnValue = false);
   loadMore();
 }
 
+// load more order items - pagination ajax
 function loadMore() {
   const $source = $(page.button);
   if ($source.length <= 0) {
@@ -143,7 +156,7 @@ function loadMore() {
   const link = $source.attr("href");
   $(page.pagination).html("<div class='linear-loader'></div>");
   $.get(link, (data) => {
-    const $content = $(`${page.content} ${page.product}`, data);
+    const $content = $(`${page.content} ${filter.product}`, data);
     const $moreLink = $(page.button, data);
     $(page.content).append($content);
     $content.hide().slideDown();
@@ -163,6 +176,7 @@ function loadMore() {
 }
 
 function resetFilters() {
+  $(filter.noResults).fadeOut();
   $(filter.set).each(function() {
     $(this)
       .removeClass()
@@ -174,6 +188,7 @@ function resetFilters() {
   runFilter();
 }
 
+// toggle the responsive sidebar filter - styling is changed via css media query
 function responsiveToggle() {
   if (!$(".responsive-sidemenu").hasClass("active")) {
     $(filter.prodFilterBox).toggleClass("active");
@@ -222,6 +237,7 @@ function productItemInit() {
   runFilter();
 }
 
+// switch variant image when changing the variant
 function switchImage(imageId, parent) {
   const $newImage = $(`${el.imageWrap}[data-image-id='${imageId}']`, parent);
   const $otherImages = $(
@@ -286,7 +302,7 @@ function getCurrentOptions(source) {
   return currentOptions;
 }
 
-// match the variants we get from the input to the json content and return matching variant
+// match the variants we get from the input to the json content and return matching variant if any
 function getVariant(options, variants) {
   if (!options || !variants) {
     return null;
@@ -308,6 +324,7 @@ function getVariant(options, variants) {
   return found || null;
 }
 
+// check if url has parameters
 function getUrlParams() {
   const params = {};
   if (window.location.search.length > 0) {
@@ -322,6 +339,7 @@ function getUrlParams() {
   return params;
 }
 
+// if url has parameters, run the filter
 function runUrlFilter() {
   const params = getUrlParams();
   if (params.availability) {
@@ -343,21 +361,15 @@ function initialize() {
   runUrlFilter();
 }
 
+// limit running these scripts to the assets/collection page
 if (
   document.getElementsByClassName("template-collection").length ||
   document.getElementById("downloads")
 ) {
   $(document).on("click", filter.responsiveToggle, responsiveToggle);
-}
-
-if (document.getElementsByClassName("template-collection").length) {
   $(document).ready(initialize);
-
   $(document).on("click", page.button, loadMoreClick);
-
   $(document).on("click", filter.reset, resetFilters);
-
   $(document).on("click", `${filter.set} input`, toggleFilter);
-
   $(window).on("load resize", MoveAuthorizationFilter);
 }
