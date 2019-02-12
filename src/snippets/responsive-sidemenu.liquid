@@ -29,8 +29,10 @@
         <a href="/pages/wholesale-order-form" class="responsive-sidemenu__big-button responsive-sidemenu__big-button--alternate">
           Order form
         </a>
-      {% else %}
+      {% elsif customer and customer.tags contains "training_purchased" %}
         <a href="/pages/certification-test" class="responsive-sidemenu__big-button responsive-sidemenu__big-button--alternate">Get Certified</a>
+      {% else %}
+        <a href="/products/training-course" class="responsive-sidemenu__big-button responsive-sidemenu__big-button--alternate">Get Certified</a>
       {% endif %}
     </div>
 

@@ -19,4 +19,23 @@ function loadMore(event) {
   });
 }
 
-$(document).on("click", "[data-order-load-more]", loadMore);
+// if a redirect is set up after registration, redirect back to the certification product page
+function redirectIfSet() {
+  const redirect = localStorage.getItem("registerRedirect");
+  if (redirect === "certification") {
+    localStorage.setItem("registerRedirect", false);
+    window.location.replace("/products/training-course");
+  }
+}
+
+if (
+  document.getElementById("account") ||
+  document.getElementById("all") ||
+  document.getElementById("face-reality-skincare-professional")
+) {
+  redirectIfSet();
+}
+
+if (document.getElementById("account")) {
+  $(document).on("click", "[data-order-load-more]", loadMore);
+}

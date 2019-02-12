@@ -55,6 +55,7 @@ function nameConfirm() {
 function disableForm() {
   $(elements.formSubmit).prop("disabled", true);
 }
+
 function enableForm() {
   $(elements.formSubmit).prop("disabled", false);
 }
@@ -110,10 +111,46 @@ function showError() {
   }, 3000);
 }
 
-$(document).on(
-  "keyup",
-  `${elements.passwordInput}, ${elements.passwordCheckInput}`,
-  passwordConfirm,
-);
-$(document).on("keyup", elements.emailInput, emailConfirm);
-$(document).on("keyup", elements.nameInput, nameConfirm);
+// check if url has parameters
+function getUrlParams() {
+  const params = {};
+  if (window.location.search.length > 0) {
+    document.location.search
+      .substr(1)
+      .split("&")
+      .forEach((pair) => {
+        const paramsSplit = pair.split("=");
+        params[paramsSplit[0]] = paramsSplit[1];
+      });
+  }
+  return params;
+}
+
+// when registering, if linked from the certification product, set up a redirect back to the product
+function setupRedirect() {
+  const params = getUrlParams();
+  let dontEnter = false;
+  localStorage.setItem("registerRedirect", false);
+  if (params.redirect === "certification") {
+    $("#create_customer").submit((event) => {
+      if (dontEnter === false) {
+        event.preventDefault();
+        localStorage.setItem("registerRedirect", "certification");
+        dontEnter = true;
+        $("#create_customer").submit();
+      }
+    });
+  }
+}
+
+// only run this on /account/register page
+if (document.getElementById("create-account")) {
+  $(document).ready(setupRedirect);
+  $(document).on(
+    "keyup",
+    `${elements.passwordInput}, ${elements.passwordCheckInput}`,
+    passwordConfirm,
+  );
+  $(document).on("keyup", elements.emailInput, emailConfirm);
+  $(document).on("keyup", elements.nameInput, nameConfirm);
+}

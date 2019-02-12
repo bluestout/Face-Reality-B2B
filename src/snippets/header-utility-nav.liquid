@@ -39,6 +39,10 @@
   </a>
 
   {% unless customer and customer.tags contains "training_approved" %}
-    <a href="/pages/certification-test" class="utility-nav__big-button">Get Certified</a>
+    {% if customer and customer.tags contains "training_purchased" %}
+      <a href="/pages/certification-test" class="utility-nav__big-button">Get Certified</a>
+    {% else %}
+      <a href="/products/training-course" class="utility-nav__big-button">Get Certified</a>
+    {% endif %}
   {% endunless %}
 </div>
