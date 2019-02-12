@@ -23,22 +23,26 @@
     }
   });
 
-  $(".step > form").submit(function(event){
-    var stop = false;
-    // skip the last field - phone because of formatting issues (and it's not relevant for the shipping address)
-    for (var i = 0; i < inputs.length - 1; i++) {
-      var element = inputs[i];
-      if ($("#" + element).val() !== localStorage.getItem(element)) {
-        stop = true;
+  if (document.getElementById(inputs[0])) {
+    $(".step > form").submit(function(event){
+      var stop = false;
+      // skip the last field - phone because of formatting issues (and it's not relevant for the shipping address)
+      for (var i = 0; i < inputs.length - 1; i++) {
+        var element = inputs[i];
+        if ($("#" + element).val() !== localStorage.getItem(element)) {
+          stop = true;
+        }
       }
-    }
-    if (stop) {
-      $("[data-step-footer]").after("<p style='clear: both; display:block; text-align:right; margin: 10px 0;'>Do not adjust the Shipping method</p>");
-      event.preventDefault();
-    }
-  })
-
+      if (stop) {
+        if (!document.getElementById("do-not-change-shipping")) {
+          $("[data-step-footer]").after("<p id='do-not-change-shipping'  style='clear: both; display:block; text-align:right; margin: 10px 0;'>Do not adjust the Shipping method</p>");
+        }
+        event.preventDefault();
+      }
+    })
+  }
 </script>
 
 <!-- minified version of the above -->
-<script>var $=Checkout.$,inputs=["checkout_shipping_address_id","checkout_shipping_address_first_name","checkout_shipping_address_last_name","checkout_shipping_address_company","checkout_shipping_address_address1","checkout_shipping_address_address2","checkout_shipping_address_city","checkout_shipping_address_country","checkout_shipping_address_province","checkout_shipping_address_zip","checkout_shipping_address_phone"];$(document).ready(function(){for(var e=0;e<inputs.length;e++){var s=inputs[e];$("#"+s).prop("readonly",!0),$("#"+s).prop("disabled",!0),localStorage.setItem(s,$("#"+s).val())}}),$(".step > form").submit(function(e){for(var s=!1,t=0;t<inputs.length-1;t++){var p=inputs[t];$("#"+p).val()!==localStorage.getItem(p)&&(s=!0)}s&&($("[data-step-footer]").after("<p style='clear: both; display:block; text-align:right; margin: 10px 0;'>Do not adjust the Shipping method</p>"),e.preventDefault())});</script>
+<script>var $=Checkout.$,inputs=["checkout_shipping_address_id","checkout_shipping_address_first_name","checkout_shipping_address_last_name","checkout_shipping_address_company","checkout_shipping_address_address1","checkout_shipping_address_address2","checkout_shipping_address_city","checkout_shipping_address_country","checkout_shipping_address_province","checkout_shipping_address_zip","checkout_shipping_address_phone"];$(document).ready(function(){for(var e=0;e<inputs.length;e++){var t=inputs[e];$("#"+t).prop("readonly",!0),$("#"+t).prop("disabled",!0),localStorage.setItem(t,$("#"+t).val())}}),!document.getElementById(inputs[0])&&$(".step > form").submit(function(e){for(var t=!1,s=0;s<inputs.length-1;s++){var p=inputs[s];$("#"+p).val()!==localStorage.getItem(p)&&(t=!0)}t&&(document.getElementById("do-not-change-shipping")&&$("[data-step-footer]").after("<p id='do-not-change-shipping'  style='clear: both; display:block; text-align:right; margin: 10px 0;'>Do not adjust the Shipping method</p>"),e.preventDefault())});</script>
+

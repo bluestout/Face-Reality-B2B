@@ -2,6 +2,7 @@ import $ from "jquery";
 
 const el = {
   redirect: "[data-quiz-redirect]",
+  purchase: "[data-quiz-purchase]",
 };
 
 function quizRedirect() {
@@ -17,5 +18,19 @@ function quizRedirect() {
     }
   }
 }
+function init() {
+  quizRedirect();
+  if ($(el.redirect).length && $(el.purchase).length) {
+    const hasPurchased =
+      localStorage.getItem("certification-bought") === "certification-bought"
+        ? true
+        : false;
+    if (hasPurchased) {
+      $(el.redirect).removeClass("d-none");
+      $(el.purchase).addClass("d-none");
+      localStorage.setItem("certification-bought", false);
+    }
+  }
+}
 
-$(document).ready(quizRedirect);
+$(document).ready(init);

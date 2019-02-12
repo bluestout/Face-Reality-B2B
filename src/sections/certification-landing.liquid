@@ -32,7 +32,8 @@
       </div>
     {% else %}
       <div class="quiz-landing__links">
-        <a href="/products/training-course" class="quiz-landing__link">Purchase test</a>
+        <a data-quiz-purchase href="/products/training-course" class="quiz-landing__link">Purchase test</a>
+        <a data-quiz-redirect data-customer-email="{{ customer.email }}" data-customer-id="{{ customer.id }}" href="{{ section.settings.link }}" class="quiz-landing__link d-none">{{ section.settings.link_text }}</a>
       </div>
     {% endif %}
   {% else %}
