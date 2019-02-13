@@ -12,9 +12,12 @@
     {% if block.settings.background %}
       <div class="collection-banner collection-banner--bg lazyload" data-bgset="{% include 'responsive-bg-image', image: block.settings.background %}">
     {% else %}
-      <div class="collection-banner">
+      <div class="collection-banner collection-banner--default">
         <div class="container">
-          <h2 class="collection-banner__subtitle">{{ b_title }}</h2>
+          <h1 class="collection-banner__title">{{ b_title }}</h1>
+          {% if section.settings.subtitle != "" %}
+            <h2 class="collection-banner__subtitle">{{ section.settings.subtitle }}</h2>
+          {% endif %}
         </div>
       </div>
     {% endif %}
@@ -22,10 +25,14 @@
 {% endfor %}
 
 {% if c_found == false %}
-  <div class="collection-banner collection-banner--default">
+  {% if section.settings.background %}
+    <div class="collection-banner collection-banner--bg lazyload" data-bgset="{% include 'responsive-bg-image', image: section.settings.background %}">
+  {% else %}
+    <div class="collection-banner collection-banner--default">
+  {% endif %}
     <div class="container">
       {% if collection.handle == "all" or collection.handle == "products" %}
-        <h1 class="collection-banner__title">All products</h1>
+        <h1 class="collection-banner__title" data-collection-banner-title>All products</h1>
       {% else %}
         <h1 class="collection-banner__title">{{ collection.title }}</h1>
       {% endif %}
@@ -33,8 +40,6 @@
     </div>
   </div>
 {% endif %}
-
-
 
 {% schema %}
   {
@@ -44,6 +49,12 @@
         "type": "textarea",
         "id": "title",
         "label": "Title"
+      },
+      {
+        "type": "image_picker",
+        "id": "background",
+        "label": "Background",
+        "info": "1920x400"
       }
     ],
     "blocks": [
@@ -61,6 +72,11 @@
             "type": "text",
             "id": "title",
             "label": "Title"
+          },
+          {
+            "type": "textarea",
+            "id": "subtitle",
+            "label": "Subtitle"
           },
           {
             "type": "collection",

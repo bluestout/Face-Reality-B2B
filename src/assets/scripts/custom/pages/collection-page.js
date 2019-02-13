@@ -18,6 +18,7 @@ const el = {
   optionInput: "[data-product-item-option-input]",
   json: "[data-product-item-json]",
   imageWrap: "[data-product-image-wrapper]",
+  cTitle: "[data-collection-banner-title]",
 };
 
 const filter = {
@@ -121,7 +122,7 @@ function runFilter() {
     // this if prevents infinite recursion - run only if no results after filtering
     setTimeout(() => {
       if (
-        $(`${filter.product}${activeTags}`).length <= 0 &&
+        $(`${filter.product}${activeTags}`).length <= 9 &&
         $(page.button).length > 0
       ) {
         loadMore();
@@ -131,7 +132,7 @@ function runFilter() {
       ) {
         $(filter.noResults).fadeIn();
       }
-    }, 30);
+    }, 100);
   } else {
     $(filter.product).fadeIn();
   }
@@ -343,16 +344,41 @@ function runUrlFilter() {
   const params = getUrlParams();
   if (params.availability) {
     $(`#availability-filter-${params.availability}`).click();
+    setCollectionTitle(params.availability, true);
   }
   if (params.type) {
     $(`#type-f-${params.type}`).click();
+    setCollectionTitle(params.type);
   }
   if (params.usecase) {
     $(`#usecase-f-${params.usecase}`).click();
+    setCollectionTitle(params.usecase);
   }
   if (params.skin) {
     $(`#skin-f-${params.skin}`).click();
+    setCollectionTitle(params.skin);
   }
+}
+
+function deHandleize(str) {
+  return str.replace("-", " ").replace("_", " ");
+}
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function setCollectionTitle(titleRaw, professional) {
+  let title = "";
+  if (professional) {
+    title = "Professional";
+  } else {
+    title = capitalizeFirstLetter(deHandleize(titleRaw));
+  }
+  if (!titleRaw.indexOf("-") > -1) {
+    title += "s";
+  }
+  return $(el.cTitle).text(title);
 }
 
 function initialize() {

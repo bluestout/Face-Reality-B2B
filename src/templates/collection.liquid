@@ -24,7 +24,7 @@
         <div class="col-md-9">
           <div class="collection-products">
             {% if collection.products.size > 0 %}
-              {% paginate collection.products by 9 %}
+              {% paginate collection.products by 12 %}
                 <div class="row no-gutters" data-paginate-collection-content>
                   {% for product in collection.products %}
                     {% assign hide_product = false %}
@@ -41,7 +41,6 @@
 
                     {% for variant in product.variants %}
                       {% if variant.title contains "backbar" or variant.title contains "Backbar" %}
-                        {% assign has_backbar = true %}
                         {% assign filtered_tags_s = filtered_tags_s | append: "availability-backbar::" %}
                       {% else %}
                         {% assign filtered_tags_s = filtered_tags_s | append: "availability-retail::" %}
@@ -52,8 +51,6 @@
                     {% capture p_filtered_tag_classes %}{% unless filtered_tags_a == empty %}{% for f_tag in filtered_tags_a %} {{ f_tag }}{% endfor %}{% endunless %}{% endcapture %}
                     {% assign all_tags = "skin-all usecase-all type-all availability-all" %}
                     {% assign type_tag = "type-" | append: product.type | handleize %}
-                    {% if condition %}
-                    {% endif %}
                     {% comment %} add all the products we extracted and the all- tags in order for the filters to work {% endcomment %}
                     {% unless hide_product  %}
                       <div class="col-lg-4 col-6 {{ all_tags }} {{ type_tag }} {{ p_filtered_tag_classes }}" data-product-column>
