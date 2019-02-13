@@ -33,14 +33,14 @@
 
   &__title {
     @include apercu(700);
-    @include Text(40px, 49px, $color-white);
+    @include Text(40px, 49px, $color-black);
     position: relative;
     margin: 0 0 10px;
   }
 
   &__subtitle {
     @include apercu;
-    @include paragraph-m-s($color-white);
+    @include paragraph-m-s($color-black);
     position: relative;
     margin: 0 auto;
     max-width: 400px;
@@ -71,7 +71,7 @@
 
   &__scroll-text {
     @include apercu(700);
-    @include Text(12px, 1, $color-white);
+    @include Text(12px, 1, $color-black);
     display: block;
     margin: 0 0 3px;
   }
@@ -83,7 +83,7 @@
     display: block;
     &::after {
       content: "\25CF";
-      color: $color-white;
+      color: $color-black;
       font-size: 7px;
       line-height: 1;
       display: block;
@@ -91,7 +91,7 @@
   }
 
   &__scroll-triangle {
-    @include Text(7px, 1, $color-white);
+    @include Text(7px, 1, $color-black);
     display: block;
     margin: 1px 0 0;
     transform: rotate(180deg);
