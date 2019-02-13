@@ -5,6 +5,7 @@
         <img src="{{ section.settings.bg | img_url: '1920x' }}" alt="{{ page.title }}" class="training-banner__bg-image">
       </div>
     {% endif %}
+    <div class="training-banner__gradient"></div>
     <div class="training-banner__content {{ classes }}">
       <h1 class="training-banner__title">{{ page.title }}</h1>
       <h2 class="training-banner__subtitle">{{ page.content | strip | strip_html  }}</h2>

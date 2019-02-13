@@ -163,7 +163,11 @@
     padding: 100px 0 40px;
 
     &__gradient {
-      display: none;
+      background: linear-gradient(
+        360deg,
+        rgba($color-white, 1) 0,
+        rgba($color-white, 0) 30%
+      );
     }
 
     &__title {
