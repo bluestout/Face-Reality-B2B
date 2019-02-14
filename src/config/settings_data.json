@@ -770,7 +770,7 @@
         "settings": {
           "link": "#",
           "link_text": "Proceed to Certification",
-          "left_content": "<p class=\"text-left\"><b>What to expect on the test?</b></p>\n<ul>\n<li>83 questions</li>\n<li>Has no time limit</li>\n<li>Open book – review your training videos and documents for reference</li>\n<li>If you answer any questions incorrectly, you’ll be prompted to go back and submit a new answer at the end of the test</li>\n</ul>",
+          "left_content": "<br><br><br><p class=\"text-left\"><b>What to expect on the test?</b></p>\n<ul>\n<li>83 questions</li>\n<li>Has no time limit</li>\n<li>Open book – review your training videos and documents for reference</li>\n<li>If you answer any questions incorrectly, you’ll be prompted to go back and submit a new answer at the end of the test</li>\n</ul>",
           "right_content": "<p class=\"text-left\"><b>Once you pass the test, you’ll be prompted to agree to our terms and upload these required documents:</b></p>\n<ul>\n<li>Esthetics license</li>\n<li>Business license or resale certificate</li>\n<li>Proof of liability insurance for yourself or the establishment for whom you work</li>\n<li>CA Seller's Permit (if your business is in California)</li>\n</ul>"
         }
       },
