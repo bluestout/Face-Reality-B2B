@@ -43,34 +43,34 @@
 
   &__instructions {
     margin: 0 auto 20px;
-    max-width: 520px;
+    max-width: 700px;
   }
 
-  &__list {
-    text-align: left;
-    list-style: none;
-    padding-inline-start: 50px;
-  }
+  &__content-block {
+    padding: 0 15px;
 
-  &__item {
-    position: relative;
-
-    &:not(:last-of-type) {
-      margin: 0 0 10px;
+    ul {
+      text-align: left;
+      list-style: none;
+      padding-inline-start: 50px;
     }
-
-    &:last-of-type {
-      margin: 0;
-    }
-
-    &::before {
-      @include icoMoon(14px, $color-blumine);
-      content: "\e91b";
-      position: absolute;
-      left: -30px;
-      top: 3px;
-      display: inline-block;
-      transform: rotate(-10deg);
+    ul li {
+      position: relative;
+      &:not(:last-of-type) {
+        margin: 0 0 10px;
+      }
+      &:last-of-type {
+        margin: 0;
+      }
+      &::before {
+        @include icoMoon(14px, $color-blumine);
+        content: "\e91b";
+        position: absolute;
+        left: -30px;
+        top: 3px;
+        display: inline-block;
+        transform: rotate(-10deg);
+      }
     }
   }
 
@@ -141,6 +141,10 @@
         content: none;
       }
     }
+
+    &__content-block {
+      padding: 0;
+    }
   }
 
   @include media-query("small-down") {
@@ -160,9 +164,10 @@
       font-size: 18px;
       line-height: 24px;
     }
-
-    &__list {
-      padding-inline-start: 40px;
+    &__content-block {
+      ul {
+        padding-inline-start: 40px;
+      }
     }
   }
 }

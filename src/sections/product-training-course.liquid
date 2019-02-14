@@ -1,0 +1,142 @@
+<div class="swym-dummy d-none">
+  <span class="swym-button"></span>
+</div>
+{% if customer %}
+  {% if customer.tags contains "training_purchased" %}
+    <div class="training-product" style="background-image:url('{{ '../assets/images/certification-bg.jpg' | asset_img_url: 'original' }}');">
+      <div class="training-product__banner">
+        <img src="{{ '../assets/images/icon-certification.png' | asset_img_url: '160x' }}" alt="Training course" class="training-product__image"/>
+        {% if section.settings.ap_title != "" %}
+          <h1 class="training-product__title">{{ section.settings.ap_title }}</h1>
+        {% else %}
+          <h1 class="training-product__title">{{ product.title }}</h1>
+        {% endif %}
+        <div class="training-product__text">{{ section.settings.ap_content }}</div>
+        <div class="training-product__links">
+          <a href="{{ section.settings.ap_link_url }}" class="training-product__link">{{ section.settings.ap_link_text }}</a>
+        </div>
+      </div>
+    </div>
+  {% else %}
+    <div class="training-product" style="background-image:url('{{ '../assets/images/certification-bg.jpg' | asset_img_url: 'original' }}');">
+      <div class="training-product__banner">
+        <img src="{{ '../assets/images/icon-certification.png' | asset_img_url: '160x' }}" alt="Training course" class="training-product__image"/>
+        {% if section.settings.li_title != "" %}
+          <h1 class="training-product__title">{{ section.settings.li_title }}</h1>
+        {% else %}
+          <h1 class="training-product__title">{{ product.title }}</h1>
+        {% endif %}
+        <div class="training-product__text">{{ section.settings.li_content }}</div>
+        <div class="training-product__links">
+          {%- assign variant = product.selected_or_first_available_variant -%}
+          <form action="/cart/add" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="{{ variant.id }}"/>
+            <input type="hidden" name="product-id" value="{{ product.id }}"/>
+            <input type="hidden" name="product-title" value="{{ product.title }}"/>
+            <input type="hidden" name="quantity" value="1"/>
+            <div class="training-product__title">{{ product.price | money }}</div>
+            <button
+              class="training-product__link"
+              type="submit"
+              name="add"
+              data-add-to-cart-training>
+              {{ section.settings.li_button_text }}
+            </button>
+          </form>
+        </div>
+        <div class="training-product__disclaimer">{{ section.settings.li_disclaimer }}</div>
+      </div>
+    </div>
+  {% endif %}
+{% else %}
+  <div class="training-product" style="background-image:url('{{ '../assets/images/certification-bg.jpg' | asset_img_url: 'original' }}');">
+    <div class="training-product__banner">
+      <img src="{{ '../assets/images/icon-certification.png' | asset_img_url: '160x' }}" alt="Training course" class="training-product__image"/>
+      {% if section.settings.nli_title != "" %}
+        <h1 class="training-product__title">{{ section.settings.nli_title }}</h1>
+      {% else %}
+        <h1 class="training-product__title">{{ product.title }}</h1>
+      {% endif %}
+      <div class="training-product__text">{{ product.description }}</div>
+      <div class="training-product__links">
+        <a href="/account/register/?redirect=certification" class="training-product__link">{{ section.settings.nli_button_text }}</a>
+      </div>
+      <div class="training-product__disclaimer">{{ section.settings.nli_disclaimer }}</div>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Certification",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Not Logged In"
+      },
+      {
+        "type": "text",
+        "id": "nli_title",
+        "label": "NLI Title"
+      },
+      {
+        "type": "text",
+        "id": "nli_button_text",
+        "label": "NLI Buy Button Text"
+      },
+      {
+        "type": "textarea",
+        "id": "nli_disclaimer",
+        "label": "NLI Disclaimer"
+      },
+      {
+        "type": "header",
+        "content": "Logged In"
+      },
+      {
+        "type": "text",
+        "id": "li_title",
+        "label": "LI Title"
+      },
+      {
+        "type": "textarea",
+        "id": "li_content",
+        "label": "LI Content"
+      },
+      {
+        "type": "text",
+        "id": "li_button_text",
+        "label": "LI Buy Button Text"
+      },
+      {
+        "type": "textarea",
+        "id": "li_disclaimer",
+        "label": "LI Disclaimer"
+      },
+      {
+        "type": "header",
+        "content": "Already Purchased"
+      },
+      {
+        "type": "text",
+        "id": "ap_title",
+        "label": "AP Title"
+      },
+      {
+        "type": "textarea",
+        "id": "ap_content",
+        "label": "AP Content"
+      },
+      {
+        "type": "url",
+        "id": "ap_link_url",
+        "label": "AP Link URL"
+      },
+      {
+        "type": "text",
+        "id": "ap_link_text",
+        "label": "AP Link Text"
+      }
+    ]
+  }
+{% endschema %}

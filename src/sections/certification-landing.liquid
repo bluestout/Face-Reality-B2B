@@ -1,26 +1,14 @@
 <div class="quiz-landing__instructions">
   <div class="row">
     <div class="col-md-6 col-first-col">
-      <ul class="quiz-landing__list">
-        {% for block in section.blocks %}
-          {% if block.type == "list_left" %}
-            <li class="quiz-landing__item">
-              {{ block.settings.title }}
-            </li>
-          {% endif %}
-        {% endfor %}
-      </ul>
+      <div class="quiz-landing__content-block">
+        {{ section.settings.left_content }}
+      </div>
     </div>
     <div class="col-md-6">
-      <ul class="quiz-landing__list">
-        {% for block in section.blocks %}
-          {% if block.type == "list_right" %}
-            <li class="quiz-landing__item">
-              {{ block.settings.title }}
-            </li>
-          {% endif %}
-        {% endfor %}
-      </ul>
+      <div class="quiz-landing__content-block">
+        {{ section.settings.right_content }}
+      </div>
     </div>
   </div>
 </div>
@@ -58,30 +46,16 @@
         "type": "text",
         "id": "link_text",
         "label": "Link text"
-      }
-    ],
-    "blocks": [
-      {
-        "type": "list_left",
-        "name": "Left list",
-        "settings": [
-          {
-            "type": "textarea",
-            "id": "title",
-            "label": "List item"
-          }
-        ]
       },
       {
-        "type": "list_right",
-        "name": "Right list",
-        "settings": [
-          {
-            "type": "textarea",
-            "id": "title",
-            "label": "List item"
-          }
-        ]
+        "type": "textarea",
+        "id": "left_content",
+        "label": "Left Content Block"
+      },
+      {
+        "type": "textarea",
+        "id": "right_content",
+        "label": "Right Content Block"
       }
     ]
   }
