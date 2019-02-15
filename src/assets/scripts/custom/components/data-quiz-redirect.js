@@ -13,7 +13,7 @@ function quizRedirect() {
     if (email && id) {
       $link.attr(
         "href",
-        `https://facereality-quiz.herokuapp.com?shopify_id=${id}&shopify_email=${email}`,
+        `https://certification.facerealityskincare.com?shopify_id=${id}&shopify_email=${email}`,
       );
     }
   }
