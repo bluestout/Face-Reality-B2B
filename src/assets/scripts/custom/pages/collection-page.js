@@ -375,7 +375,10 @@ function setCollectionTitle(titleRaw, professional) {
   } else {
     title = capitalizeFirstLetter(deHandleize(titleRaw));
   }
-  if (!titleRaw.indexOf("-") > -1) {
+  console.log(titleRaw);
+  if (titleRaw === "acne-prevention") {
+    title = "Acne Prevention";
+  } else if (!titleRaw.indexOf("-") > -1 && titleRaw !== "tools") {
     title += "s";
   }
   return $(el.cTitle).text(title);
