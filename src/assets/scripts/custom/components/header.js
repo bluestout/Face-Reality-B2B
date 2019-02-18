@@ -6,6 +6,9 @@ const el = {
   link: "[data-primary-nav-link]",
   sublist: "[data-primary-nav-sublist]",
   authSwitch: "[data-collection-authorization-switch]",
+  announcement: "[data-announcement-bar-xl]",
+  closeAnnouncement: "[data-announcement-close]",
+  banner: "[data-primary-banner]",
 };
 
 function headerOffset() {
@@ -47,13 +50,31 @@ function isCollFilterScrolled(scroll, authPos) {
   }
 }
 
-$(el.sublist).hover(listIn, listOut);
+function checkAnnouncementStatus() {
+  const status = localStorage.getItem("announcement-hide");
+  if ($(el.announcement).length > 0 && $(el.banner).length > 0) {
+    $(el.banner).addClass("big-padding");
+  }
+  if (status === "true") {
+    closeAnnouncement();
+    $(el.banner).removeClass("big-padding");
+  }
+}
 
-$(window).on("resize", headerOffset);
+function closeAnnouncement() {
+  $(el.announcement).slideToggle();
+  const status = localStorage.getItem("announcement-hide");
+  if ($(el.banner).length > 0) {
+    $(el.banner).removeClass("big-padding");
+  }
+  if (status !== "true") {
+    localStorage.setItem("announcement-hide", true);
+  }
+}
 
-$(document).ready(headerOffset);
-
-function scrolling() {
+function init() {
+  headerOffset();
+  checkAnnouncementStatus();
   let authPos = 0;
   if ($(el.authSwitch).length > 0) {
     authPos = $(el.authSwitch).offset().top;
@@ -80,4 +101,7 @@ function scrolling() {
   });
 }
 
-$(document).ready(scrolling);
+$(document).ready(init);
+$(el.sublist).hover(listIn, listOut);
+$(window).on("resize", headerOffset);
+$(document).on("click", el.closeAnnouncement, closeAnnouncement);

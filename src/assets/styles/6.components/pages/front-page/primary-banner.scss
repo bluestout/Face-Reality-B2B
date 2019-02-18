@@ -77,9 +77,14 @@
 }
 
 .primary-banner {
+  @include transition(padding);
   position: relative;
   text-align: center;
   padding: 160px 0 100px;
+
+  &.big-padding {
+    padding: 230px 0 100px;
+  }
 
   &--bg {
     @include backgroundImage;
@@ -154,6 +159,10 @@
     &__title {
       font-size: 26px;
       line-height: 30px;
+    }
+
+    &.big-padding {
+      padding: 190px 0 100px;
     }
   }
 }
