@@ -46,7 +46,7 @@
           "announcement_bar_enabled": true,
           "announcement_bar_home_page_only": true,
           "announcement_bar_text": "10% promo discount on all products. Only this week. <a href=\"/collections/all/\">Shop Now</a>",
-          "logo": "shopify://shop_images/FRS-Logo-1-19.png",
+          "logo": "shopify://shop_images/Face-Reality-Logo-rgb-web-transparent.png",
           "logo_max_width": 180,
           "menu": "main-menu"
         }
@@ -112,7 +112,7 @@
         "settings": {
           "content_top": "<p>In her mid-thirties, she finally found an esthetician who got her skin clear. She immediately felt compelled to help others as she had been helped. After all, she knew first-hand how adversely it had affected her life; and she wanted to spare others the agony of dealing with acne.</p>\n<p><br>She became a California state-licensed esthetician in 1990 and set out to learn everything about acne that she could. After having been a sole practitioner for many years, her dream of opening an acne-only clinic came true in 2005. As a result of her astounding results with acne, other&nbsp;estheticians started demanding classes to learn her protocol. Out of this was born her comprehensive Acne Specialist training and she has certified over 400 skin care professionals, including nurses and doctors, around the United States.&nbsp;</p>",
           "image_top": "shopify://shop_images/Laura.jpg",
-          "image_middle": "shopify://shop_images/banner-about-lara.png",
+          "image_middle": "shopify://shop_images/About_Us.png",
           "content_middle": "Laura knows first-hand how adversely acne can affect people's lives; and she wants to spare others the suffering that it can bring.",
           "content_bottom": "<p>She organized the first U.S. conference for acne specialists in September 2014, and continues to write articles about acne and acne treatment in several skin care industry publications. She is continually doing research and testing products to increase her understanding of the disease known as retention hyperkeratosis, aka acne.</p>\n<p></p>\n<p></p>",
           "cta_content": "Learn more about Face Reality Skincare, and how we can help grow your esthetician business.",
@@ -126,10 +126,10 @@
         "type": "different-full-w-rows",
         "settings": {
           "title_top": "Acne can be controlled with the right products and process.",
-          "description_top": "<p>Acne is a mysterious skin disorder, but one thing is for sure &ndash; it can be controlled with the right combination of products, used in the correct way. Just as in a clogged drain, the pore must be treated with products that unclog it and kill the acne bacteria.</p>\n<p><br>Face Reality Acne Clinic has a clear-skin system that will have your acne under control in about three to four months, depending on your type of acne. We combine the power of clinical-grade products that are customized for your type of acne, with a series of bi-monthly treatments. We also teach you about other aggravating factors that make you break out &ndash; foods, medications, cosmetics, stress, and common ingredients in skin care formulations that might be clogging your pores (even professional and prescription products).</p>",
+          "description_top": "<p>Acne is a mysterious skin disorder, but one thing is for sure &ndash; it can be controlled with the right combination of treatments and products. Just as in a clogged drain, the pore must be treated with products that unclog it and kill the acne bacteria.</p>\n<p>Our clear-skin system will have your client&rsquo;s acne under control in about 3-4 months without the use of prescription medications. We combine the power of premium products and a comprehensive treatment protocol to successfully treat even your most challenging acne clients.</p>",
           "image_top": "shopify://shop_images/about1.jpg",
           "title_bottom": "Find the right products for your clients' skin.  And teach them how they should be used.",
-          "description_bottom": "<p>The most important aspect of our system is not just starting you with the right products, but we teach you how to use them. We test your skin to make sure you are getting the most effective products for your acne type, skin type, and skin tolerance. It won&rsquo;t be enough just to have the right products &ndash; it&rsquo;s all about having the right routine for those products. You will learn how to use products slowly at first, so that your skin stays receptive without causing irritation or dehydration. But skin can become accustomed to products and then become less effective over time &ndash; that is why we will adjust your regimen little by little, to get rid of your acne.</p>",
+          "description_bottom": "<p>Unlike other skincare solutions, our approach is not &ldquo;one size fits all.\" Face Reality provides custom home care options for every age, gender, acne type and skin type, including Fitzpatrick 4+. We even take it one step further and take diet and lifestyle factors into careful consideration. In as little as 3-4 months, your clients will see breakouts and hyperpigmentation diminish as well as a drastic improvement in their overall complexion.<br><br>The most important aspect of our clear-skin system is not just starting your clients with the right products, but teaching them how to use them properly at home. It&rsquo;s all about the right routine. In our Acne Specialist Certification Training, we&rsquo;ll teach you how to adjust your client&rsquo;s regimen to ensure their skin stays receptive to their acne-fighting products without causing irritation or dehydration.</p>",
           "image_bottom": "shopify://shop_images/how-we-are-diff-2.png"
         }
       },
@@ -245,8 +245,8 @@
         "type": "about-products-content",
         "settings": {
           "title": "Face Reality products are specifically formulated for acne-prone skin and are guaranteed not to clog pores.",
-          "content": "<p>Face Reality Skincare products are meticulously crafted without acne-causing ingredients that are commonly found in other &ldquo;acne fighting&rdquo; skincare lines on the market. We have gone to great lengths to ensure our formulations are made safe for those who struggle with acne. Face Reality products are proprietary (no one else has the same formulas) and contain only the highest-quality skin nourishing ingredients, resulting in significant benefits beyond treating acne.<br><br>Unlike other skincare solutions, our approach is not &ldquo;one size fits all.\" Face Reality provides custom home care options for every age, gender, acne type and skin type, including Fitzpatrick 4+. We even take it one step further and take diet and lifestyle factors into careful consideration. In as little as 3-4 months, your clients will see breakouts and hyperpigmentation diminish as well as a drastic improvement in their overall complexion.<br><br>Become a certified Face Reality Acne Specialist today and get access to our products that contain active ingredients, our professional size products and wholesale pricing.</p>",
-          "small_print": "We only ship our products in the United States."
+          "content": "<p>Face Reality Skincare products are meticulously crafted without acne-causing ingredients that are commonly found in other &ldquo;acne fighting&rdquo; skincare lines on the market. We have gone to great lengths to ensure our formulations are made safe for those who struggle with acne. Face Reality products are proprietary (no one else has the same formulas) and contain only the highest-quality skin nourishing ingredients, resulting in significant benefits beyond treating acne.</p>\n<p>Our products are never tested on animals.<br><br>Become a certified Face Reality Acne Specialist today and gain access to our products at wholesale pricing.</p>\n<p>We only ship our products within the United States.</p>",
+          "small_print": ""
         }
       },
       "about-products-explore": {
@@ -517,10 +517,10 @@
       "info-cta": {
         "type": "info-cta",
         "settings": {
-          "title": "Learn more about face reality certification process, and why we can help you improve your acne treatment business",
-          "bg": "shopify://shop_images/background-cta.png",
+          "title": "Our clear skin program will help you become a confident acne expert and give you the skills to clear your clients’ skin.",
+          "bg": "shopify://shop_images/Footer.png",
           "button_url": "shopify://pages/about",
-          "button_text": "Learn more about Face Reality",
+          "button_text": "Learn more about Face Reality Skincare",
           "link_url": "/collections/all",
           "link_text": "Explore our products"
         }
@@ -627,7 +627,7 @@
         "type": "collection-banner",
         "settings": {
           "title": "Face Reality products are specifically formulated for acne-prone skin and are guaranteed not to clog your pores.",
-          "background": ""
+          "background": "shopify://shop_images/banner-collection-dark.png"
         }
       },
       "contact-banner": {
@@ -670,7 +670,7 @@
         "settings": {
           "title": "Learn more about the certification benefits:",
           "text": "Get over 90% of acne clients clear with our training and support. With Proven Strategies for Treating Acne, you will become a confident acne expert and a hero",
-          "video": "<video width=\"640\" height=\"360\" controls=\"\">\n  <source src=\"https://cdn.shopify.com/s/files/1/0078/6074/8377/files/homepage-video.mp4?5842254216897864280\" type=\"video/mp4\">\n</source></video>",
+          "video": "<video width=\"640\" height=\"360\" controls=\"\" poster=\"https://cdn.shopify.com/s/files/1/0078/6074/8377/files/home-video-poster.min.jpg?1522424352137592670\">\n  <source src=\"https://cdn.shopify.com/s/files/1/0078/6074/8377/files/homepage-video.mp4?5842254216897864280\" type=\"video/mp4\">\n</source></video>",
           "button_text": "Get Started",
           "button_link": "shopify://pages/certification-training"
         }
@@ -683,7 +683,7 @@
             "settings": {
               "title": "Get Certified and Enjoy +90% Success Rate With Your Clients",
               "text": "We have made it our mission to provide premium products and a comprehensive treatment protocol for estheticians across the country.",
-              "image": "shopify://shop_images/Isaiah_3_resize_for_web.jpg"
+              "image": "shopify://shop_images/Homepage_Images2.jpg"
             }
           },
           "1543826656991": {
@@ -699,7 +699,7 @@
             "settings": {
               "title": "Customization + Real Results",
               "text": "We provide custom treatment options for every age, gender, acne type and skin type, including Fitzpatrick 4+. We even take it one step further and take diet and lifestyle factors into careful consideration. In as little as 3-4 months, your clients will see a drastic improvement in their overall complexion.",
-              "image": "shopify://shop_images/Jane_2.jpg"
+              "image": "shopify://shop_images/Homepage_Images.jpg"
             }
           }
         },
@@ -770,7 +770,7 @@
         "settings": {
           "link": "#",
           "link_text": "Proceed to Certification",
-          "left_content": "<br><br><br><p class=\"text-left\"><b>What to expect on the test?</b></p>\n<ul>\n<li>83 questions</li>\n<li>Has no time limit</li>\n<li>Open book – review your training videos and documents for reference</li>\n<li>If you answer any questions incorrectly, you’ll be prompted to go back and submit a new answer at the end of the test</li>\n</ul>",
+          "left_content": "<p class=\"text-left\"><b>What to expect on the test:</b></p>\n<ul>\n<li>83 questions</li>\n<li>Has no time limit</li>\n<li>Open book – review your training videos and documents for reference</li>\n<li>If you answer any questions incorrectly, you’ll be prompted to go back and submit a new answer at the end of the test</li>\n</ul>",
           "right_content": "<p class=\"text-left\"><b>Once you pass the test, you’ll be prompted to agree to our terms and upload these required documents:</b></p>\n<ul>\n<li>Esthetics license</li>\n<li>Business license or resale certificate</li>\n<li>Proof of liability insurance for yourself or the establishment for whom you work</li>\n<li>CA Seller's Permit (if your business is in California)</li>\n</ul>"
         }
       },
@@ -779,8 +779,8 @@
         "settings": {
           "bg": "shopify://shop_images/shutterstock_792233965.jpg",
           "bg_mobile": "",
-          "title": "Never struggle again to get your clients clear",
-          "subtitle": "Invest in a system that's gotten thousands of acne clients clear without drugs",
+          "title": "Never Struggle Again To Get Your Clients Clear",
+          "subtitle": "Invest in our clear skin system that has cleared thousands without the use of medication",
           "badge": "shopify://shop_images/success-rate-badge_1e143e66-2fc8-404d-9f83-f6d5e5367660.png"
         }
       },
@@ -848,8 +848,8 @@
           "1543942608210"
         ],
         "settings": {
-          "title": "Get Trained and Certified",
-          "introduction": "First, you'll get access to highly informative step-by-step instructional modules inside Proven Strategies for Treating Acne. Once you've completed the course, you will take a Certification Test, which you can take as many times as necessary in order to pass with 100%.",
+          "title": "Become A Certified Acne Specialist",
+          "introduction": "First, you'll gain access to highly informative step-by-step instructional modules and documents. Once you've completed the training course, you will take a certification test, which you can take as many times as necessary in order to pass with 100%.",
           "section_title": "Certification Benefits",
           "bottom_title": "Sign Up Today and Become a Face Reality Certified Acne Specialist.",
           "bottom_text": "With a +90% success rate, our clear skin program will help you become a confident acne expert and give you the skills to clear your clients’ skin.",
@@ -863,60 +863,32 @@
           "1543943655925": {
             "type": "testimonial",
             "settings": {
-              "testimonial": "This place really is amazing and anyone with acne knows $25 (which they waive if you elect to get a treatment) is REALLY cheap and worth it to get his or her skin under control. I have been to so many different places, spent tons of money, even tried the stuff from acne.org, just to be disappointed. I finally decided to check this place out based on all the great reviews and really nice man (Pat) I spoke with at the clinic over the phone. This place is the first place I have been able to leave from after getting a facial where I didn’t feel like I needed to hide.",
-              "image": "shopify://shop_images/testimonials-avatar1_8ad1b84d-d4b5-4a98-b92c-2b4e79b58761.png",
-              "title": "Jeannine L.",
-              "date": "Jun 2018"
+              "testimonial": "After 1 year of starting Face Reality, I dropped all my lash clients and went full blast acne.  I had to hire 2 other Estheticians to help with the work load! Isn’t that crazy? My clientele is 95% acne! Face Reality was the best, most impactful decision I made for my career - I am rewarded daily with an income that I only dreamed about, plus I deliver incredible value and confidence to my clients that no one else can!",
+              "image": "shopify://shop_images/LoriWard.jpg",
+              "title": "Lori Ward Skincare",
+              "date": "Rexburg, ID"
             }
           },
           "1543943668321": {
             "type": "testimonial",
             "settings": {
-              "testimonial": "Within two to three weeks we noticed a huge change. The inflammation was going down and with treatments every two weeks my daughter Sarah’s skin really did start to clear. What amazes me is that Sarah has been to dermatologists since she was in junior high school. The last time she went in, the doctor said he did not know what to do, they had tried it all. Well, Sarah walked down the aisle on her wedding day acne free, thanks to Face Reality!",
-              "image": "shopify://shop_images/testimonials-avatarx_8c7c06a0-8875-49be-adb6-c7c668ab6cd1.png",
-              "title": "Sune N.",
-              "date": "Jun 2018"
+              "testimonial": "Becoming a Certified Acne Specialist has not only changed my life personally with Acne but has allowed me to change hundreds of people’s lives through the knowledge of what causes Acne. Having the knowledge I have of what causes Acne and how to maintain healthy clear skin through daily lifestyle choices, eating habits, and a balanced skincare regimen has been a true blessing. I am grateful to be able to share my knowledge with hundreds of people a week through myself, social media, and my business.",
+              "image": "shopify://shop_images/SpaKingston.jpg",
+              "title": "Spa Kingston",
+              "date": "San Diego, CA"
             }
           },
           "1543943682126": {
             "type": "testimonial",
             "settings": {
-              "testimonial": "This place really is amazing and anyone with acne knows $25 (which they waive if you elect to get a treatment) is REALLY cheap and worth it to get his or her skin under control. I have been to so many different places, spent tons of money, even tried the stuff from acne.org, just to be disappointed. I finally decided to check this place out based on all the great reviews and really nice man (Pat) I spoke with at the clinic over the phone. This place is the first place I have been able to leave from after getting a facial where I didn’t feel like I needed to hide.",
-              "image": "shopify://shop_images/testimonials-avatar1_8ad1b84d-d4b5-4a98-b92c-2b4e79b58761.png",
-              "title": "Jeannine L.",
-              "date": "Jun 2018"
-            }
-          },
-          "1543943694069": {
-            "type": "testimonial",
-            "settings": {
-              "testimonial": "Within two to three weeks we noticed a huge change. The inflammation was going down and with treatments every two weeks my daughter Sarah’s skin really did start to clear. What amazes me is that Sarah has been to dermatologists since she was in junior high school. The last time she went in, the doctor said he did not know what to do, they had tried it all. Well, Sarah walked down the aisle on her wedding day acne free, thanks to Face Reality!",
-              "image": "shopify://shop_images/testimonials-avatarx_8c7c06a0-8875-49be-adb6-c7c668ab6cd1.png",
-              "title": "Sune N.",
-              "date": "Jun 2018"
-            }
-          },
-          "1543943767030": {
-            "type": "video",
-            "settings": {
-              "video": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/NpEaa2P7qZI\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\"></iframe>"
-            }
-          },
-          "1543943772563": {
-            "type": "video",
-            "settings": {
-              "video": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/NpEaa2P7qZI\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\"></iframe>"
+              "testimonial": "We are committed to bringing only the best and highest quality to our clients; in service, professionalism and product lines. Face Reality is one of our biggest ways of providing this. Providing our acne clients with Face Reality products and services is a way to extend that respect for our clients, who we believe are the backbone of our lovely little place.",
+              "image": "shopify://shop_images/MarisasSkincare.jpg",
+              "title": "Marisa's Skin Care",
+              "date": "Noth Attleboro, MA"
             }
           }
         },
-        "block_order": [
-          "1543943655925",
-          "1543943668321",
-          "1543943682126",
-          "1543943694069",
-          "1543943767030",
-          "1543943772563"
-        ],
+        "block_order": ["1543943655925", "1543943668321", "1543943682126"],
         "settings": {
           "suptitle": "Certified Professional Testimonials",
           "title": "Join the team of highly successful acne specialists.",
