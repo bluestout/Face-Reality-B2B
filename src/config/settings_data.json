@@ -46,6 +46,12 @@
           "announcement_bar_enabled": true,
           "announcement_bar_home_page_only": true,
           "announcement_bar_text": "10% promo discount on all products. Only this week. <a href=\"/collections/all/\">Shop Now</a>",
+          "announcement_bar2_enabled": true,
+          "announcement_bar2_login": false,
+          "announcement_bar2_home_page_only": true,
+          "announcement_bar2_text": "<h4>Welcome to Face Reality</h4>\n<p>You may need to update your account info\n</p>",
+          "announcement_bar2_button": "Update Account",
+          "announcement_bar2_url": "/account/activate/",
           "logo": "shopify://shop_images/Face-Reality-Logo-rgb-web-transparent.png",
           "logo_max_width": 180,
           "menu": "main-menu"

@@ -31,7 +31,7 @@ function redirectIfSet() {
 if (
   document.getElementById("account") ||
   document.getElementById("all") ||
-  document.getElementById("face-reality-skincare-professional")
+  document.getElementsByClassName("template-index")[0]
 ) {
   redirectIfSet();
 }
