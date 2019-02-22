@@ -1,4 +1,4 @@
-<section data-home-banner-slick>
+<section data-home-banner-slick class="primary-banner__wrap">
   {% for block in section.blocks %}
     {% if block.settings.background %}
       <div class="primary-banner primary-banner--bg lazyload" data-bgset="{% include 'responsive-bg-image', image: block.settings.background %}" data-primary-banner>
