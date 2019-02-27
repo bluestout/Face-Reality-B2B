@@ -50,7 +50,7 @@
       </div>
     </div>
 
-    <script>var $=Checkout.$,inputs=["checkout_shipping_address_id","checkout_shipping_address_first_name","checkout_shipping_address_last_name","checkout_shipping_address_company","checkout_shipping_address_address1","checkout_shipping_address_address2","checkout_shipping_address_city","checkout_shipping_address_country","checkout_shipping_address_province","checkout_shipping_address_zip","checkout_shipping_address_phone"];$(document).ready(function(){for(var e=0;e<inputs.length;e++){var t=inputs[e];$("#"+t).prop("readonly",!0),$("#"+t).prop("disabled",!0),localStorage.setItem(t,$("#"+t).val())}}),document.getElementById(inputs[0])&&$(".step > form").submit(function(e){for(var t=!1,s=0;s<inputs.length-1;s++){var p=inputs[s];$("#"+p).val()!==localStorage.getItem(p)&&(t=!0)}t&&(!document.getElementById("do-not-change-shipping")&&$("[data-step-footer]").after("<p id='do-not-change-shipping'  style='clear: both; display:block; text-align:right; margin: 10px 0;'>Do not adjust the Shipping method</p>"),e.preventDefault())});</script>
+    	<script>var $=Checkout.$,inputs=["checkout_shipping_address_first_name","checkout_shipping_address_last_name","checkout_shipping_address_company","checkout_shipping_address_address1","checkout_shipping_address_address2","checkout_shipping_address_city","checkout_shipping_address_country","checkout_shipping_address_province","checkout_shipping_address_zip","checkout_shipping_address_phone"];$(document).ready(function(){for(var s=0;s<inputs.length;s++){var e=inputs[s];$("#"+e).prop("readonly",!0),$("#"+e).prop("disabled",!0)}});</script>
 
     {{ tracking_code }}
   </body>
