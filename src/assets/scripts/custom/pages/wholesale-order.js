@@ -7,10 +7,14 @@ const el = {
   qty: "[data-wholesale-quantity]",
   submit: "[data-wholesale-submit]",
   product: "[data-wholesale-single-product]",
-  count: "[data-wholesale-product-count]",
-  sort: "[data-wholesale-sort-type]",
   row: "[data-wholesale-row]",
-  reset: "[data-wholesale-sort-reset]",
+  filter: {
+    count: "[data-wholesale-product-count]",
+    sort: "[data-wholesale-sort]",
+    reset: "[data-wholesale-sort-reset]",
+    type: "[data-wholesale-sort-type]",
+    availability: "[data-wholesale-sort-availability]",
+  },
   price: "[data-wholesale-price]",
   priceCompare: "[data-wholesale-price-compare]",
   savingsBox: "[data-wholesale-savings-container]",
@@ -58,7 +62,6 @@ function getFormattedSrc(src, size) {
     iSrc = `${iSrc.substring(0, iSrc.length - 4)}_${size}.jpg`;
   } else if (iSrc.indexOf(".jpeg") > -1) {
     iSrc = `${iSrc.substring(0, iSrc.length - 5)}_${size}.jpeg`;
-  } else if (iSrc.indexOf(".gif") > -1) {
   }
   return iSrc;
 }
@@ -116,6 +119,9 @@ function loadProducts(cart) {
           const pTitle = product.title;
           const pType = product.type;
           const pTypeClean = pType.replace(" ", "-");
+          let pAvailability = "";
+          let pBackbar = false;
+          let pRetail = false;
 
           // declare new type, if it does not exist yet
           if (!currentTypesCount[pTypeClean]) {
@@ -126,7 +132,19 @@ function loadProducts(cart) {
           currentTypesCount[pTypeClean] += 1;
           if (product.variants.length > 1) {
             currentTypesCount[pTypeClean] += product.variants.length - 1;
+
+            for (let j = 0; j < product.variants.length; j++) {
+              const variant = product.variants[j];
+              if (variant.title.toLowerCase().indexOf("backbar") > -1) {
+                pBackbar = true;
+              } else {
+                pRetail = true;
+              }
+            }
           }
+
+          pAvailability = pRetail ? `${pAvailability} retail` : pAvailability;
+          pAvailability = pBackbar ? `${pAvailability} backbar` : pAvailability;
 
           // add a header at the top of new product types
           if (currentType !== pType) {
@@ -135,7 +153,7 @@ function loadProducts(cart) {
             if ($(window).width() < 992) {
               colspan = 1;
             }
-            products += `<tr class="cart-table__row" data-wholesale-row="${pTypeClean}">
+            products += `<tr class="cart-table__row availability-all type-all ${pTypeClean} ${pAvailability}" data-wholesale-row>
               <td class="cart-table__cell d-none d-md-table-cell" colspan="1"></td>
               <td class="cart-table__cell cart-table__cell--type" colspan="${colspan}">
                 <h3 class="cart-table__type-header">${currentType}</h3>
@@ -158,6 +176,20 @@ function loadProducts(cart) {
             const currentPrice = variant.price;
             const option =
               variant.title === "Default Title" ? "" : variant.title;
+            let vAvailability = "";
+            let vBackbar = false;
+            let vRetail = false;
+
+            if (variant.title.toLowerCase().indexOf("backbar") > -1) {
+              vBackbar = true;
+            } else if (variant.title.length > 0) {
+              vRetail = true;
+            }
+
+            vAvailability = vRetail ? "retail" : "";
+            vAvailability = vBackbar
+              ? `${vAvailability} backbar`
+              : `${vAvailability}`;
 
             let quantityInCart = 0;
             let inCart = "";
@@ -215,7 +247,7 @@ function loadProducts(cart) {
               `;
             }
 
-            products += `<tr class=' cart-table__row' data-wholesale-row="${pTypeClean}">
+            products += `<tr class='cart-table__row availability-all type-all ${pTypeClean} ${vAvailability}' data-wholesale-row>
               <td class='cart-table__cell cart-table__cell--image text-left d-none d-md-table-cell'>
                 <div class="cart-table__image-wrap">
                   ${image}
@@ -277,7 +309,7 @@ function loadProducts(cart) {
       }
       // now that we have all the product counts, replace the values in the products string
       let productCountAll = 0;
-      let sortOptions = "";
+      let sortOptionsType = "";
       if (currentTypesCount && typeof currentTypesCount === "object") {
         for (let i = 0; i < Object.keys(currentTypesCount).length; i++) {
           const value = currentTypesCount[Object.keys(currentTypesCount)[i]];
@@ -290,12 +322,12 @@ function loadProducts(cart) {
             `type="${key}">${value}`,
           );
           productCountAll += value;
-          sortOptions += `<option value="${key}">${niceKey}</option>`;
+          sortOptionsType += `<option value="${key}">${niceKey}</option>`;
         }
       }
 
-      $(el.sort).append(sortOptions);
-      $(el.count).text(`${productCountAll} products total`);
+      $(el.filter.type).append(sortOptionsType);
+      $(el.filter.count).text(`${productCountAll} products total`);
       $(el.table).html(products);
       return calculateTotals();
     },
@@ -431,22 +463,67 @@ function wholesaleSubmit(event) {
   }
 }
 
+// remove falsy && empty values from array
+function cleanArray(actual) {
+  const newArray = [];
+  for (let i = 0; i < actual.length; i++) {
+    if (actual[i]) {
+      newArray.push(actual[i]);
+    }
+  }
+  return newArray;
+}
+
+// main filter functionality - toggle items based on what filter was clicked
 function wholesaleSort(event) {
-  const $this = $(event.currentTarget);
-  const option = $this.val();
-  if (option === "all") {
-    $(el.row).show();
+  const $source = $(event.currentTarget);
+  const tag = $source.val();
+
+  // when clicking an input, change the active tag classes
+  if ($source[0].tagName === "SELECT") {
+    $source.removeClass();
+    $source.addClass(`wholesale-filter__sort ${tag}`);
+  }
+  runFilter();
+}
+
+// do the actual filtering here
+function runFilter() {
+  const allClasses = [];
+  let activeTags = "";
+
+  // remove the -all tag and the element class from the query
+  $(el.filter.sort).each(function() {
+    let classes = $(this).attr("class");
+    if (classes) {
+      classes = classes
+        .replace(/type-all/, "")
+        .replace(/availability-all/, "")
+        .replace(/wholesale-filter__sort/, "")
+        .split(/\s+/);
+      classes = cleanArray(classes);
+      if (classes.length > 0) {
+        for (let i = 0; i < classes.length; i++) {
+          activeTags += `.${classes[i]}`;
+          allClasses.push(classes[i]);
+        }
+      }
+      // push the remaining (actual tags) to the allclasses array
+    }
+  });
+
+  // depending on the allClasses content show or hide items
+  if (allClasses.length > 0) {
+    $(`${el.row}${activeTags}`).fadeIn();
+    $(`${el.row}:not(${activeTags})`).fadeOut();
   } else {
-    $(el.row)
-      .not(`[data-wholesale-row="${option}"]`)
-      .hide();
-    $(`[data-wholesale-row="${option}"]`).show();
+    $(el.row).fadeIn();
   }
 }
 
 function wholesaleSortReset() {
   $(el.row).show();
-  $(el.sort).val("all");
+  $(el.filter.sort).val("all");
 }
 
 function calculateTotals() {
@@ -641,9 +718,9 @@ function addToCartByMetafield(json, cartItem) {
 
 $(document).on("click", el.submit, wholesaleSubmit);
 
-$(document).on("click", el.reset, wholesaleSortReset);
+$(document).on("click", el.filter.reset, wholesaleSortReset);
 
-$(document).on("change", el.sort, wholesaleSort);
+$(document).on("change", el.filter.sort, wholesaleSort);
 
 $(document).on("change", el.qty, calculateTotals);
 
