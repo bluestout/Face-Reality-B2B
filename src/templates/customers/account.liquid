@@ -17,6 +17,7 @@
                   <th class="order-history__cell order-history__cell--head">{{ 'customer.orders.order_number' | t }}</th>
                   <th class="order-history__cell order-history__cell--head">{{ 'customer.orders.total' | t }}</th>
                   <th class="order-history__cell order-history__cell--head">{{ 'customer.orders.fulfillment_status' | t }}</t>
+                  <th class="order-history__cell order-history__cell--head">{{ 'customer.orders.invoice' | t }}</t>
                 </tr>
               </thead>
               <tbody>
@@ -37,6 +38,11 @@
                         {%- elsif order.fulfillment_status == "fulfilled" -%}
                           Shipped
                         {%- endif -%}
+                      </span>
+                    </td>
+                    <td class="order-history__cell" data-label="{{ 'customer.orders.invoice' | t }}">
+                      <span class="invoice">
+                        <a target="_blank" href="{{ shop.url }}/apps/sufio/invoice/download/?id={{ order.id }}&number={{ order.order_number }}">{{ 'customer.orders.invoice' | t }}</a>
                       </span>
                     </td>
                   </tr>
