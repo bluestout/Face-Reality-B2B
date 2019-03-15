@@ -30,7 +30,6 @@ function redirectIfSet() {
 
 if (
   document.getElementById("account") ||
-  document.getElementById("all") ||
   document.getElementsByClassName("template-index")[0]
 ) {
   redirectIfSet();
