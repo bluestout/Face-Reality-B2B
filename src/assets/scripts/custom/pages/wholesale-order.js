@@ -35,10 +35,32 @@ const el = {
 // all the product variant ids used
 // currently supports pumps only. If more products should become addable, this needs to be adjusted,
 // starting from making this variable an array rather than an object
+
 const addableIds = {
   pump: 19946386686041,
   training: 20157070442585,
 };
+
+// take data for any products that should be auto-added
+const addableFreeItemsQty = [];
+const samplesData = document.querySelector("[data-free-samples-json]");
+if (samplesData && samplesData.textContent.length > 3) {
+  addableIds.free = JSON.parse(samplesData.textContent);
+  JSON.parse(samplesData.textContent).forEach((element) => {
+    addableFreeItemsQty.push({
+      handle: element.handle,
+      qty: 0,
+    });
+  });
+}
+
+let receivedSamples = [];
+const samplesReceivedData = document.querySelector(
+  "[data-received-free-samples]",
+);
+if (samplesReceivedData && samplesReceivedData.textContent.length > 3) {
+  receivedSamples = JSON.parse(samplesReceivedData.textContent);
+}
 
 // any constant values used
 const values = {
@@ -629,6 +651,15 @@ function automaticProducts(cart, redirect) {
     if (cart.items[i].id === addableIds.training) {
       trainingQty += cart.items[i].quantity;
     }
+
+    // check if cart already contains free addable items
+    for (let j = 0; j < addableIds.free.length; j++) {
+      // the array order is same for both arrays, so we can use loop index
+      const element = addableIds.free[j];
+      if (cart.items[i].id === element.id) {
+        addableFreeItemsQty[j].qty += cart.items[i].quantity;
+      }
+    }
   }
 
   (async () => {
@@ -674,6 +705,21 @@ function automaticProducts(cart, redirect) {
         }
       }
 
+      // for every free addable item, check current qty and adjust accordingly (do nothing if 1 in cart)
+      for (let j = 0; j < addableFreeItemsQty.length; j++) {
+        const element = addableFreeItemsQty[j];
+        // if customer already got this item, skip it
+        if (checkIfArrayContains(receivedSamples, addableIds.free[j].id)) {
+          ajaxChangeCartQty(addableIds.free[j].id, 0, false, redirectData);
+        } else if (element.qty > 1) {
+          ajaxChangeCartQty(addableIds.free[j].id, 1, false, redirectData);
+        } else if (element.qty < 1) {
+          pushToQueue(addableIds.free[j].id, 1, {}, () => {
+            moveAlong(redirectData);
+          });
+        }
+      }
+
       if (pumpsInCart > 0 && pumpsQtyShouldBe === 0) {
         ajaxChangeCartQty(addableIds.pump, 0, false, redirectData);
       } else if (pumpsQtyShouldBe > pumpsInCart) {
@@ -693,6 +739,18 @@ function automaticProducts(cart, redirect) {
       updateCartQty();
     })();
   })();
+}
+
+// because includes will not work for integers and strings, but in our case they are the same
+function checkIfArrayContains(array, element) {
+  let contains = false;
+  for (let i = 0; i < array.length; i++) {
+    if (parseInt(element, 10) === parseInt(array[i], 10)) {
+      contains = true;
+      break;
+    }
+  }
+  return contains;
 }
 
 function addToCartByMetafield(json, cartItem) {
