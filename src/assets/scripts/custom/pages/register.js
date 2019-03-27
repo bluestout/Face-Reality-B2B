@@ -7,6 +7,7 @@ const elements = {
   passwordCheckInput: "[data-register-password-check]",
   emailInput: "[data-register-email]",
   nameInput: "[data-register-name]",
+  phoneInput: "[data-register-phone]",
 };
 
 let showErrorEvent;
@@ -52,6 +53,16 @@ function nameConfirm() {
   }
 }
 
+function phoneConfirm() {
+  const phoneInput = $(elements.phoneInput).val();
+  if (phoneInput.match(/^[0-9]{10}/g)) {
+    $(elements.phoneInput).removeClass("error");
+  } else {
+    $(elements.phoneInput).addClass("error");
+    submitError(6);
+  }
+}
+
 function disableForm() {
   $(elements.formSubmit).prop("disabled", true);
 }
@@ -94,6 +105,9 @@ function submitError(error) {
       break;
     case 5:
       $(elements.errorText).text("Please enter a valid email.");
+      break;
+    case 6:
+      $(elements.errorText).text("Please enter a phone number.");
       break;
   }
   showError();
@@ -153,4 +167,5 @@ if (document.getElementById("create-account")) {
   );
   $(document).on("keyup", elements.emailInput, emailConfirm);
   $(document).on("keyup", elements.nameInput, nameConfirm);
+  $(document).on("keyup", elements.phoneInput, phoneConfirm);
 }

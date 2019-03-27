@@ -30,7 +30,7 @@
                   {{ 'customer.register.first_name' | t }}
                 </label>
                 <input
-                  class="register__input"
+                  class="register__input register__input--borderpushdown"
                   type="text"
                   name="customer[first_name]"
                   id="FirstName"
@@ -44,13 +44,29 @@
                   {{ 'customer.register.last_name' | t }}
                 </label>
                 <input
-                  class="register__input register__input--bordermerge"
+                  class="register__input"
                   type="text"
                   name="customer[last_name]"
                   id="LastName"
                   placeholder="{{ 'customer.register.last_name' | t }}"
                   {% if form.last_name %}value="{{ form.last_name }}"{% endif %}
                   data-register-name />
+              </div>
+
+              <div class="register__input-wrap">
+                <label for="Phone" class="label-hidden">
+                  {{ 'customer.register.phone' | t }}
+                </label>
+                <input
+                  class="register__input register__input--bordermerge"
+                  type="tel"
+                  name="customer[note][phone]"
+                  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                  id="Phone"
+                  placeholder="{{ 'customer.register.phone' | t }}"
+                  {% if form.phone %}value="{{ form.phone }}"{% endif %}
+                  data-register-phone
+                  required />
               </div>
 
               <div class="register__input-wrap register__input-wrap--margin register__input--bordermerge">

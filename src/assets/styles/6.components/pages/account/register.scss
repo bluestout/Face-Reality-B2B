@@ -95,6 +95,11 @@
       top: -1px;
     }
 
+    &--borderpushdown {
+      position: relative;
+      top: 1px;
+    }
+
     &.error {
       border-color: $color-error;
     }

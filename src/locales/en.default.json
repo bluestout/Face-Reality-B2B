@@ -235,7 +235,8 @@
       "email": "Email",
       "password": "Password",
       "submit": "Create",
-      "cancel": "Return to Store"
+      "cancel": "Return to Store",
+      "phone": "Phone"
     }
   },
   "homepage": {
