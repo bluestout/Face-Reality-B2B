@@ -6,6 +6,10 @@
 import $ from "jquery";
 import { formatMoney } from "@shopify/theme-currency";
 
+const data = {
+  variantAvailability: "variant-availability",
+};
+
 const el = {
   container: "[data-product-item]",
   varSelect: "[data-product-item-select]",
@@ -19,6 +23,7 @@ const el = {
   json: "[data-product-item-json]",
   imageWrap: "[data-product-image-wrapper]",
   cTitle: "[data-collection-banner-title]",
+  variantAvailability: `[data-${data.variantAvailability}]`,
 };
 
 const filter = {
@@ -32,6 +37,11 @@ const filter = {
   reset: "[data-responsive-filter-reset]",
   variantAvailability: "[data-variant-availability]",
   noResults: "[data-collections-no-results]",
+  availabilityAll: "#availability-filter-all",
+  availabilityRetail: "#availability-filter-retail",
+  availabilityBackbar: "#availability-filter-backbar",
+  optionBackbar: `[data-${data.variantAvailability}=backbar]`,
+  optionRetail: `[data-${data.variantAvailability}=retail]`,
 };
 
 const page = {
@@ -39,9 +49,6 @@ const page = {
   pagination: "[data-collection-pagination]",
   content: "[data-paginate-collection-content]",
 };
-
-// register new filter event
-const filterEvent = new Event("runFilter");
 
 // remove falsy && empty values from array
 function cleanArray(actual) {
@@ -56,17 +63,41 @@ function cleanArray(actual) {
 
 // b2b - availability filter specific
 function setAvailabilityOptions() {
-  if ($("#availability-filter-all").prop("checked")) {
-    $("[data-variant-availability=backbar]").fadeIn();
-    $("[data-variant-availability=retail]").fadeIn();
-  } else if ($("#availability-filter-retail").prop("checked")) {
-    $("[data-variant-availability=retail]").fadeIn();
-    $("[data-variant-availability=backbar]").fadeOut();
-  } else if ($("#availability-filter-backbar").prop("checked")) {
-    $("[data-variant-availability=backbar]").fadeIn();
-    $("[data-variant-availability=retail]").fadeOut();
+  if ($(filter.availabilityAll).prop("checked")) {
+    $(filter.optionBackbar).fadeIn();
+    $(filter.optionRetail).fadeIn();
+  } else if ($(filter.availabilityRetail).prop("checked")) {
+    $(filter.optionRetail).fadeIn();
+    $(filter.optionBackbar).fadeOut();
+    setTimeout(() => {
+      const $options = $(`${filter.optionRetail} ${el.optionInput}`);
+      $options.prop("checked", true).change();
+    }, 401);
+  } else if ($(filter.availabilityBackbar).prop("checked")) {
+    $(filter.optionBackbar).fadeIn();
+    $(filter.optionRetail).fadeOut();
+    setTimeout(() => {
+      const $options = $(`${filter.optionBackbar} ${el.optionInput}`);
+      if ($options.length > 0) {
+        $options.prop("checked", true).change();
+      }
+    }, 401);
   }
 }
+
+function onOptionInputClickHandle(source) {
+  const $parent =
+    source && source.length > 0
+      ? source.closest(el.container)
+      : $(this).closest(el.container);
+  const jsonObject = JSON.parse($(el.json, $parent).html()) || [];
+  const options = getCurrentOptions($parent);
+  const variants = jsonObject.variants;
+  const variant = getVariant(options, variants);
+  setNewVariant($parent, variant);
+}
+
+$(document).on("click change", el.optionInput, onOptionInputClickHandle);
 
 // main filter functionality - toggle items based on what filter was clicked
 function toggleFilter(event) {
@@ -136,9 +167,6 @@ function runFilter() {
   } else {
     $(filter.product).fadeIn();
   }
-  return document
-    .getElementsByClassName("product-filter__container")[0]
-    .dispatchEvent(filterEvent);
 }
 
 // proxy for clicking the load more button
@@ -160,16 +188,12 @@ function loadMore() {
     const $moreLink = $(page.button, data);
     $(page.content).append($content);
     $content.hide().slideDown();
-    runFilter();
     productItemInit();
     if ($moreLink.length > 0) {
       $(page.pagination).html($moreLink);
     } else {
       $(page.pagination).html("");
     }
-    document
-      .getElementsByClassName("product-filter__container")[0]
-      .dispatchEvent(filterEvent);
     return true;
   });
   return false;
@@ -185,6 +209,7 @@ function resetFilters() {
       .first()
       .prop("checked", true);
   });
+
   runFilter();
 }
 
@@ -222,17 +247,6 @@ function productItemInit() {
     .each(function() {
       const $this = $(this);
       $this.addClass("script-loaded");
-      const $options = $(el.optionInput, $this);
-
-      if ($options.length > 0) {
-        const jsonObject = JSON.parse($(el.json, $this).html()) || [];
-        $options.change(() => {
-          const options = getCurrentOptions($this);
-          const variants = jsonObject.variants;
-          const variant = getVariant(options, variants);
-          setNewVariant($this, variant);
-        });
-      }
     });
   runFilter();
 }
@@ -375,7 +389,6 @@ function setCollectionTitle(titleRaw, professional) {
   } else {
     title = capitalizeFirstLetter(deHandleize(titleRaw));
   }
-  console.log(titleRaw);
   if (titleRaw === "acne-prevention") {
     title = "Acne Prevention";
   } else if (!titleRaw.indexOf("-") > -1 && titleRaw !== "tools") {
