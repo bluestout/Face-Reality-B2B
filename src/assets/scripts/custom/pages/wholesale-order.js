@@ -653,25 +653,27 @@ function automaticProducts(cart, redirect) {
     }
 
     // check if cart already contains free addable items
-    for (let j = 0; j < addableIds.free.length; j++) {
-      // the array order is same for both arrays, so we can use loop index
-      const element = addableIds.free[j];
-      if (cart.items[i].id === element.id) {
-        addableFreeItemsQty[j].qty += cart.items[i].quantity;
+    if (addableIds.free && addableIds.free.length > 0) {
+      for (let j = 0; j < addableIds.free.length; j++) {
+        // the array order is same for both arrays, so we can use loop index
+        const element = addableIds.free[j];
+        if (cart.items[i].id === element.id) {
+          addableFreeItemsQty[j].qty += cart.items[i].quantity;
+        }
       }
     }
   }
 
   (async () => {
-    for (let j = 0; j < cart.items.length; j++) {
-      await new Promise((resolve) => {
-        resolve(
-          $.ajax({
-            type: "GET",
-            url: "/pages/wholesale-order-form?view=wholesale-order-meta.json",
-            async: false,
-            dataType: "html",
-            success: (data) => {
+    await new Promise((resolve) => {
+      resolve(
+        $.ajax({
+          type: "GET",
+          url: "/pages/wholesale-order-form?view=wholesale-order-meta.json",
+          async: false,
+          dataType: "html",
+          success: (data) => {
+            for (let j = 0; j < cart.items.length; j++) {
               const varIdToAdd = addToCartByMetafield(
                 JSON.parse(data),
                 cart.items[j],
@@ -682,12 +684,12 @@ function automaticProducts(cart, redirect) {
                   qty: cart.items[j].quantity,
                 });
               }
-            },
-            cache: false,
-          }),
-        );
-      });
-    }
+            }
+          },
+          cache: false,
+        }),
+      );
+    });
 
     (async () => {
       await new Promise((resolve) => {

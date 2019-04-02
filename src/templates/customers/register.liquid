@@ -61,7 +61,7 @@
                   class="register__input register__input--bordermerge"
                   type="tel"
                   name="customer[note][phone]"
-                  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                  pattern="[0-9]{10}"
                   id="Phone"
                   placeholder="{{ 'customer.register.phone' | t }}"
                   {% if form.phone %}value="{{ form.phone }}"{% endif %}
