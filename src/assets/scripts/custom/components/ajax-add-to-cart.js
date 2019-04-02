@@ -17,15 +17,25 @@ const el = {
 function updateCartQty() {
   $.getJSON("/cart.js", (json) => {
     if (json.item_count > 0) {
+      let count = 0;
+      for (let i = 0; i < json.items.length; i++) {
+        const item = json.items[i];
+        if (item.variant_id !== 19946386686041) {
+          count += item.quantity;
+        }
+      }
       if ($(el.cartQty).length > 0) {
-        $(el.cartQty).text(json.item_count);
+        return $(el.cartQty).text(count);
       } else {
-        $(el.cartQtyPos).append(
-          `<span class="utility-nav__count" data-cart-count>${
-            json.item_count
-          }</span>`,
+        return $(el.cartQtyPos).append(
+          `<span
+            class="utility-nav__count"
+            data-cart-count>${count}
+          </span>`,
         );
       }
+    } else {
+      return false;
     }
   });
 }

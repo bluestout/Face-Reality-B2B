@@ -66,7 +66,6 @@ function forceDownload(link) {
     dataType: "html",
     success: (json) => {
       const assets = JSON.parse(json);
-      console.log(assets);
     },
     cache: false,
   });
