@@ -34,7 +34,13 @@
   <a href="/cart" class="utility-nav__icon-wrap" data-cart-count-position>
     <span class="icon-shopping-cart utility-nav__icon"></span>
     {% if cart.item_count > 0 %}
-      <span class="utility-nav__count" data-cart-count>{{ cart.item_count }}</span>
+      {% assign count = 0 %}
+      {% for item in cart.items %}
+        {% if item.variant_id != 19946386686041 %}
+          {% assign count = count | plus: item.quantity %}
+        {% endif %}
+      {% endfor %}
+      <span class="utility-nav__count" data-cart-count>{{ count }}</span>
     {% endif %}
   </a>
 
