@@ -81,7 +81,8 @@
                   spellcheck="false"
                   autocomplete="off"
                   autocapitalize="off"
-                  data-register-email/>
+                  data-register-email
+                  required/>
               </div>
 
               <div class="register__input-wrap">
@@ -92,18 +93,19 @@
                   id="CreatePassword"
                   class="{% if form.errors contains 'password' %}input-error{% endif %}"
                   placeholder="{{ 'customer.register.password' | t }}"
-                  data-register-password/>
+                  data-register-password
+                  required/>
               </div>
 
               <div class="register__input-wrap register__input-wrap--margin">
                 <label for="CreatePasswordConfirm" class="label-hidden">Repeat password</label>
                 <input type="password"
-                  class="register__input register__input--bordermerge"
-                  name="customer[password_confirmation]"
+                  class="register__input register__input--bordermerge""
                   id="CreatePasswordConfirm"
                   class="{% if form.errors contains 'password' %}input-error{% endif %}"
                   placeholder="Repeat password"
-                  data-register-password-check/>
+                  data-register-password-check
+                  required/>
               </div>
 
               <div>
