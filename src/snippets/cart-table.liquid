@@ -19,6 +19,9 @@
       <tbody>
 
         {% for item in cart.items %}
+          {% comment %} skip if item is hidden cart fee (Order & product fees app) {% endcomment %}
+          {% if item.product.type  == 'mw_hidden_cart_fee' %}{% continue %}{% endif %}
+
           {% if item.product.tags contains "training-course"  %}
             {% assign is_training = true %}
           {% endif %}
@@ -37,7 +40,6 @@
               {% assign obscured = false %}
             {% endif %}
 
-  
             <tr class="responsive-table-row cart-table__row {% if hidden %}cart-table__row--invisible{% endif %}">
 
               <td class="cart-table__cell cart-table__cell--image d-none d-md-table-cell text-left {% unless forloop.last %}cart-table__cell--border{% endunless %}">
@@ -59,6 +61,9 @@
                   {% comment %} show nothing, except if product. no not operator  {% endcomment %}
                 {% else %}
                   <a class="cart-table__remove" href="/cart/change?line={{ forloop.index }}&amp;quantity=0">{{ 'cart.general.remove' | t }}</a>
+                {% endif %}
+                {% if item.product.type != 'Product Fee' %}
+                  <span class="mw-product-fees" data-id="{{ item.id }}"></span>
                 {% endif %}
               </td>
 
