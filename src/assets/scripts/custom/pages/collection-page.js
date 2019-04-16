@@ -375,7 +375,7 @@ function runUrlFilter() {
 }
 
 function deHandleize(str) {
-  return str.replace("-", " ").replace("_", " ");
+  return str.replace(/-/g, " ", " ").replace(/_/g, " ");
 }
 
 function capitalizeFirstLetter(string) {
@@ -391,6 +391,8 @@ function setCollectionTitle(titleRaw, professional) {
   }
   if (titleRaw === "acne-prevention") {
     title = "Acne Prevention";
+  } else if (titleRaw === "use-anti-aging") {
+    title = "Anti Aging";
   } else if (!titleRaw.indexOf("-") > -1 && titleRaw !== "tools") {
     title += "s";
   }
