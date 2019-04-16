@@ -10,7 +10,7 @@ const el = {
 };
 
 const values = {
-  minOrder: 12500,
+  minOrder: 0,
 };
 
 let eventHolder = null;
