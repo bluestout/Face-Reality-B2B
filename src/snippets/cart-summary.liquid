@@ -5,6 +5,7 @@
     <span class="cart-summary__totals-price" data-cart-summary-total={{ cart.total_price }}>{{ cart.total_price | money }}</span>
   </div>
 
+  {% comment %} Order & product fees app {% endcomment %}
   <div>
     <span class="mw-hidden-fees"></span>
   </div>
@@ -33,6 +34,8 @@
     <label class="cart-summary__label" for="CartSpecialInstructions">{{ 'cart.general.note' | t }}</label>
     <textarea class="cart-summary__textarea" name="note" id="CartSpecialInstructions">{{ cart.note }}</textarea>
   {% endif %}
+
+  {% comment %} Order & product fees app {% endcomment %}
   <p>
     <span class="mw-cart-fees"></span>
   </p>

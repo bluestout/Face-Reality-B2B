@@ -40,7 +40,10 @@
               {% assign obscured = false %}
             {% endif %}
 
-            <tr class="responsive-table-row cart-table__row {% if hidden %}cart-table__row--invisible{% endif %}">
+            {% comment %} Added Thimatic product bundles class & data {% endcomment %}
+            <tr
+              class="responsive-table-row cart-table__row th_pb_cart_line {% if hidden %}cart-table__row--invisible{% endif %}"
+              data-idth="{{ item.id }}" data-indexth="{{ forloop.index }}">
 
               <td class="cart-table__cell cart-table__cell--image d-none d-md-table-cell text-left {% unless forloop.last %}cart-table__cell--border{% endunless %}">
                 {% if item.image != blank %}
@@ -62,9 +65,19 @@
                 {% else %}
                   <a class="cart-table__remove" href="/cart/change?line={{ forloop.index }}&amp;quantity=0">{{ 'cart.general.remove' | t }}</a>
                 {% endif %}
+
+                {% comment %} Product fees app {% endcomment %}
                 {% if item.product.type != 'Product Fee' %}
                   <span class="mw-product-fees" data-id="{{ item.id }}"></span>
                 {% endif %}
+
+                {% comment %} Thimatic product bundles app - show hide bundle data {% endcomment %}
+                {% for p in item.properties %}
+                  {%- if p.first contains 'th_bundle_' -%}
+                    {%- continue -%}
+                  {%- endif -%}
+                  <span class="th_bundle_discount_text"></span>
+                {% endfor %}
               </td>
 
               <td class="cart-table__cell d-none d-md-table-cell text-center {% unless forloop.last %}cart-table__cell--border{% endunless %}">
@@ -80,11 +93,17 @@
                   <div class="cart-table__price">
                     {% if item.original_line_price != item.line_price %}
                       <span class="visually-hidden">{{ 'cart.label.discounted_price' | t }}</span>
-                      {{ item.price | money }}
+                      {% comment %} Thimatic product bundles app - price display, class added {% endcomment %}
+                      <span class="th_item_price">
+                        {{ item.price | money }}
+                      </span>
                       <span class="visually-hidden">{{ 'cart.label.original_price' | t }}</span>
                       <s>{{ item.original_price | money }}</s>
                     {% else %}
-                      {{ item.price | money }}
+                      {% comment %} Thimatic product bundles app - price display, class added {% endcomment %}
+                      <span class="th_item_price">
+                        {{ item.price | money }}
+                      </span>
                     {% endif %}
                   </div>
                 {% endunless %}
@@ -107,11 +126,17 @@
                         <span class="cart-table__rsp-price">
                           {% if item.original_line_price != item.line_price %}
                             <span class="visually-hidden">{{ 'cart.label.discounted_price' | t }}</span>
-                            {{ item.price | money }}
+                            {% comment %} Thimatic product bundles app - price display, class added {% endcomment %}
+                            <span class="th_cart_total_price">
+                              {{ item.line_price | money }}
+                            </span>
                             <span class="visually-hidden">{{ 'cart.label.original_price' | t }}</span>
-                            <s>{{ item.original_price | money }}</s>
+                            <s>{{ item.original_line_price | money }}</s>
                           {% else %}
-                            {{ item.price | money }}
+                            {% comment %} Thimatic product bundles app - price display, class added {% endcomment %}
+                            <span class="th_cart_total_price">
+                              {{ item.line_price | money }}
+                            </span>
                           {% endif %}
                         </span>
                       {% endunless %}

@@ -77,6 +77,15 @@
               "date": "Rexburg, ID"
             }
           },
+          "1553727212596": {
+            "type": "testimonial",
+            "settings": {
+              "testimonial": "Being in the beauty industry for 20 years, I've used many skincare lines and I can honestly say that Face Reality is the best treatment for acne and hyperpigmentation. In as little as two weeks, my clients start experiencing positive skin changes. These results are long-lasting which restore confidence and self-esteem. This skincare line is effective in treating all Fitzpatrick types and clearing various grades of acne while maintaining a healthy skin barrier – this really sets Face Reality a part from other product lines out there. My business has grown significantly since using Face Reality. If you want to become a confident, educated acne specialist, I highly recommend the Face Reality acne training.",
+              "image": "shopify://shop_images/Semoney.jpg",
+              "title": "Semoney Coaxum",
+              "date": "Fort Lauderdale, FL"
+            }
+          },
           "1538384503030": {
             "type": "testimonial",
             "settings": {
@@ -96,7 +105,12 @@
             }
           }
         },
-        "block_order": ["1538384458991", "1538384503030", "1538384524495"],
+        "block_order": [
+          "1538384458991",
+          "1553727212596",
+          "1538384503030",
+          "1538384524495"
+        ],
         "settings": {
           "suptitle": "Certified Professional Testimonials",
           "title": "Join the team of highly successful acne specialists.",
@@ -783,7 +797,7 @@
           "content_l": "<ul>\n<li>Thorough acne and skin analysis</li>\n<li>How to test for skin sensitivity</li>\n<li>Step-by-step treatment and home care protocol</li>\n<li>All the documents you and your client need</li>\n<li>Important lifestyle guidelines for your client</li>\n<li>Troubleshooting challenging clients</li>\n<li>All updates to the course and documents</li>\n</ul>",
           "image_r": "shopify://shop_images/icon-cosmetics.png",
           "title_r": "Benefits of becoming certified:",
-          "content_r": "<ul>\n<li>Wholesale prices for both professional and home care acne specific products</li>\n<li>Support for your challenging clients</li>\n<li>Email/phone support with staff</li>\n<li>Invitation to join private online community</li>\n<li>Facebook \"live events\" and webinars</li>\n<li>Option to add a mentorship day in our San Leandro, CA clinic</li>\n<li>Get referrals for clients through our database of Certified Acne Specialists (minimum requirements apply)</li>\n<li>Get invitations to Advanced Training Classes</li>\n</ul>",
+          "content_r": "<ul>\n<li>Wholesale prices for both professional and home care acne specific products</li>\n<li>Support for your challenging clients</li>\n<li>Email/phone support with staff</li>\n<li>Invitation to join private online community</li>\n<li>Facebook \"live events\" and webinars</li>\n\n<li>Get referrals for clients through our database of Certified Acne Specialists (minimum requirements apply)</li>\n<li>Get invitations to Advanced Training Classes</li>\n</ul>",
           "title_b": "Certification Requirements",
           "content_b_l": "You need to pass our online certification test (open book) and to provide us with copies of your:",
           "content_b_r": "<ul>\n<li>esthetics license</li>\n<li>business license or resale certificate</li>\n<li>proof of liability insurance for yourself or the establishment for whom you work</li>\n<li>CA Seller's Permit (if your business is in California)</li>\n</ul>",
@@ -991,7 +1005,7 @@
           "nli_button_text": "Register Here",
           "nli_disclaimer": "Face Reality does not sell products outside of the United States. Face Reality Training purchases outside of the United States will not be refunded.",
           "li_title": "Become a Certified<br>  Acne Specialist",
-          "li_content": "<p>Now, joining the Face Reality Acne Specialist Team is more affordable than ever. Our certification training is ONLY $500. And it gets better - you’ll also receive a $500 Face Reality product credit*.</p>\n\n<p><b>With a net cost of $0* there is no reason to delay becoming a Face Reality Certified Professional.</b></p>\n\n<p><i>*$500 product credit will be applied in $250 increments over first two orders upon completion of certification process.</i></p>",
+          "li_content": "<p>Now, joining the Face Reality Acne Specialist Team is more affordable than ever. Our certification training is ONLY $500. And it gets better - you’ll also receive a $500 Face Reality product credit*.</p>\n\n<p><b>With a net cost of $0* there is no reason to delay becoming a Face Reality Certified Professional.</b></p>\n\n<p><i>*$500 product credit will be available upon completion of the certification process.  Two $250 discount codes will be provided which may be redeemed on orders over $500.</i></p>",
           "li_button_text": "Purchase Training Now",
           "li_disclaimer": "Once purchased, you will gain access to our training modules, educational tools and certification test. Once you pass the test with 100% and upload your required documents, you’ll gain full access to our professional resource center and premium products at wholesale cost.",
           "ap_title": "",
@@ -999,6 +1013,10 @@
           "ap_link_url": "shopify://pages/certification-test",
           "ap_link_text": "Proceed to certification"
         }
+      },
+      "free-sample-settings": {
+        "type": "free-sample-settings",
+        "settings": {}
       }
     },
     "content_for_index": [
