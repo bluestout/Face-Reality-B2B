@@ -23,6 +23,7 @@ const el = {
   json: "[data-product-item-json]",
   imageWrap: "[data-product-image-wrapper]",
   cTitle: "[data-collection-banner-title]",
+  cSubitle: "[data-collection-banner-subtitle]",
   variantAvailability: `[data-${data.variantAvailability}]`,
 };
 
@@ -355,48 +356,45 @@ function getUrlParams() {
 
 // if url has parameters, run the filter
 function runUrlFilter() {
+  const collectionsElement = document.getElementById("collection-titles-json");
+  let collJson;
+  if (collectionsElement) {
+    collJson = JSON.parse(collectionsElement.innerHTML);
+    collJson = collJson.collections;
+  }
   const params = getUrlParams();
   if (params.availability) {
     $(`#availability-filter-${params.availability}`).click();
-    setCollectionTitle(params.availability, true);
+    setCollectionTitleFromJson(params.availability, collJson);
   }
   if (params.type) {
     $(`#type-f-${params.type}`).click();
-    setCollectionTitle(params.type);
+    setCollectionTitleFromJson(params.type, collJson);
   }
   if (params.usecase) {
     $(`#usecase-f-${params.usecase}`).click();
-    setCollectionTitle(params.usecase);
+    setCollectionTitleFromJson(params.usecase, collJson);
   }
   if (params.skin) {
     $(`#skin-f-${params.skin}`).click();
-    setCollectionTitle(params.skin);
+    setCollectionTitleFromJson(params.skin, collJson);
   }
 }
 
-function deHandleize(str) {
-  return str.replace(/-/g, " ", " ").replace(/_/g, " ");
-}
-
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
-function setCollectionTitle(titleRaw, professional) {
-  let title = "";
-  if (professional) {
-    title = "Professional";
-  } else {
-    title = capitalizeFirstLetter(deHandleize(titleRaw));
+// get settings from the collection banner json
+function setCollectionTitleFromJson(urlParam, collJson) {
+  if (collJson && collJson.length > 0) {
+    for (let i = 0; i < collJson.length; i++) {
+      const coll = collJson[i];
+      if (urlParam.indexOf(coll.handle) > -1) {
+        if (coll.subtitle.length > 0) {
+          $(el.cSubitle).text(coll.subtitle);
+        }
+        return $(el.cTitle).text(coll.title);
+      }
+    }
   }
-  if (titleRaw === "acne-prevention") {
-    title = "Acne Prevention";
-  } else if (titleRaw === "use-anti-aging") {
-    title = "Anti Aging";
-  } else if (!titleRaw.indexOf("-") > -1 && titleRaw !== "tools") {
-    title += "s";
-  }
-  return $(el.cTitle).text(title);
+  return null;
 }
 
 function initialize() {

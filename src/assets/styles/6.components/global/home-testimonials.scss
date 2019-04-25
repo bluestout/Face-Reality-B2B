@@ -247,9 +247,23 @@
     }
   }
 
-  @include media-query("large-down") {
+  @include media-query($xl) {
     &__testimonial {
       padding: 0 40px 40px;
+    }
+
+    &__testimonial-text {
+      padding: 25px 15px 40px;
+    }
+  }
+
+  @include media-query($large) {
+    &__testimonial {
+      padding: 0 30px 30px;
+    }
+
+    &__testimonial-text {
+      padding: 25px 15px 40px;
     }
   }
 
