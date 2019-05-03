@@ -377,7 +377,10 @@ function runUrlFilter() {
   }
   if (params.skin) {
     $(`#skin-f-${params.skin}`).click();
-    setCollectionTitleFromJson(params.skin, collJson);
+    const skinReduced = `${params.skin
+      .replace("skin-", "")
+      .replace("-skin", "")}-skin`;
+    setCollectionTitleFromJson(skinReduced, collJson);
   }
 }
 
@@ -386,7 +389,7 @@ function setCollectionTitleFromJson(urlParam, collJson) {
   if (collJson && collJson.length > 0) {
     for (let i = 0; i < collJson.length; i++) {
       const coll = collJson[i];
-      if (urlParam.indexOf(coll.handle) > -1) {
+      if (coll.handle.indexOf(urlParam) > -1) {
         if (coll.subtitle.length > 0) {
           $(el.cSubitle).text(coll.subtitle);
         }

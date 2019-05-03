@@ -17,6 +17,8 @@
 
     {% if block.settings.background %}
       <div class="collection-banner collection-banner--bg lazyload" data-bgset="{% include 'responsive-bg-image', image: block.settings.background %}">
+    {% elsif section.settings.background %}
+      <div class="collection-banner collection-banner--bg lazyload" data-bgset="{% include 'responsive-bg-image', image: section.settings.background %}">
     {% else %}
       <div class="collection-banner collection-banner--default">
         <div class="container">
@@ -80,7 +82,7 @@
     "blocks": [
       {
         "type": "block",
-        "name": "Block",
+        "name": "Collection",
         "settings": [
           {
             "type": "image_picker",
