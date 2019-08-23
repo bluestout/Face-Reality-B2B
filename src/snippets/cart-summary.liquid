@@ -20,10 +20,11 @@
   <input class="cart-summary__checkout-button" type="submit" name="checkout" value="{{ 'cart.general.checkout' | t }}"/>
 
   {% assign totals = cart.total_price %}
-  {% assign threshold = 60000 %}
+  {% assign threshold = settings.free_shipping_threshold | plus: 0 %}
+  {% assign threshold_int = threshold | times: 1 %}
 
-  {% if totals < threshold %}
-    <span class="wholesale-order__shipping-check">You are {{ threshold | minus: totals | money }} away from free shipping</span>
+  {% if totals < threshold_int %}
+    <span class="wholesale-order__shipping-check">You are {{ threshold_int | minus: totals | money }} away from free shipping</span>
   {% else %}
     <span class="wholesale-order__shipping-check">You are eligible for free shipping</span>
   {% endif %}

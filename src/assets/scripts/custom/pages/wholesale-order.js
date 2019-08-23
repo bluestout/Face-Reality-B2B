@@ -65,7 +65,9 @@ if (samplesReceivedData && samplesReceivedData.textContent.length > 3) {
 // any constant values used
 const values = {
   minOrder: 0,
-  freeShipping: 60000,
+  freeShipping: theme.freeShippingThreshold
+    ? parseInt(theme.freeShippingThreshold, 10)
+    : 0,
   eligibleText: "You are eligible for free shipping",
   notEligibleLeft: "You are ",
   notEligibleRight: " away from free shipping",

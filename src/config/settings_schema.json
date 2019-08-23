@@ -49,6 +49,17 @@
     ]
   },
   {
+    "name": "Free Shipping Settings",
+    "settings": [
+      {
+        "id": "free_shipping_threshold",
+        "label": "Free Shipping Eligibility Threshold",
+        "type": "text",
+        "info": "Please enter a value in cents, number only.(Example: for $600 threshold, insert 60000). This is visual only, the calculated threshold is set in shipping options."
+      }
+    ]
+  },
+  {
     "name": "Social media",
     "settings": [
       {
