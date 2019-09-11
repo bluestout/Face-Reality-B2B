@@ -98,7 +98,6 @@ function loadProducts(cart) {
     async: false,
     dataType: "html",
     success: (json) => {
-      console.log(json);
       const data = JSON.parse(json);
       const itemsInCart = [];
       for (let i = 0; i < cart.items.length; i++) {
@@ -131,6 +130,7 @@ function loadProducts(cart) {
         }
         return 0;
       });
+      console.log(keysSorted);
 
       let currentType = "";
       const currentTypesCount = {};
