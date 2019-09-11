@@ -179,7 +179,14 @@ function loadProducts(cart) {
             if ($(window).width() < 992) {
               colspan = 1;
             }
-            products += `<tr class="`+('123')+` cart-table__row availability-all type-all ${pTypeClean} ${pAvailability}" data-wholesale-row>
+
+            if(pTypeClean=='Serums'){
+              console.log('pRetail = '+pRetail);
+              console.log('pBackbar = '+pBackbar);
+              console.log('pAvailability = '+pAvailability);
+            }
+
+            products += `<tr class="cart-table__row availability-all type-all ${pTypeClean} ${pAvailability}" data-wholesale-row>
               <td class="cart-table__cell d-none d-md-table-cell" colspan="1"></td>
               <td class="cart-table__cell cart-table__cell--type" colspan="${colspan}">
                 <h3 class="cart-table__type-header">${currentType}</h3>
