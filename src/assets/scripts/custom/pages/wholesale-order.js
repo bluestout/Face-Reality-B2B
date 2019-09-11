@@ -136,9 +136,18 @@ function loadProducts(cart) {
       let currentType = "";
       const currentTypesCount = {};
 
+      var inex_arr = [];
+
       for (let i = 0; i < data.products.length; i++) {
         // use the sorted keys to determine in what order to show products
         const product = data.products[keysSorted[i]];
+        
+        var tmp_arr = {};
+        tmp_arr['i'] = i;
+        tmp_arr['keysSorted-i'] = keysSorted[i];
+        tmp_arr['pro_type'] = product.type;
+        tmp_arr['pro_title'] = product.title;
+        inex_arr.push(tmp_arr);
 
         // hide hidden products (has hidden-product tag)
         if (!product.tags.includes("hidden-product")) {
@@ -333,6 +342,9 @@ function loadProducts(cart) {
           }
         }
       }
+
+      console.log(inex_arr);
+
       // now that we have all the product counts, replace the values in the products string
       let productCountAll = 0;
       let sortOptionsType = "";
