@@ -136,19 +136,10 @@ function loadProducts(cart) {
       let currentType = "";
       const currentTypesCount = {};
 
-      var inex_arr = [];
-
       for (let i = 0; i < data.products.length; i++) {
         // use the sorted keys to determine in what order to show products
         const product = data.products[keysSorted[i]];
         
-        var tmp_arr = {};
-        tmp_arr['i'] = i;
-        tmp_arr['keysSorted-i'] = keysSorted[i];
-        tmp_arr['pro_type'] = product.type;
-        tmp_arr['pro_title'] = product.title;
-        inex_arr.push(tmp_arr);
-
         // hide hidden products (has hidden-product tag)
         if (!product.tags.includes("hidden-product")) {
           const pTitle = product.title;
@@ -188,7 +179,7 @@ function loadProducts(cart) {
             if ($(window).width() < 992) {
               colspan = 1;
             }
-            products += `<tr class="cart-table__row availability-all type-all ${pTypeClean} ${pAvailability}" data-wholesale-row>
+            products += `<tr class="`+('123')+` cart-table__row availability-all type-all ${pTypeClean} ${pAvailability}" data-wholesale-row>
               <td class="cart-table__cell d-none d-md-table-cell" colspan="1"></td>
               <td class="cart-table__cell cart-table__cell--type" colspan="${colspan}">
                 <h3 class="cart-table__type-header">${currentType}</h3>
@@ -342,8 +333,6 @@ function loadProducts(cart) {
           }
         }
       }
-
-      console.log(inex_arr);
 
       // now that we have all the product counts, replace the values in the products string
       let productCountAll = 0;
