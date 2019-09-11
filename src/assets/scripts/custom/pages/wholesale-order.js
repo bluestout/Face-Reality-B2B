@@ -99,6 +99,7 @@ function loadProducts(cart) {
     dataType: "html",
     success: (json) => {
       const data = JSON.parse(json);
+      console.log(data);
       const itemsInCart = [];
       for (let i = 0; i < cart.items.length; i++) {
         itemsInCart.push({
