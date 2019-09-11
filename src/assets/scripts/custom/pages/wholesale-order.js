@@ -130,12 +130,198 @@ function loadProducts(cart) {
         }
         return 0;
       });
-      console.log(data.products);
-      console.log(keysSorted);
 
-      let currentType = "";
+      /****************************** by inex ******************************************/
+
+      var inex_pro_by_type = {};
+      for (let i = 0; i < data.products.length; i++) {
+        const product = data.products[keysSorted[i]];
+        if (!product.tags.includes("hidden-product")) {
+          for (let j = 0; j < product.variants.length; j++) {
+            const pType = product.type;
+            const pTypeClean = pType.replace(" ", "-");
+            const variant = product.variants[j];
+            if(inex_pro_by_type[pTypeClean]==undefined){
+              inex_pro_by_type[pTypeClean] = [];
+            }
+
+            let image = "";
+            if (product.images && product.images[0]) {
+              image = getFormattedSrc(product.images[0], "180x180");
+              image = `<img src=${image} alt=${product.title}/>`;
+            }
+
+            variant.product_title = product.title;
+            variant.product_image = image;
+            inex_pro_by_type[pTypeClean].push(variant);
+          }
+        }
+      }
+      var tblHtml = '';
+      $.each(inex_pro_by_type,function(proType,variants){
+        let pAvailability = "";
+        let pBackbar = false;
+        let pRetail = false;
+
+        var isBackbarExist = 0;
+        if (variants.length > 0) {
+          for (let j = 0; j < variants.length; j++) {
+            const variant = variants[j];
+
+            if (variant.title.toLowerCase().indexOf("backbar") > -1) {
+              isBackbarExist++;
+            }
+          }
+        }
+
+        if(isBackbarExist>0){
+          pBackbar = true;
+        }else{
+          pRetail = true;
+        }
+
+        pAvailability = pRetail ? `${pAvailability} retail` : pAvailability;
+        pAvailability = pBackbar ? `${pAvailability} backbar` : pAvailability;
+
+        tblHtml += `<tr class="cart-table__row availability-all type-all `+proType+` `+pAvailability+`" data-wholesale-row="">
+              <td class="cart-table__cell d-none d-md-table-cell" colspan="1"></td>
+              <td class="cart-table__cell cart-table__cell--type" colspan="4">
+                <h3 class="cart-table__type-header">`+proType+`</h3>
+                <span class="cart-table__type-count" data-type="`+proType+`">`+variants.length+`</span>
+                <span class="cart-table__type-count">products</span>
+              </td>
+            </tr>`;
+
+        for (let j = 0; j < variants.length; j++) {
+            const variant = variants[j];
+            let price = 0;
+            const comparePrice = variant.compare_at_price;
+            const currentPrice = variant.price;
+            const option = variant.title === "Default Title" ? "" : variant.title;
+
+            var pTitle = variant.product_title;
+            let image = variant.product_image;
+            
+            let quantityInCart = 0;
+            let inCart = "";
+            let inCartDiv = "";
+            for (let k = 0; k < itemsInCart.length; k++) {
+              if (itemsInCart[k].id === variant.id) {
+                quantityInCart = itemsInCart[k].quantity;
+              }
+            }
+            if (cartHasItems) {
+              inCart = `<td class='cart-table__cell text-center d-none d-md-table-cell'>
+                <div class='cart-table__price' data-wholesale-in-cart-qty>
+                  ${quantityInCart}
+                </div>
+              </td>`;
+              inCartDiv = `<div class='cart-table__qty-in-cart d-md-none text-right'>
+                <span>Cart Quantity:</span>
+                <span>${quantityInCart}</span>
+              </div>`;
+            }
+
+            if (comparePrice) {
+              price = `<span data-wholesale-price="${currentPrice}">${formatMoney(
+                currentPrice,
+                theme.moneyFormat,
+              )}</span>
+              <span><s data-wholesale-price-compare="${comparePrice}">${formatMoney(
+                comparePrice,
+                theme.moneyFormat,
+              )}</s></span>`;
+            } else {
+              price = `<span data-wholesale-price="${currentPrice}">${formatMoney(
+                currentPrice,
+                theme.moneyFormat,
+              )}<span>`;
+            }
+
+            let qtyString = `<div class="cart-table__note">Out of stock</div>
+            <input type="hidden" name="inventory" value="0"/>
+            <input type="hidden" name="quantity" value="0"/>`;
+            if (variant.available) {
+              qtyString = `
+                <div class='cart-table__quantity'>
+                  <button type='button' class='cart-table__quantity-button' data-qty-change='[product-qty-${i}-${j}-${variant.id}]' data-direction='down'>-</button>
+                  <input
+                    class='cart-table__quantity-input'
+                    type='number'
+                    name='quantity'
+                    value=0
+                    min='0'
+                    data-wholesale-quantity
+                    product-qty-${i}-${j}-${variant.id}/>
+                  <button type='button' class='cart-table__quantity-button' data-qty-change='[product-qty-${i}-${j}-${variant.id}]' data-direction='up'>+</button>
+                </div>
+              `;
+            }
+
+            tblHtml += `<tr class='cart-table__row availability-all type-all ${proType} ${pAvailability}' data-wholesale-row>
+              <td class='cart-table__cell cart-table__cell--image text-left d-none d-md-table-cell'>
+                <div class="cart-table__image-wrap">
+                  ${image}
+                </div>
+              </td>
+
+              <td class='cart-table__cell cart-table__cell--title text-left d-none d-md-table-cell'>
+                <h3 class='cart-table__product-title'>
+                  <a class='cart-table__product-link' nohref>${pTitle}</a>
+                </h3>
+                <div class='cart-table__product-id'>Product ID. ${
+                  variant.sku
+                }</div>
+              </td>
+
+              <td class='cart-table__cell text-center d-none d-md-table-cell'>
+                <div class='cart-table__option'>
+                  ${option}
+                </div>
+              </td>
+
+              <td class='cart-table__cell text-center d-none d-md-table-cell'>
+                <div class='cart-table__price'>
+                  ${price}
+                </div>
+              </td>
+
+              <td class='cart-table__cell cart-table__cell--last'>
+
+                <div class="d-md-none">
+                  <div class="cart-table__rsp-image-wrap">${image}</div>
+                  <div class="cart-table__rsp-content">
+                    <h3 class="cart-table__rsp-title">
+                      <a class='cart-table__rsp-link' nohref>${pTitle} 123</a>
+                      <span class="cart-table__rsp-price">${price}</span>
+                    </h3>
+                    <div class="cart-table__rsp-info">
+                      <span class="cart-table__rsp-option">${
+                        variant.title
+                      }</span>
+                      <span class="cart-table__rsp-id">Product ID. ${
+                        variant.sku
+                      }</span>
+                      </div>
+                    </div>
+                  <div class="clearfix"></div>
+                </div>
+
+                <form action="/" method="post" class="cart-table__item-form" novalidate data-wholesale-single-product>
+                  <input type="hidden" name="id" value="${variant.id}"/>
+                  ${qtyString}
+                </form>
+                ${inCartDiv}
+              </td>
+              ${inCart}
+            </tr>`;
+          }
+      });
+
+      /****************************** by inex ******************************************/
+
+      /*let currentType = "";
       const currentTypesCount = {};
-
       for (let i = 0; i < data.products.length; i++) {
         // use the sorted keys to determine in what order to show products
         const product = data.products[keysSorted[i]];
@@ -156,17 +342,27 @@ function loadProducts(cart) {
 
           // add to the product counter
           currentTypesCount[pTypeClean] += 1;
+          // by inex
+          var isBackbarExist = 0;
           if (product.variants.length > 1) {
             currentTypesCount[pTypeClean] += product.variants.length - 1;
 
             for (let j = 0; j < product.variants.length; j++) {
               const variant = product.variants[j];
+
               if (variant.title.toLowerCase().indexOf("backbar") > -1) {
-                pBackbar = true;
-              } else {
-                pRetail = true;
-              }
+                //pBackbar = true;
+                isBackbarExist++;
+              } //else {
+              //  pRetail = true;
+              //}
             }
+          }
+
+          if(isBackbarExist>0){
+            pBackbar = true;
+          }else{
+            pRetail = true;
           }
 
           pAvailability = pRetail ? `${pAvailability} retail` : pAvailability;
@@ -180,13 +376,7 @@ function loadProducts(cart) {
               colspan = 1;
             }
 
-            if(pTypeClean=='Serums'){
-              console.log('pRetail = '+pRetail);
-              console.log('pBackbar = '+pBackbar);
-              console.log('pAvailability = '+pAvailability);
-            }
-
-            products += `<tr class="cart-table__row availability-all type-all ${pTypeClean} ${pAvailability}" data-wholesale-row>
+            products += `<tr class="`+(product.variants.length)+` cart-table__row availability-all type-all ${pTypeClean} abc ${pAvailability}" data-wholesale-row>
               <td class="cart-table__cell d-none d-md-table-cell" colspan="1"></td>
               <td class="cart-table__cell cart-table__cell--type" colspan="${colspan}">
                 <h3 class="cart-table__type-header">${currentType}</h3>
@@ -280,7 +470,7 @@ function loadProducts(cart) {
               `;
             }
 
-            products += `<tr class='cart-table__row availability-all type-all ${pTypeClean} ${vAvailability}' data-wholesale-row>
+            products += `<tr class='cart-table__row availability-all type-all ${pTypeClean} xyz ${pAvailability}' data-wholesale-row>
               <td class='cart-table__cell cart-table__cell--image text-left d-none d-md-table-cell'>
                 <div class="cart-table__image-wrap">
                   ${image}
@@ -339,10 +529,10 @@ function loadProducts(cart) {
             </tr>`;
           }
         }
-      }
+      }*/
 
       // now that we have all the product counts, replace the values in the products string
-      let productCountAll = 0;
+      /*let productCountAll = 0;
       let sortOptionsType = "";
       if (currentTypesCount && typeof currentTypesCount === "object") {
         for (let i = 0; i < Object.keys(currentTypesCount).length; i++) {
@@ -358,11 +548,11 @@ function loadProducts(cart) {
           productCountAll += value;
           sortOptionsType += `<option value="${key}">${niceKey}</option>`;
         }
-      }
+      }*/
 
-      $(el.filter.type).append(sortOptionsType);
-      $(el.filter.count).text(`${productCountAll} products total`);
-      $(el.table).html(products);
+      //$(el.filter.type).append(sortOptionsType);
+      //$(el.filter.count).text(`${productCountAll} products total`);
+      $(el.table).html(tblHtml);
       return calculateTotals();
     },
     cache: false,
@@ -583,6 +773,7 @@ function calculateTotals() {
     const priceCompare = parseFloat(
       $(el.priceCompare, $this).data("wholesale-price-compare"),
     );
+
     if (qty > 0) {
       orderTotals += price * qty;
       if (priceCompare > 0) {
