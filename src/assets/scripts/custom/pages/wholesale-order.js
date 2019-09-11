@@ -130,6 +130,7 @@ function loadProducts(cart) {
         }
         return 0;
       });
+      console.log(data.products);
       console.log(keysSorted);
 
       let currentType = "";
