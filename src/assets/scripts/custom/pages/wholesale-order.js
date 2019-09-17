@@ -164,26 +164,34 @@ function loadProducts(cart) {
         let pRetail = false;
 
         var isBackbarExist = 0;
+        var isRetailExist = 0;
         if (variants.length > 0) {
           for (let j = 0; j < variants.length; j++) {
             const variant = variants[j];
 
             if (variant.title.toLowerCase().indexOf("backbar") > -1) {
               isBackbarExist++;
+               console.log("isBackbarExist");
+            }else{
+              isRetailExist++;
+               console.log("isRetailExist");
             }
           }
         }
 
         if(isBackbarExist>0){
           pBackbar = true;
-        }else{
+          console.log("test123");
+        }
+        if(isRetailExist>0){
           pRetail = true;
+          console.log("test345");
         }
 
         pAvailability = pRetail ? `${pAvailability} retail` : pAvailability;
         pAvailability = pBackbar ? `${pAvailability} backbar` : pAvailability;
 
-        tblHtml += `<tr class="cart-table__row availability-all type-all `+proType+` `+pAvailability+`" data-wholesale-row="">
+        tblHtml += `<tr class="neha cart-table__row availability-all type-all `+proType+` `+pAvailability+`" data-wholesale-row="">
               <td class="cart-table__cell d-none d-md-table-cell" colspan="1"></td>
               <td class="cart-table__cell cart-table__cell--type" colspan="4">
                 <h3 class="cart-table__type-header">`+proType+`</h3>
@@ -201,6 +209,21 @@ function loadProducts(cart) {
 
             var pTitle = variant.product_title;
             let image = variant.product_image;
+
+            let vAvailability = "";
+            let vBackbar = false;
+            let vRetail = false;
+
+            if (variant.title.toLowerCase().indexOf("backbar") > -1) {
+              vBackbar = true;
+            } else {
+              vRetail = true;
+            }
+
+            vAvailability = vRetail ? "retail" : "";
+            vAvailability = vBackbar
+              ? `${vAvailability} backbar`
+              : `${vAvailability}`;
             
             let quantityInCart = 0;
             let inCart = "";
@@ -211,7 +234,7 @@ function loadProducts(cart) {
               }
             }
             if (cartHasItems) {
-              inCart = `<td class='cart-table__cell text-center d-none d-md-table-cell'>
+              inCart = `<td class='test cart-table__cell text-center d-none d-md-table-cell'>
                 <div class='cart-table__price' data-wholesale-in-cart-qty>
                   ${quantityInCart}
                 </div>
@@ -258,7 +281,7 @@ function loadProducts(cart) {
               `;
             }
 
-            tblHtml += `<tr class='cart-table__row availability-all type-all ${proType} ${pAvailability}' data-wholesale-row>
+            tblHtml += `<tr class='cart-table__row availability-all type-all ${proType} ${vAvailability}' data-wholesale-row>
               <td class='cart-table__cell cart-table__cell--image text-left d-none d-md-table-cell'>
                 <div class="cart-table__image-wrap">
                   ${image}
