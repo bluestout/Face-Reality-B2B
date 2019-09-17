@@ -171,21 +171,17 @@ function loadProducts(cart) {
 
             if (variant.title.toLowerCase().indexOf("backbar") > -1) {
               isBackbarExist++;
-               console.log("isBackbarExist");
             }else{
               isRetailExist++;
-               console.log("isRetailExist");
             }
           }
         }
 
         if(isBackbarExist>0){
           pBackbar = true;
-          console.log("test123");
         }
         if(isRetailExist>0){
           pRetail = true;
-          console.log("test345");
         }
 
         pAvailability = pRetail ? `${pAvailability} retail` : pAvailability;
